@@ -1,0 +1,18 @@
+{"shows": [
+    {"url": "afterdark" , "title": "After Dark"},
+    {"url": "b2w" , "title": "Back to Work"},
+    {"url": "bigwebshow" , "title": "The Big Web Show"},
+    {"url": "brieflyawesome" , "title": "Briefly Awesome"},
+    {"url": "buildanalyze" , "title": "Build and Analyze"},
+    {"url": "contenttalks" , "title": "Content Talks"},
+    {"url": "dailyedition" , "title": "The Daily Edition"},
+    {"url": "devshow" , "title": "The Dev Show"},
+    {"url": "founderstalk" , "title": "Founders Talk"},
+    {"url": "hypercritical" , "title": "Hypercritical"},
+    {"url": "mistakes" , "title": "Let's Make Mistakes"},
+    {"url": "paleo" , "title": "Latest in Paleo"},
+    {"url": "pipeline" , "title": "The Pipeline"},
+    {"url": "superhero" , "title": "Internet Superhero"},
+    {"url": "talkshow" , "title": "The Talk Show"}
+  ]
+}
