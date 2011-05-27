@@ -1,12 +1,14 @@
 require 'cinch'
 require 'json'
 require './show.rb'
+require './random.rb'
 
 $debug = false
 
 $domain = "http://5by5.tv"
 $suggested_titles = []
 $shows = []
+$drphil ["There's a genie for that.", "Everything's a bear.", "A beret will be fine.", "If you want to find the treasure you gotta buy the chest!", "You don't win at tennis by buying a bowling ball.", "If you live in a tree, don't be surprised that you're living with monkeys.", "Crush the Bunny.", "Doesn't matter how many Fords you buy, they're never gonna be a Dodge. You can repaint the Ford but…let's go to a break.", "You're not gonna get Black Lung from an excel spreadsheet.", "I’m not gonna euthanize this dog, I’m just gonna put it over here where I can’t see it.", "Failure is the equivalent of existential sit-ups."]
 
 def load_shows
   show_hashes = JSON.parse(File.open("shows.json").read)["shows"]
@@ -36,7 +38,7 @@ def reply_for_command(m, command_name="", arg1, arg2)
     if show
       reply = "#{m.user.nick}: #{$domain}/#{show.url}"
     else
-      m.reply "#{m.user.nick}: No show by name #{arg1}"
+      m.reply "#{m.user.nick}: No show by name #{arg1}."
       m.reply "Usage: !show show_name episode_number"
     end
   when "links"
@@ -54,7 +56,7 @@ def reply_for_command(m, command_name="", arg1, arg2)
     if show
       reply = show.titles.join("\n")
     else
-      m.reply "#{m.user.nick}: No show by name #{arg1}"
+      m.reply "#{m.user.nick}: No show by name #{arg1}."
       m.reply "Usage: !showtitles show_name"
     end
   when "suggest"
@@ -70,6 +72,10 @@ def reply_for_command(m, command_name="", arg1, arg2)
     $suggested_titles.clear
   when "stopfailing"
     reply = "no."
+  when "merlin"
+    reply = "SO angry."
+  when "drphil"
+    reply = $drphil.random
   else
     # no command found
   end
