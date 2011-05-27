@@ -3,7 +3,7 @@ require 'json'
 require './show.rb'
 require './random.rb'
 
-$debug = false
+$debug = true
 
 $domain = "http://5by5.tv"
 $suggested_titles = []
@@ -39,7 +39,7 @@ def reply_for_command(m, command_name="", arg1, arg2)
       reply = "#{m.user.nick}: #{$domain}/#{show.url}"
     else
       m.reply "#{m.user.nick}: No show by name #{arg1}."
-      m.reply "Usage: !show show_name episode_number"
+      m.reply "#{m.user.nick}: Usage: !show show_name episode_number"
     end
   when "links"
     show = get_show(arg1)
@@ -57,7 +57,7 @@ def reply_for_command(m, command_name="", arg1, arg2)
       reply = show.titles.join("\n")
     else
       m.reply "#{m.user.nick}: No show by name #{arg1}."
-      m.reply "Usage: !showtitles show_name"
+      m.reply "#{m.user.nick}: Usage: !titles show_name"
     end
   when "suggest"
     if arg1 and arg1.strip != ""
