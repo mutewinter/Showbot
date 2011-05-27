@@ -1,18 +1,19 @@
 {"shows": [
-    {"url": "afterdark" , "title": "After Dark"},
-    {"url": "b2w" , "title": "Back to Work"},
-    {"url": "bigwebshow" , "title": "The Big Web Show"},
-    {"url": "brieflyawesome" , "title": "Briefly Awesome"},
-    {"url": "buildanalyze" , "title": "Build and Analyze"},
-    {"url": "contenttalks" , "title": "Content Talks"},
-    {"url": "dailyedition" , "title": "The Daily Edition"},
-    {"url": "devshow" , "title": "The Dev Show"},
-    {"url": "founderstalk" , "title": "Founders Talk"},
-    {"url": "hypercritical" , "title": "Hypercritical"},
-    {"url": "mistakes" , "title": "Let's Make Mistakes"},
-    {"url": "paleo" , "title": "Latest in Paleo"},
-    {"url": "pipeline" , "title": "The Pipeline"},
-    {"url": "superhero" , "title": "Internet Superhero"},
-    {"url": "talkshow" , "title": "The Talk Show"}
+    {"rss":"http://feeds.feedburner.com/5by5-afterdark", "url": "afterdark" , "title": "After Dark"},
+    {"rss":"http://feeds.feedburner.com/back2work", "url": "b2w" , "title": "Back to Work"},
+    {"rss":"http://feeds.feedburner.com/bigwebshow", "url": "bigwebshow" , "title": "The Big Web Show"},
+    {"rss":"http://feeds.feedburner.com/brieflyawesome", "url": "brieflyawesome" , "title": "Briefly Awesome"},
+    {"rss":"http://feeds.feedburner.com/buildanalyze", "url": "buildanalyze" , "title": "Build and Analyze"},
+    {"rss":"http://feeds.feedburner.com/contenttalks", "url": "contenttalks" , "title": "Content Talks"},
+    {"rss":"http://feeds.feedburner.com/dailyedition", "url": "dailyedition" , "title": "The Daily Edition"},
+    {"rss":"http://feeds.feedburner.com/5by5-devshow", "url": "devshow" , "title": "The Dev Show"},
+    {"rss":"http://feeds.feedburner.com/founderstalk", "url": "founderstalk" , "title": "Founders Talk"},
+    {"rss":"http://feeds.feedburner.com/hypercritical", "url": "hypercritical" , "title": "Hypercritical"},
+    {"rss":"http://feeds.feedburner.com/letsmakemistakes", "url": "mistakes" , "title": "Let's Make Mistakes"},
+    {"rss":"http://feeds.feedburner.com/PaleoPodcast", "url": "paleo" , "title": "Latest in Paleo"},
+    {"rss":"http://feeds.feedburner.com/thepipelineshow", "url": "pipeline" , "title": "The Pipeline"},
+    {"rss":"http://feeds.feedburner.com/5by5-superhero", "url": "superhero" , "title": "Internet Superhero"},
+    {"rss":"http://feeds.feedburner.com/thetalkshow", "url": "talkshow" , "title": "The Talk Show"}
   ]
 }
+
