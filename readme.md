@@ -9,9 +9,9 @@ A sweet IRC bot for [5by5](http://5by5.tv). Built on [cinch](https://github.com/
 !show b2w 12
 showbot> http://5by5.tv/b2w/12
 </pre>
-* showtitles
+* titles
 <pre>
-!showtitles b2w
+!titles b2w
 showbot> 16: Bracing for the Blow
 15: Marionette of my own Design
 14: Velocity of Disappointment
@@ -29,17 +29,17 @@ showbot> 16: Bracing for the Blow
 2: Picture of a Boat
 1: Alligator in the Bathroom
 </pre>
-* showdescription
+* description
 <pre>
-!showdescription b2w 8
+!description b2w 8
 showbot> This week, Merlin Mann and Dan Benjamin eighty-six their
 restaurant jobs?emptying grease traps, handling logs of meat, and sharing what
 they learned by bringing mostly bad food to America's table. Dan burns velvet
 hands, Merlin's Mom gives the guy with th
 </pre>
-* showlinks
+* links
 <pre>
-showlinks b2w 1
+links b2w 1
 showbot> Welcome to BrettTerpstra.com, home of Brett Terpstra and his nerdery - http://brettterpstra.com/
 carlhuda/janus ? GitHub - https://github.com/carlhuda/janus
 practically efficient ? technology, workflows, life - http://www.practicallyefficient.com/

@@ -2,7 +2,7 @@ require 'cinch'
 require 'json'
 require './show.rb'
 
-$debug = true
+$debug = false
 
 $domain = "http://5by5.tv"
 $suggested_titles = []
@@ -39,17 +39,17 @@ def reply_for_command(m, command_name="", arg1, arg2)
       m.reply "#{m.user.nick}: No show by name #{arg1}"
       m.reply "Usage: !show show_name episode_number"
     end
-  when "showlinks"
+  when "links"
     show = get_show(arg1)
     if show and arg2 and arg2.strip != ""
       reply = "#{m.user.nick}: #{show.links(arg2).join("\n")}"
     end
-  when "showdescription"
+  when "description"
     show = get_show(arg1)
     if show and arg2 and arg2.strip != ""
       reply = "#{m.user.nick}: #{show.description(arg2)}"
     end
-  when "showtitles"
+  when "titles"
     show = get_show(arg1)
     if show
       reply = show.titles.join("\n")
