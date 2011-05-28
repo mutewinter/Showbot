@@ -29,10 +29,20 @@ class Show
     titles
   end
 
+  # TODO pull this from the show page not RSS feed
+  # since the RSS isn't updated and has blanks.
   def description(show_number)
     rss = RSS::Parser.parse(open(@rss), false)
 
-    rss.items[show_number.to_i].description
+    index = show_number.to_i - 1
+
+    item = rss.items.reverse[index]
+
+    if item
+      return item.description
+    else
+      return "Show #{show_number} not found for #{@title}"
+    end
   end
 
   def links(show_number)

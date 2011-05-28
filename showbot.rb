@@ -8,7 +8,17 @@ $debug = true
 $domain = "http://5by5.tv"
 $suggested_titles = []
 $shows = []
-$drphil ["There's a genie for that.", "Everything's a bear.", "A beret will be fine.", "If you want to find the treasure you gotta buy the chest!", "You don't win at tennis by buying a bowling ball.", "If you live in a tree, don't be surprised that you're living with monkeys.", "Crush the Bunny.", "Doesn't matter how many Fords you buy, they're never gonna be a Dodge. You can repaint the Ford but…let's go to a break.", "You're not gonna get Black Lung from an excel spreadsheet.", "I’m not gonna euthanize this dog, I’m just gonna put it over here where I can’t see it.", "Failure is the equivalent of existential sit-ups."]
+$drphil = ["There's a genie for that.",
+ "Everything's a bear.",
+ "A beret will be fine.",
+ "If you want to find the treasure you gotta buy the chest!",
+ "You don't win at tennis by buying a bowling ball.",
+ "If you live in a tree, don't be surprised that you're living with monkeys.",
+ "Crush the Bunny.",
+ "Doesn't matter how many Fords you buy, they're never gonna be a Dodge. You can repaint the Ford but... let's go to a break.",
+ "You're not gonna get Black Lung from an excel spreadsheet.",
+ "I'm not gonna euthanize this dog, I'm just gonna put it over here where I can't see it.",
+ "Failure is the equivalent of existential sit-ups."]
 
 def load_shows
   show_hashes = JSON.parse(File.open("shows.json").read)["shows"]
@@ -109,11 +119,15 @@ end
 
 def test
   b2w = get_show("b2w")
+  talkshow = get_show('talkshow')
 
-  puts b2w.titles
-  puts b2w.links(15)
-  puts b2w.description("9")
+  # Should work
+  puts talkshow.description("100")
+  puts b2w.description("17")
 
+  # Should fail
+  puts talkshow.description("50")
+  puts b2w.description("100")
 end
 
 def main
