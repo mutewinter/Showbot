@@ -3,7 +3,7 @@ require 'json'
 require './show.rb'
 require './random.rb'
 
-$debug = true
+$debug = false
 
 $domain = "http://5by5.tv"
 $suggested_titles = []
@@ -48,7 +48,7 @@ def reply_for_command(m, command_name="", arg1, arg2)
     if show
       reply = "#{m.user.nick}: #{$domain}/#{show.url}"
     else
-      m.reply "#{m.user.nick}: No show by name #{arg1}."
+      m.reply "#{m.user.nick}: No show by name \"#{arg1}\". You dissappoint."
       m.reply "#{m.user.nick}: Usage: !show show_name episode_number"
     end
   when "links"
@@ -72,20 +72,30 @@ def reply_for_command(m, command_name="", arg1, arg2)
   when "suggest"
     if arg1 and arg1.strip != ""
       $suggested_titles.push arg1.strip
-      reply = "Added title suggestion '#{arg1.strip}'"
+      reply = "Added title suggestion \"#{arg1.strip}\""
     end
   when "suggestions"
-    reply = "#{$suggested_titles.length} titles so far:\n"
-    reply += $suggested_titles.join("\n")
+    if $suggested_titles.length == 0
+      reply = "There are no suggestions. You should add some by using \"!suggest title_suggestion\"."
+    else
+      reply = "#{$suggested_titles.length} titles so far:\n"
+      reply += $suggested_titles.join("\n")
+    end
   when "clear"
-    reply = "Clearing #{$suggested_titles.length} title suggestions"
+    if $suggested_titles.length == 1
+      reply = "Clearing #{$suggested_titles.length} title suggestion."
+    elsif $suggested_titles.length == 0
+      reply = "There are no suggestions to clear. You can start adding some by using \"!suggest title_suggestion\"."
+    else
+      reply = "Clearing #{$suggested_titles.length} title suggestions."
+    end
     $suggested_titles.clear
   when "stopfailing"
     reply = "no."
   when "merlin"
     reply = "SO angry."
   when "drphil"
-    reply = $drphil.random
+    reply = "From the wise Mr. Mann: \"#{$drphil.random}\"."
   else
     # no command found
   end
