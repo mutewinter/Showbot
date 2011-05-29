@@ -2,6 +2,11 @@
 
 A sweet IRC bot for [5by5](http://5by5.tv). Built on [cinch](https://github.com/ymendel/cinch/blob/master/lib/cinch/base.rb).
 
+## Requirements
+
+* Ruby 1.9
+* [cinch gem](http://rubygems.org/gems/cinch)
+
 ## Commands
 
 * show 
