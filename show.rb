@@ -7,12 +7,13 @@ $domain = "http://5by5.tv"
 
 # A class to manage Shows, woah
 class Show
-  attr_reader :title, :url, :rss
+  attr_reader :title, :url, :rss, :keywords
 
   def initialize(json_hash)
     @title = json_hash["title"]
     @url = json_hash["url"]
     @rss = json_hash["rss"]
+    @keywords = json_hash["keywords"]
   end
 
   def titles

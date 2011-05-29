@@ -55,8 +55,8 @@ def test
   puts "\n============Should Work=============="
   commands.run("commands", [])
   commands.run("show", ["b2w"])
-  commands.run("show", ["back to work", "13"])
-  commands.run("show", ["back to work", "next"])
+  commands.run("show", ["anal", "13"])
+  commands.run("show", ["work", "next"])
   commands.run("description", ["talkshow", "10"])
   commands.run("links", ["the pipeline", "5"])
 

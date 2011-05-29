@@ -39,6 +39,10 @@ class Commands
         return show
       elsif show.title.downcase == show_string.downcase
         return show
+      else
+        show.keywords.each do |keyword|
+          return show if show_string.downcase == keyword
+        end
       end
     end
     return nil
