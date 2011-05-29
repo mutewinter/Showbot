@@ -19,6 +19,7 @@ class Commands
   @@command_usage = {
     show: '!show show_name [episode_number]',
     links: '!links show_name episode_number',
+    description: '!description show_name episode_number',
     suggest: '!suggest title_suggestion',
     suggestions: 'There are no suggestions. You should add some by using \"!suggest title_suggestion\".',
     clear: 'Clears all titles'
@@ -52,14 +53,24 @@ class Commands
   # Prints text without replying to user who issued command
   def chat(text)
     if text and text.strip != ""
-      @message.reply text
+      if @message
+        @message.reply text
+      else
+        # Debug mode
+        puts text
+      end
     end
   end
 
   # Prints text and replies to user who issued the command
   def reply(text)
     if text and text.strip != ""
-      chat("#{@message.user.nick}: #{text}")
+      if @message
+        chat("#{@message.user.nick}: #{text}")
+      else
+        # Debug mode
+        chat("Reply: #{text}")
+      end
     end
   end
 
@@ -106,6 +117,21 @@ class Commands
     end
   end
 
+  def command_description(args = [])
+    if args.length < 2
+      chat(usage("description"))
+    else
+      show = get_show(args.first)
+      show_number = args[1].strip
+
+      if show and show_number and show_number != ""
+        reply(show.description(show_number))
+      else
+        chat(usage("description"))
+      end
+    end
+  end
+
   def command_suggest(args = [])
     suggestion = args.first.strip
     if suggestion and suggestion != ""
@@ -131,6 +157,8 @@ class Commands
     elsif @@suggested_titles.length == 0
       chat("There are no suggestions to clear. You can start adding some by using \"!suggest title_suggestion\".")
     else
+      # Printing current suggestions so they aren't lost due to a malicious !clear
+      command_suggestions([])
       chat("Clearing #{@@suggested_titles.length} title suggestions.")
     end
     @@suggested_titles.clear

@@ -1,5 +1,3 @@
-# A class to manage Shows, woah
-
 require 'rss/1.0'
 require 'rss/2.0'
 require 'open-uri'
@@ -7,6 +5,7 @@ require 'nokogiri'
 
 $domain = "http://5by5.tv"
 
+# A class to manage Shows, woah
 class Show
   attr_reader :title, :url, :rss
 
@@ -52,7 +51,8 @@ class Show
     
     links_html = doc.css('div.links li a')
     links_html.each do |link|
-      links_array.push "#{link.text} - #{link.attribute("href").value}"
+      url = URI::escape(link.attribute("href").value)
+      links_array.push "#{link.text} - #{url}"
     end
 
     links_array

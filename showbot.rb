@@ -3,7 +3,8 @@ require 'json'
 require './show.rb'
 require './commands.rb'
 
-$debug = true
+$debug = false
+$irc_test = false
 
 $suggested_titles = []
 
@@ -16,51 +17,68 @@ def load_shows
   return shows
 end
 
-# Main bot code
-$bot = Cinch::Bot.new do
-  configure do |c|
-    c.server = "irc.freenode.org"
-    if $debug
-      c.channels = ["#cinch-bots"]
-    else
-      c.channels = ["#5by5"]
+# Run bot
+def bot_start
+  bot = Cinch::Bot.new do
+    configure do |c|
+      c.server = "irc.freenode.org"
+      if $irc_test
+        c.channels = ["#cinch-bots"]
+      else
+        c.channels = ["#5by5"]
+      end
+      c.nick = "showbot"
+
+      $shows ||= load_shows
     end
-    c.nick = "showbot"
 
-    $shows ||= load_shows
+    on :message, /^!(.+?)(?:$|\s)(.*?)\s*(\d*|next)$/ do |m, command, arg1, arg2|
+
+      commands = Commands.new(m, $shows)
+
+      args = []
+
+      args.push arg1 if arg1 and arg1.strip != ""
+      args.push arg2 if arg2 and arg1.strip != ""
+
+      # Call the method in Commands via method_missing
+      commands.run(command, args)
+    end
   end
-
-  on :message, /^!(.+?)(?:$|\s)(.*?)\s*(\d*|next)$/ do |m, command, arg1, arg2|
-
-    commands = Commands.new(m, $shows)
-
-    args = []
-    
-    args.push arg1 if arg1 and arg1.strip != ""
-    args.push arg2 if arg2 and arg1.strip != ""
-
-    # Call the method in Commands via method_missing
-    commands.run(command, args)
-  end
-
+  bot.start
 end
 
 def test
-  b2w = get_show("b2w")
-  talkshow = get_show('talkshow')
+  $shows ||= load_shows
+  commands = Commands.new(nil, $shows)
 
-  # Should work
-  puts talkshow.description("43")
-  puts b2w.description("17")
+  puts "\n============Should Work=============="
+  commands.run("show", ["b2w"])
+  commands.run("show", ["back to work", "13"])
+  commands.run("show", ["back to work", "next"])
+  commands.run("description", ["talkshow", "10"])
+  commands.run("links", ["the pipeline", "5"])
 
-  # Should fail
-  puts talkshow.description("200")
-  puts b2w.description("200")
+  commands.run("suggest", ["Chickens and Ex-Girlfriends"])
+  commands.run("suggest", ["The Programmer Barn"])
+  commands.run("suggest", ["The Bridges of Siracusa County"])
+  commands.run("suggestions", [])
+  commands.run("clear", [])
+
+  puts "\n============Should Fail=============="
+  commands.run("show", ["Large Dogs"])
+  commands.run("show", ["Smallish Dogs", "13"])
+  commands.run("description", ["Waffle City", "10"])
+  commands.run("links", ["The Link Show", "5"])
 end
 
+
 def main
-  #test
-  $bot.start
+  if $debug
+    test
+  else
+    bot_start
+  end
 end
 
 main
