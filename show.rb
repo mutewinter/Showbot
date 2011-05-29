@@ -9,7 +9,6 @@ $domain = "http://5by5.tv"
 class Show
   attr_reader :title, :url, :rss
 
-
   def initialize(json_hash)
     @title = json_hash["title"]
     @url = json_hash["url"]
@@ -19,9 +18,9 @@ class Show
   def titles
     titles = []
 
-    rss = RSS::Parser.parse(open(@rss), false)
+    @rss_cache ||= RSS::Parser.parse(open(@rss), false)
 
-    rss.items.each do |rss_item|
+    @rss_cache.items.each do |rss_item|
       titles.push rss_item.title
     end
 
@@ -55,8 +54,8 @@ class Show
   end
 
   def show_count
-    rss = RSS::Parser.parse(open(@rss), false)
+    @rss_cache ||= RSS::Parser.parse(open(@rss), false)
 
-    return rss.items.count
+    return @rss_cache.items.count
   end
 end

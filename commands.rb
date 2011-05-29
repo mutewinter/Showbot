@@ -100,7 +100,7 @@ class Commands
     if show
       show_count = show.show_count
       show_number = args[1] if args.length > 1
-      if show_number.to_i > show_count
+      if show_number != "next" and show_number.to_i > show_count
         if show_count == 1
           reply("#{show.title} only has #{show_count} episode.")
         else
