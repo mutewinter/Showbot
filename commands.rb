@@ -83,10 +83,19 @@ class Commands
       puts "Unrecognized command #{command}"
     end
   end
+
+  def show_error(show, show_number)
+    if show_number == 1
+      reply("#{show.title} only has #{show.show_count} episode.")
+    else
+      reply("#{show.title} only has #{show.show_count} episodes.")
+    end
+  end
   
   # --------------
-  # Regular commands
+  # Regular Commands
   # --------------
+  
   def command_commands(args = [])
     reply("Available commands:")
     @@command_usage.each_pair do |command, usage|
@@ -94,18 +103,17 @@ class Commands
     end
   end
 
+  # --------------
+  # Show Commands
+  # --------------
+  
   def command_show(args = [])
     show = get_show(args.first)
 
     if show
-      show_count = show.show_count
       show_number = args[1] if args.length > 1
-      if show_number != "next" and show_number.to_i > show_count
-        if show_count == 1
-          reply("#{show.title} only has #{show_count} episode.")
-        else
-          reply("#{show.title} only has #{show_count} episodes.")
-        end
+      if show_number != "next" and !show.valid_show?(show_number)
+        show_error(show, show_number)
       elsif show_number
         reply("#{$domain}/#{show.url}/#{show_number}")
       else
@@ -125,7 +133,11 @@ class Commands
       show_number = args[1]
 
       if show and show_number and show_number.strip != ""
-        reply(show.links(show_number).join("\n"))
+        if show.valid_show?(show_number)
+          reply(show.links(show_number).join("\n"))
+        else
+          show_error(show, show_number)
+        end
       else
         chat(usage("links"))
       end
@@ -139,13 +151,21 @@ class Commands
       show = get_show(args.first)
       show_number = args[1].strip
 
-      if show and show_number and show_number != ""
-        reply(show.description(show_number))
+      if show
+        if show_number and show.valid_show?(show_number)
+          reply(show.description(show_number))
+        elsif show_number and show_number != ""
+          show_error(show, show_number)
+        end
       else
         chat(usage("description"))
       end
     end
   end
+    
+  # --------------
+  # Suggestion Commands
+  # --------------
 
   def command_suggest(args = [])
     suggestion = args.first.strip

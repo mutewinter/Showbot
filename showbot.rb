@@ -67,9 +67,13 @@ def test
   commands.run("clear", [])
   commands.run("suggestions", []) # Should print out text for no suggestions
 
-  puts "\n============Should Fail=============="
-  commands.run("taco", [])
+  puts "\n============Should Fail (Out of range)=============="
   commands.run("show", ["b2w", "500"])
+  commands.run("links", ["talkshow", "500"])
+  commands.run("description", ["the pipeline", "500"])
+
+  puts "\n============Should Fail (Regular)=============="
+  commands.run("taco", [])
   commands.run("show", ["Large Dogs"])
   commands.run("show", ["Smallish Dogs", "13"])
   commands.run("description", ["Waffle City", "10"])
