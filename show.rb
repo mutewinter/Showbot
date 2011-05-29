@@ -28,17 +28,13 @@ class Show
     titles
   end
 
-  # TODO pull this from the show page not RSS feed
-  # since the RSS isn't updated and has blanks.
+  # Description scraped from episode page
   def description(show_number)
-    rss = RSS::Parser.parse(open(@rss), false)
-
-    index = show_number.to_i - 1
-
-    item = rss.items.reverse[index]
-
-    if item
-      return item.description
+    doc = Nokogiri::HTML(open("#{$domain}/#{@url}/#{show_number}"))
+    
+    description = doc.css('div.episode_notes/p').first.text.strip
+    if description and description != ""
+      return description
     else
       return "Show #{show_number} not found for #{@title}. Jackals."
     end
