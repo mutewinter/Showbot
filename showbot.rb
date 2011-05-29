@@ -53,6 +53,7 @@ def test
   commands = Commands.new(nil, $shows)
 
   puts "\n============Should Work=============="
+  commands.run("commands", [])
   commands.run("show", ["b2w"])
   commands.run("show", ["back to work", "13"])
   commands.run("show", ["back to work", "next"])
@@ -64,8 +65,11 @@ def test
   commands.run("suggest", ["The Bridges of Siracusa County"])
   commands.run("suggestions", [])
   commands.run("clear", [])
+  commands.run("suggestions", []) # Should print out text for no suggestions
 
   puts "\n============Should Fail=============="
+  commands.run("taco", [])
+  commands.run("show", ["b2w", "500"])
   commands.run("show", ["Large Dogs"])
   commands.run("show", ["Smallish Dogs", "13"])
   commands.run("description", ["Waffle City", "10"])

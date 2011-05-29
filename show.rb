@@ -53,4 +53,10 @@ class Show
 
     links_array
   end
+
+  def show_count
+    rss = RSS::Parser.parse(open(@rss), false)
+
+    return rss.items.count
+  end
 end

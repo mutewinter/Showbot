@@ -21,7 +21,7 @@ class Commands
     links: '!links show_name episode_number',
     description: '!description show_name episode_number',
     suggest: '!suggest title_suggestion',
-    suggestions: 'There are no suggestions. You should add some by using \"!suggest title_suggestion\".',
+    suggestions: 'List all suggestions',
     clear: 'Clears all titles'
   }
 
@@ -87,15 +87,30 @@ class Commands
   # --------------
   # Regular commands
   # --------------
+  def command_commands(args = [])
+    reply("Available commands:")
+    @@command_usage.each_pair do |command, usage|
+      chat("  !#{command} - #{usage}")
+    end
+  end
 
   def command_show(args = [])
     show = get_show(args.first)
-    show_number = args[1] if args.length > 1
 
-    if show and show_number
-      reply("#{$domain}/#{show.url}/#{show_number}")
-    elsif show
-      reply("#{$domain}/#{show.url}")
+    if show
+      show_count = show.show_count
+      show_number = args[1] if args.length > 1
+      if show_number.to_i > show_count
+        if show_count == 1
+          reply("#{show.title} only has #{show_count} episode.")
+        else
+          reply("#{show.title} only has #{show_count} episodes.")
+        end
+      elsif show_number
+        reply("#{$domain}/#{show.url}/#{show_number}")
+      else
+        reply("#{$domain}/#{show.url}")
+      end
     else
       reply("No show by name \"#{args.first}\". You dissappoint.")
       reply(usage("show"))
@@ -144,7 +159,7 @@ class Commands
 
   def command_suggestions(args = [])
     if @@suggested_titles.length == 0
-      reply(usage("suggestions"))
+      reply('There are no suggestions. You should add some by using "!suggest title_suggestion".')
     else
       chat("#{@@suggested_titles.length} titles so far:\n")
       chat(@@suggested_titles.join("\n"))
