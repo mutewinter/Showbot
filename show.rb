@@ -41,7 +41,7 @@ class Show
     if item
       return item.description
     else
-      return "Show #{show_number} not found for #{@title}"
+      return "Show #{show_number} not found for #{@title}. Jackals."
     end
   end
 
