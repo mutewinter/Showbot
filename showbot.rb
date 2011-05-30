@@ -52,9 +52,12 @@ def test
   $shows ||= load_shows
   commands = Commands.new(nil, $shows)
 
+
   puts "\n============Should Work=============="
   commands.run("commands", [])
   commands.run("show", ["b2w"])
+  commands.run("next", [])
+  commands.run("next", ["b2w"])
   commands.run("show", ["anal", "13"])
   commands.run("show", ["work", "next"])
   commands.run("description", ["talkshow", "10"])
@@ -82,7 +85,8 @@ end
 
 
 def main
-  if $debug
+  arg1 = ARGV.first
+  if $debug or arg1 == "debug"
     test
   else
     bot_start

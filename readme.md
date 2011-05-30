@@ -6,9 +6,15 @@ A sweet IRC bot for [5by5](http://5by5.tv). Built on [cinch](https://github.com/
 
 * Ruby 1.9
 * [cinch gem](http://rubygems.org/gems/cinch)
+* [ri_cal](http://rubygems.org/gems/ri_cal)
+* [chronic_duration gem](http://rubygems.org/gems/chronic_duration)
 
 ## Commands
 
+* next
+<pre>
+!next
+showbot> Next show is Build and Analyze in 17 hours 30 minutes 35 seconds (05/30/2011)
 * show 
 <pre>
 !show b2w 12
@@ -33,6 +39,7 @@ showbot> 16: Bracing for the Blow
 3: The Second Arrow
 2: Picture of a Boat
 1: Alligator in the Bathroom
+</pre>
 </pre>
 * description
 <pre>

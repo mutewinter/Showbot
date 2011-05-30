@@ -1,5 +1,8 @@
 require './show.rb'
 require './random.rb'
+require 'date'
+require 'chronic_duration'
+require 'ri_cal'
 
 $domain = "http://5by5.tv"
 $drphil = ["There's a genie for that.",
@@ -13,6 +16,7 @@ $drphil = ["There's a genie for that.",
  "You're not gonna get Black Lung from an excel spreadsheet.",
  "I'm not gonna euthanize this dog, I'm just gonna put it over here where I can't see it.",
  "Failure is the equivalent of existential sit-ups."]
+$ical = "http://www.google.com/calendar/ical/fivebyfivestudios%40gmail.com/public/basic.ics"
 
 # Class to define the possible irc commands
 class Commands
@@ -105,6 +109,48 @@ class Commands
     @@command_usage.each_pair do |command, usage|
       chat("  !#{command} - #{usage}")
     end
+  end
+
+  def command_next(args = [])
+    @calendar_cache ||= RiCal.parse(open($ical))
+    show = get_show(args.first) if args.length > 0
+
+    nearest_event = nil
+    nearest_seconds_until = nil
+    @calendar_cache.first.events.each do |event|
+      # Grab the next occurrence for the event
+      event = (event.occurrences({:starting => Date.today, :count => 1})).first
+      
+      if event and event.start_time > DateTime.now
+        seconds_until = ((event.start_time - DateTime.now) * 24 * 60 * 60).to_i
+        summary = event.summary
+        if show and summary.downcase.include?(show.title.downcase)
+          if !nearest_seconds_until
+            nearest_seconds_until = seconds_until
+            nearest_event = event
+          elsif seconds_until < nearest_seconds_until
+            nearest_seconds_until = seconds_until
+            nearest_event = event
+          end
+        elsif !show
+          if !nearest_seconds_until
+            nearest_seconds_until = seconds_until
+            nearest_event = event
+          elsif seconds_until < nearest_seconds_until
+            nearest_seconds_until = seconds_until
+            nearest_event = event
+          end
+        end
+      end
+    end
+
+    date_string = nearest_event.start_time.strftime("%m/%d/%Y")
+    if show
+      chat("The next #{nearest_event.summary} is in #{ChronicDuration.output(nearest_seconds_until, :format => :long)} (#{date_string})")
+    else 
+      chat("Next show is #{nearest_event.summary} in #{ChronicDuration.output(nearest_seconds_until, :format => :long)} (#{date_string})")
+    end
+
   end
 
   # --------------
