@@ -128,6 +128,12 @@ class Commands
 
   def command_about(args = [])
     reply("Showbot was created by Jeremy Mack (@mutewinter) and some awesome contributors on github. The project page is located at https://github.com/mutewinter/Showbot")
+    reply("Type !commands for showbot's commands")
+  end
+
+  # Alias for the about command
+  def command_showbot(args = [])
+    command_about(args)
   end
 
   def command_next(args = [])
@@ -251,9 +257,13 @@ class Commands
   # --------------
 
   def command_suggest(args = [])
-    suggestion = args.first.strip
+    suggestion = args.first.strip if args.length > 0
     if suggestion and suggestion != ""
-      @@suggested_titles.push suggestion
+      if @message
+        @@suggested_titles.push "#{suggestion} (#{@message.user.nick})"
+      else
+        @@suggested_titles.push suggestion
+      end
       reply("Added title suggestion \"#{suggestion}\"")
     else
       reply(usage("suggest"))
@@ -263,9 +273,6 @@ class Commands
   def command_suggestions(args = [])
     if @@suggested_titles.length == 0
       reply('There are no suggestions. You should add some by using "!suggest title_suggestion".')
-    elsif args.first == "public"
-      chat("#{@@suggested_titles.length} titles so far:\n")
-      chat(@@suggested_titles.join("\n"))
     else
       reply("#{@@suggested_titles.length} titles so far:\n")
       reply(@@suggested_titles.join("\n"))
@@ -280,7 +287,6 @@ class Commands
         reply("There are no suggestions to clear. You can start adding some by using \"!suggest title_suggestion\".")
       else
         # Printing current suggestions so they aren't lost due to a malicious !clear
-        command_suggestions([])
         reply("Clearing #{@@suggested_titles.length} title suggestions.")
       end
       @@suggested_titles.clear
