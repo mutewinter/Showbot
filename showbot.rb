@@ -54,6 +54,7 @@ def test
 
   puts "\n============Should Work=============="
   commands.run("commands", [])
+  commands.run("about", [])
   commands.run("show", ["b2w"])
   commands.run("next", [])
   commands.run("next", ["b2w"])
@@ -66,7 +67,7 @@ def test
   commands.run("suggest", ["The Programmer Barn"])
   commands.run("suggest", ["The Bridges of Siracusa County"])
   commands.run("suggestions", [])
-  commands.run("clear", [])
+  commands.run("clear", [commands.admin_key])
   commands.run("suggestions", []) # Should print out text for no suggestions
 
   puts "\n============Should Fail (Out of range)=============="

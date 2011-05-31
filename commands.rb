@@ -21,15 +21,18 @@ $ical = "http://www.google.com/calendar/ical/fivebyfivestudios%40gmail.com/publi
 # Class to define the possible irc commands
 class Commands
   @@command_usage = {
+    about: 'Who made this?',
     show: '!show show_name [episode_number]',
     links: '!links show_name episode_number',
     description: '!description show_name episode_number',
     suggest: '!suggest title_suggestion',
     suggestions: 'List all suggestions',
-    clear: 'Clears all titles'
+    next: '!next [show_name]'
   }
 
   def initialize(message, shows)
+    @@admin_key ||= (0...8).map{65.+(rand(25)).chr}.join
+    puts "Admin key is #{@@admin_key}"
     # IRC message object from cinch
     @message = message
     # Shows is a class variable since it shouldn't change while the bot is running
@@ -47,11 +50,13 @@ class Commands
   end
 
   def get_show(show_string)
-    @@shows.each do |show|
-      if show.url.downcase == show_string.downcase
-        return show
-      elsif show.title.downcase.include? show_string.downcase
-        return show
+    if show_string
+      @@shows.each do |show|
+        if show.url.downcase == show_string.downcase
+          return show
+        elsif show.title.downcase.include? show_string.downcase
+          return show
+        end
       end
     end
     return nil
@@ -67,6 +72,7 @@ class Commands
   def chat(text)
     if text and text.strip != ""
       if @message
+        #@message.user.send text
         @message.reply text
       else
         # Debug mode
@@ -79,7 +85,7 @@ class Commands
   def reply(text)
     if text and text.strip != ""
       if @message
-        chat("#{@message.user.nick}: #{text}")
+        @message.user.send text
       else
         # Debug mode
         chat("Reply: #{text}")
@@ -104,6 +110,10 @@ class Commands
       reply("#{show.title} only has #{show.show_count} episodes.")
     end
   end
+
+  def admin_key
+    return @@admin_key
+  end
   
   # --------------
   # Regular Commands
@@ -112,8 +122,12 @@ class Commands
   def command_commands(args = [])
     reply("Available commands:")
     @@command_usage.each_pair do |command, usage|
-      chat("  !#{command} - #{usage}")
+      reply("  !#{command} - #{usage}")
     end
+  end
+
+  def command_about(args = [])
+    reply("Showbot was created by Jeremy Mack (@mutewinter) and some awesome contributors on github. The project page is located at https://github.com/mutewinter/Showbot")
   end
 
   def command_next(args = [])
@@ -153,9 +167,9 @@ class Commands
     if nearest_event
       date_string = nearest_event.start_time.strftime("%m/%d/%Y")
       if show
-        chat("The next #{nearest_event.summary} is in #{ChronicDuration.output(nearest_seconds_until, :format => :long)} (#{date_string})")
+        reply("The next #{nearest_event.summary} is in #{ChronicDuration.output(nearest_seconds_until, :format => :long)} (#{date_string})")
       else 
-        chat("Next show is #{nearest_event.summary} in #{ChronicDuration.output(nearest_seconds_until, :format => :long)} (#{date_string})")
+        reply("Next show is #{nearest_event.summary} in #{ChronicDuration.output(nearest_seconds_until, :format => :long)} (#{date_string})")
       end
     else
       reply("No upcoming show found for #{show.title}")
@@ -163,8 +177,13 @@ class Commands
 
   end
 
-  def command_emergency_off(args = [])
-    Process.exit
+  def command_exit(args = [])
+    if args.first == @@admin_key
+      reply("Showbot is shutting down. Good bye :(")
+      Process.exit
+    else
+      puts "Invalid admin key #{args.first}, should be #{@@admin_key}"
+    end
   end
 
   # --------------
@@ -191,7 +210,7 @@ class Commands
 
   def command_links(args = [])
     if args.length < 2
-      chat(usage("links"))
+      reply(usage("links"))
     else
       show = get_show(args.first)
       show_number = args[1]
@@ -203,14 +222,14 @@ class Commands
           show_error(show, show_number)
         end
       else
-        chat(usage("links"))
+        reply(usage("links"))
       end
     end
   end
 
   def command_description(args = [])
     if args.length < 2
-      chat(usage("description"))
+      reply(usage("description"))
     else
       show = get_show(args.first)
       show_number = args[1].strip
@@ -222,7 +241,7 @@ class Commands
           show_error(show, show_number)
         end
       else
-        chat(usage("description"))
+        reply(usage("description"))
       end
     end
   end
@@ -235,32 +254,39 @@ class Commands
     suggestion = args.first.strip
     if suggestion and suggestion != ""
       @@suggested_titles.push suggestion
-      chat("Added title suggestion \"#{suggestion}\"")
+      reply("Added title suggestion \"#{suggestion}\"")
     else
-      chat(usage("suggest"))
+      reply(usage("suggest"))
     end
   end
 
   def command_suggestions(args = [])
     if @@suggested_titles.length == 0
       reply('There are no suggestions. You should add some by using "!suggest title_suggestion".')
-    else
+    elsif args.first == "public"
       chat("#{@@suggested_titles.length} titles so far:\n")
       chat(@@suggested_titles.join("\n"))
+    else
+      reply("#{@@suggested_titles.length} titles so far:\n")
+      reply(@@suggested_titles.join("\n"))
     end
   end
 
   def command_clear(args = [])
-    if @@suggested_titles.length == 1
-      chat("Clearing 1 title suggestion.")
-    elsif @@suggested_titles.length == 0
-      chat("There are no suggestions to clear. You can start adding some by using \"!suggest title_suggestion\".")
+    if args.first == @@admin_key
+      if @@suggested_titles.length == 1
+        reply("Clearing 1 title suggestion.")
+      elsif @@suggested_titles.length == 0
+        reply("There are no suggestions to clear. You can start adding some by using \"!suggest title_suggestion\".")
+      else
+        # Printing current suggestions so they aren't lost due to a malicious !clear
+        command_suggestions([])
+        reply("Clearing #{@@suggested_titles.length} title suggestions.")
+      end
+      @@suggested_titles.clear
     else
-      # Printing current suggestions so they aren't lost due to a malicious !clear
-      command_suggestions([])
-      chat("Clearing #{@@suggested_titles.length} title suggestions.")
+      puts "Invalid admin key #{args.first}, should be #{@@admin_key}"
     end
-    @@suggested_titles.clear
   end
 
   # --------------
