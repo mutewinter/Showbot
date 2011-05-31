@@ -35,6 +35,15 @@ class Commands
     # Shows is a class variable since it shouldn't change while the bot is running
     @@shows ||= shows
     @@suggested_titles ||= []
+
+    @@refresh_thread ||= Thread.new do 
+      until false
+        puts "Refreshing calendar cache"
+        @@calendar_cache = RiCal.parse(open($ical))
+        puts "Sleeping 10 minutes until next refresh"
+        sleep 600
+      end
+    end
   end
 
   def get_show(show_string)
@@ -108,12 +117,13 @@ class Commands
   end
 
   def command_next(args = [])
-    @calendar_cache ||= RiCal.parse(open($ical))
+    # Just in case the thread above hasn't run yet
+    @@calendar_cache ||= RiCal.parse(open($ical))
     show = get_show(args.first) if args.length > 0
 
     nearest_event = nil
     nearest_seconds_until = nil
-    @calendar_cache.first.events.each do |event|
+    @@calendar_cache.first.events.each do |event|
       # Grab the next occurrence for the event
       event = (event.occurrences({:starting => Date.today, :count => 1})).first
       
@@ -151,6 +161,10 @@ class Commands
       reply("No upcoming show found for #{show.title}")
     end
 
+  end
+
+  def command_emergency_off(args = [])
+    Process.exit
   end
 
   # --------------
