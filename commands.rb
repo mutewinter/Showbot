@@ -41,12 +41,8 @@ class Commands
     @@shows.each do |show|
       if show.url.downcase == show_string.downcase
         return show
-      elsif show.title.downcase == show_string.downcase
+      elsif show.title.downcase.include? show_string.downcase
         return show
-      else
-        show.keywords.each do |keyword|
-          return show if show_string.downcase == keyword
-        end
       end
     end
     return nil
@@ -124,7 +120,7 @@ class Commands
       if event and event.start_time > DateTime.now
         seconds_until = ((event.start_time - DateTime.now) * 24 * 60 * 60).to_i
         summary = event.summary
-        if show and summary.downcase.include?(show.title.downcase)
+        if show and get_show(summary.downcase) == show
           if !nearest_seconds_until
             nearest_seconds_until = seconds_until
             nearest_event = event
@@ -144,11 +140,15 @@ class Commands
       end
     end
 
-    date_string = nearest_event.start_time.strftime("%m/%d/%Y")
-    if show
-      chat("The next #{nearest_event.summary} is in #{ChronicDuration.output(nearest_seconds_until, :format => :long)} (#{date_string})")
-    else 
-      chat("Next show is #{nearest_event.summary} in #{ChronicDuration.output(nearest_seconds_until, :format => :long)} (#{date_string})")
+    if nearest_event
+      date_string = nearest_event.start_time.strftime("%m/%d/%Y")
+      if show
+        chat("The next #{nearest_event.summary} is in #{ChronicDuration.output(nearest_seconds_until, :format => :long)} (#{date_string})")
+      else 
+        chat("Next show is #{nearest_event.summary} in #{ChronicDuration.output(nearest_seconds_until, :format => :long)} (#{date_string})")
+      end
+    else
+      reply("No upcoming show found for #{show.title}")
     end
 
   end

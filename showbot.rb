@@ -52,7 +52,6 @@ def test
   $shows ||= load_shows
   commands = Commands.new(nil, $shows)
 
-
   puts "\n============Should Work=============="
   commands.run("commands", [])
   commands.run("show", ["b2w"])
