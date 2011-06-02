@@ -343,9 +343,10 @@ class Commands
         if time
           matching_suggestions = @@suggestions.suggestions_after_time(time)
           if matching_suggestions.length > 0
-            puts "Suggestions from #{time.strftime("%I:%M%P EST")} onward:"
+            reply("Suggestions from #{time.strftime("%I:%M%P EST")} onward:")
+            reply(matching_suggestions.join("\n"))
           else
-            puts "No suggestions after #{time.strftime("%I:%M%P EST")}."
+            reply("No suggestions after #{time.strftime("%I:%M%P EST")}.")
           end
         elsif show
           matching_suggestions = @@suggestions.suggestions_for_title(show.url)

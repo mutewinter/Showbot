@@ -2,31 +2,21 @@ require 'date'
 require 'open-uri'
 require 'json'
 
-class Suggestions
-
-  def initialize
-    @suggestions ||= []
-  end
+class Suggestions < Array
+  attr_reader :suggestions
 
   def add(title, user)
-    @suggestions.push Suggestion.new(title, user)
+    self.push Suggestion.new(title, user)
   end
 
   def suggestions_after_time(time)
-    @suggestions.collect{|s| next if s.time < time; s}.compact
+    self.collect{|s| next if s.time < time; s}.compact
   end
 
   def suggestions_for_title(slug)
-    @suggestions.collect{|s| next if s.show != slug; s}.compact
+    self.collect{|s| next if s.show != slug; s}.compact
   end
 
-  def length
-    @suggestions.length
-  end
-
-  def clear
-    @suggestions.clear
-  end
 end
 
 class Suggestion
