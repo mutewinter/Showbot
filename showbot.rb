@@ -42,7 +42,7 @@ def bot_start
       args.push arg2 if arg2 and arg1.strip != ""
 
       # Call the method in Commands via method_missing
-      commands.run(command, args)
+      @commands.run(command, args)
     end
   end
   bot.start
