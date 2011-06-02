@@ -3,19 +3,54 @@ require './random.rb'
 require 'date'
 require 'chronic_duration'
 require 'ri_cal'
+require './suggestion.rb'
+require 'chronic'
 
 $domain = "http://5by5.tv"
 $drphil = ["There's a genie for that.",
- "Everything's a bear.",
- "A beret will be fine.",
- "If you want to find the treasure you gotta buy the chest!",
- "You don't win at tennis by buying a bowling ball.",
- "If you live in a tree, don't be surprised that you're living with monkeys.",
- "Crush the Bunny.",
- "Doesn't matter how many Fords you buy, they're never gonna be a Dodge. You can repaint the Ford but... let's go to a break.",
- "You're not gonna get Black Lung from an excel spreadsheet.",
- "I'm not gonna euthanize this dog, I'm just gonna put it over here where I can't see it.",
- "Failure is the equivalent of existential sit-ups."]
+           "Everything's a bear.",
+           "A beret will be fine.",
+           "If you want to find the treasure you gotta buy the chest!",
+           "You don't win at tennis by buying a bowling ball.",
+           "If you live in a tree, don't be surprised that you're living with monkeys.",
+           "Crush the Bunny.",
+           "Doesn't matter how many Fords you buy, they're never gonna be a Dodge. You can repaint the Ford but... let's go to a break.",
+           "You're not gonna get Black Lung from an excel spreadsheet.",
+           "I'm not gonna euthanize this dog, I'm just gonna put it over here where I can't see it.",
+           "Failure is the equivalent of existential sit-ups."]
+$eight_ball = ["It is certain",
+               "It is decidedly so",
+               "Without a doubt",
+               "Yes - definitely",
+               "You may rely on it",
+               "As I see it, yes",
+               "Most likely",
+               "Outlook good",
+               "Signs point to yes",
+               "Yes",
+               "Reply hazy, try again",
+               "Ask again later",
+               "Better not tell you now",
+               "Cannot predict now",
+               "Concentrate and ask again",
+               "Don't count on it",
+               "My reply is no",
+               "My sources say no",
+               "Outlook not so good",
+               "Very doubtful"]
+$paleo = [
+  "You wouldn't be tired.",
+  "Your insulin wouldn't be spiking.",
+  "Elk.",
+  "No glutens."
+]
+
+$jsir = ["perl -le '$n=10; $min=5; $max=15; $, = \" \"; print map { int(rand($max-$min))+$min } 1..$n",
+         "perl -le '$i=3; $u += ($_<<8*$i--) for \"127.0.0.1\" =~ /(\d+)/g; print $u'",
+         "perl -MAlgorithm::Permute -le '$l = [1,2,3,4,5]; $p = Algorithm::Permute->new($l); print @r while @r = $p->next'",
+         "perl -lne '(1x$_) !~ /^1?$|^(11+?)\1+$/ && print \"$_ is prime\"'",
+         "perl -ple 's/^[ \t]+|[ \t]+$//g'"]
+
 $ical = "http://www.google.com/calendar/ical/fivebyfivestudios%40gmail.com/public/basic.ics"
 
 # Class to define the possible irc commands
@@ -26,7 +61,7 @@ class Commands
     links: '!links show_name episode_number',
     description: '!description show_name episode_number',
     suggest: '!suggest title_suggestion',
-    suggestions: 'List all suggestions',
+    suggestions: '!suggestions [show|relative_time (e.g. 3 hours ago)]',
     next: '!next [show_name]'
   }
 
@@ -37,8 +72,11 @@ class Commands
     @message = message
     # Shows is a class variable since it shouldn't change while the bot is running
     @@shows ||= shows
-    @@suggested_titles ||= []
+    @@suggestions ||= Suggestions.new
 
+  end
+  
+  def start_refresh_thread
     @@refresh_thread ||= Thread.new do 
       until false
         puts "Refreshing calendar cache"
@@ -112,13 +150,15 @@ class Commands
   end
 
   def admin_key
-    return @@admin_key
+    @@admin_key
   end
   
   # --------------
   # Regular Commands
   # --------------
   
+  # Replies to the user with a list of available commands for showbot
+  # !commands
   def command_commands(args = [])
     reply("Available commands:")
     @@command_usage.each_pair do |command, usage|
@@ -126,6 +166,12 @@ class Commands
     end
   end
 
+  # Alias for the !commands command
+  def command_help(args = [])
+    command_commands(args)
+  end
+
+  # Replies to the user with information about showbot
   def command_about(args = [])
     reply("Showbot was created by Jeremy Mack (@mutewinter) and some awesome contributors on github. The project page is located at https://github.com/mutewinter/Showbot")
     reply("Type !commands for showbot's commands")
@@ -136,9 +182,14 @@ class Commands
     command_about(args)
   end
 
+  # Replies to the user with information about the next show
+  # !next b2w -> The next Back to Work is in 3 hours 30 minutes (6/2/2011)
   def command_next(args = [])
-    # Just in case the thread above hasn't run yet
     @@calendar_cache ||= RiCal.parse(open($ical))
+    
+    # Start the calendar refresh thread
+    start_refresh_thread
+
     show = get_show(args.first) if args.length > 0
 
     nearest_event = nil
@@ -183,6 +234,8 @@ class Commands
 
   end
 
+  # Admin command that tells the bot to exit
+  # !exit @@admin_key
   def command_exit(args = [])
     if args.first == @@admin_key
       reply("Showbot is shutting down. Good bye :(")
@@ -196,6 +249,8 @@ class Commands
   # Show Commands
   # --------------
   
+  # Replies to a user with the 5by5.tv link to the chosen show
+  # !show Back to Work 5 -> http://5by5.tv/b2w/5
   def command_show(args = [])
     show = get_show(args.first)
 
@@ -214,6 +269,8 @@ class Commands
     end
   end
 
+  # Replies to the user with links for the given show
+  # !links Talk Show 10 -> huge link spam
   def command_links(args = [])
     if args.length < 2
       reply(usage("links"))
@@ -233,6 +290,8 @@ class Commands
     end
   end
 
+  # Replies to the user with the description of the show episode they specify
+  # !description Hypercritical 10 -> John Siracusa and Dan Benjamin are bri...
   def command_description(args = [])
     if args.length < 2
       reply(usage("description"))
@@ -256,13 +315,15 @@ class Commands
   # Suggestion Commands
   # --------------
 
+  # Adds the show title suggestion the user specifies
+  # !suggest Walking Tacos -> Added title suggestion "Walking Tacos"
   def command_suggest(args = [])
     suggestion = args.first.strip if args.length > 0
     if suggestion and suggestion != ""
       if @message
-        @@suggested_titles.push "#{suggestion} (#{@message.user.nick})"
+        @@suggestions.add(suggestion, @message.user.nick)
       else
-        @@suggested_titles.push suggestion
+        @@suggestions.add(suggestion, nil)
       end
       reply("Added title suggestion \"#{suggestion}\"")
     else
@@ -270,26 +331,54 @@ class Commands
     end
   end
 
+  # Replies to the user with the current show title suggestions
+  # !suggestions 2h -> Suggestions in the last two hours <omg spam here>
   def command_suggestions(args = [])
-    if @@suggested_titles.length == 0
+    if @@suggestions.length == 0
       reply('There are no suggestions. You should add some by using "!suggest title_suggestion".')
     else
-      reply("#{@@suggested_titles.length} titles so far:\n")
-      reply(@@suggested_titles.join("\n"))
+      if args.first
+        time = Chronic.parse(args.first)
+        show = get_show(args.first)
+        if time
+          matching_suggestions = @@suggestions.suggestions_after_time(time)
+          if matching_suggestions.length > 0
+            puts "Suggestions from #{time.strftime("%I:%M%P EST")} onward:"
+          else
+            puts "No suggestions after #{time.strftime("%I:%M%P EST")}."
+          end
+        elsif show
+          matching_suggestions = @@suggestions.suggestions_for_title(show.url)
+          if matching_suggestions.length > 0
+            reply("#{matching_suggestions.length} titles for #{show.title}:\n")
+            reply(matching_suggestions.join("\n"))
+          else
+            reply("There are no suggestions for #{show.title}. You should add some by using \"!suggest title_suggestion\".")
+          end
+        else
+          reply("Show \"#{args.first}\" not found.")
+          reply(usage("suggestions"))
+        end
+      else
+        reply("#{@@suggestions.length} titles so far:\n")
+        reply(@@suggestions.join("\n"))
+      end
     end
   end
 
+  # Clears the title suggestions
+  # !clear @@admin_key
   def command_clear(args = [])
     if args.first == @@admin_key
-      if @@suggested_titles.length == 1
+      if @@suggestions.length == 1
         reply("Clearing 1 title suggestion.")
-      elsif @@suggested_titles.length == 0
+      elsif @@suggestions.length == 0
         reply("There are no suggestions to clear. You can start adding some by using \"!suggest title_suggestion\".")
       else
         # Printing current suggestions so they aren't lost due to a malicious !clear
-        reply("Clearing #{@@suggested_titles.length} title suggestions.")
+        reply("Clearing #{@@suggestions.length} title suggestions.")
       end
-      @@suggested_titles.clear
+      @@suggestions.clear
     else
       puts "Invalid admin key #{args.first}, should be #{@@admin_key}"
     end
@@ -309,6 +398,26 @@ class Commands
 
   def command_drphil(args = [])
     chat("From the wise Mr. Mann: \"#{$drphil.random}\".")
+  end
+
+  def command_sandy(args = [])
+    chat("He's great.")
+  end
+
+  def command_gruber(args = [])
+    chat("I don't know.")
+  end
+
+  def command_jsir(args = [])
+    chat($jsir.random)
+  end
+
+  def command_paleo(args = [])
+    chat($paleo.random)
+  end
+
+  def command_8ball(args = [])
+    chat("#{$eight_ball.random}.")
   end
 
 end

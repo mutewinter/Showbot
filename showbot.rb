@@ -34,7 +34,7 @@ def bot_start
 
     on :message, /^!(.+?)(?:$|\s)(.*?)\s*(\d*|next)$/ do |m, command, arg1, arg2|
 
-      commands = Commands.new(m, $shows)
+      @commands ||= Commands.new(m, $shows)
 
       args = []
 
@@ -52,6 +52,7 @@ def test
   $shows ||= load_shows
   commands = Commands.new(nil, $shows)
 
+
   puts "\n============Should Work=============="
   commands.run("commands", [])
   commands.run("about", [])
@@ -63,10 +64,17 @@ def test
   commands.run("description", ["talkshow", "10"])
   commands.run("links", ["the pipeline", "5"])
 
+  puts "\n============Should Work (Suggestions)=============="
   commands.run("suggest", ["Chickens and Ex-Girlfriends"])
   commands.run("suggest", ["The Programmer Barn"])
   commands.run("suggest", ["The Bridges of Siracusa County"])
-  commands.run("suggestions", [])
+  commands.run("suggestions", ["2 hours ago"])
+
+  puts "\n============Should Fail (Suggestions)=============="
+  commands.run("suggestions", ["in 2 hours"])
+  commands.run("suggestions", ["tacos"])
+
+  puts "\n============Should Work (Clearing Suggestions)=============="
   commands.run("clear", [commands.admin_key])
   commands.run("suggestions", []) # Should print out text for no suggestions
 
