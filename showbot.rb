@@ -68,7 +68,8 @@ def test
   commands.run("suggest", ["Chickens and Ex-Girlfriends"])
   commands.run("suggest", ["The Programmer Barn"])
   commands.run("suggest", ["The Bridges of Siracusa County"])
-  commands.run("suggestions", ["2 hours ago"])
+  commands.run("suggestions", [])
+  commands.run("suggestions", ["5 minutes ago"])
 
   puts "\n============Should Fail (Suggestions)=============="
   commands.run("suggestions", ["in 2 hours"])

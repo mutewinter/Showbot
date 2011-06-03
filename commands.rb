@@ -7,6 +7,7 @@ require './suggestion.rb'
 require 'chronic'
 
 $domain = "http://5by5.tv"
+
 $drphil = ["There's a genie for that.",
            "Everything's a bear.",
            "A beret will be fine.",
@@ -18,6 +19,7 @@ $drphil = ["There's a genie for that.",
            "You're not gonna get Black Lung from an excel spreadsheet.",
            "I'm not gonna euthanize this dog, I'm just gonna put it over here where I can't see it.",
            "Failure is the equivalent of existential sit-ups."]
+
 $eight_ball = ["It is certain",
                "It is decidedly so",
                "Without a doubt",
@@ -332,7 +334,7 @@ class Commands
   end
 
   # Replies to the user with the current show title suggestions
-  # !suggestions 2h -> Suggestions in the last two hours <omg spam here>
+  # !suggestions 2 hours ago -> Suggestions in the last two hours <omg spam here>
   def command_suggestions(args = [])
     if @@suggestions.length == 0
       reply('There are no suggestions. You should add some by using "!suggest title_suggestion".')
@@ -361,8 +363,11 @@ class Commands
           reply(usage("suggestions"))
         end
       else
-        reply("#{@@suggestions.length} titles so far:\n")
-        reply(@@suggestions.join("\n"))
+        default_time = Chronic.parse("3 hours ago")
+        suggestions = @@suggestions.suggestions_after_time(default_time)
+
+        reply("#{suggestions.length} titles in the last 3 hours:\n")
+        reply(suggestions.join("\n"))
       end
     end
   end
