@@ -403,7 +403,7 @@ class Commands
   end
 
   def command_drphil(args = [])
-    chat("From the wise Mr. Mann: \"#{$drphil.random}\".")
+    chat("\"#{$drphil.random}\"")
   end
 
   def command_sandy(args = [])
