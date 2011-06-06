@@ -48,10 +48,37 @@ def bot_start
   bot.start
 end
 
-def test
+def interactive_mode
   $shows ||= load_shows
   commands = Commands.new(nil, $shows)
 
+  puts "Interactive mode, type commands and press enter (type quit to stop)."
+
+  while true
+    print "showbot> "
+    response = STDIN::gets.strip
+    case response
+    when "quit", "exit"
+      Process.exit
+    when /^!(.+?)(?:$|\s)(.*?)\s*(\d*|next)$/
+      args = []
+      command = $1
+      arg1 = $2
+      arg2 = $3
+
+      args.push arg1 if arg1 and arg1.strip != ""
+      args.push arg2 if arg2 and arg1.strip != ""
+
+      # Call the method in Commands via method_missing
+      commands.run(command, args)
+    end
+  end
+end
+
+
+def test
+  $shows ||= load_shows
+  commands = Commands.new(nil, $shows)
 
   puts "\n============Should Work=============="
   commands.run("commands", [])
@@ -59,6 +86,7 @@ def test
   commands.run("show", ["b2w"])
   commands.run("next", [])
   commands.run("next", ["b2w"])
+  commands.run("schedule", [])
   commands.run("show", ["anal", "13"])
   commands.run("show", ["work", "next"])
   commands.run("description", ["talkshow", "10"])
@@ -97,6 +125,8 @@ def main
   arg1 = ARGV.first
   if $debug or arg1 == "debug"
     test
+  elsif arg1 == "interactive"
+    interactive_mode
   else
     bot_start
   end

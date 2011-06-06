@@ -50,8 +50,8 @@ $paleo = [
 $jsir = ["perl -le '$n=10; $min=5; $max=15; $, = \" \"; print map { int(rand($max-$min))+$min } 1..$n",
          "perl -le '$i=3; $u += ($_<<8*$i--) for \"127.0.0.1\" =~ /(\d+)/g; print $u'",
          "perl -MAlgorithm::Permute -le '$l = [1,2,3,4,5]; $p = Algorithm::Permute->new($l); print @r while @r = $p->next'",
-         "perl -lne '(1x$_) !~ /^1?$|^(11+?)\1+$/ && print \"$_ is prime\"'",
-         "perl -ple 's/^[ \t]+|[ \t]+$//g'"]
+         "perl -lne '(1x$_) !~ /^1?$|^(11+?)\\1+$/ && print \"$_ is prime\"'",
+         "perl -ple 's/^[ \\t]+|[ \\t]+$//g'"]
 
 $ical = "http://www.google.com/calendar/ical/fivebyfivestudios%40gmail.com/public/basic.ics"
 
@@ -64,7 +64,8 @@ class Commands
     description: '!description show_name episode_number',
     suggest: '!suggest title_suggestion',
     suggestions: '!suggestions [show|relative_time (e.g. 3 hours ago)]',
-    next: '!next [show_name]'
+    next: '!next [show_name]',
+    schedule: 'Prints a list of upcoming shows on 5by5'
   }
 
   def initialize(message, shows)
@@ -224,7 +225,7 @@ class Commands
     end
 
     if nearest_event
-      date_string = nearest_event.start_time.strftime("%m/%d/%Y")
+      date_string = nearest_event.start_time.strftime("%-m/%-d/%Y")
       if show
         reply("The next #{nearest_event.summary} is in #{ChronicDuration.output(nearest_seconds_until, :format => :long)} (#{date_string})")
       else 
@@ -232,6 +233,32 @@ class Commands
       end
     else
       reply("No upcoming show found for #{show.title}")
+    end
+
+  end
+
+  def command_schedule(args = [])
+    @@calendar_cache ||= RiCal.parse(open($ical))
+    
+    # Start the calendar refresh thread
+    start_refresh_thread
+
+    upcoming_events = []
+
+    @@calendar_cache.first.events.each do |event|
+      # Grab the next occurrence for the event
+      event = (event.occurrences({:starting => Date.today, :count => 1})).first
+
+      upcoming_events << event if event
+    end
+
+    if upcoming_events.length > 0
+      reply("#{upcoming_events.length} upcoming show#{upcoming_events.length > 1 ? "s" : ""}")
+      upcoming_events.sort{|e1, e2| e1.start_time <=> e2.start_time}.each do |event|
+        date_string = event.start_time.strftime("%-m/%-d/%Y")
+        time_string = event.start_time.strftime("%-I:%M%P")
+        reply("  #{event.summary} on #{date_string} at #{time_string}")
+      end
     end
 
   end
