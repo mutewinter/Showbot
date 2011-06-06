@@ -68,6 +68,9 @@ class Commands
     schedule: 'Prints a list of upcoming shows on 5by5'
   }
 
+  # Array to hold history of commands
+  @@command_history = []
+
   def initialize(message, shows)
     @@admin_key ||= (0...8).map{65.+(rand(25)).chr}.join
     puts "Admin key is #{@@admin_key}"
@@ -134,10 +137,14 @@ class Commands
     end
   end
 
-
   def run(command, args)
     real_command = "command_#{command}"
     if self.respond_to? real_command
+      if @message
+        @@command_history << "#{@message.user.nick}: !#{command} #{args.join(" ")}"
+      else
+        @@command_history << "debug_user: !#{command} #{args.join(" ")}"
+      end
       self.send(real_command, args)
     else
       puts "Unrecognized command #{command}"
@@ -264,17 +271,6 @@ class Commands
 
   end
 
-  # Admin command that tells the bot to exit
-  # !exit @@admin_key
-  def command_exit(args = [])
-    if args.first == @@admin_key
-      reply("Showbot is shutting down. Good bye :(")
-      Process.exit
-    else
-      puts "Invalid admin key #{args.first}, should be #{@@admin_key}"
-    end
-  end
-
   # --------------
   # Show Commands
   # --------------
@@ -397,6 +393,40 @@ class Commands
         reply("#{suggestions.length} titles in the last 3 hours:\n")
         reply(suggestions.join("\n"))
       end
+    end
+  end
+
+  
+  # --------------
+  # Admin Commands
+  # --------------
+
+  # Admin command that shows the recently executed commands
+  # !exit @@admin_key
+  def command_history(args = [])
+    if args.first == @@admin_key
+      amount = args[1].to_i if args.length > 1
+      history = []
+      if amount and amount < @@command_history.length
+        history = @@command_history[(-amount)..-1]
+      else
+        history = @@command_history
+      end
+      reply("Showing last #{history.length} command#{history.length > 1 ? "s" : ""} of #{@@command_history.length}.")
+      reply(history.join("\n"))
+    else
+      puts "Invalid admin key #{args.first}, should be #{@@admin_key}"
+    end
+  end
+
+  # Admin command that tells the bot to exit
+  # !exit @@admin_key
+  def command_exit(args = [])
+    if args.first == @@admin_key
+      reply("Showbot is shutting down. Good bye :(")
+      Process.exit
+    else
+      puts "Invalid admin key #{args.first}, should be #{@@admin_key}"
     end
   end
 
