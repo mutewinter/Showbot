@@ -226,10 +226,11 @@ class Commands
 
     if nearest_event
       date_string = nearest_event.start_time.strftime("%-m/%-d/%Y")
+      time_string = nearest_event.start_time.strftime("%-I:%M%P")
       if show
-        reply("The next #{nearest_event.summary} is in #{ChronicDuration.output(nearest_seconds_until, :format => :long)} (#{date_string})")
+        reply("The next #{nearest_event.summary} is in #{ChronicDuration.output(nearest_seconds_until, :format => :long)} (#{time_string} on #{date_string})")
       else 
-        reply("Next show is #{nearest_event.summary} in #{ChronicDuration.output(nearest_seconds_until, :format => :long)} (#{date_string})")
+        reply("Next show is #{nearest_event.summary} in #{ChronicDuration.output(nearest_seconds_until, :format => :long)} (#{time_string} on #{date_string})")
       end
     else
       reply("No upcoming show found for #{show.title}")
