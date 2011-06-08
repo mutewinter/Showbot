@@ -62,6 +62,7 @@ class Commands
     description: '!description show_name episode_number',
     suggest: '!suggest title_suggestion',
     suggestions: '!suggestions [show|relative_time (e.g. 3 hours ago)]',
+    suggestion_count: 'Replies with the number of title suggestions showbot has collected.',
     next: '!next [show_name]',
     schedule: 'Prints a list of upcoming shows on 5by5'
   }
@@ -357,6 +358,14 @@ class Commands
     end
   end
 
+  # Replies with the current amount of suggestions
+  def command_suggestion_count(args = [])
+    if @@suggestions.length > 0
+      reply("There currently #{@@suggestions.length} suggestion#{@@suggestions.length > 1 ? "s" : ""}.")
+    else
+      reply("There are no suggestions.")
+    end
+  end
   
   # --------------
   # Admin Commands
@@ -385,6 +394,8 @@ class Commands
   def command_exit(args = [])
     if args.first == @@admin_key
       reply("Showbot is shutting down. Good bye :(")
+      puts "Showbot executed #{@@history.length} commands"
+      puts @@history.join("\n")
       Process.exit
     else
       puts "Invalid admin key #{args.first}, should be #{@@admin_key}"
