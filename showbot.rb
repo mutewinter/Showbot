@@ -3,7 +3,7 @@ require 'json'
 require './show.rb'
 require './commands.rb'
 
-$debug = false
+$test = false
 $irc_test = false
 
 if not $irc_test
@@ -54,7 +54,11 @@ def bot_start
       commands.run(command, args)
     end
   end
+
   bot.start
+
+  puts "Showbot executed #{bot.history.length} commands"
+  puts bot.history([bot.admin_key]).join("\n")
 end
 
 def interactive_mode
@@ -92,14 +96,10 @@ def test
   puts "\n============Should Work=============="
   commands.run("commands", [])
   commands.run("about", [])
-  commands.run("show", ["b2w"])
   commands.run("next", [])
   commands.run("next", ["b2w"])
   commands.run("schedule", [])
-  commands.run("show", ["anal", "13"])
-  commands.run("show", ["work", "next"])
   commands.run("description", ["talkshow", "10"])
-  commands.run("links", ["the pipeline", "5"])
 
   puts "\n============Should Work (Suggestions)=============="
   commands.run("suggest", ["Chickens and Ex-Girlfriends"])
@@ -114,25 +114,20 @@ def test
 
   puts "\n============Should Work (Clearing Suggestions)=============="
   commands.run("clear", [commands.admin_key])
-  commands.run("suggestions", []) # Should print out text for no suggestions
 
   puts "\n============Should Fail (Out of range)=============="
-  commands.run("show", ["b2w", "500"])
-  commands.run("links", ["talkshow", "500"])
   commands.run("description", ["the pipeline", "500"])
 
   puts "\n============Should Fail (Regular)=============="
   commands.run("taco", [])
-  commands.run("show", ["Large Dogs"])
-  commands.run("show", ["Smallish Dogs", "13"])
   commands.run("description", ["Waffle City", "10"])
-  commands.run("links", ["The Link Show", "5"])
 end
 
 
 def main
   arg1 = ARGV.first
-  if $debug or arg1 == "debug"
+  if $test or arg1 == "test"
+    puts "Running showbot tests."
     test
   elsif arg1 == "interactive"
     interactive_mode

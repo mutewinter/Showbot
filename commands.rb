@@ -59,8 +59,6 @@ $ical = "http://www.google.com/calendar/ical/fivebyfivestudios%40gmail.com/publi
 class Commands
   @@command_usage = {
     about: 'Who made this?',
-    show: '!show show_name [episode_number]',
-    links: '!links show_name episode_number',
     description: '!description show_name episode_number',
     suggest: '!suggest title_suggestion',
     suggestions: '!suggestions [show|relative_time (e.g. 3 hours ago)]',
@@ -69,7 +67,7 @@ class Commands
   }
 
   # Array to hold history of commands
-  @@command_history = []
+  @@history = []
 
   def initialize(message, shows)
     @@admin_key ||= (0...8).map{65.+(rand(25)).chr}.join
@@ -141,9 +139,9 @@ class Commands
     real_command = "command_#{command}"
     if self.respond_to? real_command
       if @message
-        @@command_history << "#{@message.user.nick}: !#{command} #{args.join(" ")}"
+        @@history << HistoryEvent.new(command, args, @message.user.nick, Time.now)
       else
-        @@command_history << "debug_user: !#{command} #{args.join(" ")}"
+        @@history << HistoryEvent.new(command, args, "debug_user", Time.now)
       end
       self.send(real_command, args)
     else
@@ -161,6 +159,10 @@ class Commands
 
   def admin_key
     @@admin_key
+  end
+
+  def history
+    @@history
   end
   
   # --------------
@@ -206,12 +208,12 @@ class Commands
     nearest_seconds_until = nil
     @@calendar_cache.first.events.each do |event|
       # Grab the next occurrence for the event
-      event = (event.occurrences({:starting => Date.today, :count => 1})).first
+      event = (event.occurrences({:starting => DateTime.now, :count => 1})).first
       
       if event and event.start_time > DateTime.now
         seconds_until = ((event.start_time - DateTime.now) * 24 * 60 * 60).to_i
         summary = event.summary
-        if show and get_show(summary.downcase) == show
+        if show and get_show(summary.strip.downcase) == show
           if !nearest_seconds_until
             nearest_seconds_until = seconds_until
             nearest_event = event
@@ -275,47 +277,6 @@ class Commands
   # Show Commands
   # --------------
   
-  # Replies to a user with the 5by5.tv link to the chosen show
-  # !show Back to Work 5 -> http://5by5.tv/b2w/5
-  def command_show(args = [])
-    show = get_show(args.first)
-
-    if show
-      show_number = args[1] if args.length > 1
-      if show_number != "next" and !show.valid_show?(show_number)
-        show_error(show, show_number)
-      elsif show_number
-        reply("#{$domain}/#{show.url}/#{show_number}")
-      else
-        reply("#{$domain}/#{show.url}")
-      end
-    else
-      reply("No show by name \"#{args.first}\". You dissappoint.")
-      reply(usage("show"))
-    end
-  end
-
-  # Replies to the user with links for the given show
-  # !links Talk Show 10 -> huge link spam
-  def command_links(args = [])
-    if args.length < 2
-      reply(usage("links"))
-    else
-      show = get_show(args.first)
-      show_number = args[1]
-
-      if show and show_number and show_number.strip != ""
-        if show.valid_show?(show_number)
-          reply(show.links(show_number).join("\n"))
-        else
-          show_error(show, show_number)
-        end
-      else
-        reply(usage("links"))
-      end
-    end
-  end
-
   # Replies to the user with the description of the show episode they specify
   # !description Hypercritical 10 -> John Siracusa and Dan Benjamin are bri...
   def command_description(args = [])
@@ -407,12 +368,12 @@ class Commands
     if args.first == @@admin_key
       amount = args[1].to_i if args.length > 1
       history = []
-      if amount and amount < @@command_history.length
-        history = @@command_history[(-amount)..-1]
+      if amount and amount < @@history.length
+        history = @@history[(-amount)..-1]
       else
-        history = @@command_history
+        history = @@history
       end
-      reply("Showing last #{history.length} command#{history.length > 1 ? "s" : ""} of #{@@command_history.length}.")
+      reply("Showing last #{history.length} command#{history.length > 1 ? "s" : ""} of #{@@history.length}.")
       reply(history.join("\n"))
     else
       puts "Invalid admin key #{args.first}, should be #{@@admin_key}"
@@ -485,3 +446,12 @@ class Commands
   end
 
 end
+
+HistoryEvent = Struct.new(:command, :args, :user, :time) do
+  def to_s
+    time_string = time.strftime("%-m/%-d/%Y at %-I:%M:%S%P")
+    "#{user}: !#{command} #{args.join(" ")} on #{time_string}"
+  end
+end
+
+
