@@ -1,5 +1,6 @@
 require 'cinch'
 require 'json'
+require 'yaml'
 require './show.rb'
 require './commands.rb'
 
@@ -130,9 +131,15 @@ def main
     interactive_mode
   else
     if $nick == "showbot"
-      puts "Enter NickServ password for showbot"
-      $password = STDIN::gets.strip
+      if File.exists?("password.yml")
+        # Load the password since password.yml exists
+        $password = tree = YAML::parse(File.open("password.yml"))['password'].value
+      else
+        puts "Enter NickServ password for showbot"
+        $password = STDIN::gets.strip
+      end
     end
+
     bot_start
   end
 end
