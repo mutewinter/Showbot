@@ -56,9 +56,6 @@ def bot_start
   end
 
   bot.start
-
-  puts "Showbot executed #{bot.history.length} commands"
-  puts bot.history([bot.admin_key]).join("\n")
 end
 
 def interactive_mode
