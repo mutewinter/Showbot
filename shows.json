@@ -13,7 +13,8 @@
     {"rss":"http://feeds.feedburner.com/PaleoPodcast", "url": "paleo", "title": "Latest in Paleo"},
     {"rss":"http://feeds.feedburner.com/thepipelineshow", "url": "pipeline", "title": "The Pipeline"},
     {"rss":"http://feeds.feedburner.com/5by5-superhero", "url": "superhero", "title": "Internet Superhero"},
-    {"rss":"http://feeds.feedburner.com/thetalkshow", "url": "talkshow", "title": "The Talk Show"}
+    {"rss":"http://feeds.feedburner.com/thetalkshow", "url": "talkshow", "title": "The Talk Show"},
+    {"rss":"http://feeds.feedburner.com/criticalpath", "url": "criticalpath", "title": "The Critical Path"}
   ]
 }
 
