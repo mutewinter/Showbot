@@ -6,6 +6,14 @@ require './commands.rb'
 $debug = false
 $irc_test = false
 
+if not $irc_test
+  $nick = "showbot"
+else
+  $nick = "showbot_test"
+end
+
+$password = nil
+
 $suggested_titles = []
 
 def load_shows
@@ -27,7 +35,8 @@ def bot_start
       else
         c.channels = ["#5by5"]
       end
-      c.nick = "showbot"
+      c.nick = $nick
+      c.password = $password if $password
 
       $shows ||= load_shows
     end
@@ -128,6 +137,10 @@ def main
   elsif arg1 == "interactive"
     interactive_mode
   else
+    if $nick == "showbot"
+      puts "Enter NickServ password for showbot"
+      $password = STDIN::gets.strip
+    end
     bot_start
   end
 end
