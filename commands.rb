@@ -394,8 +394,15 @@ class Commands
   def command_exit(args = [])
     if args.first == @@admin_key
       reply("Showbot is shutting down. Good bye :(")
+
+      # Print command history for archives
       puts "Showbot executed #{@@history.length} commands"
       puts @@history.join("\n")
+
+      # Print suggestions for archives
+      puts "Showbot saved #{@@suggestions.length} title suggestions"
+      puts @@suggestions.join("\n")
+      
       Process.exit
     else
       puts "Invalid admin key #{args.first}, should be #{@@admin_key}"
