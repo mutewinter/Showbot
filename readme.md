@@ -15,14 +15,14 @@ A sweet IRC bot for [5by5](http://5by5.tv). Built on [cinch](https://github.com/
 
 * !about
 <pre>
-showbot> !about
+!about
 Showbot was created by Jeremy Mack (@mutewinter) and some awesome contributors on github. The project page is located at https://github.com/mutewinter/Showbot
 Type !commands for showbot's commands
 </pre>
 * !commands
 <pre>
-showbot> !commands
-Available commands:
+!commands
+showbot> Available commands:
   !about - Who made this?
   !description - !description show_name episode_number
   !suggest - !suggest title_suggestion
@@ -35,12 +35,11 @@ Available commands:
 <pre>
 !next
 showbot> Next show is Build and Analyze in 17 hours 30 minutes 35 seconds (05/30/2011)
-* show 
 </pre>
 * !schedule
 <pre>
-showbot> !schedule
-8 upcoming shows
+!schedule
+showbot> 8 upcoming shows
   Build and Analyze on 6/7/2011 at 10:00am
   Back to Work on 6/7/2011 at 2:00pm
   The Talk Show on 6/8/2011 at 2:00pm
@@ -66,8 +65,8 @@ Almost Time to Poop
 </pre>
 * !suggestion_count
 <pre>
-showbot> !suggestion_count
-There currently 4 suggestions.
+!suggestion_count
+showbot> There currently 4 suggestions.
 </pre>
 * !description
 <pre>
