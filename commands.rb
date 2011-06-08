@@ -1,10 +1,11 @@
-require './show.rb'
-require './random.rb'
 require 'date'
 require 'chronic_duration'
 require 'ri_cal'
-require './suggestion.rb'
 require 'chronic'
+
+require './show.rb'
+require './random.rb'
+require './suggestion.rb'
 
 $domain = "http://5by5.tv"
 
