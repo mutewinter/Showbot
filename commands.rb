@@ -440,12 +440,24 @@ class Commands
     chat("He's great.")
   end
 
+  def command_sandwich(args = [])
+    command_sandy(args)
+  end
+
+  def command_adam(args = [])
+    command_sandy(args)
+  end
+
   def command_gruber(args = [])
     chat("I don't know.")
   end
 
   def command_jsir(args = [])
     chat($jsir.random)
+  end
+
+  def command_siracusa(args = [])
+    command_jsir(args)
   end
 
   def command_paleo(args = [])
