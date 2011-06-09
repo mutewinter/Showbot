@@ -4,7 +4,7 @@ require 'daemons'
 options = {
   :app_name   => "showbot",
   :multiple   => false,
-  :ontop      => true,
+  :ontop      => false,
   :dir_mode   => :script,
   :dir        => 'pid',
   :mode       => :load,
