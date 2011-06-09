@@ -1,8 +1,14 @@
+#!/usr/local/bin/ruby19
+#
+# Add the script directory as possible directory for files
+dir = File.dirname(File.realdirpath(__FILE__))
+$: << dir
+
 require 'cinch'
 require 'json'
 require 'yaml'
-require './show.rb'
-require './commands.rb'
+require 'show.rb'
+require 'commands.rb'
 
 $test = false
 $irc_test = false
@@ -17,9 +23,11 @@ $password = nil
 
 $suggested_titles = []
 
+$directory = File.dirname(__FILE__)
+
 def load_shows
   shows = []
-  show_hashes = JSON.parse(File.open("shows.json").read)["shows"]
+  show_hashes = JSON.parse(File.open(File.join($directory, "shows.json")).read)["shows"]
   show_hashes.each do |show_hash|
     shows.push Show.new(show_hash)
   end
@@ -131,9 +139,9 @@ def main
     interactive_mode
   else
     if $nick == "showbot"
-      if File.exists?("password.yml")
+      if File.exists?(File.join($directory, "password.yml"))
         # Load the password since password.yml exists
-        $password = tree = YAML::parse(File.open("password.yml"))['password'].value
+        $password = tree = YAML::parse(File.open(File.join($directory, "password.yml")))['password'].value
       else
         puts "Enter NickServ password for showbot"
         $password = STDIN::gets.strip
