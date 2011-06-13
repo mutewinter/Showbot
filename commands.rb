@@ -6,6 +6,7 @@ require 'chronic'
 require 'show.rb'
 require 'random.rb'
 require 'suggestion.rb'
+require 'events.rb'
 
 $domain = "http://5by5.tv"
 
@@ -72,6 +73,7 @@ class Commands
   @@history = []
 
   def initialize(message, shows)
+    @@start_time ||= DateTime.now
     @@admin_key ||= (0...8).map{65.+(rand(25)).chr}.join
     puts "Admin key is #{@@admin_key}"
     # IRC message object from cinch
@@ -80,6 +82,7 @@ class Commands
     @@shows ||= shows
     @@suggestions ||= Suggestions.new
 
+    @@events = Events.new($ical)
   end
   
   def start_refresh_thread
@@ -195,53 +198,36 @@ class Commands
   def command_showbot(args = [])
     command_about(args)
   end
+  
+  # Uptime command reports how long showbot has been running
+  def command_uptime(args = [])
+    date_string = @@start_time.strftime("%-m/%-d/%Y")
+    time_string = @@start_time.strftime("%-I:%M%P")
+    seconds_running = ((DateTime.now - @@start_time) * 24 * 60 * 60).to_i
+    reply("Showbot has been running for " +
+    "#{ChronicDuration.output(seconds_running, :format => :long)} " +
+    "since #{date_string} on #{time_string}")
+  end
 
   # Replies to the user with information about the next show
   # !next b2w -> The next Back to Work is in 3 hours 30 minutes (6/2/2011)
   def command_next(args = [])
-    @@calendar_cache ||= RiCal.parse(open($ical))
-    
-    # Start the calendar refresh thread
-    start_refresh_thread
-
     show = get_show(args.first) if args.length > 0
 
-    nearest_event = nil
-    nearest_seconds_until = nil
-    @@calendar_cache.first.events.each do |event|
-      # Grab the next occurrence for the event
-      event = (event.occurrences({:starting => DateTime.now, :count => 1})).first
-      
-      if event and event.start_time > DateTime.now
-        seconds_until = ((event.start_time - DateTime.now) * 24 * 60 * 60).to_i
-        summary = event.summary
-        if show and get_show(summary.strip.downcase) == show
-          if !nearest_seconds_until
-            nearest_seconds_until = seconds_until
-            nearest_event = event
-          elsif seconds_until < nearest_seconds_until
-            nearest_seconds_until = seconds_until
-            nearest_event = event
-          end
-        elsif !show
-          if !nearest_seconds_until
-            nearest_seconds_until = seconds_until
-            nearest_event = event
-          elsif seconds_until < nearest_seconds_until
-            nearest_seconds_until = seconds_until
-            nearest_event = event
-          end
-        end
-      end
+    if show
+      next_event = @@events.next_event(show.title)
+    else
+      next_event = @@events.next_event
     end
 
-    if nearest_event
-      date_string = nearest_event.start_time.strftime("%-m/%-d/%Y")
-      time_string = nearest_event.start_time.strftime("%-I:%M%P")
+    if next_event
+      date_string = next_event.start_time.strftime("%-m/%-d/%Y")
+      time_string = next_event.start_time.strftime("%-I:%M%P")
+      nearest_seconds_until = ((next_event.start_time - DateTime.now) * 24 * 60 * 60).to_i
       if show
-        reply("The next #{nearest_event.summary} is in #{ChronicDuration.output(nearest_seconds_until, :format => :long)} (#{time_string} on #{date_string})")
+        reply("The next #{next_event.summary} is in #{ChronicDuration.output(nearest_seconds_until, :format => :long)} (#{time_string} on #{date_string})")
       else 
-        reply("Next show is #{nearest_event.summary} in #{ChronicDuration.output(nearest_seconds_until, :format => :long)} (#{time_string} on #{date_string})")
+        reply("Next show is #{next_event.summary} in #{ChronicDuration.output(nearest_seconds_until, :format => :long)} (#{time_string} on #{date_string})")
       end
     else
       reply("No upcoming show found for #{show.title}")
@@ -250,19 +236,7 @@ class Commands
   end
 
   def command_schedule(args = [])
-    @@calendar_cache ||= RiCal.parse(open($ical))
-    
-    # Start the calendar refresh thread
-    start_refresh_thread
-
-    upcoming_events = []
-
-    @@calendar_cache.first.events.each do |event|
-      # Grab the next occurrence for the event
-      event = (event.occurrences({:starting => Date.today, :count => 1})).first
-
-      upcoming_events << event if event
-    end
+    upcoming_events = @@events.upcoming_events
 
     if upcoming_events.length > 0
       reply("#{upcoming_events.length} upcoming show#{upcoming_events.length > 1 ? "s" : ""}")
@@ -385,6 +359,14 @@ class Commands
       end
       reply("Showing last #{history.length} command#{history.length > 1 ? "s" : ""} of #{@@history.length}.")
       reply(history.join("\n"))
+    else
+      puts "Invalid admin key #{args.first}, should be #{@@admin_key}"
+    end
+  end
+
+  def command_history_count(args = [])
+    if args.first == @@admin_key
+      reply("#{@@history.length} commands run by showbot.")
     else
       puts "Invalid admin key #{args.first}, should be #{@@admin_key}"
     end

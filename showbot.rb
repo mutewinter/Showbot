@@ -106,6 +106,7 @@ def test
   commands.run("next", ["b2w"])
   commands.run("schedule", [])
   commands.run("description", ["talkshow", "10"])
+  commands.run("history", [commands.admin_key, "10"])
 
   puts "\n============Should Work (Suggestions)=============="
   commands.run("suggest", ["Chickens and Ex-Girlfriends"])
@@ -127,6 +128,9 @@ def test
   puts "\n============Should Fail (Regular)=============="
   commands.run("taco", [])
   commands.run("description", ["Waffle City", "10"])
+
+  puts "\n============Should Work=============="
+  commands.run("uptime", [])
 end
 
 
