@@ -206,7 +206,7 @@ class Commands
     seconds_running = ((DateTime.now - @@start_time) * 24 * 60 * 60).to_i
     reply("Showbot has been running for " +
     "#{ChronicDuration.output(seconds_running, :format => :long)} " +
-    "since #{date_string} on #{time_string}")
+    "since #{date_string} at #{time_string}")
   end
 
   # Replies to the user with information about the next show
