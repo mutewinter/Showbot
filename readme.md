@@ -6,7 +6,7 @@ A sweet IRC bot for [5by5](http://5by5.tv). Built on [cinch](https://github.com/
 
 * Ruby 1.9
 * [cinch gem](http://rubygems.org/gems/cinch)
-* [ri_cal](http://rubygems.org/gems/ri_cal)
+* [ri_cal gem](http://rubygems.org/gems/ri_cal)
 * [chronic gem](http://rubygems.org/gems/chronic)
 * [nokogiri gem](http://rubygems.org/gems/nokogiri)
 * [chronic_duration gem](http://rubygems.org/gems/chronic_duration)
