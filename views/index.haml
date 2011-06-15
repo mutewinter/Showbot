@@ -1,0 +1,16 @@
+%h2 
+  Title Suggestions
+%table#suggestions_table
+  %thead
+    %tr
+      %th Show Title
+      %th User
+      %th Time
+      %th During Show
+  -@suggestions.each do |suggestion|
+    %tr
+      %td=suggestion.title
+      %td=suggestion.user
+      %td=suggestion.time.strftime("%-I:%M%P on %-m/%-d/%Y")
+      %td=suggestion.show
+%p= "#{@suggestions.count} so far."

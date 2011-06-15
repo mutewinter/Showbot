@@ -3,10 +3,10 @@ require 'chronic_duration'
 require 'ri_cal'
 require 'chronic'
 
-require 'show.rb'
-require 'random.rb'
-require 'suggestion.rb'
-require 'events.rb'
+require 'showbot/show.rb'
+require 'showbot/random.rb'
+require 'showbot/suggestion.rb'
+require 'showbot/events.rb'
 
 $domain = "http://5by5.tv"
 
@@ -85,17 +85,6 @@ class Commands
     @@events = Events.new($ical)
   end
   
-  def start_refresh_thread
-    @@refresh_thread ||= Thread.new do 
-      until false
-        puts "Refreshing calendar cache"
-        @@calendar_cache = RiCal.parse(open($ical))
-        puts "Sleeping 10 minutes until next refresh"
-        sleep 600
-      end
-    end
-  end
-
   def get_show(show_string)
     if show_string
       @@shows.each do |show|
@@ -170,6 +159,18 @@ class Commands
     @@history
   end
   
+  def suggestions
+    @@suggestions
+  end
+
+  def start_time
+    @@start_time
+  end
+
+  def events
+    @@events
+  end
+
   # --------------
   # Regular Commands
   # --------------
