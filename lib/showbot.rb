@@ -109,9 +109,11 @@ module Showbot
     def suggestion_test
       @commands = Commands.new(nil, @@shows)
 
-      @commands.run("suggest", ["Chickens and Ex-Girlfriends"])
-      @commands.run("suggest", ["The Programmer Barn"])
-      @commands.run("suggest", ["The Bridges of Siracusa County"])
+      @commands.run("suggest", ["Small title"])
+      @commands.run("suggest", ["Medium title here, hi."])
+      @commands.run("suggest", ["OMG IT'S A HUGE TITLE HOW ARE WE GOING TO HANDLE THIS?"])
+      @commands.run("suggest", ["Back to a reasonble"])
+      @commands.run("suggest", ["Title"])
     end
 
     # Runs tests

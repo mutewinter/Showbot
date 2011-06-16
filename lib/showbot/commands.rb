@@ -287,7 +287,7 @@ class Commands
       if @message
         @@suggestions.add(suggestion, @message.user.nick)
       else
-        @@suggestions.add(suggestion, nil)
+        @@suggestions.add(suggestion, "debug_user")
       end
       reply("Added title suggestion \"#{suggestion}\"")
     else

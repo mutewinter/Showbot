@@ -36,7 +36,7 @@ configure do
       end
 
       puts "Bot stopped, reconning in 10 seconds"
-      sleep 10
+      sleep 60
     end
   end
 end
