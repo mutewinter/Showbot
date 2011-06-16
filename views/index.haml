@@ -1,19 +1,22 @@
-%h2.subtitle.grid_12="Title suggestions in the last 24 hours"
-%p.grid_3.prefix_9= "Displaying #{@suggestions.count} title suggestions."
-.clear
-#titles
-  - col = 0
-  -@suggestions.each do |suggestion|
-    .suggestion.grid_4
-      .title_group
-        .span
-          .title=suggestion.title
-      .user=suggestion.user
-      .time=suggestion.time.strftime("%-I:%M%P on %-m/%-d/%Y")
-      .show=suggestion.show
-    -if col >= 2
-      .clear
-      -col = 0
-      -else
-      -col+=1
-.clear
+-if @suggestions
+  %h2.subtitle.grid_12="Title suggestions in the last 24 hours"
+  %p.grid_3.prefix_9= "Displaying #{@suggestions.count} title suggestions."
+  .clear
+  #titles
+    - col = 0
+    -@suggestions.each do |suggestion|
+      .suggestion.grid_4
+        .title_group
+          .span
+            .title=suggestion.title
+        .user=suggestion.user
+        .time=suggestion.time.strftime("%-I:%M%P on %-m/%-d/%Y")
+        .show=suggestion.show
+      -if col >= 2
+        .clear
+        -col = 0
+        -else
+        -col+=1
+  .clear
+-else
+  %h2 No title suggestions yet...

@@ -46,7 +46,7 @@ end
 # =================
 
 get '/' do
-  @suggestions = @@bot.suggestions
+  @suggestions = @@bot.suggestions if defined? @@bot
   haml :index
 end
 
