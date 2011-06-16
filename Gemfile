@@ -1,6 +1,7 @@
 source :rubyforge
 # Sinatra
 gem 'sinatra', '1.2.6'
+gem 'sinatra-reloader', '0.5.0'
 gem 'thin', '1.2.11'
 gem 'haml', '3.1.2'
 gem 'sass', '3.1.2'

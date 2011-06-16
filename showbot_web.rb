@@ -9,6 +9,7 @@
 # Gems
 require 'sinatra'
 require 'haml'
+require "sinatra/reloader" if development?
 
 # Add the script directory as possible directory for files
 dir = File.dirname(File.realdirpath(__FILE__))
@@ -27,8 +28,12 @@ configure do
   @bot_thread = Thread.new do
     while true
       @@bot ||= Showbot::Bot.new("showbot")
-      #@@bot.start
-      @@bot.suggestion_test
+
+      if development?
+        @@bot.suggestion_test
+      else
+        @@bot.start
+      end
 
       puts "Bot stopped, reconning in 10 seconds"
       sleep 10
@@ -55,6 +60,3 @@ end
 # ===========
 # Javascript
 # ===========
-get '/js/*.js' do |file|
-
-end
