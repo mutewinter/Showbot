@@ -74,8 +74,15 @@ class Commands
 
   def initialize(message, shows)
     @@start_time ||= DateTime.now
-    @@admin_key ||= (0...8).map{65.+(rand(25)).chr}.join
-    puts "Admin key is #{@@admin_key}"
+
+    @@admin_key ||= ENV['SHOWBOT_ADMIN_PASSWORD']
+
+    if @@admin_key.nil? or @@admin_key.strip == ""
+      # Generate an admim key since one wasn't found
+      @@admin_key ||= (0...8).map{65.+(rand(25)).chr}.join
+      puts "Admin key is #{@@admin_key}"
+    end
+
     # IRC message object from cinch
     @message = message
     # Shows is a class variable since it shouldn't change while the bot is running
