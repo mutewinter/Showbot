@@ -19,7 +19,7 @@ A sweet IRC bot with a **web interface** for [5by5](http://5by5.tv). Built on [c
 * [sass](http://rubygems.org/gems/sass)
 * [foreman](http://rubygems.org/gems/foreman)
 
-## Commands
+## Usage
 
 ```shell
 $> foreman start local
@@ -29,6 +29,9 @@ $> foreman start local_live
 $> foreman start web
 # For running on a server that already has RACK_ENV=production set
 ```
+
+## IRC Commands
+
 
 * !about
 <pre>
