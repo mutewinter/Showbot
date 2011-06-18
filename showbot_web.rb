@@ -46,7 +46,14 @@ end
 # =================
 
 get '/' do
-  @suggestions = @@bot.suggestions if defined? @@bot
+  @suggestions = []
+  if defined? @@bot
+    @suggestions = @@bot.suggestions
+    yesterday = Time.now - (60 * 60 * 24)
+    # Default to showing suggestions in last 24 hours
+    @suggestions.reject! {|s| s.time < yesterday}
+    @suggestions.compact! if @suggestions
+  end
   haml :index
 end
 

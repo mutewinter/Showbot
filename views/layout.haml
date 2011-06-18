@@ -21,9 +21,8 @@
       #content
         =yield
 
-      #footer
-        %p
-          Showbot is an IRC bot for 5by5.tv and this is its sweet website.
+      #footer.grid_12
+        %abbr{:title => "Not like that."} Showbot loves you.
     / ! end of #container
     / Javascript at the bottom for fast page loading
     / Grab Google CDN's jQuery. fall back to local if necessary
@@ -31,6 +30,7 @@
     :javascript
       !window.jQuery && document.write('<script src="js/jquery.min.js"><\/script>')
     / JQuery Plugins
+    %script{:type => "text/javascript", :src  => "js/jquery.timeago.js"}
     / Main JS
     %script{:type => "text/javascript", :src  => "js/showbot.js"}
     :javascript

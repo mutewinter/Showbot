@@ -111,8 +111,8 @@ module Showbot
 
       @commands.run("suggest", ["Small title"])
       @commands.run("suggest", ["Medium title here, hi."])
-      @commands.run("suggest", ["OMG IT'S A HUGE TITLE HOW ARE WE GOING TO HANDLE THIS?"])
-      @commands.run("suggest", ["Back to a reasonble"])
+      @commands.run("suggest", ["This is a huge title with lowercase caps thank god."])
+      @commands.run("suggest", ["Two line title hopefully here."])
       @commands.run("suggest", ["Title"])
     end
 
