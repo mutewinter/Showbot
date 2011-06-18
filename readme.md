@@ -1,17 +1,34 @@
 # Showbot
 
-A sweet IRC bot for [5by5](http://5by5.tv). Built on [cinch](https://github.com/ymendel/cinch/blob/master/lib/cinch/base.rb).
+Now with 100% more webbiness.
+
+A sweet IRC bot with a **web interface** for [5by5](http://5by5.tv). Built on [cinch](https://github.com/ymendel/cinch/blob/master/lib/cinch/base.rb) and [sinatra](http://www.sinatrarb.com/).
 
 ## Requirements
 
 * Ruby 1.9
+* [sinatra](http://rubygems.org/gems/sinatra)
 * [cinch gem](http://rubygems.org/gems/cinch)
 * [ri_cal gem](http://rubygems.org/gems/ri_cal)
 * [chronic gem](http://rubygems.org/gems/chronic)
 * [nokogiri gem](http://rubygems.org/gems/nokogiri)
 * [chronic_duration gem](http://rubygems.org/gems/chronic_duration)
+* [sinatra-reloader](http://rubygems.org/gems/sinatra-reloader)
+* [thin](http://rubygems.org/gems/thin)
+* [haml](http://rubygems.org/gems/haml)
+* [sass](http://rubygems.org/gems/sass)
+* [foreman](http://rubygems.org/gems/foreman)
 
 ## Commands
+
+```shell
+$> foreman start local
+# Starts showbot locally and adds test suggestions every minute
+$> foreman start local_live
+# Starts showbot locally and connects to IRC
+$> foreman start web
+# For running on a server that already has RACK_ENV=production set
+```
 
 * !about
 <pre>
