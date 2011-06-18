@@ -284,6 +284,8 @@ class Commands
   def command_suggest(args = [])
     suggestion = args.first.strip if args.length > 0
     if suggestion and suggestion != ""
+      # Remove quotes from around the string if the user put them there on accident
+      suggestion.gsub!(/^(?:'|")(.*)(?:'|")$/, '\1')
       if @message
         @@suggestions.add(suggestion, @message.user.nick)
       else
@@ -301,36 +303,7 @@ class Commands
     if @@suggestions.length == 0
       reply('There are no suggestions. You should add some by using "!suggest title_suggestion".')
     else
-      if args.first
-        time = Chronic.parse(args.first)
-        show = get_show(args.first)
-        if time
-          matching_suggestions = @@suggestions.suggestions_after_time(time)
-          if matching_suggestions.length > 0
-            reply("#{matching_suggestions.length} suggestion(s) from #{time.strftime("%I:%M%P EST")} onward:")
-            reply(matching_suggestions.join("\n"))
-          else
-            reply("No suggestions after #{time.strftime("%I:%M%P EST")}.")
-          end
-        elsif show
-          matching_suggestions = @@suggestions.suggestions_for_title(show.url)
-          if matching_suggestions.length > 0
-            reply("#{matching_suggestions.length} titles for #{show.title}:\n")
-            reply(matching_suggestions.join("\n"))
-          else
-            reply("There are no suggestions for #{show.title}. You should add some by using \"!suggest title_suggestion\".")
-          end
-        else
-          reply("Show \"#{args.first}\" not found.")
-          reply(usage("suggestions"))
-        end
-      else
-        default_time = Chronic.parse("3 hours ago")
-        suggestions = @@suggestions.suggestions_after_time(default_time)
-
-        reply("#{suggestions.length} titles in the last 3 hours:\n")
-        reply(suggestions.join("\n"))
-      end
+      reply('Go to http://showbot.herokuapp.com to see title suggestions.')
     end
   end
 
