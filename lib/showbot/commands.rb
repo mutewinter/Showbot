@@ -390,7 +390,7 @@ class Commands
       puts "Invalid admin key #{args.first}, should be #{@@admin_key}"
     end
   end
-
+  
   # --------------
   # Fun commands
   # --------------

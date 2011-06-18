@@ -10,7 +10,6 @@ $showbot_blue: #1f69bd;
   font-size: 600%;
   position: relative;
   color: $showbot_blue;
-  font-family: 'Lucida Grande', Verdana, helvetica, sans-serif
 }
 
 @mixin box_shadow {
@@ -87,10 +86,9 @@ hr {
   .qstart {
     @include quote_base;
     float: left;
-    margin-top: -35px;
+    margin-top: -42px;
     margin-bottom: -30px;
     margin-right: -20px;
-    left: 5px;
   }
 
   .qend {

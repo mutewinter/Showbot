@@ -9,6 +9,7 @@
 # Gems
 require 'sinatra'
 require 'haml'
+require 'sass'
 require "sinatra/reloader" if development?
 
 # Add the script directory as possible directory for files
@@ -55,6 +56,16 @@ get '/' do
     @suggestions.compact! if @suggestions
   end
   haml :index
+end
+
+
+get '/fix_nick' do
+  if @@bot.bot.nick != "showbot"
+    @@bot.bot.nick = "showbot"
+    "Fixed, hopefully."
+  else
+    "It's Fine."
+  end
 end
 
 # ===========
