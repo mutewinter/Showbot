@@ -310,7 +310,7 @@ class Commands
     if @@suggestions.length == 0
       reply('There are no suggestions. You should add some by using "!suggest title_suggestion".')
     else
-      reply('Go to http://webbot.herokuapp.com to see title suggestions.')
+      reply('Go to http://showbot.me to see title suggestions.')
     end
   end
 

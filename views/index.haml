@@ -7,9 +7,9 @@
     -@suggestions.each do |suggestion|
       %li.suggestion.grid_4
         .qstart “
-        .title="#{suggestion.title}"
+        .title=h "#{suggestion.title}"
         .qend ”
-        .user=suggestion.user
+        .user=h suggestion.user
         %abbr.timeago{:title => suggestion.time.getutc.iso8601}= suggestion.time.strftime("%-m/%-d/%Y at %-I:%M%P %Z")
         .show=suggestion.show
         %span.arrow

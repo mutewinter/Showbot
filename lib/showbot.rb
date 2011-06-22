@@ -109,11 +109,12 @@ module Showbot
     def suggestion_test
       @commands = Commands.new(nil, @@shows)
 
-      @commands.run("suggest", ["Small title"])
       @commands.run("suggest", ["Medium title here, hi."])
       @commands.run("suggest", ["This is a huge title with lowercase caps thank god."])
       @commands.run("suggest", ["Two line title hopefully here."])
       @commands.run("suggest", ["Title"])
+      # XSS Test
+      @commands.run("suggest", [%Q{';alert(String.fromCharCode(88,83,83))//\';alert(String.fromCharCode(88,83,83))//";alert(String.fromCharCode(88,83,83))//\";alert(String.fromCharCode(88,83,83))//--></SCRIPT>">'><SCRIPT>alert(String.fromCharCode(88,83,83))</SCRIPT>}])
     end
 
     # Runs tests
