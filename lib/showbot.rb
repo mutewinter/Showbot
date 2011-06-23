@@ -10,13 +10,20 @@ $: << dir
 require 'cinch'
 require 'json'
 require 'yaml'
+require 'dm-core'
 
 # Showbot Files
 require 'showbot/show'
 require 'showbot/commands'
 
+# A Sqlite3 connection to a persistent database
+DataMapper.setup(:default, 'sqlite:///showbot_test.db')
+
 module Showbot
   class Bot
+    include DataMapper::Resource
+    has n, :suggestions
+
     attr_reader :nick, :irc_test
 
     # Initialize method for showbot
@@ -29,6 +36,7 @@ module Showbot
       @@shows ||= load_shows
 
       @commands = Commands.new(nil, @@shows)
+      
     end
 
 
@@ -170,4 +178,51 @@ module Showbot
     end
 
   end
+
+  class Suggestion
+    include DataMapper::Resource
+
+    property :id,         Serial
+    property :title,      String
+    property :user,       String
+    property :created_at, DateTime
+
+    belongs_to :bot
+
+    attr_reader :title, :user, :created_at, :show
+
+    @@live_url = 'http://5by5.tv/live/data.json'
+
+    def initialize(title, user)
+      @title = title
+      @user = user
+      @created_at = Time.now
+      @show = fetch_live_show
+    end
+
+    def to_s
+      if @user
+        "#{@title} (#{@user})"
+      else
+        "#{@title}"
+      end
+    end
+
+    def fetch_live_show
+      show_name = nil
+
+      live_hash = JSON.parse(open(@@live_url).read)
+
+      if live_hash and live_hash.has_key?("live") and live_hash["live"]
+        # Show is live, read show name
+        broadcast = live_hash["broadcast"] if live_hash.has_key? "broadcast"
+        show_name = broadcast["slug"] if broadcast.has_key? "slug"
+      end
+
+      show_name
+    end
+  end
+
+  DataMapper.finalize
 end
+

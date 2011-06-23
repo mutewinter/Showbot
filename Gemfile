@@ -13,3 +13,9 @@ gem 'chronic_duration', '0.9.5'
 gem 'ri_cal', '0.8.8'
 gem 'nokogiri', '1.4.4'
 
+
+# Development Gems
+group :development do
+  gem 'dm-sqlite-adapter'
+end
+
