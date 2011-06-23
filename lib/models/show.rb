@@ -1,11 +1,7 @@
-require 'rss/1.0'
-require 'rss/2.0'
-require 'open-uri'
-require 'nokogiri'
-
-$domain = "http://5by5.tv"
-
 # A class to manage Shows, woah
+
+DOMAIN = "http://5by5.tv"
+
 class Show
   attr_reader :title, :url, :rss
 
@@ -30,7 +26,7 @@ class Show
   # Description scraped from episode page
   def description(show_number)
     if valid_show?(show_number)
-      doc = Nokogiri::HTML(open("#{$domain}/#{@url}/#{show_number}"))
+      doc = Nokogiri::HTML(open("#{DOMAIN}/#{@url}/#{show_number}"))
 
       description = doc.css('div.episode_notes/p').first.text.strip
       return description
@@ -43,7 +39,7 @@ class Show
     links_array = []
 
     if valid_show?(show_number)
-      doc = Nokogiri::HTML(open("#{$domain}/#{@url}/#{show_number}"))
+      doc = Nokogiri::HTML(open("#{DOMAIN}/#{@url}/#{show_number}"))
       
       links_html = doc.css('div.links li a')
       links_html.each do |link|

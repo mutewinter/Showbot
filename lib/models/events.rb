@@ -1,36 +1,25 @@
-require 'chronic_duration'
-require 'ri_cal'
-require 'chronic'
+# Wrapper class for ri_cal that caches the data
+# and handles some advanced queries
 
-class Events
+class ICalCache
 
   # Takes the target iCal url as an argument
   def initialize(ical_url)
     @ical_url = ical_url
-    
-    start_refresh_thread(600)
+    refresh
   end
 
-  # Creates a thread to refresh iCal data
-  def start_refresh_thread(refresh_interval = 600)
-    # Grab calendar synchronously first so it is set if we get called
-    @calendar_cache = RiCal.parse(open(@ical_url))
-
-    @refresh_thread ||= Thread.new do 
-      while true
-        puts "#{refresh_interval} seconds until next calendar refresh"
-        sleep refresh_interval
-        puts "Refreshing calendar cache"
-        @calendar_cache = RiCal.parse(open(@ical_url))
-      end
-    end
+  # Refreshes the cache
+  def refresh
+    @cache = RiCal.parse(open(@ical_url))
   end
+
 
   # Return the next iCal event after the current time
   def next_event(keyword = nil)
     nearest_event = nil
     nearest_seconds_until = nil
-    @calendar_cache.first.events.each do |event|
+    @cache.first.events.each do |event|
       # Grab the next occurrence for the event
       event = (event.occurrences({:starting => DateTime.now, :count => 1})).first
 
@@ -63,7 +52,7 @@ class Events
   def upcoming_events
     upcoming_events = []
 
-    @calendar_cache.first.events.each do |event|
+    @cache.first.events.each do |event|
       # Grab the next occurrence for the event
       event = (event.occurrences({:starting => Date.today, :count => 1})).first
 
@@ -88,7 +77,5 @@ class Events
     end
     upcoming_events
   end
-
-
 
 end

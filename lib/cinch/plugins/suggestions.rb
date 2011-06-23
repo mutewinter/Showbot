@@ -7,7 +7,7 @@ module Cinch
 
       match "help suggest", :method => :command_help           # !help suggest
       match %r{suggest (.+)},   :method => :command_suggest    # !suggest Great Title Here
-      match %r{suggestions (.+)},   :method => :command_suggestions    # !suggest Great Title Here
+      match "suggestions",   :method => :command_suggestions    # !suggest Great Title Here
       
 
       # Show help for the suggestions module

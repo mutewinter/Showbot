@@ -5,8 +5,8 @@ module Cinch
     class Showbot
       include Cinch::Plugin
 
-      match %r{(help|commands) (.+)},   :method => :command_help    # !help
-      match %r{(about|showbot) (.+)},   :method => :command_about    # !about
+      match %r{(help|commands) (.*)},   :method => :command_help    # !help
+      match %r{(about|showbot) (.*)},   :method => :command_about    # !about
       match "uptime",   :method => :command_uptime    # !about
       
       def initialize(*args)
