@@ -1,7 +1,5 @@
 # All suggestions welcome.
 
-require './lib/models/suggestion'
-
 module Cinch
   module Plugins
     class Suggestions
@@ -20,11 +18,11 @@ module Cinch
       # Add the user's suggestion to the database
       def command_suggest(m, title)
         # Remove quotes if the user thought they needed them
-        fixed_title = title.gsub(/^(?:'|")(.*)(?:'|")$/, '\1')
+        title.gsub!(/^(?:'|")(.*)(?:'|")$/, '\1')
 
-        if fixed_title.empty?
+        if title.empty?
           command_help(m)
-        elsif fixed_title.length > Suggestion.title.length
+        elsif title.length > Suggestion.title.length
             m.user.send "Suggestion NOT recorded. Showbot is sorry. Think title, not transcript."
         else
           # TODO Save show from URL
@@ -35,7 +33,7 @@ module Cinch
           )
 
           if new_suggestion.saved?
-            m.user.send "Added title suggestion \"#{fixed_title}\""
+            m.user.send "Added title suggestion \"#{title}\""
           else
             m.user.send "Failed to add title suggestion, please contact @mutewinter on Twitter if this keeps happening."
           end

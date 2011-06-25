@@ -9,7 +9,7 @@ module Cinch
 
       match %r{(help|commands)$},   :method => :command_help    # !help
       match %r{(about|showbot)},   :method => :command_about    # !about
-      match "uptime",   :method => :command_uptime    # !about
+      match "uptime",   :method => :command_uptime              # !uptime
       
       def initialize(*args)
         super
