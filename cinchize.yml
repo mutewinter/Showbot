@@ -1,0 +1,41 @@
+---
+# Plugins used for all configs
+plugins: &plugins
+  plugins:
+    -
+      module: "./lib/cinch/plugins/fivebyfun"
+      class: "Cinch::Plugins::FiveByFun"
+    -
+      module: "./lib/cinch/plugins/schedule"
+      class: "Cinch::Plugins::Schedule"
+    -
+      module: "./lib/cinch/plugins/showbot_admin"
+      class: "Cinch::Plugins::ShowbotAdmin"
+    -
+      module: "./lib/cinch/plugins/showbot"
+      class: "Cinch::Plugins::Showbot"
+    -
+      module: "./lib/cinch/plugins/suggestions"
+      class: "Cinch::Plugins::Suggestions"
+
+# The base configuration for freenode
+freenode_base: &freenode_base
+  <<: *plugins
+  server: irc.freenode.net
+  port: 6667
+
+options:
+    log_output: true
+    dir_mode: normal
+    dir: "pid"
+servers:
+  freenode_test:
+    <<: *freenode_base
+    nick: showbot_test
+    channels:
+      - "#cinch-bots"
+  freenode_live:
+    <<: *freenode_base
+    nick: showbot
+    channels:
+      - "#5by5"

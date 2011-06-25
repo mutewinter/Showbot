@@ -2,8 +2,10 @@ require 'date'
 require 'open-uri'
 require 'json'
 
-class Suggestions < Array
+require 'dm-core'
+require 'dm-validations'
 
+class Suggestions < Array
   attr_reader :suggestions
 
   def add(title, user)
@@ -20,3 +22,14 @@ class Suggestions < Array
 
 end
 
+
+class Suggestion
+  include DataMapper::Resource
+
+  property :id,         Serial
+  property :title,      String,   :length => 100 # Limits title suggestions to 100 characters
+  property :user,       String
+  property :created_at, DateTime
+
+  validates_presence_of :title
+end

@@ -3,3 +3,5 @@
 /pid/
 /.sass-cache/
 .DS_Store
+
+/development.db

@@ -1,5 +1,8 @@
 # Class to hold all of the shows and some sweet helper methods
 
+require 'json'
+
+require File.expand_path(File.join(File.dirname(__FILE__), "show"))
 
 class Shows < Array
 
@@ -18,9 +21,9 @@ class Shows < Array
 
   def find_show(keyword)
     self.each do |show|
-      if show.url.downcase == show_string.downcase
+      if show.url.downcase == keyword.downcase
         return show
-      elsif show.title.downcase.include? show_string.downcase
+      elsif show.title.downcase.include? keyword.downcase
         return show
       end
     end

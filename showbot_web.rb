@@ -19,7 +19,7 @@ end
 # =================
 
 get '/' do
-  @suggestions = []
+  @suggestions = Suggestion.all
   haml :index
 end
 

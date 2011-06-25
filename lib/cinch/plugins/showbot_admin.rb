@@ -6,8 +6,8 @@ module Cinch
       include Cinch::Plugin
 
       
-      match %r{history (.+)},   :method => :command_history
-      match %r{history_count (.+)},   :method => :command_history_count
+      match %r{history (.*)},   :method => :command_history
+      match %r{history_count (.*)},   :method => :command_history_count
       match %r{(exit|quit) (.+)},   :method => :command_exit
       
       def initialize(*args)

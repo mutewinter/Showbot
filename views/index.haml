@@ -10,8 +10,8 @@
         .title=h "#{suggestion.title}"
         .qend ”
         .user=h suggestion.user
-        %abbr.timeago{:title => suggestion.time.getutc.iso8601}= suggestion.time.strftime("%-m/%-d/%Y at %-I:%M%P %Z")
-        .show=suggestion.show
+        %abbr.timeago{:title => suggestion.created_at}= suggestion.created_at.strftime("%-m/%-d/%Y at %-I:%M%P %Z")
+        .show
         %span.arrow
       -if col >= 2
         .clear

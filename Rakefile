@@ -1,6 +1,5 @@
 require 'rubygems'
 require 'bundler/setup'
-require 'rspec/core/rake_task'
 require 'daemons'
 
 task :default => :test
@@ -15,6 +14,7 @@ else
     t.rspec_opts = ['-cfs']
   end
 end
+
 
 namespace :db do
   desc 'Auto-migrate the database (destroys data)'
@@ -32,19 +32,15 @@ task :environment do
   require File.join(File.dirname(__FILE__), 'environment')
 end
 
-task :irc do
-  options = {
-    :app_name   => "showbot_irc",
-    :multiple   => false,
-    :ontop      => false,
-    :dir_mode   => :script,
-    :dir        => 'pid',
-    :mode       => :load,
-    :backtrace  => true,
-    :log_output => true,
-    :monitor    => true
-  }
+namespace :irc_bot do
 
+  task :live do
+    # Start the showbot daemon with Cinchize
 
-  Daemons.run('showbot.rb', options)
+  end
+
+  task :test do
+    # Run test cases
+
+  end
 end

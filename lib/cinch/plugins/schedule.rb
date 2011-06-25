@@ -1,19 +1,25 @@
 # Query the schedule from an iCal store
 
+require 'chronic_duration'
+require './lib/models/shows'
+require './lib/models/ical_cache'
+
 module Cinch
   module Plugins
     class Schedule
       include Cinch::Plugin
-      include ShowUtils
 
-      timer 600, method: => :refresh_calendar
+      timer 600, :method => :refresh_calendar
       
-      match %r{next (.*)},   :method => :command_next    # !next
-      match %r{schedule (.*)},   :method => :command_schedule    # !schedule
+      match %r{next\s?(.*)},   :method => :command_next    # !next
+      match %r{schedule\s?(.*)},   :method => :command_schedule    # !schedule
       
       def initialize(*args)
         super
-        @shows = Shows.new "pubilc/shows.json"
+        # This is a terrible hack to get access to a folder in the project directory
+        # TODO find a better way
+        shows_json = File.expand_path(File.join(File.dirname(__FILE__), "..", "..", "..", "public", "shows.json"))
+        @shows = Shows.new shows_json
         @calendar = ICalCache.new "http://www.google.com/calendar/ical/fivebyfivestudios%40gmail.com/public/basic.ics"
         # Get the inital data for the calendar
         refresh_calendar
@@ -27,13 +33,13 @@ module Cinch
 
       # Replies to the user with information about the next show
       # !next b2w -> The next Back to Work is in 3 hours 30 minutes (6/2/2011)
-      def command_next(m, show)
-        show = @shows.find_show(args.first) if args.length > 0
+      def command_next(m, show_keyword)
+        show = @shows.find_show(show_keyword) if show_keyword and !show_keyword.strip.empty?
 
         if show
-          next_event = @@events.next_event(show.title)
+          next_event = @calendar.next_event(show.title)
         else
-          next_event = @@events.next_event
+          next_event = @calendar.next_event
         end
 
         if next_event
@@ -54,7 +60,7 @@ module Cinch
       # Replies with the schedule for the next 7 days of shows
       # TODO support show arg for specific show's events (next 3 or so)
       def command_schedule(m, show)
-        upcoming_events = @@events.upcoming_events
+        upcoming_events = @calendar.upcoming_events
 
         if upcoming_events.length > 0
           m.user.send "#{upcoming_events.length} upcoming show#{upcoming_events.length > 1 ? "s" : ""}"

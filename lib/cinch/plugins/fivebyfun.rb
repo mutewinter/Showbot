@@ -1,5 +1,7 @@
 # The stuff that makes showbot so nice to be around.
 
+require './lib/random.rb'
+
 module Cinch
   module Plugins
     class FiveByFun
@@ -8,7 +10,7 @@ module Cinch
       # The cast
       match %r{(merlin|mann)},   :method => :command_merlin
       match %r{(sandy|sandwich|adam)},   :method => :command_sandy
-      match %r{(jsir|siracusa)},   :method => :command_jsir
+      match %r{(jsir|siracusa|jsiracusa)},   :method => :command_jsir
       # The characers
       match "paleo",   :method => :command_paleo
       match "drphil",   :method => :command_drphil
@@ -16,7 +18,7 @@ module Cinch
       
 
       def command_drphil(m)
-        m.send ["There's a genie for that.",
+        m.reply ["There's a genie for that.",
           "Everything's a bear.",
           "A beret will be fine.",
           "If you want to find the treasure you gotta buy the chest!",
@@ -31,18 +33,22 @@ module Cinch
 
 
       def command_merlin(m)
-        m.send "SO angry."
+        m.reply "SO angry."
+      end
+      
+      def command_sandy(m)
+        m.reply "He's great."
       end
 
       def command_paleo(m)
-        m.send ["You wouldn't be tired.",
+        m.reply ["You wouldn't be tired.",
         "Your insulin wouldn't be spiking.",
         "Elk.",
         "No glutens."].random
       end
 
       def command_jsir(m)
-        m.send["perl -le '$n=10; $min=5; $max=15; $, = \" \"; print map { int(rand($max-$min))+$min } 1..$n'",
+        m.reply ["perl -le '$n=10; $min=5; $max=15; $, = \" \"; print map { int(rand($max-$min))+$min } 1..$n'",
           "perl -le '$i=3; $u += ($_<<8*$i--) for \"127.0.0.1\" =~ /(\d+)/g; print $u'",
           "perl -MAlgorithm::Permute -le '$l = [1,2,3,4,5]; $p = Algorithm::Permute->new($l); print @r while @r = $p->next'",
           "perl -lne '(1x$_) !~ /^1?$|^(11+?)\\1+$/ && print \"$_ is prime\"'",
@@ -50,7 +56,7 @@ module Cinch
       end
 
       def command_eight_ball(m)
-        m.send ["It is certain",
+        m.reply ["It is certain",
           "It is decidedly so",
           "Without a doubt",
           "Yes - definitely",

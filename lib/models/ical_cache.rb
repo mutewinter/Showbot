@@ -1,6 +1,9 @@
 # Wrapper class for ri_cal that caches the data
 # and handles some advanced queries
 
+require "ri_cal"
+require "open-uri"
+
 class ICalCache
 
   # Takes the target iCal url as an argument
