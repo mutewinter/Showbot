@@ -19,7 +19,8 @@ end
 # =================
 
 get '/' do
-  @suggestions = Suggestion.all(:order => [:created_at.desc])
+  day_ago = DateTime.now - 1
+  @suggestions = Suggestion.all(:created_at.gt => day_ago).all(:order => [:created_at.desc])
   haml :index
 end
 
