@@ -1,5 +1,5 @@
 require 'rubygems'
-#require 'bundler/setup'
+require 'bundler/setup'
 require 'dm-core'
 require 'dm-timestamps'
 require 'dm-validations'

@@ -1,2 +1,2 @@
-web: bundle exec ruby19 showbot_web.rb -p $PORT
-irc: bundle exec ruby19 showbot_irc.rb --start freenode_test
+web: ruby19 showbot_web.rb -p $PORT
+irc: ruby19 showbot_irc.rb --start freenode_test
