@@ -17,6 +17,7 @@ class Suggestion
   property :show,       String
   property :created_at, DateTime
   property :updated_at, DateTime
+  property :votes,      Integer
 
   validates_presence_of :title
 
@@ -40,5 +41,8 @@ class Suggestion
     end
   end
 
-
+  def Suggestion.recent(days_ago = 1)
+    from = DateTime.now - days_ago
+    Suggestion.all(:created_at.gt => from).all(:order => [:created_at.desc])
+  end
 end

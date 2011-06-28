@@ -19,8 +19,12 @@ end
 # =================
 
 get '/' do
-  day_ago = DateTime.now - 1
-  @suggestions = Suggestion.all(:created_at.gt => day_ago).all(:order => [:created_at.desc])
+  @suggestions = Suggestion.recent()
+  haml :index
+end
+
+get '/popular' do
+  @suggestions = Suggestion.recent().all(:order => [:votes.desc])
   haml :index
 end
 
