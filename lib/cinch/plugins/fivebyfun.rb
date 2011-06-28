@@ -15,6 +15,8 @@ module Cinch
       match "paleo",   :method => :command_paleo
       match "drphil",   :method => :command_drphil
       match %r{(eight_ball|8ball)},   :method => :command_eight_ball
+      match %r{(dan|danbenjamin)},   :method => :command_dan
+      match "robertevans",   :method => :command_robert_evans
       
 
       def command_drphil(m)
@@ -76,6 +78,14 @@ module Cinch
           "My sources say no",
           "Outlook not so good",
           "Very doubtful"].random
+      end
+
+      def command_dan(m)
+        m.reply "That's fine for Merlin."
+      end
+
+      def command_robert_evans(m)
+        m.reply "You bet your ass I was."
       end
 
     end
