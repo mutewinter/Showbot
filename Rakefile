@@ -32,15 +32,9 @@ task :environment do
   require File.join(File.dirname(__FILE__), 'environment')
 end
 
-namespace :irc_bot do
-
-  task :live do
-    # Start the showbot daemon with Cinchize
-
-  end
-
-  task :test do
-    # Run test cases
-
+namespace :foreman do
+  desc 'Create /etc/init/showbot'
+  task :create_init do 
+    sh 'sudo foreman export upstart /etc/init -a showbot -u deploy web=3 irc=1'
   end
 end
