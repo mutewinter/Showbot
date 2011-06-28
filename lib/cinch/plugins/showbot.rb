@@ -19,11 +19,13 @@ module Cinch
       # Show help for the suggestions module
       def command_help(m)
         m.user.send [
-          "!about",
-          "!commands",
-          "!suggest",
-          "!suggestions" ].join(", ")
-          # TODO add the rest here
+          "!next - When's the next live show?",
+          "!schedule - What shows are being recorded live in the next seven days?",
+          "!suggest - Be heard. Suggest a title for the live show.",
+          "!suggestions - I'll just tell you here, go to http://showbot.me to see them.",
+          "!about - Was showbot coded or did it spontaniously come into existence?",
+          "!help - Uh, this.",
+        ].join("\n")
       end
       
       # Show information about showbot
