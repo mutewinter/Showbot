@@ -19,7 +19,7 @@ end
 # =================
 
 get '/' do
-  @suggestions = Suggestion.all
+  @suggestions = Suggestion.all(:order => [:created_at.desc])
   haml :index
 end
 
