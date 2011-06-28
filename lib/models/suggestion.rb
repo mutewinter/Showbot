@@ -17,7 +17,7 @@ class Suggestion
   property :show,       String
   property :created_at, DateTime
   property :updated_at, DateTime
-  property :votes,      Integer
+  has n, :votes
 
   validates_presence_of :title
 
@@ -38,6 +38,15 @@ class Suggestion
       # Show is live, read show name
       broadcast = live_hash["broadcast"] if live_hash.has_key? "broadcast"
       self.show = broadcast["slug"] if broadcast.has_key? "slug"
+    end
+  end
+
+  def vote_up(user_ip)
+    if self.votes.all(:user => user_ip).count == 0
+      Vote.create(:user => user_ip, :suggestion => self)
+      "#{self.votes.count}"
+    else
+      "You have already voted on this suggestion."
     end
   end
 

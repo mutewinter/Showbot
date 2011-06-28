@@ -1,16 +1,18 @@
 -if @suggestions.count > 0
   %h2.subtitle.grid_12="Title suggestions in the last 24 hours"
+  .nav
+    <a href="/">Most Recent</a> | <a href="/popular">Most Popular</a>
+
   %hr
   .clear
   %ol#titles
     - col = 0
     -@suggestions.each do |suggestion|
       %li.suggestion.grid_4
-        .qstart “
         .vote_container
-          .up 
-          .votes=h suggestion.votes
-          .down 
+          %a.up{:href => "/suggestion/#{suggestion.id}/vote-up"}
+          .votes=h suggestion.votes.count
+        .qstart “
         .title=h "#{suggestion.title}"
         .qend ”
         .user=h suggestion.user

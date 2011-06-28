@@ -28,6 +28,9 @@ get '/popular' do
   haml :index
 end
 
+get '/suggestion/:id/vote-up' do
+  Suggestion.get(params[:id]).vote_up(@env['REMOTE_ADDR'])
+end
 
 # ===========
 # CSS
