@@ -8,7 +8,7 @@ module Cinch
       
       match %r{history (.*)},   :method => :command_history
       match %r{history_count (.*)},   :method => :command_history_count
-      match %r{(exit|quit) (.+)},   :method => :command_exit
+      match %r{(?:exit|quit) (.+)},   :method => :command_exit
       
       def initialize(*args)
         super
@@ -39,11 +39,11 @@ module Cinch
       # !exit @admin_password
       def command_exit(m, password)
         if password == @admin_password
-          reply("Showbot is shutting down. Good bye :(")
-
-          # TODO Print history here
+          m.user.send "Showbot is shutting down. Good bye :("
 
           Process.exit
+        else
+          puts "Wrong admin password (#{password}), should be #{@admin_password}"
         end
       end
 
