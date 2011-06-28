@@ -1,4 +1,4 @@
-# Showbot 2.0
+# Showbot 2.1
 
 A sweet IRC bot with a **web interface** for [5by5](http://5by5.tv). Built on [cinch](https://github.com/cinchrb/cinch) and [sinatra](http://www.sinatrarb.com/).
 
