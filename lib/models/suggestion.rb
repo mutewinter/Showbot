@@ -41,12 +41,20 @@ class Suggestion
     end
   end
 
-  def vote_up(user_ip)
-    if self.votes.all(:user => user_ip).count == 0
+  def user_already_voted?(user_ip)
+      self.votes.all(:user => user_ip).count > 0
+  end
+
+  def add_vote(user_ip)
       Vote.create(:user => user_ip, :suggestion => self)
-      "#{self.votes.count}"
-    else
+  end
+
+  def vote_up(user_ip)
+    if user_already_voted?(user_ip)
       "You have already voted on this suggestion."
+    else
+      add_vote user_ip
+      "#{self.votes.count}"
     end
   end
 
