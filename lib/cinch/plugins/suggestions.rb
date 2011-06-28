@@ -17,25 +17,20 @@ module Cinch
 
       # Add the user's suggestion to the database
       def command_suggest(m, title)
-        # Remove quotes if the user thought they needed them
-        title.gsub!(/^(?:'|")(.*)(?:'|")$/, '\1')
-
         if title.empty?
           command_help(m)
-        elsif title.length > Suggestion.title.length
-            m.user.send "Suggestion NOT recorded. Showbot is sorry. Think title, not transcript."
         else
-          # TODO Save show from URL
           new_suggestion = Suggestion.create(
             :title      => title,
-            :user       => m.user.nick,
-            :created_at => Time.now
+            :user       => m.user.nick
           )
 
           if new_suggestion.saved?
-            m.user.send "Added title suggestion \"#{title}\""
+            m.user.send "Added title suggestion \"#{new_suggestion.title}\""
           else
-            m.user.send "Failed to add title suggestion, please contact @mutewinter on Twitter if this keeps happening."
+            new_suggestion.errors.each do |e|
+              m.user.send e.first
+            end
           end
         end
 
