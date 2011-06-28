@@ -17,6 +17,8 @@
     .container_12
       #header
         %h1 Showbot
+        -if development?
+          %h2.development_mode DEVELOPMENT MODE
 
       #content
         =yield
