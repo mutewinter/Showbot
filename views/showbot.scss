@@ -90,6 +90,27 @@ hr {
   width: 200px;
   margin-bottom: 10px;
 
+  .vote_container {
+    float: left;
+    width: 20px;
+    margin-top: 8px;
+    text-align: center;
+
+    .up {
+        height: 20px;
+        background: url('/images/sprites.png') 0px 42px;
+        cursor: pointer;    
+        width: 20px;
+    }
+
+    .down {
+        height: 20px;
+        width: 20px;
+        background: url('/images/sprites.png') 0px 22px;
+        cursor: pointer;
+    }
+  }
+
 
   .qstart {
     @include quote_base;

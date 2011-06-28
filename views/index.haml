@@ -7,6 +7,10 @@
     -@suggestions.each do |suggestion|
       %li.suggestion.grid_4
         .qstart “
+        .vote_container
+          .up 
+          .votes=h suggestion.votes
+          .down 
         .title=h "#{suggestion.title}"
         .qend ”
         .user=h suggestion.user
