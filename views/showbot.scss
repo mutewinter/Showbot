@@ -60,6 +60,10 @@ body {
   background: #f0f0f0 url('images/main_bg.png') top center;
 }
 
+#content {
+  min-height: 500px;
+}
+
 h1 {
   color: $showbot_blue;
   font-size: 30px;
@@ -148,7 +152,7 @@ hr {
 
 
 #footer {
-  font-size: 24px;
+  font-size: 16px;
   font-weight: bold;
   padding-top: 50px;
   text-align: center;
