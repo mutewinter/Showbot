@@ -36,7 +36,7 @@ class Suggestion
     if live_hash and live_hash.has_key?("live") and live_hash["live"]
       # Show is live, read show name
       broadcast = live_hash["broadcast"] if live_hash.has_key? "broadcast"
-      show = broadcast["slug"] if broadcast.has_key? "slug"
+      self.show = broadcast["slug"] if broadcast.has_key? "slug"
     end
   end
 
