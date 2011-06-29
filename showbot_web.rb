@@ -19,12 +19,12 @@ end
 # =================
 
 get '/' do
-  @suggestions = Suggestion.recent()
+  @suggestions = Suggestion.recent
   haml :index
 end
 
 get '/popular' do
-  @suggestions = Suggestion.recent().all(:order => [:votes.desc])
+  @suggestions = Suggestion.recent.sort_by { |suggestion| -suggestion.votes.count }
   haml :index
 end
 

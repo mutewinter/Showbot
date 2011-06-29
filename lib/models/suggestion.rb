@@ -58,8 +58,8 @@ class Suggestion
     end
   end
 
-  def Suggestion.recent(days_ago = 1)
+  def self.recent(days_ago = 1)
     from = DateTime.now - days_ago
-    Suggestion.all(:created_at.gt => from).all(:order => [:created_at.desc])
+    all(:created_at.gt => from).all(:order => [:created_at.desc])
   end
 end
