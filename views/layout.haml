@@ -23,8 +23,26 @@
       #content
         =yield
 
-      #footer.grid_12
-        %abbr{:title => "Not like that."} Showbot loves you.
+      %abbr#bot_love.grid_12{:title => "Not like that."} Showbot loves you.
+
+    #footer
+      .container_12 
+        
+        %ul
+          %li.grid_3.push_2
+            %h2 Why
+            %p="The jackals in the 5by5 Chat think they know what the title " +                   |
+              "of the show should be. Showbot passes no judgements. Showbot collects" +           |
+              " the title suggestions from IRC and shows them here. Showbot is here to help."     |
+          %li.grid_3.push_2
+            %h2 Who
+            %p Showbot was created by <a href="http://twitter.com/mutewinter">@mutewinter</a>.
+            %p Showbot also receives love from coders in the 5by5 community on Github.
+          %li.grid_3.push_2
+            %h2 Where
+            %p <a href="http://github.com/mutewinter/Showbot">Showbot on Github</a>
+            %p <a href="http://5by5.tv/chat">Showbot in IRC</a>
+            %p <a href="http://5by5.tv">5by5.tv</a>
 
     / Javascript at the bottom for fast page loading
     / Grab Google CDN's jQuery. fall back to local if necessary
