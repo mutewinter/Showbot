@@ -17,6 +17,7 @@ class Suggestion
   property :show,       String
   property :created_at, DateTime
   property :updated_at, DateTime
+  has n, :votes
 
   validates_presence_of :title
 
@@ -40,5 +41,25 @@ class Suggestion
     end
   end
 
+  def user_already_voted?(user_ip)
+      self.votes.all(:user => user_ip).count > 0
+  end
 
+  def add_vote(user_ip)
+      Vote.create(:user => user_ip, :suggestion => self)
+  end
+
+  def vote_up(user_ip)
+    if user_already_voted?(user_ip)
+      "You have already voted on this suggestion."
+    else
+      add_vote user_ip
+      "#{self.votes.count}"
+    end
+  end
+
+  def self.recent(days_ago = 1)
+    from = DateTime.now - days_ago
+    all(:created_at.gt => from).all(:order => [:created_at.desc])
+  end
 end
