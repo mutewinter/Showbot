@@ -9,9 +9,12 @@ require "sinatra/reloader" if development?
 require File.join(File.dirname(__FILE__), 'environment')
 
 
+SHOWS_JSON = File.expand_path(File.join(File.dirname(__FILE__), "public", "shows.json"))
+
 configure do
   set :public, "#{File.dirname(__FILE__)}/public"
   set :views, "#{File.dirname(__FILE__)}/views"
+  set :shows, Shows.new(SHOWS_JSON)
 end
 
 # =================
@@ -19,8 +22,15 @@ end
 # =================
 
 get '/' do
-  day_ago = DateTime.now - 1
-  @suggestions = Suggestion.all(:created_at.gt => day_ago).all(:order => [:created_at.desc])
+  @title = "Title Suggestions in the last 24 hours"
+  @suggestions = Suggestion.recent.all(:order => [:created_at.desc])
+  haml :index
+end
+
+
+get '/all' do
+  @title = "All Title Suggestions"
+  @suggestions = Suggestion.all(:order => [:created_at.desc])
   haml :index
 end
 
@@ -39,5 +49,6 @@ end
 helpers do
   include Rack::Utils
   alias_method :h, :escape_html
+
 end
  

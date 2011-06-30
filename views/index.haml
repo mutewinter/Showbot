@@ -1,18 +1,35 @@
 -if @suggestions.count > 0
-  %h2.subtitle.grid_12="Title suggestions in the last 24 hours"
+  %h2.subtitle.grid_12= @title
   %hr
   .clear
   %ol#titles
     - col = 0
+    - last_show = nil
     -@suggestions.each do |suggestion|
+      - if last_show.nil? and suggestion.show
+        .clear
+        %h2.show_break= options.shows.find_show(suggestion.show).title
+        .clear
+      - elsif last_show
+        - if last_show != suggestion.show
+          -#Suggestion has show different than last show
+          - col = 0
+          .clear 
+          - text = "Show Not Listed"
+          - if suggestion.show
+            - text = options.shows.find_show(suggestion.show).title 
+          %h2.show_break.grid_12= text
+          .clear
+      - last_show = suggestion.show
       %li.suggestion.grid_4
+        .show=h options.shows.find_show(suggestion.show).title if suggestion.show
         .qstart “
-        .title=h "#{suggestion.title}"
+        .title=h suggestion.title
         .qend ”
-        .user=h suggestion.user
         %abbr.timeago{:title => suggestion.created_at}= suggestion.created_at.strftime("%-m/%-d/%Y at %-I:%M%P %Z")
-        .show
-        %span.arrow
+        .arrow_user
+          .user=h suggestion.user
+          %span.arrow
       -if col >= 2
         .clear
         -col = 0

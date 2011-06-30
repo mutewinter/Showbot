@@ -31,14 +31,24 @@ class Suggestion
 
   # Set the show from data.json on 5by5 before saving
   def fetch_show
-    live_hash = JSON.parse(open(LIVE_URL).read)
+    if !self.show
+      # Only fetch show from website if it wasn't set previously.
+      # This is mostly for debugging
+      live_hash = JSON.parse(open(LIVE_URL).read)
 
-    if live_hash and live_hash.has_key?("live") and live_hash["live"]
-      # Show is live, read show name
-      broadcast = live_hash["broadcast"] if live_hash.has_key? "broadcast"
-      self.show = broadcast["slug"] if broadcast.has_key? "slug"
+      if live_hash and live_hash.has_key?("live") and live_hash["live"]
+        # Show is live, read show name
+        broadcast = live_hash["broadcast"] if live_hash.has_key? "broadcast"
+        self.show = broadcast["slug"] if broadcast.has_key? "slug"
+      end
     end
   end
+
+  def self.recent(days_ago = 1)
+    from = DateTime.now - days_ago
+    all(:created_at.gt => from).all(:order => [:created_at.desc])
+  end
+  
 
 
 end

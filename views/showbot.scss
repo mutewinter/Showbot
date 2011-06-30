@@ -12,15 +12,6 @@ $showbot_blue: #1f69bd;
   color: $showbot_blue;
 }
 
-@mixin box_shadow {
-  $shadow_size: 2px;
-  $shadow_spread: 2px;
-  $shadow_color: #999; 
-  -moz-box-shadow: $shadow_size $shadow_size $shadow_spread $shadow_color;
-  -webkit-box-shadow: $shadow_size $shadow_size $shadow_spread $shadow_color;
-  box-shadow: $shadow_size $shadow_size $shadow_spread $shadow_color;
-}
-
 @mixin striped_background {
   // Crazy background stripes
   background-image: -webkit-gradient(linear, 0 100%, 100% 0,
@@ -48,10 +39,10 @@ $showbot_blue: #1f69bd;
   background-size: 50px 50px;
 }
 
-@mixin etched_text {
+@mixin etched_text($color: #000, $fallback: #B3B3B3) {
   font-weight: bold;
-  color: #B3B3B3;
-  color: rgba(0,0,0,0.35);
+  color: $fallback;
+  color: rgba($color, 0.35);
   text-shadow: 0px 1px 0px #fff;
   text-shadow: 0px 1px 0px rgba(255,255,255, 0.9);
 }
@@ -97,7 +88,7 @@ hr {
   $title_background: #d2e4f8;
   display: block;
   width: 200px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 
 
   .qstart {
@@ -132,35 +123,68 @@ hr {
     
    }
 
-  .user {
-    float: right;
-    font-size: 130%;
-    padding-top: 30px;
-    padding-right: 10px;
-    @include etched_text;
-  }
 
   .timeago {
     font-size: 13px;
+    width: 120px;
     @include etched_text;
   }
 
   .show {
-    font-size: 10px;
-    text-align: center;
-  }
+    color: #606060;
+    color: rgba(0, 0, 0, 0.6);
 
-  span.arrow {
-    width: 0; 
-    height: 0;
-    border-top: 30px solid $title_background;
-    border-left: 50px solid transparent;
-    border-right: 10px solid transparent;
+    font-size: 12px;
+    text-align: right;
+    font-weight: bold;
+    opacity: 0;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;	
+    transition: all .3s ease-in-out;
+    z-index: -1;
     position: relative;
-    bottom: -9px;
-    right: -200px;
+    top:20px;
+  }
+  &:hover {
+    .show {
+      opacity: 1;
+      top:0px;
+    }
   }
 
+  .arrow_user {
+    span.arrow {
+      width: 0; 
+      height: 0;
+      border-top: 30px solid $title_background;
+      border-left: 50px solid transparent;
+      border-right: 10px solid transparent;
+      position: relative;
+      bottom: -8px;
+      right: -190px;
+    }
+
+    .user {
+      float: right;
+      text-align: center;
+      min-width: 120px;
+      font-size: 130%;
+      padding-top: 11px;
+      @include etched_text;
+    }
+  }
+
+}
+
+.show_break {
+  text-align: center;
+  color: #606060;
+  color: rgba(0,0,0,0.6);
+  
+  background: url(images/hr_gap.png) no-repeat 50% 20px;
+  
 }
 
 

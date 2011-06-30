@@ -20,11 +20,13 @@ class Shows < Array
   end
 
   def find_show(keyword)
-    self.each do |show|
-      if show.url.downcase == keyword.downcase
-        return show
-      elsif show.title.downcase.include? keyword.downcase
-        return show
+    if keyword
+      self.each do |show|
+        if show.url.downcase == keyword.downcase
+          return show
+        elsif show.title.downcase.include? keyword.downcase
+          return show
+        end
       end
     end
   end
