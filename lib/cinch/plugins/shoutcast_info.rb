@@ -34,7 +34,7 @@ module Cinch
         end
         
         if @show
-          m.user.send "#{@show} is playing on http://5by5.fm"
+          m.user.send "#{@show} is streaming on 5by5.tv/live"
         else
           m.user.send "Failed to get stream info, 5by5.fm may be down. I'm sorry."
         end
