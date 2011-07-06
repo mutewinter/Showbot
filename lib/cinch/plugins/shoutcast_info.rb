@@ -14,7 +14,7 @@ module Cinch
           "Icy-MetaData" => '1'
       }
 
-      match "current",   :method => :command_current    # !current
+      match %r{(current|live|nowplaying)},   :method => :command_current    # !current
 
       def initialize(*args)
         super
@@ -36,6 +36,7 @@ module Cinch
         if @show
           m.user.send "#{@show} is streaming on 5by5.tv/live"
         else
+
           m.user.send "Failed to get stream info, 5by5.fm may be down. I'm sorry."
         end
       end
