@@ -5,6 +5,7 @@ module Cinch
     class ShowbotAdmin
       include Cinch::Plugin
 
+      timer 300, :method => :fix_name
       
       match %r{history (.*)},   :method => :command_history
       match %r{history_count (.*)},   :method => :command_history_count
@@ -47,6 +48,20 @@ module Cinch
         end
       end
 
+      # Called every 5 minutes to attempt to fix showbot's name.
+      # This can happen if showbot gets disconnected and reconnects before
+      # the last bot as been kicked from the IRC server.
+      def fix_name
+        if @bot.nick == "showbot"
+          puts "Nick is fine, no change necessary."
+        elsif @bot.nick == "showbot_test"
+          puts "Trying test change."
+          @bot.nick = "test_change"
+        else
+          puts "Fixing nickname."
+          @bot.nick = "showbot"
+        end
+      end
 
     end
   end
