@@ -1,4 +1,7 @@
 source :rubyforge
+# Regular
+gem 'tzinfo'
+
 # Sinatra
 gem 'sinatra', '1.2.6'
 gem 'sinatra-reloader', '0.5.0'

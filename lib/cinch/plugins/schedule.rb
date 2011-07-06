@@ -43,8 +43,11 @@ module Cinch
         end
 
         if next_event
-          date_string = next_event.start_time.strftime("%-m/%-d/%Y")
-          time_string = next_event.start_time.strftime("%-I:%M%P")
+          tz = TZInfo::Timezone.get('America/New_York')
+          time = tz.utc_to_local(next_event.start_time)
+          
+          date_string = time.strftime("%A, %-m/%-d/%Y")
+          time_string = time.strftime("%-I:%M%P EST")
           nearest_seconds_until = ((next_event.start_time - DateTime.now) * 24 * 60 * 60).to_i
           if show
             m.user.send "The next #{next_event.summary} is in #{ChronicDuration.output(nearest_seconds_until, :format => :long)} (#{time_string} on #{date_string})"
@@ -65,8 +68,10 @@ module Cinch
         if upcoming_events.length > 0
           m.user.send "#{upcoming_events.length} upcoming show#{upcoming_events.length > 1 ? "s" : ""}"
           upcoming_events.sort{|e1, e2| e1.start_time <=> e2.start_time}.each do |event|
-            date_string = event.start_time.strftime("%-m/%-d/%Y")
-            time_string = event.start_time.strftime("%-I:%M%P")
+            tz = TZInfo::Timezone.get('America/New_York')
+            time = tz.utc_to_local(event.start_time)
+            date_string = time.strftime("%A, %-m/%-d/%Y")
+            time_string = time.strftime("%-I:%M%P EST")
             m.user.send "  #{event.summary} on #{date_string} at #{time_string}"
           end
         end

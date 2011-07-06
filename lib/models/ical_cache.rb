@@ -3,6 +3,7 @@
 
 require "ri_cal"
 require "open-uri"
+require 'tzinfo'
 
 class ICalCache
 
@@ -70,6 +71,9 @@ class ICalCache
               # Don't add the new event because it was modified longer ago than current
               skip = true
             end
+          elsif e.summary == event.summary
+            # Reject show if we already have one with the exact same name
+            skip = true
           else
             false
           end
