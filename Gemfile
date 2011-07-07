@@ -29,5 +29,6 @@ gem 'dm-mysql-adapter'
 # Development Gems
 group :development do
   gem 'dm-sqlite-adapter'
+  gem 'foreman'
 end
 
