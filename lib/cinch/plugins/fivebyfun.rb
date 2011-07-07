@@ -17,6 +17,7 @@ module Cinch
       match %r{(eight_ball|8ball)},   :method => :command_eight_ball
       match %r{(dan|danbenjamin)},   :method => :command_dan
       match "robertevans",   :method => :command_robert_evans
+      match "gruber",   :method => :command_gruber
       
 
       def command_drphil(m)
@@ -55,6 +56,10 @@ module Cinch
           "perl -MAlgorithm::Permute -le '$l = [1,2,3,4,5]; $p = Algorithm::Permute->new($l); print @r while @r = $p->next'",
           "perl -lne '(1x$_) !~ /^1?$|^(11+?)\\1+$/ && print \"$_ is prime\"'",
           "perl -ple 's/^[ \\t]+|[ \\t]+$//g'"].random
+      end
+
+      def command_gruber(m)
+        m.reply "I don't know."
       end
 
       def command_eight_ball(m)
