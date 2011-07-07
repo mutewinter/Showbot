@@ -1,2 +1,2 @@
-web: ruby19 showbot_web.rb -p $PORT
-irc: ruby19 showbot_irc.rb --start freenode_test
+web: ruby showbot_web.rb -p $PORT
+irc: ruby showbot_irc.rb --start freenode_test
