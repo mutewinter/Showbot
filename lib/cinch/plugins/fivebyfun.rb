@@ -18,7 +18,8 @@ module Cinch
       match %r{(dan|danbenjamin)},   :method => :command_dan
       match "robertevans",   :method => :command_robert_evans
       match "gruber",   :method => :command_gruber
-      
+      match "marco",   :method => :command_marco
+
 
       def command_drphil(m)
         m.reply ["There's a genie for that.",
@@ -91,6 +92,10 @@ module Cinch
 
       def command_robert_evans(m)
         m.reply "You bet your ass I was."
+      end
+
+      def command_marco(m)
+        m.reply "Please don't email me."
       end
 
     end
