@@ -98,6 +98,10 @@ module Cinch
         m.reply "You bet your ass I was."
       end
 
+      def command_van_hoet(m)
+        m.reply "So, uh."
+      end
+
       def command_marco(m)
         m.reply "Please don't email me."
       end
