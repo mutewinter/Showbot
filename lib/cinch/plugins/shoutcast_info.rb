@@ -55,7 +55,7 @@ module Cinch
         chunk_limit = 20 # Limit chunks to prevent lockups
         http.get(SHOUTCAST_URI.path, HEADERS) do |chunk|
           chunk_count += 1
-          if chunk =~ /StreamTitle='(.+?)'/
+          if chunk =~ /StreamTitle='(.+?)';/
             return $1
             break;
           elsif chunk_count > chunk_limit
