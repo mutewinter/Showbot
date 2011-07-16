@@ -35,8 +35,9 @@ module Cinch
         
         if @show
           m.user.send "#{@show} is streaming on 5by5.tv/live"
+        elsif slug = Shows.fetch_show
+          m.user.send "We're live! (#{slug})."
         else
-
           m.user.send "Failed to get stream info, 5by5.fm may be down. I'm sorry."
         end
       end

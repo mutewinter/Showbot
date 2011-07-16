@@ -2,6 +2,8 @@
 
 require 'json'
 
+LIVE_URL = 'http://5by5.tv/live/data.json'
+
 require File.expand_path(File.join(File.dirname(__FILE__), "show"))
 
 class Shows < Array
@@ -31,10 +33,10 @@ class Shows < Array
     end
   end
 
-  def live_show
+  def self.live_show
     show_name = nil
 
-    live_hash = JSON.parse(open(@@live_url).read)
+    live_hash = JSON.parse(open(LIVE_URL).read)
 
     if live_hash and live_hash.has_key?("live") and live_hash["live"]
       # Show is live, read show name
