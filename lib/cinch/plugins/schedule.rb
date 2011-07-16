@@ -61,10 +61,12 @@ module Cinch
       end
 
       # Replies with the schedule for the next 7 days of shows
-      def command_schedule(m, show)
+      def command_schedule(m, command)
         upcoming_events = @calendar.upcoming_events
 
-        if upcoming_events.length > 0
+        if command == "refresh"
+          refresh_calendar
+        elsif upcoming_events.length > 0
           m.user.send "#{upcoming_events.length} upcoming show#{upcoming_events.length > 1 ? "s" : ""}"
           upcoming_events.sort{|e1, e2| e1.start_time <=> e2.start_time}.each do |event|
             tz = TZInfo::Timezone.get('America/New_York')
