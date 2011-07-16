@@ -18,6 +18,7 @@ module Cinch
       match %r{(dan|danbenjamin)},   :method => :command_dan
       match "robertevans",   :method => :command_robert_evans
       match "gruber",   :method => :command_gruber
+      match %r{(vanhoet|neckbeard)},   :method => :command_van_hoet
       
 
       def command_drphil(m)
@@ -91,6 +92,10 @@ module Cinch
 
       def command_robert_evans(m)
         m.reply "You bet your ass I was."
+      end
+
+      def command_van_hoet(m)
+        m.reply "So, uh."
       end
 
     end
