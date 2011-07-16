@@ -60,6 +60,9 @@ module Cinch
       end
 
       def command_gruber(m)
+        min_sleep = 3
+        max_sleep = 10
+        sleep(rand(max_sleep-min_sleep) + min_sleep)
         m.reply "I don't know."
       end
 
