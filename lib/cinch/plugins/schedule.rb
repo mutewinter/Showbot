@@ -61,7 +61,6 @@ module Cinch
       end
 
       # Replies with the schedule for the next 7 days of shows
-      # TODO support show arg for specific show's events (next 3 or so)
       def command_schedule(m, show)
         upcoming_events = @calendar.upcoming_events
 
