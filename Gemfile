@@ -15,7 +15,6 @@ gem 'cinchize', '0.3.0'
 gem 'chronic', '0.3.0'
 gem 'chronic_duration', '0.9.5'
 gem 'ri_cal', '0.8.8'
-gem 'nokogiri', '1.4.4'
 
 # Data Mapper
 gem 'data_mapper'
