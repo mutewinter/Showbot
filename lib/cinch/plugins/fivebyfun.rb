@@ -99,7 +99,7 @@ module Cinch
       end
 
       def command_van_hoet(m)
-        m.reply "So, uh."
+        m.reply "Erm, so."
       end
 
       def command_marco(m)
