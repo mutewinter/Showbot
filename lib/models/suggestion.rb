@@ -12,7 +12,7 @@ class Suggestion
 
   property :id,         Serial
   property :title,      String,   :length => 100,
-    :message => "Suggestion NOT recorded. Showbot is sorry. Think title, not transcript."
+    :message => "That suggestion was too long. Showbot is sorry. Think title, not transcript."
   property :user,       String
   property :show,       String
   property :created_at, DateTime
