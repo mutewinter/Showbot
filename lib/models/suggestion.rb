@@ -20,6 +20,8 @@ class Suggestion
 
   validates_presence_of :title
 
+  validates_with_method :check_title_uniqueness
+
   # =====================
   # Before Save
   # =====================
@@ -41,12 +43,34 @@ class Suggestion
   end
 
   # =====================
+  # Validations
+  # =====================
+  
+  # Verifies that title hasn't been entered in the last 30 minutes
+  def check_title_uniqueness
+    Suggestion.minutes_ago(30).each do |suggestion|
+      if suggestion.title.downcase == self.title.downcase
+        return [false, "Darn, #{suggestion.user} beat you to \"#{suggestion.title}\"."]
+      end
+    end
+
+    return true
+  end
+
+  # =====================
   # Class Methods
   # =====================
 
   def self.recent(days_ago = 1)
     from = DateTime.now - days_ago
     all(:created_at.gt => from).all(:order => [:created_at.desc])
+  end
+
+  def self.minutes_ago(minutes)
+    if minutes
+      time_ago = Time.now - (60 * minutes)
+      all(:created_at.gt => time_ago).all(:order => [:created_at.desc])
+    end
   end
   
 end
