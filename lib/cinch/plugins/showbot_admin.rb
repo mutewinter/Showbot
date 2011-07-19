@@ -54,9 +54,8 @@ module Cinch
       def fix_name
         if @bot.nick == "showbot"
           puts "Nick is fine, no change necessary."
-        elsif @bot.nick == "showbot_test"
-          puts "Trying test change."
-          @bot.nick = "test_change"
+        elsif @bot.nick == "test_change"
+          @bot.nick = "showbot_test"
         else
           puts "Fixing nickname."
           @bot.nick = "showbot"
