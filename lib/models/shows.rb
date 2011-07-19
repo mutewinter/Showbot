@@ -33,18 +33,28 @@ class Shows < Array
     end
   end
 
-  def self.live_show
-    show_name = nil
+  # =====================
+  # Class Methods
+  # =====================
+
+  # Set the show from data.json on 5by5 before saving
+  def self.fetch_live_show_slug
+    slug = nil
 
     live_hash = JSON.parse(open(LIVE_URL).read)
 
     if live_hash and live_hash.has_key?("live") and live_hash["live"]
       # Show is live, read show name
       broadcast = live_hash["broadcast"] if live_hash.has_key? "broadcast"
-      show_name = broadcast["slug"] if broadcast.has_key? "slug"
+      slug = broadcast["slug"] if broadcast.has_key? "slug"
     end
 
-    show_name
+    return slug
+  end
+
+  # Returns the show object for the live show
+  def self.fetch_live_show
+    find_show(fetch_live_show_slug)
   end
 
 end

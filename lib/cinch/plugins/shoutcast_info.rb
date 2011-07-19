@@ -20,7 +20,7 @@ module Cinch
         super
 
         @last_update = Time.now
-        @show = fetch_show
+        @shoutcast_show = parse_shoutcast_stream
       end
       
       # =========================
@@ -30,13 +30,13 @@ module Cinch
       def command_current(m)
         if (Time.now - @last_update) > 60
           # Data older than 60 seconds, refresh it
-          @show = fetch_show
+          @shoutcast_show = parse_shoutcast_stream
         end
         
-        if @show
-          m.user.send "#{@show} is streaming on 5by5.tv/live"
-        elsif slug = Shows.fetch_show
-          m.user.send "We're live! (#{slug})."
+        if @shoutcast_show
+          m.user.send "#{@shoutcast_show} is streaming on 5by5.tv/live"
+        elsif live_show = Shows.fetch_live_show
+          m.user.send "#{live_show.title} is live right now!"
         else
           m.user.send "Failed to get stream info, 5by5.fm may be down. I'm sorry."
         end
@@ -47,7 +47,7 @@ module Cinch
       # =========================
 
       # Fetches the show title from the live stream defined by URI
-      def fetch_show
+      def parse_shoutcast_stream
         @last_update = Time.now
 
         http = Net::HTTP.new(SHOUTCAST_URI.host, SHOUTCAST_URI.port)
@@ -63,6 +63,9 @@ module Cinch
             return nil
           end
         end
+
+        # Just in case we get an HTTP error
+        return nil
       end
 
     end
