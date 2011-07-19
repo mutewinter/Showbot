@@ -20,7 +20,11 @@ class Suggestion
 
   validates_presence_of :title
 
-  before :save, :fetch_show
+  # =====================
+  # Before Save
+  # =====================
+
+  before :save, :set_live_show
   before :save, :fix_title
 
   # Remove quotes from the title before saving
@@ -29,26 +33,20 @@ class Suggestion
     self.title = self.title.gsub(/^(?:'|")(.*)(?:'|")$/, '\1')
   end
 
-  # Set the show from data.json on 5by5 before saving
-  def fetch_show
+  def set_live_show
+    # Only fetch show from website if it wasn't set previously.
     if !self.show
-      # Only fetch show from website if it wasn't set previously.
-      # This is mostly for debugging
-      live_hash = JSON.parse(open(LIVE_URL).read)
-
-      if live_hash and live_hash.has_key?("live") and live_hash["live"]
-        # Show is live, read show name
-        broadcast = live_hash["broadcast"] if live_hash.has_key? "broadcast"
-        self.show = broadcast["slug"] if broadcast.has_key? "slug"
-      end
+      self.show = Shows.fetch_live_show_slug
     end
   end
+
+  # =====================
+  # Class Methods
+  # =====================
 
   def self.recent(days_ago = 1)
     from = DateTime.now - days_ago
     all(:created_at.gt => from).all(:order => [:created_at.desc])
   end
   
-
-
 end
