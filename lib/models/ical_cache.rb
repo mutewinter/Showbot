@@ -23,7 +23,8 @@ class ICalCache
   def next_event(keyword = nil)
     nearest_event = nil
     nearest_seconds_until = nil
-    @cache.first.events.each do |event|
+
+    upcoming_events.each do |event|
       # Grab the next occurrence for the event
       event = (event.occurrences({:starting => DateTime.now, :count => 1})).first
 
@@ -54,7 +55,7 @@ class ICalCache
 
   # Return an array of iCal events for today onward
   def upcoming_events
-    upcoming_events = []
+    events = []
 
     @cache.first.events.each do |event|
       # Grab the next occurrence for the event
@@ -62,7 +63,7 @@ class ICalCache
 
       if event
         skip = false
-        upcoming_events.reject do |e|
+        events.reject do |e|
           if e.uid == event.uid 
             if e.last_modified < event.last_modified
               # Remove old event if same UID and older modified time
@@ -79,10 +80,10 @@ class ICalCache
           end
         end
 
-        upcoming_events << event if not skip
+        events << event if not skip
       end
     end
-    upcoming_events
+    events
   end
 
 end
