@@ -24,6 +24,7 @@ module Cinch
           "!suggest - Be heard. Suggest a title for the live show.",
           "!suggestions - I'll just tell you here, go to http://showbot.me to see them.",
           "!current - What's playing on 5by5.tv/live? I've got you covered.",
+          "!last_status - The last tweet by @5by5, delievered to you in IRC. Sweet.",
           "!about - Was showbot coded or did it spontaniously come into existence?",
           "!help - Uh, this.",
         ].join("\n")

@@ -20,6 +20,9 @@ plugins: &plugins
     -
       module: "./lib/cinch/plugins/shoutcast_info"
       class: "Cinch::Plugins::ShoutcastInfo"
+    -
+      module: "./lib/cinch/plugins/twitter_broadcast"
+      class: "Cinch::Plugins::TwitterBroadcast"
 
 # The base configuration for freenode
 freenode_base: &freenode_base
