@@ -1,6 +1,12 @@
 source :rubyforge
+
 # Regular
 gem 'tzinfo'
+gem 'i18n'
+
+# Backups
+gem 'backup'
+gem 'whenever', :require => false
 
 # Sinatra
 gem 'sinatra', '1.2.6'

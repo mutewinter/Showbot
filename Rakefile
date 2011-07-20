@@ -32,6 +32,12 @@ task :environment do
   require File.join(File.dirname(__FILE__), 'environment')
 end
 
+namespace :backup do 
+  task :run do
+    run "backup perform -t showbot_backup -c './config/backup.rb'"
+  end
+end
+
 namespace :foreman do
   desc 'Create /etc/init/showbot'
   task :create_init do 
