@@ -6,7 +6,7 @@ gem 'i18n'
 
 # Backups
 gem 'backup'
-gem 'fog'
+gem 'fog', '0.7.0'
 gem 'whenever', :require => false
 
 # Sinatra
