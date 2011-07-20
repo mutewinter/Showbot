@@ -7,7 +7,7 @@ gem 'i18n'
 # Backups
 gem 'backup', :git => "git://github.com/meskyanichi/backup.git"
   
-gem 'fog'
+gem 'fog', '>= 0.8.2'
 gem 'whenever', :require => false
 
 # Sinatra
