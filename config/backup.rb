@@ -31,15 +31,14 @@ Backup::Model.new(:showbot_backup, 'Showbot Backup') do
     compression.best = true
   end 
 
-  store_with Dropbox do |db|
-    db.email      = ENV['SHOWBOT_DROPBOX_USER']
-    db.password   = ENV['SHOWBOT_DROPBOX_PASSWORD']
-    db.api_key    = ENV['SHOWBOT_DROPBOX_API_KEY']
-    db.api_secret = ENV['SHOWBOT_DROPBOX_API_SECRET']
-    db.path       = '/backups'
-    db.keep       = 25
-    db.timeout    = 300 
-  end 
-
+  store_with S3 do |s3|
+    s3.access_key_id      = ENV['SHOWBOT_S3_ACCESS_KEY']
+    s3.secret_access_key  = ENV['SHOWBOT_S3_SECRET_KEY'] 
+    s3.region             = 'us-east-1'
+    s3.bucket             = 'showbot'
+    s3.path               = '/backups'
+    s3.keep               = 10
+  end
+  
 end
 
