@@ -24,9 +24,22 @@ Backup::Model.new(:showbot_backup, 'Showbot Backup') do
     db.password           = ENV['SHOWBOT_DATABASE_PASSWORD']
     db.host               = "localhost"
     db.port               = 3306
-    db.socket             = "/tmp/mysql.sock"
     db.additional_options = ['--quick', '--single-transaction']
   end
+
+  compress_with Gzip do |compression|
+    compression.best = true
+  end 
+
+  store_with Dropbox do |db|
+    db.email      = ENV['SHOWBOT_DROPBOX_USER']
+    db.password   = ENV['SHOWBOT_DROPBOX_PASSWORD']
+    db.api_key    = ENV['SHOWBOT_DROPBOX_API_KEY']
+    db.api_secret = ENV['SHOWBOT_DROPBOX_API_SECRET']
+    db.path       = '/backups'
+    db.keep       = 25
+    db.timeout    = 300 
+  end 
 
 end
 

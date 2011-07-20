@@ -6,6 +6,7 @@ gem 'i18n'
 
 # Backups
 gem 'backup'
+gem 'dropbox'
 gem 'whenever', :require => false
 
 # Sinatra
