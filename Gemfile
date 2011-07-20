@@ -5,8 +5,9 @@ gem 'tzinfo'
 gem 'i18n'
 
 # Backups
-gem 'backup'
-gem 'fog', '0.7.0'
+gem 'backup', :git => "git://github.com/meskyanichi/backup.git"
+  
+gem 'fog'
 gem 'whenever', :require => false
 
 # Sinatra

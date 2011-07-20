@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/meskyanichi/backup.git
+  revision: 05793f1708b19ec42f0b4c926f23adb3dabf9df2
+  specs:
+    backup (3.0.16)
+      thor (~> 0.14.6)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -5,8 +12,6 @@ GEM
     activesupport (3.0.9)
     addressable (2.2.6)
     backports (2.2.1)
-    backup (3.0.16)
-      thor (~> 0.14.6)
     builder (3.0.0)
     chronic (0.3.0)
     chronic_duration (0.9.5)
@@ -136,7 +141,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  backup
+  backup!
   chronic (= 0.3.0)
   chronic_duration (= 0.9.5)
   cinch (= 1.1.3)
@@ -149,7 +154,7 @@ DEPENDENCIES
   dm-sqlite-adapter
   dm-timestamps
   dm-validations
-  fog (= 0.7.0)
+  fog
   foreman
   haml (= 3.1.2)
   i18n
