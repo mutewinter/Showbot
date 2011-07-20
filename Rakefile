@@ -34,7 +34,7 @@ end
 
 namespace :backup do 
   task :run do
-    run "backup perform -t showbot_backup -c './config/backup.rb'"
+    `backup perform -t showbot_backup -c './config/backup.rb'`
   end
 end
 

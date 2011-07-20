@@ -25,8 +25,6 @@ Backup::Model.new(:showbot_backup, 'Showbot Backup') do
     db.host               = "localhost"
     db.port               = 3306
     db.socket             = "/tmp/mysql.sock"
-    #db.skip_tables        = ['skip', 'these', 'tables']
-    #db.only_tables        = ['only', 'these' 'tables']
     db.additional_options = ['--quick', '--single-transaction']
   end
 
