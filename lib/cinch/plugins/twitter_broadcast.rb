@@ -3,7 +3,6 @@
 CHANNEL = "#5by5"
 TWITTER_USER = "5by5"
 
-require 'chronic'
 require 'chronic_duration'
 require 'twitter'
 
@@ -47,8 +46,8 @@ module Cinch
 
       def response_from_status(status)
         if status
-          created_at = Chronic.parse(status.created_at)
-          seconds_ago = (Time.now - created_at).to_i
+          created_at = DateTime.parse(status.created_at)
+          seconds_ago = (Time.now - created_at.to_time).to_i
           relative_time = ChronicDuration.output(seconds_ago, :format => :long)
 
           return "@#{TWITTER_USER}: #{status.text} (#{relative_time} ago)"
