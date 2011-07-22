@@ -10,6 +10,8 @@ require 'sass'
 
 require 'sinatra' unless defined?(Sinatra)
 
+LIVE_URL = 'http://5by5.tv/live/data.json'
+
 configure do
   # load models
   Dir.glob("#{File.dirname(__FILE__)}/lib/models/*.rb") { |lib| require lib }

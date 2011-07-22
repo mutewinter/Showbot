@@ -8,7 +8,7 @@
     -@suggestions.each do |suggestion|
       - if last_show.nil? and suggestion.show
         .clear
-        %h2.show_break= options.shows.find_show(suggestion.show).title
+        %h2.show_break= Shows.find_show(suggestion.show).title
         .clear
       - elsif last_show
         - if last_show != suggestion.show
@@ -17,12 +17,12 @@
           .clear 
           - text = "Show Not Listed"
           - if suggestion.show
-            - text = options.shows.find_show(suggestion.show).title 
+            - text = Shows.find_show(suggestion.show).title 
           %h2.show_break.grid_12= text
           .clear
       - last_show = suggestion.show
       %li.suggestion.grid_4
-        .show=h options.shows.find_show(suggestion.show).title if suggestion.show
+        .show=h Shows.find_show(suggestion.show).title if suggestion.show
         .qstart “
         .title=h suggestion.title
         .qend ”

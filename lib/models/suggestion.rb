@@ -5,8 +5,6 @@ require 'dm-core'
 require 'dm-validations'
 require 'dm-timestamps'
 
-LIVE_URL = 'http://5by5.tv/live/data.json'
-
 class Suggestion
   include DataMapper::Resource
 

@@ -18,8 +18,6 @@ module Cinch
         super
         # This is a terrible hack to get access to a folder in the project directory
         # TODO find a better way
-        shows_json = File.expand_path(File.join(File.dirname(__FILE__), "..", "..", "..", "public", "shows.json"))
-        @shows = Shows.new shows_json
         @calendar = ICalCache.new "http://www.google.com/calendar/ical/fivebyfivestudios%40gmail.com/public/basic.ics"
         # Get the inital data for the calendar
         refresh_calendar
@@ -34,7 +32,7 @@ module Cinch
       # Replies to the user with information about the next show
       # !next b2w -> The next Back to Work is in 3 hours 30 minutes (6/2/2011)
       def command_next(m, show_keyword)
-        show = @shows.find_show(show_keyword) if show_keyword and !show_keyword.strip.empty?
+        show = Shows.find_show(show_keyword) if show_keyword and !show_keyword.strip.empty?
 
         if show
           next_event = @calendar.next_event(show.title)

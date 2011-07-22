@@ -2,28 +2,30 @@
 
 require 'json'
 
-LIVE_URL = 'http://5by5.tv/live/data.json'
+SHOWS_JSON = File.expand_path(File.join(File.dirname(__FILE__), "..", "..", "public", "shows.json"))
 
 require File.expand_path(File.join(File.dirname(__FILE__), "show"))
 
-class Shows < Array
+class Shows
 
-  def initialize(json_file)
-    super()
-    import_json_file(json_file)
-  end
-
-
-  def import_json_file(json_file)
-    show_hashes = JSON.parse(File.open(json_file).read)["shows"]
-    show_hashes.each do |show_hash|
-      self.push Show.new(show_hash)
+  # The array of shows loaded from the SHOWS_JSON file
+  def self.shows
+    if not defined? @@shows_array
+      # Define the static @@shows_array variable if it doesn't exist
+      @@shows_array = []
+      show_hashes = JSON.parse(File.open(SHOWS_JSON).read)["shows"]
+      show_hashes.each do |show_hash|
+        @@shows_array.push Show.new(show_hash)
+      end
     end
+
+    @@shows_array
   end
 
-  def find_show(keyword)
+  # Find a show by keyword (slug or part of the title)
+  def self.find_show(keyword)
     if keyword
-      self.each do |show|
+      self.shows.each do |show|
         if show.url.downcase == keyword.downcase
           return show
         elsif show.title.downcase.include? keyword.downcase
@@ -33,11 +35,7 @@ class Shows < Array
     end
   end
 
-  # =====================
-  # Class Methods
-  # =====================
-
-  # Set the show from data.json on 5by5 before saving
+  # Get the live show slug
   def self.fetch_live_show_slug
     slug = nil
 
@@ -54,7 +52,7 @@ class Shows < Array
 
   # Returns the show object for the live show
   def self.fetch_live_show
-    find_show(fetch_live_show_slug)
+    self.find_show(fetch_live_show_slug)
   end
 
 end
