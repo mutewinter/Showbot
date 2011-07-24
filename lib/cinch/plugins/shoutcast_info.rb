@@ -54,14 +54,19 @@ module Cinch
 
         chunk_count = 0
         chunk_limit = 20 # Limit chunks to prevent lockups
-        http.get(SHOUTCAST_URI.path, HEADERS) do |chunk|
-          chunk_count += 1
-          if chunk =~ /StreamTitle='(.+?)';/
-            return $1
-            break;
-          elsif chunk_count > chunk_limit
-            return nil
+        begin
+          http.get(SHOUTCAST_URI.path, HEADERS) do |chunk|
+            chunk_count += 1
+            if chunk =~ /StreamTitle='(.+?)';/
+              return $1
+              break;
+            elsif chunk_count > chunk_limit
+              return nil
+            end
           end
+        rescue Exception => e
+          puts "Shoucast stream parse failed with message:\n"
+          puts e.message
         end
 
         # Just in case we get an HTTP error
