@@ -39,7 +39,7 @@ module Cinch
           if development?
             Channel("#cinch-bots").send response_from_status(status)
           else
-            Channel(CHANNEL).send message response_from_status(status)
+            Channel(CHANNEL).send response_from_status(status)
           end
         end
       end
