@@ -14,7 +14,7 @@
     %link(rel="stylesheet" href="css/960.css") 
     %link(rel="stylesheet" href="showbot.css") 
   %body
-    .container_12
+    #wrap.container_12
       #header
         %h1 Showbot
         -if development?
@@ -23,7 +23,7 @@
       #content
         =yield
 
-      %abbr#bot_love.grid_12{:title => "Not like that."} Showbot loves you.
+        %abbr#bot_love.grid_12{:title => "Not like that."} Showbot loves you.
 
     #footer
       .container_12 
