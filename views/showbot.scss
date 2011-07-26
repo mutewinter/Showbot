@@ -154,7 +154,7 @@ hr {
   }
 
   &:hover {
-    .show {
+    .show.hover {
       opacity: 1;
       top:0px;
     }
@@ -182,7 +182,6 @@ hr {
       @include etched_text;
     }
   }
-
 }
 
 .show_break {

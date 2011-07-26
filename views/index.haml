@@ -22,7 +22,7 @@
           .clear
       - last_show = suggestion.show
       %li.suggestion.grid_4
-        .show=h Shows.find_show(suggestion.show).title if suggestion.show
+        .hover.show=h Shows.find_show(suggestion.show).title if suggestion.show
         .qstart “
         .title=h suggestion.title
         .qend ”

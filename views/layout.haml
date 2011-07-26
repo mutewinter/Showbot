@@ -49,6 +49,8 @@
     %script{:src => "http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"}
     :javascript
       !window.jQuery && document.write('<script src="js/jquery.min.js"><\/script>')
+    / Modernizer
+    %script{:type => "text/javascript", :src  => "js/modernizr.custom.js"}
     / JQuery Plugins
     %script{:type => "text/javascript", :src  => "js/jquery.timeago.js"}
     / Main JS
