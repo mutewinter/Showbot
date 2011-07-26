@@ -59,7 +59,7 @@ html body {
 
 #content {
   overflow:auto;
-	padding-bottom: $footer_height;
+	padding-bottom: 10px;
 }
 
 h1 {
@@ -193,6 +193,12 @@ hr {
   
 }
 
+#love_container {
+  position: relative;
+  margin-top: -$footer_height;
+  height: $footer_height;
+  clear:both;
+}
 
 #bot_love {
   font-size: 16px;
@@ -204,11 +210,6 @@ hr {
 }
 
 #footer {
-  position: relative;
-  margin-top: -$footer_height;
-  height: $footer_height;
-  clear:both;
-  
   box-shadow: inset 0 20px 20px -20px #000000;
 
   text-shadow: 0px 1px 3px #000;
