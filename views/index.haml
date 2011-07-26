@@ -7,19 +7,19 @@
     - last_show = nil
     -@suggestions.each do |suggestion|
       - if last_show.nil? and suggestion.show
+        - col = 0
         .clear
         %h2.show_break= Shows.find_show(suggestion.show).title
         .clear
-      - elsif last_show
-        - if last_show != suggestion.show
-          -#Suggestion has show different than last show
-          - col = 0
-          .clear 
-          - text = "Show Not Listed"
-          - if suggestion.show
-            - text = Shows.find_show(suggestion.show).title 
-          %h2.show_break.grid_12= text
-          .clear
+      - elsif last_show and last_show != suggestion.show
+        - #Suggestion has show different than last show
+        - col = 0
+        .clear
+        - text = "Show Not Listed"
+        - if suggestion.show
+          - text = Shows.find_show(suggestion.show).title 
+        %h2.show_break.grid_12= text
+        .clear
       - last_show = suggestion.show
       %li.suggestion.grid_4
         .hover.show=h Shows.find_show(suggestion.show).title if suggestion.show
@@ -34,7 +34,7 @@
         .clear
         -col = 0
         -else
-        -col+=1
+        -col += 1
   .clear
 -else
   %h2.subtitle.grid_12 No title suggestions yet...
