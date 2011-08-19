@@ -14,7 +14,8 @@
     {"rss":"http://feeds.feedburner.com/thepipelineshow", "url": "pipeline", "title": "The Pipeline"},
     {"rss":"http://feeds.feedburner.com/5by5-superhero", "url": "superhero", "title": "Internet Superhero"},
     {"rss":"http://feeds.feedburner.com/thetalkshow", "url": "talkshow", "title": "The Talk Show"},
-    {"rss":"http://feeds.feedburner.com/criticalpath", "url": "criticalpath", "title": "The Critical Path"}
+    {"rss":"http://feeds.feedburner.com/criticalpath", "url": "criticalpath", "title": "The Critical Path"},
+    {"rss":"http://feeds.feedburner.com/macpowerusers", "url": "mpu", "title": "Mac Power Users"}
   ]
 }
 
