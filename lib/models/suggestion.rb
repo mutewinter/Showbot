@@ -9,7 +9,7 @@ class Suggestion
   include DataMapper::Resource
 
   property :id,         Serial
-  property :title,      String,   :length => 100,
+  property :title,      String,   :length => 40,
     :message => "That suggestion was too long. Showbot is sorry. Think title, not transcript."
   property :user,       String
   property :show,       String
