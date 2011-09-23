@@ -6,7 +6,9 @@
     - col = 0
     - last_show = nil
     -@suggestions.each do |suggestion|
-      - if last_show.nil? and suggestion.show and suggestion.title
+      - if suggestion.title.nil?
+        - next
+      - if last_show.nil? and suggestion.show
         - col = 0
         .clear
         %h2.show_break= Shows.find_show(suggestion.show).title
