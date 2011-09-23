@@ -17,7 +17,8 @@
     {"rss":"http://feeds.feedburner.com/criticalpath"            , "url": "criticalpath"   , "title": "The Critical Path"}   ,
     {"rss":"http://feeds.feedburner.com/macpowerusers"           , "url": "mpu"            , "title": "Mac Power Users"}     ,
     {"rss":"http://feeds.feedburner.com/TheWebAhead"             , "url": "webahead"       , "title": "The Web Ahead"}       ,
-    {"rss":"http://feeds.feedburner.com/TheCocktailNapkinVideos" , "url": "tcn"            , "title": "The Cocktail Napkin"}
+    {"rss":"http://feeds.feedburner.com/TheCocktailNapkinVideos" , "url": "tcn"            , "title": "The Cocktail Napkin"} ,
+    {"rss":"http://feeds.feedburner.com/GeekFriday"              , "url": "geekfriday"     , "title": "Geek Friday"}
   ]
 }
 
