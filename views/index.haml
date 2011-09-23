@@ -6,12 +6,10 @@
     - col = 0
     - last_show = nil
     -@suggestions.each do |suggestion|
-      - if suggestion.title.nil?
-        - next
       - if last_show.nil? and suggestion.show
         - col = 0
         .clear
-        %h2.show_break= Shows.find_show(suggestion.show).title
+        %h2.show_break= Shows.find_show_title(suggestion.show)
         .clear
       - elsif last_show and last_show != suggestion.show
         - #Suggestion has show different than last show
@@ -19,12 +17,12 @@
         .clear
         - text = "Show Not Listed"
         - if suggestion.show
-          - text = Shows.find_show(suggestion.show).title 
+          - text = Shows.find_show_title(suggestion.show)
         %h2.show_break.grid_12= text
         .clear
       - last_show = suggestion.show
       %li.suggestion.grid_4
-        .hover.show=h Shows.find_show(suggestion.show).title if suggestion.show
+        .hover.show=h Shows.find_show_title(suggestion.show) if suggestion.show
         .qstart “
         .title=h suggestion.title
         .qend ”

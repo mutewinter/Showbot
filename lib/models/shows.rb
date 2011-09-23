@@ -33,6 +33,18 @@ class Shows
         end
       end
     end
+
+    return nil # No show found, return nil
+  end
+
+  # Find a show title by keyword, or returns the keyword if the show doesn't exist
+  def self.find_show_title(keyword)
+    show = self.find_show(keyword)
+    if show
+      return show.title
+    else
+      return keyword
+    end
   end
 
   # Get the live show slug
