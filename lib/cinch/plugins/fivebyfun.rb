@@ -105,7 +105,7 @@ module Cinch
       def command_marco(m)
         m.reply ["Please don't email me.",
                  "I shouldn't have said that",
-                 "Braaaaands"]
+                 "Braaaaands"].random
       end
 
     end
