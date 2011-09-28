@@ -19,7 +19,8 @@
     {"rss":"http://feeds.feedburner.com/TheWebAhead"             , "url": "webahead"       , "title": "The Web Ahead"}       ,
     {"rss":"http://feeds.feedburner.com/TheCocktailNapkinVideos" , "url": "tcn"            , "title": "The Cocktail Napkin"} ,
     {"rss":"http://feeds.feedburner.com/GeekFriday"              , "url": "geekfriday"     , "title": "Geek Friday"}         ,
-    {"rss":"http://feeds.feedburner.com/IhnatkoAlmanac"          , "url": "ia"             , "title": "The Ihnatko Almanac"}
+    {"rss":"http://feeds.feedburner.com/IhnatkoAlmanac"          , "url": "ia"             , "title": "The Ihnatko Almanac"} ,
+    {"rss":"http://feeds.feedburner.com/incomparablepodcast"     , "url": "incomparable"   , "title": "The Incomparable"}
   ]
 }
 
