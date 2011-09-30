@@ -20,6 +20,7 @@ module Cinch
       match "gruber",   :method => :command_gruber
       match %r{(vanhoet|neckbeard)},   :method => :command_van_hoet
       match "marco",   :method => :command_marco
+      match "faith",  :method => :command_faith
 
 
       def command_drphil(m)
@@ -106,6 +107,11 @@ module Cinch
         m.reply ["Please don't email me.",
                  "I shouldn't have said that",
                  "Braaaaands"].random
+      end
+
+      def command_faith(m)
+        m.reply [ "Don't tweet me.",
+                  "Don't be mean."].random
       end
 
     end
