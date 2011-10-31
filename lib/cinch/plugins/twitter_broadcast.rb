@@ -34,6 +34,12 @@ module Cinch
           # time the bot reconnects
           @last_sent_id = status.id
         elsif @last_sent_id != status.id
+        
+          if status.in_reply_to_status_id or status.in_reply_to_screen_name
+            # Don't show replies
+            return false
+          end
+          
           @last_sent_id = status.id
 
           if development?
