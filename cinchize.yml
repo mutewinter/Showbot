@@ -23,6 +23,9 @@ plugins: &plugins
     -
       module: "./lib/cinch/plugins/twitter_broadcast"
       class: "Cinch::Plugins::TwitterBroadcast"
+    -
+      module: "./lib/cinch/plugins/links"
+      class: "Cinch::Plugins::Links"
 
 # The base configuration for freenode
 freenode_base: &freenode_base

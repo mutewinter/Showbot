@@ -34,11 +34,11 @@
         .arrow_user
           .user=h suggestion.user
           %span.arrow
-      -if col >= 2
+      - if col >= 2
         .clear
-        -col = 0
-        -else
-        -col += 1
+        - col = 0
+      - else
+        - col += 1
   .clear
 -else
   %h2.subtitle.grid_12 No title suggestions yet.

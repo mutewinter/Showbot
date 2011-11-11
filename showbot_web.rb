@@ -27,6 +27,11 @@ get '/' do
   haml :index
 end
 
+get '/links' do
+  @title = "Suggested Links in the last 24 hours"
+  @links = Link.all(:order => [:created_at.desc])
+  haml :links
+end
 
 get '/all' do
   @title = "All Title Suggestions"

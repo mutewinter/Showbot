@@ -91,6 +91,9 @@ hr {
   padding-bottom: 40px;
 }
 
+// ---------------------
+// Suggestion
+// ---------------------
 .suggestion {
   $title_background: #d2e4f8;
   display: block;
@@ -182,6 +185,104 @@ hr {
       @include etched_text;
     }
   }
+}
+
+// ---------------------
+// Link
+// ---------------------
+
+li.link {
+  $title_background: #d2e4f8;
+  display: block;
+  margin-bottom: 20px;
+  width: 450px !important;
+
+  -webkit-box-shadow: inset 0 2px 5px #888;
+  -moz-box-shadow: inset 0 2px 5px #888;
+  box-shadow: inner 0 2px 5px #888;
+
+  background: rgba(204,204,204,0.3);
+  padding: 5px;
+
+  .link_box {
+    text-align: left;
+
+    .title {
+      padding: 10px 10px 10px 0px;
+      word-wrap: break-word;
+      color: #0f0f0f;
+      text-shadow: 1px 1px 1px #999;
+      text-shadow: rgba(80,80,80,0.5) 0 1px 2px;
+      line-height: 100%;
+      font-size: 18px;
+    }
+
+    .uri_wrapper {
+      padding: 0 5px 5px 5px;
+
+      &.no_title {
+        padding: 10px 10px 10px 0px;
+      }
+    }
+
+    a.uri {
+      line-height: 100%;
+      font-weight: bold;
+      font-size: 14px;
+      color: #0b64c2;
+      
+
+      text-shadow: 1px 1px 1px #999;
+      text-shadow: rgba(80,80,80,0.3) 0 1px 1px;
+      -webkit-transition: .3s all;
+      -moz-transition: .3s all;
+      transition: .3s all;
+
+      &.big {
+        font-size: 18px;
+      }
+
+      &:hover {
+        color: #0D82FF;
+        text-shadow: 1px 1px 1px #999;
+        text-shadow: rgba( 67,158,255,0.5) 0 1px 2px;
+      }
+
+    } // a.uri
+  } // .link_box
+
+
+
+  .timeago {
+    font-size: 13px;
+    width: 120px;
+    @include etched_text;
+  }
+
+  .show {
+    color: #606060;
+    color: rgba(0, 0, 0, 0.6);
+    float: right;
+
+    font-size: 12px;
+    text-align: right;
+    font-weight: bold;
+    opacity: 0;
+    -webkit-transition: all .3s ease-in;
+    -moz-transition: all .3s ease-in;
+    -o-transition: all .3s ease-in;
+    -ms-transition: all .3s ease-in;	
+    transition: all .3s ease;
+    position: relative;
+    top: -21px; 
+  }
+
+  &:hover {
+    .show {
+      opacity: 1;
+    }
+  }
+
 }
 
 .show_break {

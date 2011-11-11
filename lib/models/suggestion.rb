@@ -46,7 +46,7 @@ class Suggestion
   
   # Verifies that title hasn't been entered in the last 30 minutes
   def check_title_uniqueness
-    if title
+    if self.title
       Suggestion.minutes_ago(30).each do |suggestion|
         if suggestion.title.downcase == self.title.downcase
           return [false, "Darn, #{suggestion.user} beat you to \"#{suggestion.title}\"."]

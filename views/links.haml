@@ -1,0 +1,41 @@
+-if @links.count > 0
+  %h2.subtitle.grid_12
+    - if @links.count == 1
+      ="1 Link Suggestion in the last 24 hours"
+    - else
+      ="#{@links.count} Link Suggestions in the last 24 hours"
+  %hr
+  .clear
+  %ol#links
+    - col = 0
+    - last_link = nil
+    -@links.each do |link|
+      - if (last_link and last_link.show != link.show) or last_link.nil?
+        - col = 0
+        .clear
+        - if link.show.nil?
+          %h2.show_break Show Not Listed
+        - else
+          %h2.show_break= Shows.find_show_title(link.show)
+        .clear
+      %li.link.grid_6
+        .show=Shows.find_show_title(link.show)
+        .link_box
+          - if link.title
+            .title=link.title
+          - if link.title
+            .uri_wrapper
+              %a.uri{:href => link.uri, :rel => 'nofollow'}=link.uri
+          - else
+            .uri_wrapper.no_title
+              %a.uri.big{:href => link.uri, :rel => 'nofollow'}=link.uri
+        %abbr.timeago{:title => link.created_at}= link.created_at.strftime("%-m/%-d/%Y at %-I:%M%P %Z")
+      - last_link = link
+      - if col >= 1
+        .clear
+        - col = 0
+      - else
+        - col += 1
+  .clear
+-else
+  %h2.subtitle.grid_12 No link suggestions yet...
