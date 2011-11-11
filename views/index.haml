@@ -1,5 +1,9 @@
 -if @suggestions.count > 0
-  %h2.subtitle.grid_12= @title
+  %h2.subtitle.grid_12
+    - if @suggestions.count == 1
+      ="1 Title Suggestion in the last 24 hours"
+    - else
+      ="#{@suggestions.count} Title Suggestions in the last 24 hours"
   %hr
   .clear
   %ol#titles
@@ -37,4 +41,4 @@
         -col += 1
   .clear
 -else
-  %h2.subtitle.grid_12 No title suggestions yet...
+  %h2.subtitle.grid_12 No title suggestions yet.
