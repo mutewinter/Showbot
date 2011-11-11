@@ -17,4 +17,5 @@ configure do
   Dir.glob("#{File.dirname(__FILE__)}/lib/models/*.rb") { |lib| require lib }
 
   DataMapper.setup(:default, (ENV["SHOWBOT_DATABASE_URL"] || "sqlite3:///#{File.expand_path(File.dirname(__FILE__))}/#{Sinatra::Base.environment}.db"))
+  DataMapper.finalize
 end
