@@ -195,7 +195,9 @@ li.link {
   $title_background: #d2e4f8;
   display: block;
   margin-bottom: 20px;
+  padding: 8px 8px 8px 8px;
   width: 444px !important;
+  overflow: auto; // Just incase they don't support word-wrap
 
   -webkit-box-shadow: inset 0 2px 5px #888;
   -moz-box-shadow: inset 0 2px 5px #888;
@@ -203,12 +205,12 @@ li.link {
 
   background: rgba(204,204,204,0.3);
   background: rgba(204,204,204,0.3) url(images/link.png) no-repeat 50% 50%;
-  padding: 4px 8px 8px 8px;
 
   .show {
     color: #606060;
     color: rgba(0, 0, 0, 0.6);
     float: right;
+    margin-bottom: -30px;
 
     font-size: 12px;
     text-align: right;
@@ -217,19 +219,20 @@ li.link {
     -webkit-transition: all .3s ease-in;
     -moz-transition: all .3s ease-in;
     -o-transition: all .3s ease-in;
-    -ms-transition: all .3s ease-in;	
+    -ms-transition: all .3s ease-in;
     transition: all .3s ease;
     position: relative;
-    top: -21px; 
+    // Show just outside the top of the box
+    top: -23px; 
+    // Align with right edge of box
     right: -8px;
   }
-
 
   .link_box {
     text-align: left;
 
     .title {
-      padding: 10px 10px 10px 0px;
+      padding: 0 0 10px 0;
       word-wrap: break-word;
       color: #0f0f0f;
       text-shadow: 1px 1px 1px #999;
@@ -240,19 +243,15 @@ li.link {
 
     .uri_wrapper {
       padding: 0 5px 5px 0px;
-
-      &.no_title {
-        padding: 10px 10px 10px 0px;
-      }
     }
 
     a.uri {
       line-height: 100%;
       font-weight: bold;
       font-size: 14px;
+      word-wrap: break-word;
       color: #0b64c2;
       
-
       text-shadow: 1px 1px 1px #999;
       text-shadow: rgba(80,80,80,0.3) 0 1px 1px;
       -webkit-transition: .3s all;
@@ -261,6 +260,7 @@ li.link {
 
       &.big {
         font-size: 18px;
+        margin-top: 5px;
       }
 
       &:hover {
@@ -291,6 +291,7 @@ li.link {
 
 
   &:hover {
+    overflow: visible;
     .show {
       opacity: 1;
     }
