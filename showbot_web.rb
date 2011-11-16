@@ -57,4 +57,15 @@ helpers do
   def external_link(link)
     /^http/.match(link) ? link : "http://#{link}"
   end
+
+  # Returns a string truncated in the middle
+  # Note: Rounds max_length down to nearest even number
+  def truncate_string(string, max_length)
+    if string.length > max_length
+      # +/- 2 is to account for the elipse in the middle
+      "#{string[0..(max_length/2)-2]}...#{string[-(max_length/2)+2..-1]}"
+    else
+      string
+    end
+  end
 end

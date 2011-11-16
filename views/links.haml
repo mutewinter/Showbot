@@ -23,12 +23,8 @@
         .link_box
           - if link.title
             .title=link.title
-          - if link.title
-            .uri_wrapper
-              %a.uri{:href => external_link(link.uri), :rel => 'nofollow'}=link.uri
-          - else
-            .uri_wrapper.no_title
-              %a.uri.big{:href => external_link(link.uri), :rel => 'nofollow'}=link.uri
+          .uri_wrapper
+            %a{:href => external_link(link.uri), :rel => 'nofollow', :class => link.title ? 'uri' : 'big uri'}=truncate_string(link.uri.to_s, 100)
         .bottom
           %abbr.timeago{:title => link.created_at}= link.created_at.strftime("%-m/%-d/%Y at %-I:%M%P %Z")
           .user=link.user
