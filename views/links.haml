@@ -25,11 +25,13 @@
             .title=link.title
           - if link.title
             .uri_wrapper
-              %a.uri{:href => link.uri, :rel => 'nofollow'}=link.uri
+              %a.uri{:href => external_link(link.uri), :rel => 'nofollow'}=link.uri
           - else
             .uri_wrapper.no_title
-              %a.uri.big{:href => link.uri, :rel => 'nofollow'}=link.uri
-        %abbr.timeago{:title => link.created_at}= link.created_at.strftime("%-m/%-d/%Y at %-I:%M%P %Z")
+              %a.uri.big{:href => external_link(link.uri), :rel => 'nofollow'}=link.uri
+        .bottom
+          %abbr.timeago{:title => link.created_at}= link.created_at.strftime("%-m/%-d/%Y at %-I:%M%P %Z")
+          .user=link.user
       - last_link = link
       - if col >= 1
         .clear

@@ -53,4 +53,8 @@ end
 helpers do
   include Rack::Utils
   alias_method :h, :escape_html
+
+  def external_link(link)
+    /^http/.match(link) ? link : "http://#{link}"
+  end
 end
