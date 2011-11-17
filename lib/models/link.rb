@@ -60,7 +60,7 @@ class Link
       Link.minutes_ago(30).each do |link|
         # Don't check uniqueness against itself
         if link.id != self.id and link.uri == self.uri
-          return [false, "Darn, #{link.user} beat you to \"#{link.uri}\"."]
+          return [false, "Darn, #{link.user} beat you to #{link.uri}."]
         end
       end
     else
