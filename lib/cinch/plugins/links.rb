@@ -30,6 +30,11 @@ module Cinch
           # Verify this is a valid URI
           uri = Addressable::URI::parse(uri_string)
 
+          if uri.scheme.nil?
+            # No scheme for URI, parse it again with http in front
+            uri = Addressable::URI.parse("http://#{uri.to_s}")
+          end
+
           new_link = Link.create(
             :uri  => uri,
             :user => m.user.nick

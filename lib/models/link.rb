@@ -28,20 +28,12 @@ class Link
   # Before Save
   # =====================
   before :save, :set_live_show
-  before :save, :fix_uri_scheme
   before :save, :fetch_page_title
 
   def set_live_show
     # Only fetch show from website if it wasn't set previously.
     if !self.show
       self.show = Shows.fetch_live_show_slug
-    end
-  end
-
-  def fix_uri_scheme
-    if self.uri.scheme.nil?
-      # No scheme for URI, parse it again with http in front
-      self.uri = Addressable::URI.parse("http://#{self.uri.to_s}")
     end
   end
 
