@@ -22,7 +22,7 @@ end
 # =================
 
 get '/' do
-  @title = "Title Suggestions in the last 24 hours"
+  @title = "Home"
   @suggestions = Suggestion.recent.all(:order => [:created_at.desc])
   haml :index
 end
@@ -30,7 +30,7 @@ end
 get '/titles' do
   @title = "Title Suggestions in the last 24 hours"
   @suggestions = Suggestion.recent.all(:order => [:created_at.desc])
-  haml :index
+  haml :titles
 end
 
 get '/links' do
@@ -42,7 +42,7 @@ end
 get '/all' do
   @title = "All Title Suggestions"
   @suggestions = Suggestion.all(:order => [:created_at.desc])
-  haml :index
+  haml :titles
 end
 
 # ===========

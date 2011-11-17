@@ -1,0 +1,44 @@
+-if @suggestions.count > 0
+  %h2.subtitle.grid_12
+    - if @suggestions.count == 1
+      ="1 Title Suggestion in the last 24 hours"
+    - else
+      ="#{@suggestions.count} Title Suggestions in the last 24 hours"
+  %hr
+  .clear
+  %ol#titles
+    - col = 0
+    - last_show = nil
+    -@suggestions.each do |suggestion|
+      - if last_show.nil? and suggestion.show
+        - col = 0
+        .clear
+        %h2.show_break= Shows.find_show_title(suggestion.show)
+        .clear
+      - elsif last_show and last_show != suggestion.show
+        - #Suggestion has show different than last show
+        - col = 0
+        .clear
+        - text = "Show Not Listed"
+        - if suggestion.show
+          - text = Shows.find_show_title(suggestion.show)
+        %h2.show_break.grid_12= text
+        .clear
+      - last_show = suggestion.show
+      %li.suggestion.grid_4
+        .hover.show=h Shows.find_show_title(suggestion.show) if suggestion.show
+        .qstart “
+        .title=h suggestion.title
+        .qend ”
+        %abbr.timeago{:title => suggestion.created_at}= suggestion.created_at.strftime("%-m/%-d/%Y at %-I:%M%P %Z")
+        .arrow_user
+          .user=h suggestion.user
+          %span.arrow
+      - if col >= 2
+        .clear
+        - col = 0
+      - else
+        - col += 1
+  .clear
+-else
+  %h2.subtitle.grid_12 No title suggestions yet.
