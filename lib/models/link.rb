@@ -42,7 +42,7 @@ class Link
     Thread.new(self) do
       if self.title.nil? or self.title == ''
         begin
-          self.update(:title => open(self.uri, :ssl_verify_mode => OpenSSL::SSL::VERIFY_NONE).read.match(/<title>(.*?)<\/title>?/i)[1])
+          self.update(:title => open(self.uri, :ssl_verify_mode => OpenSSL::SSL::VERIFY_NONE).read.match(/<title>(.*?)<\/title>?/im)[1])
         rescue URI::InvalidURIError
           puts "Failed to fetch title for #{self.uri}."
         end
