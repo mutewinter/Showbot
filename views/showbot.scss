@@ -173,7 +173,7 @@ h2.development_mode {
 
 
 h2.subtitle {
-  margin-bottom: 45px;
+  margin-bottom: 15px;
   text-align: center;
   font-size: 300%;
 }
@@ -189,6 +189,23 @@ a:visited {
 
 hr {
   padding-bottom: 10px;
+}
+
+.irc_help {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #888;
+
+  a {
+    color: #777;
+    text-decoration: underline;
+  }
+}
+
+span.code {
+  background-color: #F8F8FF;
+  padding: 0 .2em;
+  border: 1px solid #DEDEDE;
 }
 
 // ---------------------
