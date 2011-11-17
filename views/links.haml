@@ -22,12 +22,12 @@
         .show=Shows.find_show_title(link.show)
         .link_box
           - if link.title
-            .title=link.title
+            .title=h link.title
           .uri_wrapper
-            %a{:href => external_link(link.uri), :rel => 'nofollow', :class => link.title ? 'uri' : 'big uri'}=truncate_string(link.uri.to_s, 100)
+            %a{:href => external_link(link.uri), :rel => 'nofollow', :class => link.title ? 'uri' : 'big uri'}=h truncate_string(link.uri.to_s, 100)
         .bottom
           %abbr.timeago{:title => link.created_at}= link.created_at.strftime("%-m/%-d/%Y at %-I:%M%P %Z")
-          .user=link.user
+          .user=h link.user
       - last_link = link
       - if col >= 1
         .clear
