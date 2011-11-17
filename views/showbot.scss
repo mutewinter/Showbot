@@ -3,7 +3,7 @@
 
 // Variables
 $showbot_blue: #1f69bd;
-$footer_height: 200px;
+$showbot_bright_blue: #1B89FF;
 
 // Mixins
 
@@ -51,6 +51,8 @@ $footer_height: 200px;
 html body { 
   background: #f0f0f0 url('images/main_bg.png') top center;
   height: 100%;
+  // Stops full page flickering on CSS transforms
+  -webkit-transform:translate3d(0,0,0);
 }
 
 #wrap {
@@ -62,20 +64,118 @@ html body {
   padding-bottom: 10px;
 }
 
-h1 {
-  color: $showbot_blue;
-  font-size: 30px;
-  font-variant: small-caps;
+#header {
+  h1.logo  {
+    margin-bottom: 0;
+    .heart {
+      color: $showbot_bright_blue;
+      float: left;
+      position: relative;
+      opacity: 0;
+      left: -20px;
+      top: 14px;
+      webkit-backface-visibility: hidden;
+      span {
+        position: relative;
+        top: 3px;
+      }
+
+      -webkit-transition: all 1s ease-in-out;
+      -moz-transition: all 1s ease-in-out;
+      -o-transition: all 1s ease-in-out;
+      -ms-transition: all 1s ease-in-out;
+      transition: all 1s ease-in-out;
+      &:hover {
+        color: red;
+      }
+    }
+
+    a {
+      color: $showbot_blue;
+      font-size: 40px;
+      font-variant: small-caps;
+      float: left;
+
+      -webkit-transition: text-shadow, color .2s ease-in-out;
+      -moz-transition: text-shadow, color .2s ease-in-out;
+      -o-transition: text-shadow, color .2s ease-in-out;
+      -ms-transition: text-shadow, color .2s ease-in-out;
+      transition: text-shadow, color .2s ease-in-out;
+
+    }
+
+    &:hover {
+      a {
+      color: $showbot_bright_blue;
+      }
+      .heart {
+        opacity: 1;
+        left: 0px;
+        -webkit-transform: rotate(-90deg);
+        -moz-transform: rotate(-90deg);
+        transform : rotate(-90deg);
+      }
+    }
+
+  }
+
+
+
+  // ---------------------
+  // Navigation
+  // ---------------------
+
+  nav {
+    float: right;
+    margin-top: 22px;
+
+    ul {
+      list-style: none;
+
+      li {
+        float: left;
+        padding: 0 5px;
+
+        a {
+          font-size: 20px;
+          font-weight: bold;
+          color: #333333;
+          text-shadow: 0px 2px 3px #888;
+          text-shadow: 0px 2px 3px rgba(0,0,0, 0.4);
+
+          -webkit-transition: text-shadow, color .1s ease-in-out;
+          -moz-transition: text-shadow, color .1s ease-in-out;
+          -o-transition: text-shadow, color .1s ease-in-out;
+          -ms-transition: text-shadow, color .1s ease-in-out;
+          transition: text-shadow, color .1s ease-in-out;
+
+          &:hover {
+            color: #FFF;
+            text-shadow: 0 1px 2px #000;
+          }
+
+          &:active {
+            color: $showbot_bright_blue;
+          }
+        }
+      }
+    } // ul
+  } // nav
+
+} // #header
+
+
+h2.development_mode {
+  background: red;
+  display: block;
+  text-align: center;
 }
+
 
 h2.subtitle {
   margin-bottom: 45px;
   text-align: center;
   font-size: 300%;
-}
-
-h2.development_mode {
-  background: red;
 }
 
 a {
@@ -265,8 +365,8 @@ li.link {
 
       &:hover {
         color: #0D82FF;
-        text-shadow: 1px 1px 1px #999;
-        text-shadow: rgba( 67,158,255,0.5) 0 1px 2px;
+        text-shadow: 0 1px 2px #439EFF;
+        text-shadow: rgba( 67,158,255,1.0) 0 1px 2px;
       }
 
     } // a.uri
@@ -275,6 +375,7 @@ li.link {
 
   .bottom {
     .timeago {
+      float: left;
       position: relative;
       bottom: -4px;
       font-size: 13px;
@@ -306,13 +407,6 @@ li.link {
   
   background: url(images/hr_gap.png) no-repeat 50% 20px;
   
-}
-
-#love_container {
-  position: relative;
-  margin-top: -$footer_height;
-  height: $footer_height;
-  clear:both;
 }
 
 #bot_love {

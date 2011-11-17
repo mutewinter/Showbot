@@ -16,9 +16,20 @@
   %body
     #wrap.container_12
       #header
-        %h1 Showbot
-        -if development?
-          %h2.development_mode DEVELOPMENT MODE
+        %h1.logo
+          %a{:href => '/'}Showbot
+          -# display:none so the heart doesn't briefly show
+          .heart{:style => 'display:none;'}="\<<span>3</span>"
+        %nav
+          %ul
+            %li
+              %a{:href => '/titles'}Titles
+            %li
+              %a{:href => '/links'}Links
+      .clear
+      -if development?
+        %h2.development_mode DEVELOPMENT MODE
+
 
       #content
         =yield
