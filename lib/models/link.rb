@@ -38,15 +38,21 @@ class Link
     true # Since this hook shouldn't keep the link from saving
   end
 
+  # =====================
+  # After Create
+  # =====================
+
   # Fetch the page title on a new thread so we don't block while requesting it
-  def fetch_page_title
-    Thread.new(self) do
-      if self.title.nil? or self.title == ''
-        begin
-          self.update(:title => open(self.uri, :ssl_verify_mode => OpenSSL::SSL::VERIFY_NONE).read.match(/<title>(.*?)<\/title>?/im)[1])
-        rescue URI::InvalidURIError
-          puts "Failed to fetch title for #{self.uri}."
-        end
+  after :create do |link|
+    fetch_page_title(link)
+  end
+
+  def fetch_page_title(link)
+    Thread.new(link) do
+      begin
+        link.update(:title => open(link.uri, :ssl_verify_mode => OpenSSL::SSL::VERIFY_NONE).read.match(/<title>(.*?)<\/title>?/im)[1])
+      rescue URI::InvalidURIError
+        STDOUT::puts "Failed to fetch title for #{link.uri}."
       end
     end
   end
