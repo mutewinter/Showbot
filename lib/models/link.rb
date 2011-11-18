@@ -25,10 +25,9 @@ class Link
   validates_with_method :check_link_uniqueness
 
   # =====================
-  # Before Save
+  # Before Create
   # =====================
-  before :save, :set_live_show
-  before :save, :fetch_page_title
+  before :create, :set_live_show
 
   def set_live_show
     # Only fetch show from website if it wasn't set previously.
