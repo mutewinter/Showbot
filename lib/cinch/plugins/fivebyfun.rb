@@ -16,6 +16,7 @@ module Cinch
       match "gruber",                       :method => :command_gruber
       match "robertevans",                  :method => :command_robert_evans
       match "faith",                        :method => :command_faith
+      match %r{(mike|monteiro)},            :method => :command_mike
       # The characers
       match "drphil",                       :method => :command_drphil
       match %r{(vanhoet|neckbeard)},        :method => :command_van_hoet
@@ -106,13 +107,17 @@ module Cinch
 
       def command_marco(m)
         m.reply ["Please don't email me.",
-                 "I shouldn't have said that",
+                 "I shouldn't have said that.",
                  "Braaaaands"].random
       end
 
       def command_faith(m)
         m.reply [ "Don't tweet me.",
                   "Don't be mean."].random
+      end
+
+      def command_mike(m)
+        m.reply "F*ck you. Pay me."
       end
 
     end
