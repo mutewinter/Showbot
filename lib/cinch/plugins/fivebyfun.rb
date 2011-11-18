@@ -8,19 +8,20 @@ module Cinch
       include Cinch::Plugin
 
       # The cast
-      match %r{(merlin|mann)},   :method => :command_merlin
-      match %r{(sandy|sandwich|adam)},   :method => :command_sandy
-      match %r{(jsir|siracusa|jsiracusa)},   :method => :command_jsir
+      match %r{(dan|danbenjamin)},          :method => :command_dan
+      match %r{(merlin|mann)},              :method => :command_merlin
+      match %r{(sandy|sandwich|adam)},      :method => :command_sandy
+      match %r{(jsir|siracusa|jsiracusa)},  :method => :command_jsir
+      match "marco",                        :method => :command_marco
+      match "gruber",                       :method => :command_gruber
+      match "robertevans",                  :method => :command_robert_evans
+      match "faith",                        :method => :command_faith
       # The characers
-      match "paleo",   :method => :command_paleo
-      match "drphil",   :method => :command_drphil
-      match %r{(eight_ball|8ball)},   :method => :command_eight_ball
-      match %r{(dan|danbenjamin)},   :method => :command_dan
-      match "robertevans",   :method => :command_robert_evans
-      match "gruber",   :method => :command_gruber
-      match %r{(vanhoet|neckbeard)},   :method => :command_van_hoet
-      match "marco",   :method => :command_marco
-      match "faith",  :method => :command_faith
+      match "drphil",                       :method => :command_drphil
+      match %r{(vanhoet|neckbeard)},        :method => :command_van_hoet
+      match "paleo",                        :method => :command_paleo
+      # The etc.
+      match %r{(eight_ball|8ball)},         :method => :command_eight_ball
 
 
       def command_drphil(m)
