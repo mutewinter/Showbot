@@ -51,8 +51,6 @@ $showbot_bright_blue: #1B89FF;
 html body { 
   background: #f0f0f0 url('images/main_bg.png') top center;
   height: 100%;
-  // Stops full page flickering on CSS transforms
-  -webkit-transform:translate3d(0,0,0);
 }
 
 #wrap {
@@ -74,7 +72,6 @@ html body {
       opacity: 0;
       left: -20px;
       top: 14px;
-      webkit-backface-visibility: hidden;
       span {
         position: relative;
         top: 3px;
@@ -263,6 +260,7 @@ span.code {
     text-align: right;
     font-weight: bold;
     opacity: 0;
+
     -webkit-transition: all .3s ease-in-out;
     -moz-transition: all .3s ease-in-out;
     -o-transition: all .3s ease-in-out;
@@ -333,6 +331,7 @@ li.link {
     text-align: right;
     font-weight: bold;
     opacity: 0;
+
     -webkit-transition: all .3s ease-in;
     -moz-transition: all .3s ease-in;
     -o-transition: all .3s ease-in;
@@ -371,6 +370,7 @@ li.link {
       
       text-shadow: 1px 1px 1px #999;
       text-shadow: rgba(80,80,80,0.3) 0 1px 1px;
+
       -webkit-transition: .3s all;
       -moz-transition: .3s all;
       transition: .3s all;
@@ -453,6 +453,7 @@ li.link {
   a {
     color: #FFFFFF;
     font-weight: bold;
+
     -webkit-transition: .3s all;
     -moz-transition: .3s all;
     transition: .3s all;
