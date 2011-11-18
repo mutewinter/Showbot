@@ -35,6 +35,8 @@ class Link
     if !self.show
       self.show = Shows.fetch_live_show_slug
     end
+
+    true # Since this hook shouldn't keep the link from saving
   end
 
   # Fetch the page title on a new thread so we don't block while requesting it
