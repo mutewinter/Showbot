@@ -103,7 +103,7 @@ html body {
 
     &:hover {
       a {
-      color: $showbot_bright_blue;
+        color: $showbot_bright_blue;
       }
       .heart {
         opacity: 1;
@@ -147,12 +147,7 @@ html body {
           transition: text-shadow, color .1s ease-in-out;
 
           &:hover {
-            color: #FFF;
-            text-shadow: 0 1px 2px #000;
-          }
-
-          &:active {
-            color: $showbot_bright_blue;
+            color: #1B89FF;
           }
         }
       }
