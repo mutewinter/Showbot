@@ -9,6 +9,8 @@ Built on [cinch](https://github.com/cinchrb/cinch) and [sinatra](http://www.sina
 
 [Showbot.me](http://showbot.me)
 
+**[GitEgo - GitHub Stats Showbot](http://gitego.com/mutewinter/Showbot)**
+
 ## IRC Commands
 
 * !next - When's the next live show?
