@@ -93,18 +93,17 @@ html body {
       font-variant: small-caps;
       float: left;
 
-      -webkit-transition: text-shadow, color .2s ease-in-out;
-      -moz-transition: text-shadow, color .2s ease-in-out;
-      -o-transition: text-shadow, color .2s ease-in-out;
-      -ms-transition: text-shadow, color .2s ease-in-out;
-      transition: text-shadow, color .2s ease-in-out;
-
-    }
-
-    &:hover {
-      a {
+      -webkit-transition: text-shadow, color .3s ease-in-out;
+      -moz-transition: text-shadow, color .3s ease-in-out;
+      -o-transition: text-shadow, color .3s ease-in-out;
+      -ms-transition: text-shadow, color .3s ease-in-out;
+      transition: text-shadow, color .3s ease-in-out;
+      &:hover {
         color: $showbot_bright_blue;
       }
+    }
+
+    &:hover { 
       .heart {
         opacity: 1;
         left: 0px;
@@ -140,11 +139,11 @@ html body {
           text-shadow: 0px 2px 3px #888;
           text-shadow: 0px 2px 3px rgba(0,0,0, 0.4);
 
-          -webkit-transition: text-shadow, color .1s ease-in-out;
-          -moz-transition: text-shadow, color .1s ease-in-out;
-          -o-transition: text-shadow, color .1s ease-in-out;
-          -ms-transition: text-shadow, color .1s ease-in-out;
-          transition: text-shadow, color .1s ease-in-out;
+          -webkit-transition: text-shadow, color .3s ease-in-out;
+          -moz-transition: text-shadow, color .3s ease-in-out;
+          -o-transition: text-shadow, color .3s ease-in-out;
+          -ms-transition: text-shadow, color .3s ease-in-out;
+          transition: text-shadow, color .3s ease-in-out;
 
           &:hover {
             color: #1B89FF;
