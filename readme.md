@@ -5,11 +5,11 @@ Built on [cinch](https://github.com/cinchrb/cinch) and [sinatra](http://www.sina
 
 ## Showbot on the Internets
 
+[![Watchers](http://gitego.com/mutewinter/Showbot/watchers.png)![Forks](http://gitego.com/mutewinter/Showbot/forks.png)![Open Issues](http://gitego.com/mutewinter/Showbot/open_issues.png)![Size](http://gitego.com/mutewinter/Showbot/size.png)](http://gitego.com/mutewinter/Showbot)
+
 [The Creation of Showbot](http://pileofturtles.com/2011/07/showbot/)
 
 [Showbot.me](http://showbot.me)
-
-**[GitEgo - GitHub Stats Showbot](http://gitego.com/mutewinter/Showbot)**
 
 ## IRC Commands
 
