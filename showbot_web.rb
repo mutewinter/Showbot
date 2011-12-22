@@ -26,6 +26,11 @@ class ShowbotWeb < Sinatra::Base
   # Pages
   # =================
 
+  # CoffeeScript
+  get '/js/showbot.js' do
+    coffee :'coffeescripts/showbot'
+  end
+
   get '/' do
     @title = "Home"
     @suggestions = Suggestion.recent.all(:order => [:created_at.desc])

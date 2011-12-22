@@ -9,12 +9,13 @@ gem 'backup'
 gem 'fog'
 gem 'whenever', :require => false
 
-# Sinatra
+# Web
 gem 'sinatra'
 gem 'sinatra-reloader'
 gem 'thin'
 gem 'haml'
 gem 'sass'
+gem 'coffee-script'
 
 # Showbot Specific
 gem 'cinch', '1.1.3'
