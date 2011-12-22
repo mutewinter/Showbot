@@ -18,6 +18,10 @@ class ShowbotWeb < Sinatra::Base
     set :shows, Shows.new(SHOWS_JSON)
   end
 
+  configure(:production, :development) do
+    enable :logging
+  end
+
   configure :development do
     register Sinatra::Reloader
   end
