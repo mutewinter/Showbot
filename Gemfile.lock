@@ -1,22 +1,17 @@
-GIT
-  remote: git://github.com/meskyanichi/backup.git
-  revision: 9e0c2cba3e94238978bf72d482d94a981c8374b4
-  specs:
-    backup (3.0.19)
-      popen4 (~> 0.1.2)
-      thor (~> 0.14.6)
-
 GEM
   remote: http://rubygems.org/
   specs:
     Platform (0.4.0)
-    activesupport (3.1.1)
+    activesupport (3.1.3)
       multi_json (~> 1.0)
     addressable (2.2.6)
     backports (2.3.0)
+    backup (3.0.19)
+      popen4 (~> 0.1.2)
+      thor (~> 0.14.6)
     bcrypt-ruby (3.0.1)
     builder (3.0.0)
-    chronic (0.6.5)
+    chronic (0.6.6)
     chronic_duration (0.9.6)
       numerizer (~> 0.1.1)
     cinch (1.1.3)
@@ -24,7 +19,7 @@ GEM
       cinch
       daemons
       json
-    daemons (1.1.4)
+    daemons (1.1.5)
     data_mapper (1.2.0)
       dm-aggregates (~> 1.2.0)
       dm-constraints (~> 1.2.0)
@@ -79,84 +74,81 @@ GEM
     do_sqlite3 (0.10.7)
       data_objects (= 0.10.7)
     eventmachine (0.12.10)
-    excon (0.7.6)
+    excon (0.9.4)
     faraday (0.7.5)
       addressable (~> 2.2.6)
       multipart-post (~> 1.1.3)
-      rack (< 2, >= 1.1.0)
-    faraday_middleware (0.7.0)
-      faraday (~> 0.7.3)
+      rack (>= 1.1.0, < 2)
     fastercsv (1.5.4)
-    fog (1.0.0)
+    fog (1.1.2)
       builder
-      excon (~> 0.7.3)
+      excon (~> 0.9.0)
       formatador (~> 0.2.0)
       mime-types
       multi_json (~> 1.0.3)
       net-scp (~> 1.0.4)
-      net-ssh (~> 2.1.4)
+      net-ssh (>= 2.1.3)
       nokogiri (~> 1.5.0)
       ruby-hmac
-    foreman (0.26.1)
+    foreman (0.27.0)
       term-ansicolor (~> 1.0.5)
       thor (>= 0.13.6)
     formatador (0.2.1)
-    haml (3.1.2)
-    hashie (1.1.0)
+    haml (3.1.4)
     i18n (0.6.0)
-    json (1.6.1)
-    json_pure (1.6.1)
+    json (1.6.3)
+    json_pure (1.6.3)
     mime-types (1.17.2)
-    monkey-lib (0.5.4)
-      backports
-    multi_json (1.0.3)
-    multi_xml (0.4.1)
-    multipart-post (1.1.3)
+    multi_json (1.0.4)
+    multipart-post (1.1.4)
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
-    net-ssh (2.1.4)
+    net-ssh (2.2.1)
     nokogiri (1.5.0)
     numerizer (0.1.1)
-    open4 (1.2.0)
+    open4 (1.3.0)
     popen4 (0.1.2)
       Platform (>= 0.4.0)
       open4 (>= 0.4.0)
     rack (1.3.5)
+    rack-protection (1.1.4)
+      rack
+    rack-test (0.6.1)
+      rack (>= 1.0)
+    rb-fsevent (0.4.3.1)
     ri_cal (0.8.8)
     ruby-hmac (0.4.0)
-    sass (3.1.2)
+    sass (3.1.12)
     simple_oauth (0.1.5)
-    sinatra (1.2.6)
-      rack (~> 1.1)
-      tilt (< 2.0, >= 1.2.2)
-    sinatra-advanced-routes (0.5.1)
-      monkey-lib (~> 0.5.0)
-      sinatra (~> 1.0)
-      sinatra-sugar (~> 0.5.0)
-    sinatra-reloader (0.5.0)
-      sinatra (~> 1.0)
-      sinatra-advanced-routes (~> 0.5.0)
-    sinatra-sugar (0.5.1)
-      monkey-lib (~> 0.5.0)
-      sinatra (~> 1.0)
+    sinatra (1.3.1)
+      rack (~> 1.3, >= 1.3.4)
+      rack-protection (~> 1.1, >= 1.1.2)
+      tilt (~> 1.3, >= 1.3.3)
+    sinatra-contrib (1.3.1)
+      backports (>= 2.0)
+      eventmachine
+      rack-protection
+      rack-test
+      sinatra (~> 1.3.0)
+      tilt (~> 1.3)
+    sinatra-reloader (1.0)
+      sinatra-contrib
     stringex (1.3.0)
     term-ansicolor (1.0.7)
-    thin (1.2.11)
+    thin (1.3.1)
       daemons (>= 1.0.9)
       eventmachine (>= 0.12.6)
       rack (>= 1.0.0)
     thor (0.14.6)
     tilt (1.3.3)
-    twitter (1.7.2)
-      faraday (~> 0.7.4)
-      faraday_middleware (~> 0.7.0)
-      hashie (~> 1.1.0)
-      multi_json (~> 1.0.0)
-      multi_xml (~> 0.4.0)
-      simple_oauth (~> 0.1.5)
+    twitter (2.0.2)
+      activesupport (>= 2.3.9, < 4)
+      faraday (~> 0.7)
+      multi_json (~> 1.0)
+      simple_oauth (~> 0.1)
     tzinfo (0.3.31)
     uuidtools (2.1.2)
-    whenever (0.7.0)
+    whenever (0.7.1)
       activesupport (>= 2.3.4)
       chronic (~> 0.6.3)
 
@@ -164,7 +156,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  backup!
+  backup
   chronic (>= 0.6.0)
   chronic_duration (>= 0.9.6)
   cinch (= 1.1.3)
@@ -177,15 +169,16 @@ DEPENDENCIES
   dm-sqlite-adapter
   dm-timestamps
   dm-validations
-  fog (>= 0.8.2)
+  fog
   foreman
-  haml (= 3.1.2)
+  haml
   i18n
+  rb-fsevent
   ri_cal (= 0.8.8)
-  sass (= 3.1.2)
-  sinatra (= 1.2.6)
-  sinatra-reloader (= 0.5.0)
-  thin (= 1.2.11)
+  sass
+  sinatra
+  sinatra-reloader
+  thin
   twitter
   tzinfo
   whenever

@@ -5,17 +5,16 @@ gem 'tzinfo'
 gem 'i18n'
 
 # Backups
-gem 'backup', :git => "git://github.com/meskyanichi/backup.git"
-  
-gem 'fog', '>= 0.8.2'
+gem 'backup'
+gem 'fog'
 gem 'whenever', :require => false
 
 # Sinatra
-gem 'sinatra', '1.2.6'
-gem 'sinatra-reloader', '0.5.0'
-gem 'thin', '1.2.11'
-gem 'haml', '3.1.2'
-gem 'sass', '3.1.2'
+gem 'sinatra'
+gem 'sinatra-reloader'
+gem 'thin'
+gem 'haml'
+gem 'sass'
 
 # Showbot Specific
 gem 'cinch', '1.1.3'
@@ -38,5 +37,6 @@ gem 'dm-mysql-adapter'
 group :development do
   gem 'dm-sqlite-adapter'
   gem 'foreman'
+  gem 'rb-fsevent'
 end
 

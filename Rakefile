@@ -44,3 +44,10 @@ namespace :foreman do
     sh 'sudo foreman export upstart /etc/init -a showbot -u deploy web=3 irc=1'
   end
 end
+
+namespace :sass do
+  desc 'Watches and compiles sass to proper directory'
+  task :watch => :environment do
+    sh 'sass --watch -r ./sass/bourbon/lib/bourbon.rb sass/showbot.scss:public/css/showbot.css'
+  end
+end

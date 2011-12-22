@@ -9,10 +9,10 @@
     / Place favicon.ico and apple-touch-icon.png in the root of your domain and delete these references
     %link{:href => "/favicon.ico", :rel => "shortcut icon"}/
     %link{:href => "/apple-touch-icon.png", :rel => "apple-touch-icon"}/
-    %link(rel="stylesheet" href="css/reset.css") 
-    %link(rel="stylesheet" href="css/text.css") 
-    %link(rel="stylesheet" href="css/960.css") 
-    %link(rel="stylesheet" href="showbot.css") 
+    %link(rel="stylesheet" href="/css/reset.css") 
+    %link(rel="stylesheet" href="/css/text.css") 
+    %link(rel="stylesheet" href="/css/960.css") 
+    %link(rel="stylesheet" href="/css/showbot.css") 
   %body
     #wrap.container_12
       #header
@@ -31,17 +31,14 @@
       -if development?
         %h2.development_mode DEVELOPMENT MODE
 
-
       #content
         =yield
-
 
     #footer_container
       .container_12
         %abbr#bot_love.grid_12{:title => "Not like that."} Showbot loves you.
       #footer
         .container_12 
-          
           %ul
             %li.grid_3.push_2
               %h2 Why
