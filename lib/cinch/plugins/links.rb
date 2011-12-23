@@ -11,9 +11,9 @@ module Cinch
     class Links
       include Cinch::Plugin
 
-      match /link (.+)/i,  :method => :command_link   # !link http://audacious_thunderbolt.org/islate
-      match "links",        :method => :command_links # !links Show where the user can go to see links
-      match "help link",    :method => :command_help  # !help link
+      match /(?:link|l) (.+)/i,  :method => :command_link  # !link http://audacious_thunderbolt.org/islate
+      match "links",             :method => :command_links # !links Show where the user can go to see links
+      match "help link",         :method => :command_help  # !help link
       
 
       # Show help for the suggestions module
