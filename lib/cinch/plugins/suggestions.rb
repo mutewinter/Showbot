@@ -5,9 +5,9 @@ module Cinch
     class Suggestions
       include Cinch::Plugin
 
-      match "help suggest", :method => :command_help           # !help suggest
-      match %r{suggest (.+)},   :method => :command_suggest    # !suggest Great Title Here
-      match "suggestions",   :method => :command_suggestions   # !suggestions
+      match "help suggest",        :method => :command_help        # !help suggest
+      match /(?:suggest|s) (.+)/i, :method => :command_suggest     # !suggest Great Title Here
+      match "suggestions",         :method => :command_suggestions # !suggestions
       
 
       # Show help for the suggestions module
