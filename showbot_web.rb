@@ -3,6 +3,7 @@
 
 # Gems
 require 'bundler/setup'
+require 'coffee_script'
 require 'sinatra' unless defined?(Sinatra)
 require "sinatra/reloader" if development?
 
