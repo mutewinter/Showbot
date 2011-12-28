@@ -10,7 +10,7 @@ $showbot_bright_blue: #1B89FF;
 // Mixins
 
 @mixin quote_base {
-  font-size: 600%;
+  font-size: 5em;
   position: relative;
   color: $showbot_blue;
 }
@@ -57,6 +57,7 @@ html {
 body { 
   background: #f0f0f0 url('/images/main_bg.png') top center;
   height: 100%;
+  font-size: 100%;
 }
 
 #wrap {
@@ -94,7 +95,7 @@ body {
 
     a {
       color: $showbot_blue;
-      font-size: 40px;
+      font-size: 1.8em;
       font-variant: small-caps;
       float: left;
 
@@ -128,7 +129,7 @@ body {
 
   nav {
     float: right;
-    margin-top: 22px;
+    margin-top: 27px;
 
     ul {
       list-style: none;
@@ -138,7 +139,7 @@ body {
         padding: 0 5px;
 
         a {
-          font-size: 20px;
+          font-size: 1.3em;
           font-weight: bold;
           color: #333333;
           text-shadow: 0px 2px 3px #888;
@@ -171,7 +172,7 @@ h2.development_mode {
 h2.subtitle {
   margin-bottom: 15px;
   text-align: center;
-  font-size: 300%;
+  font-size: 2.5em;
 }
 
 a {
@@ -234,7 +235,7 @@ span.code {
     padding: 20px;
     text-align: center;
     word-wrap: break-word;
-    font-size: 190%;
+    font-size: 1.5em;
     color: #0f0f0f;
     text-shadow: 1px 1px 1px #999;
     text-shadow: rgba(80,80,80,0.5) 0 1px 2px;
@@ -246,7 +247,7 @@ span.code {
 
 
   .timeago {
-    font-size: 13px;
+    font-size: 0.8em;
     width: 120px;
     @include etched_text;
   }
@@ -255,7 +256,7 @@ span.code {
     color: #606060;
     color: rgba(0, 0, 0, 0.6);
 
-    font-size: 12px;
+    font-size: 0.8em;
     text-align: right;
     font-weight: bold;
     opacity: 0;
@@ -285,7 +286,7 @@ span.code {
       border-left: 50px solid transparent;
       border-right: 10px solid transparent;
       position: relative;
-      bottom: -8px;
+      bottom: -2px;
       right: -190px;
       z-index: -1;
     }
@@ -294,8 +295,8 @@ span.code {
       float: right;
       text-align: center;
       min-width: 120px;
-      font-size: 130%;
-      padding-top: 11px;
+      font-size: 1.2em;
+      padding-top: 7px;
       @include etched_text;
     }
   }
@@ -326,7 +327,7 @@ li.link {
     float: right;
     margin-bottom: -30px;
 
-    font-size: 12px;
+    font-size: 0.8em;
     text-align: right;
     font-weight: bold;
     opacity: 0;
@@ -338,7 +339,7 @@ li.link {
     transition: all .3s ease;
     position: relative;
     // Show just outside the top of the box
-    top: -23px; 
+    top: -24px; 
     // Align with right edge of box
     right: -8px;
   }
@@ -353,7 +354,7 @@ li.link {
       text-shadow: 1px 1px 1px #999;
       text-shadow: rgba(80,80,80,0.5) 0 1px 2px;
       line-height: 100%;
-      font-size: 18px;
+      font-size: 1.3em;
     }
 
     .uri_wrapper {
@@ -363,7 +364,7 @@ li.link {
     a.uri {
       line-height: 100%;
       font-weight: bold;
-      font-size: 14px;
+      font-size: 1em;
       word-wrap: break-word;
       color: #0b64c2;
       
@@ -375,7 +376,7 @@ li.link {
       transition: .3s all;
 
       &.big {
-        font-size: 18px;
+        font-size: 1.3em;
         margin-top: 5px;
       }
 
@@ -394,14 +395,14 @@ li.link {
       float: left;
       position: relative;
       bottom: -4px;
-      font-size: 13px;
+      font-size: 0.8em;
       @include etched_text;
     }
 
     .user {
       float: right;
       text-align: right;
-      font-size: 16px;
+      font-size: 1em;
       @include etched_text;
     }
   }
@@ -429,17 +430,16 @@ li.link {
 // -----------------
 // Footer
 // -----------------
-$footer_height: 14em;
+$footer_height: 15em;
 
 .footer_push {
-  height: $footer_height - 0.5em;
+  height: $footer_height - 6.8em;
   clear: both;
 }
 
 #bot_love {
-  font-size: 16px;
+  font-size: 1.1em;
   font-weight: bold;
-  /*padding-top: 50px;*/
   padding-bottom: 20px;
   text-align: center;
   @include etched_text;
@@ -450,12 +450,18 @@ $footer_height: 14em;
 
   @include box-shadow(inset 0 20px 20px -20px #000000);
 
+  font-size: 0.9em;
   text-shadow: 0px 1px 3px #000;
   text-shadow: 0px 1px 3px rgba(0,0,0, 0.8);
   
   background: #607082 url('/images/main_bg.png') top center;
   padding-top: 20px;
   color: #EEEEEE;
+
+  p {
+    margin-bottom: 0;
+    margin-top: 10px;
+  }
 
   a {
     color: #FFFFFF;
