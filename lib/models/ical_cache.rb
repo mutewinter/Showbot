@@ -15,7 +15,11 @@ class ICalCache
 
   # Refreshes the cache
   def refresh
-    @cache = RiCal.parse(open(@ical_url))
+    begin
+      @cache = RiCal.parse(open(@ical_url))
+    rescue OpenURI::HTTPError
+      puts "#{Time.now} ERROR: Failed to fetch calendar data. OpenURI::HTTPError"
+    end
   end
 
 

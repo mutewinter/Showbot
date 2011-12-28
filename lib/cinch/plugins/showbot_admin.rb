@@ -7,7 +7,7 @@ module Cinch
 
       timer 300, :method => :fix_name
       
-      match %r{history (.*)},   :method => :command_history
+      match %r{history (.*)},         :method => :command_history
       match %r{history_count (.*)},   :method => :command_history_count
       match %r{(?:exit|quit) (.+)},   :method => :command_exit
       

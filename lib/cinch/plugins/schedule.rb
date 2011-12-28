@@ -11,8 +11,8 @@ module Cinch
 
       timer 600, :method => :refresh_calendar
       
-      match %r{next\s?(.*)},   :method => :command_next    # !next
-      match %r{schedule\s?(.*)},   :method => :command_schedule    # !schedule
+      match /next\s?(.*)/i,     :method => :command_next      # !next
+      match /schedule\s?(.*)/i, :method => :command_schedule  # !schedule
       
       def initialize(*args)
         super
