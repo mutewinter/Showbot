@@ -41,7 +41,7 @@ module Cinch
 
 
       def command_merlin(m)
-        m.reply "SO angry."
+        m.reply ["SO angry.", "Don't be creepy."].random
       end
       
       def command_sandy(m)
