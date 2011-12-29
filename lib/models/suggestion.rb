@@ -73,5 +73,49 @@ class Suggestion
       all(:created_at.gt => time_ago).all(:order => [:created_at.desc])
     end
   end
+
+
+  # Group suggestions by show slug
+  #
+  # Returns an array of groups of suggestions in the format
+  #   [ [:show_slug => [suggestion1, suggestion2, ..], [ :show_slow =>[] ] ]
+  def self.group_by_show
+    suggestion_sets = []
+    last_show = nil
+    all.each do |suggestion|
+      if last_show.nil? or (last_show and last_show != suggestion.show)
+        suggestion_sets << SuggestionSet.new(suggestion.show)
+      end
+
+      last_show = suggestion.show
+
+      # Always add the show to the last group
+      suggestion_sets.last.add suggestion
+    end
+
+    suggestion_sets
+  end
   
+end
+
+class SuggestionSet
+  def initialize(slug = nil)
+    @slug = slug
+    @suggestions = []
+    super
+  end
+
+  def add(show)
+    @suggestions << show
+  end
+
+  def to_s
+    string = ""
+    string << "Show #@slug\n"
+    string << "  Titles:\n"
+    string << @suggestions.map{|s| "  #{s.title}"}.join("\n")
+    string
+  end
+
+  attr_accessor :slug, :suggestions
 end

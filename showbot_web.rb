@@ -38,14 +38,14 @@ class ShowbotWeb < Sinatra::Base
 
   get '/' do
     @title = "Home"
-    @suggestions = Suggestion.recent.all(:order => [:created_at.desc])
+    @suggestion_sets = Suggestion.recent.all(:order => [:created_at.desc]).group_by_show
     haml :index
   end
 
   get '/titles' do
     @title = "Title Suggestions in the last 24 hours"
-    @suggestions = Suggestion.recent.all(:order => [:created_at.desc])
-    haml :titles
+    @suggestion_sets = Suggestion.recent.all(:order => [:created_at.desc]).group_by_show
+    haml :'suggestion/index'
   end
 
   get '/links' do
@@ -56,8 +56,8 @@ class ShowbotWeb < Sinatra::Base
 
   get '/all' do
     @title = "All Title Suggestions"
-    @suggestions = Suggestion.all(:order => [:created_at.desc])
-    haml :titles
+    @suggestion_sets = Suggestion.all(:order => [:created_at.desc]).group_by_show
+    haml :'suggestion/index'
   end
 
   # ===========
@@ -82,5 +82,15 @@ class ShowbotWeb < Sinatra::Base
         string
       end
     end
-  end
+
+    def suggestion_set_hr(suggestion_set)
+      text = "Show Not Listed"
+      if suggestion_set.slug
+        text = Shows.find_show_title(suggestion_set.slug)
+      end
+      "<h2 class='show_break'>#{text}</h2>"
+    end
+
+  end # helpers
+
 end
