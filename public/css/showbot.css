@@ -19,7 +19,7 @@ body {
 
 #content {
   overflow: none;
-  padding-bottom: 10px; }
+  padding-bottom: 30px; }
 
 #header h1.logo {
   margin-bottom: 0; }
@@ -156,6 +156,44 @@ span.code {
   background-color: #F8F8FF;
   padding: 0 .2em;
   border: 1px solid #DEDEDE; }
+
+.suggestions {
+  width: 70%;
+  margin: auto; }
+  .suggestions table {
+    background-color: #a6caf1;
+    border-collapse: separate;
+    width: 100%;
+    margin-bottom: 0;
+    border: solid 2px #777; }
+    .suggestions table th {
+      font-weight: bold;
+      background-color: #DDD;
+      border-bottom: solid 2px #777;
+      cursor: pointer; }
+    .suggestions table th, .suggestions table td {
+      padding: 5px 10px 5px;
+      width: auto; }
+    .suggestions table td {
+      vertical-align: top;
+      overflow-y: hidden;
+      text-shadow: 0 1px 1px #666;
+      text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3); }
+    .suggestions table th + th,
+    .suggestions table td + td,
+    .suggestions table th + td {
+      border-left: 1px solid #888; }
+  .suggestions .footer {
+    color: #777;
+    font-size: 0.9em;
+    text-align: right; }
+
+.zebra-striped tbody tr:nth-child(odd) td,
+.zebra-striped tbody tr:nth-child(odd) th {
+  background-color: #d2e4f8; }
+.zebra-striped tbody tr:hover td,
+.zebra-striped tbody tr:hover th {
+  background-color: #b4d8ff; }
 
 .suggestion {
   display: block;

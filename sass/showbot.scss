@@ -9,6 +9,7 @@ $showbot_bright_blue: #1B89FF;
 $footer_height: 15em;
 $bot_love_height: 2.5em;
 $bot_love_padding: 0.5em;
+$title_background: #d2e4f8;
 
 // -----------------
 // Mixins
@@ -63,7 +64,7 @@ body {
 
 #content {
   overflow: none;
-  padding-bottom: 10px;
+  padding-bottom: 30px;
 }
 
 // ---------------------
@@ -190,10 +191,70 @@ span.code {
 }
 
 // ---------------------
-// Suggestion
+// Suggestion Table
+// ---------------------
+
+.suggestions {
+  width: 70%;
+  margin: auto;
+
+  table {
+    background-color: darken($title_background, 10%);
+    border-collapse: separate; 
+    width: 100%;
+    margin-bottom: 0;
+    border: solid 2px #777;
+    
+    th {
+      font-weight: bold;
+      background-color: #DDD;
+      border-bottom: solid 2px #777;
+      cursor: pointer;
+    }
+    th, td {
+      padding: 5px 10px 5px;
+      width: auto;
+    }
+
+    td {
+      vertical-align: top;
+      overflow-y:hidden;
+      text-shadow: 0 1px 1px #666;
+      text-shadow: 0 1px 1px rgba(0,0,0,0.3);
+    }
+
+    th + th,
+    td + td,
+    th + td {
+      border-left: 1px solid #888;
+    }
+
+  }
+
+  .footer {
+    color: #777;
+    font-size: 0.9em;
+    text-align: right;
+  }
+}
+
+.zebra-striped {
+  tbody {
+    tr:nth-child(odd) td,
+    tr:nth-child(odd) th {
+      background-color: $title_background;
+    }
+    tr:hover td,
+    tr:hover th {
+      background-color: lighten($showbot_bright_blue, 30%);
+    }
+  }
+}
+
+// ---------------------
+// Suggestion Bubbles
 // ---------------------
 .suggestion {
-  $title_background: #d2e4f8;
   display: block;
   width: 200px;
   margin-bottom: 20px;
@@ -287,7 +348,6 @@ span.code {
 // ---------------------
 
 li.link {
-  $title_background: #d2e4f8;
   display: block;
   margin-bottom: 20px;
   padding: 8px 8px 8px 8px;

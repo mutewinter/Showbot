@@ -1,0 +1,19 @@
+- if defined? @suggestion_sets
+  - suggestion_sets = @suggestion_sets
+- suggestions = suggestion_sets.map{|s| s.suggestions}.flatten
+-if suggestions.count > 0
+  %h2.subtitle.grid_12
+    - if suggestions.count == 1
+      ="1 Title Suggestion in the last 24 hours"
+    - else
+      ="#{suggestions.count} Title Suggestions in the last 24 hours"
+  .irc_help In the <a href='http://5by5.tv/chat'>5by5 chat room</a>? Type <span class='code'>!suggest Wacky Title</span> to suggest a title.
+  %hr
+  .clear
+  #titles
+    -#= haml :'suggestion/_bubble_set', :locals => {suggestions: suggestions}
+    = haml :'suggestion/_table_set', :locals => {suggestion_sets: suggestion_sets}
+  .clear
+-else
+  %h2.subtitle.grid_12 No title suggestions yet
+  .irc_help In the <a href='http://5by5.tv/chat'>5by5 chat room</a>? Type <span class='code'>!suggest Wacky Title</span> to suggest a title.
