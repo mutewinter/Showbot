@@ -6,8 +6,13 @@
 // Variables
 $showbot_blue: #1f69bd;
 $showbot_bright_blue: #1B89FF;
+$footer_height: 15em;
+$bot_love_height: 2.5em;
+$bot_love_padding: 0.5em;
 
+// -----------------
 // Mixins
+// -----------------
 
 @mixin quote_base {
   font-size: 5em;
@@ -50,6 +55,14 @@ $showbot_bright_blue: #1B89FF;
   text-shadow: 0px 1px 0px rgba(255,255,255, 0.9);
 }
 
+// -----------------
+// Global Styles
+// -----------------
+
+* {
+  margin: 0;
+}
+
 html {
   height: 100%;
 }
@@ -61,6 +74,10 @@ body {
 }
 
 #wrap {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto ($footer_height + ($bot_love_height + $bot_love_padding)) * -1;
 }
 
 #content {
@@ -430,23 +447,31 @@ li.link {
 // -----------------
 // Footer
 // -----------------
-$footer_height: 15em;
 
 .footer_push {
-  height: $footer_height - 6.8em;
+  height: $footer_height; 
   clear: both;
 }
 
 #bot_love {
+  height: $bot_love_height;
+  padding-bottom: $bot_love_padding;
+
+  // Force text to the bottom
+  line-height: 4em;
+  vertical-align: bottom;
+
   font-size: 1.1em;
   font-weight: bold;
-  padding-bottom: 20px;
   text-align: center;
   @include etched_text;
 }
 
 #footer {
-  height: $footer_height;
+  height: $footer_height; 
+  clear: both;
+  padding-top: 20px;
+  width: 100%;
 
   @include box-shadow(inset 0 20px 20px -20px #000000);
 
@@ -455,7 +480,6 @@ $footer_height: 15em;
   text-shadow: 0px 1px 3px rgba(0,0,0, 0.8);
   
   background: #607082 url('/images/main_bg.png') top center;
-  padding-top: 20px;
   color: #EEEEEE;
 
   p {
