@@ -5,9 +5,9 @@
     %table.sortable.zebra-striped
       %thead
         %tr
-          %th Title
-          %th User
-          %th When
+          %th.header Title
+          %th.header User
+          %th.header When
       %tbody
         - suggestions = suggestion_set.suggestions
         - suggestions.each do |suggestion|
