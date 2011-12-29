@@ -85,6 +85,10 @@ body {
   padding-bottom: 10px;
 }
 
+// ---------------------
+// Header
+// ---------------------
+
 #header {
   h1.logo  {
     margin-bottom: 0;
@@ -137,54 +141,48 @@ body {
     }
 
   }
-
-
-
-  // ---------------------
-  // Navigation
-  // ---------------------
-
-  nav {
-    float: right;
-    margin-top: 27px;
-
-    ul {
-      list-style: none;
-
-      li {
-        float: left;
-        padding: 0 5px;
-
-        a {
-          font-size: 1.3em;
-          font-weight: bold;
-          color: #333333;
-          text-shadow: 0px 2px 3px #888;
-          text-shadow: 0px 2px 3px rgba(0,0,0, 0.4);
-
-          -webkit-transition: text-shadow, color .3s ease-in-out;
-          -moz-transition: text-shadow, color .3s ease-in-out;
-          -o-transition: text-shadow, color .3s ease-in-out;
-          -ms-transition: text-shadow, color .3s ease-in-out;
-          transition: text-shadow, color .3s ease-in-out;
-
-          &:hover {
-            color: #1B89FF;
-          }
-        }
-      }
-    } // ul
-  } // nav
-
 } // #header
 
+// ---------------------
+// Navigation
+// ---------------------
 
-h2.development_mode {
-  background: red;
-  display: block;
-  text-align: center;
-}
+nav {
+  float: right;
+  margin-top: 27px;
 
+  ul {
+    list-style: none;
+
+    li {
+      float: left;
+      padding: 0 5px;
+
+      a {
+        font-size: 1.3em;
+        font-weight: bold;
+        color: #333333;
+        text-shadow: 0px 2px 3px #888;
+        text-shadow: 0px 2px 3px rgba(0,0,0, 0.4);
+
+        -webkit-transition: text-shadow, color .3s ease-in-out;
+        -moz-transition: text-shadow, color .3s ease-in-out;
+        -o-transition: text-shadow, color .3s ease-in-out;
+        -ms-transition: text-shadow, color .3s ease-in-out;
+        transition: text-shadow, color .3s ease-in-out;
+
+        &:hover {
+          color: #1B89FF;
+        }
+      }
+    }
+  } // ul
+} // nav
+
+
+// ---------------------
+// Subtitle
+// ---------------------
 
 h2.subtitle {
   margin-bottom: 15px;
@@ -497,3 +495,39 @@ li.link {
     }
   }
 }
+
+// -----------------
+// Development Mode
+// -----------------
+
+.development {
+  .banner {
+    color: white;
+    background: #990808;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1em;
+
+    padding: 3px 0;
+
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 100;
+  }
+
+  .banner_push {
+    height: 24px;
+  }
+
+  pre.session {
+    color: #999999;
+    font-size: 0.4em;
+    margin-top: 100px;
+  }
+}
+
+
+
+

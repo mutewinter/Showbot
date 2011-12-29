@@ -15,6 +15,10 @@
     %link(rel="stylesheet" href="/css/showbot.css") 
   %body
     #wrap.container_12
+      -if development?
+        .development
+          .banner DEVELOPMENT MODE
+          .banner_push
       #header
         %h1.logo
           %a{:href => '/'}Showbot
@@ -28,8 +32,6 @@
               %a{:href => '/links'}Links
       .clear
       %hr
-      -if development?
-        %h2.development_mode DEVELOPMENT MODE
 
       #content
         =yield
