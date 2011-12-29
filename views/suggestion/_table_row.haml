@@ -1,4 +1,4 @@
 %td.title=h suggestion.title
 %td.user=h suggestion.user || 'No User'
 %td.time
-  %abbr.timeago{:title => suggestion.created_at}= suggestion.created_at.strftime("%-m/%-d/%Y at %-I:%M%P %Z")
+  %abbr.timeago{:title => suggestion.created_at}= suggestion.created_at.strftime("%m/%d/%Y %l:%M%p")
