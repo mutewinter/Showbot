@@ -174,8 +174,7 @@ span.code {
     .suggestions table th {
       font-weight: bold;
       background-color: #DDD;
-      border-bottom: solid 2px #777;
-      cursor: pointer; }
+      border-bottom: solid 2px #777; }
     .suggestions table td {
       vertical-align: top;
       overflow-y: hidden; }
@@ -194,6 +193,39 @@ span.code {
 .zebra-striped tbody tr:hover td,
 .zebra-striped tbody tr:hover th {
   background-color: #b4d8ff; }
+
+table.sortable .header {
+  cursor: pointer; }
+  table.sortable .header:after {
+    content: "";
+    float: right;
+    margin-top: 11px;
+    border-width: 0 4px 4px;
+    border-style: solid;
+    border-color: #000 transparent;
+    visibility: hidden; }
+table.sortable .headerSortUp,
+table.sortable .headerSortDown {
+  background-color: #BBB;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75); }
+table.sortable .header:hover:after {
+  visibility: visible; }
+table.sortable .headerSortDown:after,
+table.sortable .headerSortDown:hover:after {
+  visibility: visible;
+  opacity: 60; }
+table.sortable .headerSortUp:after {
+  border-bottom: none;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid #000;
+  visibility: visible;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  -ms-box-shadow: none;
+  -o-box-shadow: none;
+  box-shadow: none;
+  opacity: 60%; }
 
 .suggestion {
   display: block;

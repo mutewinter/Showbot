@@ -217,7 +217,6 @@ span.code {
       font-weight: bold;
       background-color: #DDD;
       border-bottom: solid 2px #777;
-      cursor: pointer;
     }
 
     td {
@@ -251,6 +250,58 @@ span.code {
       background-color: lighten($showbot_bright_blue, 30%);
     }
   }
+}
+
+// Header Styling from Twitter Bootstrap
+// https://github.com/twitter/bootstrap/blob/master/lib/tables.less
+table.sortable {
+  .header {
+    cursor: pointer;
+    &:after {
+      content: "";
+      float: right;
+      margin-top: 11px;
+      border-width: 0 4px 4px;
+      border-style: solid;
+      border-color: #000 transparent;
+      visibility: hidden;
+    }
+  }
+
+  // Style the sorted column headers (THs)
+  .headerSortUp,
+  .headerSortDown {
+    background-color: #BBB;
+    text-shadow: 0 1px 1px rgba(255,255,255,0.75);
+  }
+
+  // Style the ascending (reverse alphabetical) column header
+  .header:hover {
+    &:after {
+      visibility:visible;
+    }
+  }
+  // Style the descending (alphabetical) column header
+  .headerSortDown,
+  .headerSortDown:hover {
+    &:after {
+      visibility:visible;
+      opacity: 60;
+    }
+  }
+  // Style the ascending (reverse alphabetical) column header
+  .headerSortUp {
+    &:after {
+      border-bottom: none;
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-top: 4px solid #000;
+      visibility:visible;
+      @include box-shadow(none); //can't add boxshadow to downward facing arrow :(
+      opacity: 60%;
+    }
+  }
+  // end Bootstrap table styling
 }
 
 // ---------------------
