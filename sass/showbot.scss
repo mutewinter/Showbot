@@ -22,29 +22,10 @@ $bot_love_padding: 0.5em;
 
 @mixin striped_background {
   // Crazy background stripes
-  background-image: -webkit-gradient(linear, 0 100%, 100% 0,
-  color-stop(.25, rgba(255, 255, 255, .2)), color-stop(.25, transparent),
-  color-stop(.5, transparent), color-stop(.5, rgba(255, 255, 255, .2)),
-  color-stop(.75, rgba(255, 255, 255, .2)), color-stop(.75, transparent),
-  to(transparent));
-  background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, .2) 25%, transparent 25%,
+  @include background-image(linear-gradient(45deg, rgba(255, 255, 255, .2) 25%, transparent 25%,
   transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%,
-  transparent 75%, transparent);
-  background-image: -moz-linear-gradient(45deg, rgba(255, 255, 255, .2) 25%, transparent 25%,
-  transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%,
-  transparent 75%, transparent);
-  background-image: -ms-linear-gradient(45deg, rgba(255, 255, 255, .2) 25%, transparent 25%,
-  transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%,
-  transparent 75%, transparent);
-  background-image: -o-linear-gradient(45deg, rgba(255, 255, 255, .2) 25%, transparent 25%,
-  transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%,
-  transparent 75%, transparent);
-  background-image: linear-gradient(45deg, rgba(255, 255, 255, .2) 25%, transparent 25%,
-  transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%,
-  transparent 75%, transparent);
-  -webkit-background-size: 50px 50px;
-  -moz-background-size: 50px 50px;
-  background-size: 50px 50px;
+  transparent 75%, transparent));
+  @include background-size(50px 50px);
 }
 
 @mixin etched_text($color: #000, $fallback: #B3B3B3) {
@@ -98,17 +79,13 @@ body {
       position: relative;
       opacity: 0;
       left: -20px;
-      top: 14px;
+      top: 18px;
       span {
         position: relative;
         top: 3px;
       }
 
-      -webkit-transition: all 1s ease-in-out;
-      -moz-transition: all 1s ease-in-out;
-      -o-transition: all 1s ease-in-out;
-      -ms-transition: all 1s ease-in-out;
-      transition: all 1s ease-in-out;
+      @include transition(left opacity transform, 1s, ease-in-out);
       &:hover {
         color: red;
       }
@@ -120,11 +97,8 @@ body {
       font-variant: small-caps;
       float: left;
 
-      -webkit-transition: text-shadow, color .3s ease-in-out;
-      -moz-transition: text-shadow, color .3s ease-in-out;
-      -o-transition: text-shadow, color .3s ease-in-out;
-      -ms-transition: text-shadow, color .3s ease-in-out;
-      transition: text-shadow, color .3s ease-in-out;
+      @include transition(text-shadow color, .3s, ease-in-out);
+
       &:hover {
         color: $showbot_bright_blue;
       }
@@ -134,9 +108,7 @@ body {
       .heart {
         opacity: 1;
         left: 0px;
-        -webkit-transform: rotate(-90deg);
-        -moz-transform: rotate(-90deg);
-        transform : rotate(-90deg);
+        @include transform(rotate(-90deg));
       }
     }
 
@@ -165,11 +137,7 @@ nav {
         text-shadow: 0px 2px 3px #888;
         text-shadow: 0px 2px 3px rgba(0,0,0, 0.4);
 
-        -webkit-transition: text-shadow, color .3s ease-in-out;
-        -moz-transition: text-shadow, color .3s ease-in-out;
-        -o-transition: text-shadow, color .3s ease-in-out;
-        -ms-transition: text-shadow, color .3s ease-in-out;
-        transition: text-shadow, color .3s ease-in-out;
+        @include transition(text-shadow color, .3s, ease-in-out);
 
         &:hover {
           color: #1B89FF;
@@ -276,11 +244,7 @@ span.code {
     font-weight: bold;
     opacity: 0;
 
-    -webkit-transition: all .3s ease-in-out;
-    -moz-transition: all .3s ease-in-out;
-    -o-transition: all .3s ease-in-out;
-    -ms-transition: all .3s ease-in-out;
-    transition: all .3s ease-in-out;
+    @include transition(opacity top, .3s, ease-in-out);
     z-index: -1;
     position: relative;
     top:20px;
@@ -347,17 +311,21 @@ li.link {
     font-weight: bold;
     opacity: 0;
 
-    -webkit-transition: all .3s ease-in;
-    -moz-transition: all .3s ease-in;
-    -o-transition: all .3s ease-in;
-    -ms-transition: all .3s ease-in;
-    transition: all .3s ease;
+    @include transition(opacity, .3s, ease-in-out);
     position: relative;
     // Show just outside the top of the box
     top: -24px; 
     // Align with right edge of box
     right: -8px;
   }
+
+  &:hover {
+    overflow: visible;
+    .show {
+      opacity: 1;
+    }
+  }
+
 
   .link_box {
     text-align: left;
@@ -386,9 +354,7 @@ li.link {
       text-shadow: 1px 1px 1px #999;
       text-shadow: rgba(80,80,80,0.3) 0 1px 1px;
 
-      -webkit-transition: .3s all;
-      -moz-transition: .3s all;
-      transition: .3s all;
+      @include transition(color text-shadow, .3s);
 
       &.big {
         font-size: 1.3em;
@@ -419,14 +385,6 @@ li.link {
       text-align: right;
       font-size: 1em;
       @include etched_text;
-    }
-  }
-
-
-  &:hover {
-    overflow: visible;
-    .show {
-      opacity: 1;
     }
   }
 
@@ -489,7 +447,7 @@ li.link {
     color: #FFFFFF;
     font-weight: bold;
 
-    @include transition(all, 0.3s);
+    @include transition(color, 0.3s);
     &:hover{
       color: #BBBBBB;
     }
@@ -527,7 +485,3 @@ li.link {
     margin-top: 100px;
   }
 }
-
-
-
-

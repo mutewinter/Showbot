@@ -29,12 +29,27 @@ body {
     position: relative;
     opacity: 0;
     left: -20px;
-    top: 14px;
-    -webkit-transition: all 1s ease-in-out;
-    -moz-transition: all 1s ease-in-out;
-    -o-transition: all 1s ease-in-out;
-    -ms-transition: all 1s ease-in-out;
-    transition: all 1s ease-in-out; }
+    top: 18px;
+    -webkit-transition-property: left, opacity, transform;
+    -moz-transition-property: left, opacity, transform;
+    -ms-transition-property: left, opacity, transform;
+    -o-transition-property: left, opacity, transform;
+    transition-property: left, opacity, transform;
+    -webkit-transition-duration: 1s;
+    -moz-transition-duration: 1s;
+    -ms-transition-duration: 1s;
+    -o-transition-duration: 1s;
+    transition-duration: 1s;
+    -webkit-transition-timing-function: ease-in-out;
+    -moz-transition-timing-function: ease-in-out;
+    -ms-transition-timing-function: ease-in-out;
+    -o-transition-timing-function: ease-in-out;
+    transition-timing-function: ease-in-out;
+    -webkit-transition-delay: 0;
+    -moz-transition-delay: 0;
+    -ms-transition-delay: 0;
+    -o-transition-delay: 0;
+    transition-delay: 0; }
     #header h1.logo .heart span {
       position: relative;
       top: 3px; }
@@ -45,11 +60,26 @@ body {
     font-size: 1.8em;
     font-variant: small-caps;
     float: left;
-    -webkit-transition: text-shadow, color .3s ease-in-out;
-    -moz-transition: text-shadow, color .3s ease-in-out;
-    -o-transition: text-shadow, color .3s ease-in-out;
-    -ms-transition: text-shadow, color .3s ease-in-out;
-    transition: text-shadow, color .3s ease-in-out; }
+    -webkit-transition-property: text-shadow, color;
+    -moz-transition-property: text-shadow, color;
+    -ms-transition-property: text-shadow, color;
+    -o-transition-property: text-shadow, color;
+    transition-property: text-shadow, color;
+    -webkit-transition-duration: 0.3s;
+    -moz-transition-duration: 0.3s;
+    -ms-transition-duration: 0.3s;
+    -o-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-timing-function: ease-in-out;
+    -moz-transition-timing-function: ease-in-out;
+    -ms-transition-timing-function: ease-in-out;
+    -o-transition-timing-function: ease-in-out;
+    transition-timing-function: ease-in-out;
+    -webkit-transition-delay: 0;
+    -moz-transition-delay: 0;
+    -ms-transition-delay: 0;
+    -o-transition-delay: 0;
+    transition-delay: 0; }
     #header h1.logo a:hover {
       color: #1b89ff; }
   #header h1.logo:hover .heart {
@@ -57,6 +87,8 @@ body {
     left: 0px;
     -webkit-transform: rotate(-90deg);
     -moz-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
     transform: rotate(-90deg); }
 
 nav {
@@ -73,11 +105,26 @@ nav {
         color: #333333;
         text-shadow: 0px 2px 3px #888;
         text-shadow: 0px 2px 3px rgba(0, 0, 0, 0.4);
-        -webkit-transition: text-shadow, color .3s ease-in-out;
-        -moz-transition: text-shadow, color .3s ease-in-out;
-        -o-transition: text-shadow, color .3s ease-in-out;
-        -ms-transition: text-shadow, color .3s ease-in-out;
-        transition: text-shadow, color .3s ease-in-out; }
+        -webkit-transition-property: text-shadow, color;
+        -moz-transition-property: text-shadow, color;
+        -ms-transition-property: text-shadow, color;
+        -o-transition-property: text-shadow, color;
+        transition-property: text-shadow, color;
+        -webkit-transition-duration: 0.3s;
+        -moz-transition-duration: 0.3s;
+        -ms-transition-duration: 0.3s;
+        -o-transition-duration: 0.3s;
+        transition-duration: 0.3s;
+        -webkit-transition-timing-function: ease-in-out;
+        -moz-transition-timing-function: ease-in-out;
+        -ms-transition-timing-function: ease-in-out;
+        -o-transition-timing-function: ease-in-out;
+        transition-timing-function: ease-in-out;
+        -webkit-transition-delay: 0;
+        -moz-transition-delay: 0;
+        -ms-transition-delay: 0;
+        -o-transition-delay: 0;
+        transition-delay: 0; }
         nav ul li a:hover {
           color: #1B89FF; }
 
@@ -141,14 +188,15 @@ span.code {
     line-height: 100%;
     background-color: #d2e4f8;
     font-size: 24px;
-    background-image: -webkit-gradient(linear, 0 100%, 100% 0, color-stop(0.25, rgba(255, 255, 255, 0.2)), color-stop(0.25, transparent), color-stop(0.5, transparent), color-stop(0.5, rgba(255, 255, 255, 0.2)), color-stop(0.75, rgba(255, 255, 255, 0.2)), color-stop(0.75, transparent), to(transparent));
     background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
     background-image: -moz-linear-gradient(45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
     background-image: -ms-linear-gradient(45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
     background-image: -o-linear-gradient(45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
-    background-image: linear, 45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent;
+    background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
     -webkit-background-size: 50px 50px;
     -moz-background-size: 50px 50px;
+    -ms-background-size: 50px 50px;
+    -o-background-size: 50px 50px;
     background-size: 50px 50px; }
   .suggestion .timeago {
     font-size: 0.8em;
@@ -165,11 +213,26 @@ span.code {
     text-align: right;
     font-weight: bold;
     opacity: 0;
-    -webkit-transition: all .3s ease-in-out;
-    -moz-transition: all .3s ease-in-out;
-    -o-transition: all .3s ease-in-out;
-    -ms-transition: all .3s ease-in-out;
-    transition: all .3s ease-in-out;
+    -webkit-transition-property: opacity, top;
+    -moz-transition-property: opacity, top;
+    -ms-transition-property: opacity, top;
+    -o-transition-property: opacity, top;
+    transition-property: opacity, top;
+    -webkit-transition-duration: 0.3s;
+    -moz-transition-duration: 0.3s;
+    -ms-transition-duration: 0.3s;
+    -o-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-timing-function: ease-in-out;
+    -moz-transition-timing-function: ease-in-out;
+    -ms-transition-timing-function: ease-in-out;
+    -o-transition-timing-function: ease-in-out;
+    transition-timing-function: ease-in-out;
+    -webkit-transition-delay: 0;
+    -moz-transition-delay: 0;
+    -ms-transition-delay: 0;
+    -o-transition-delay: 0;
+    transition-delay: 0;
     z-index: -1;
     position: relative;
     top: 20px; }
@@ -218,14 +281,33 @@ li.link {
     text-align: right;
     font-weight: bold;
     opacity: 0;
-    -webkit-transition: all .3s ease-in;
-    -moz-transition: all .3s ease-in;
-    -o-transition: all .3s ease-in;
-    -ms-transition: all .3s ease-in;
-    transition: all .3s ease;
+    -webkit-transition-property: opacity;
+    -moz-transition-property: opacity;
+    -ms-transition-property: opacity;
+    -o-transition-property: opacity;
+    transition-property: opacity;
+    -webkit-transition-duration: 0.3s;
+    -moz-transition-duration: 0.3s;
+    -ms-transition-duration: 0.3s;
+    -o-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-timing-function: ease-in-out;
+    -moz-transition-timing-function: ease-in-out;
+    -ms-transition-timing-function: ease-in-out;
+    -o-transition-timing-function: ease-in-out;
+    transition-timing-function: ease-in-out;
+    -webkit-transition-delay: 0;
+    -moz-transition-delay: 0;
+    -ms-transition-delay: 0;
+    -o-transition-delay: 0;
+    transition-delay: 0;
     position: relative;
     top: -24px;
     right: -8px; }
+  li.link:hover {
+    overflow: visible; }
+    li.link:hover .show {
+      opacity: 1; }
   li.link .link_box {
     text-align: left; }
     li.link .link_box .title {
@@ -246,9 +328,26 @@ li.link {
       color: #0b64c2;
       text-shadow: 1px 1px 1px #999;
       text-shadow: rgba(80, 80, 80, 0.3) 0 1px 1px;
-      -webkit-transition: .3s all;
-      -moz-transition: .3s all;
-      transition: .3s all; }
+      -webkit-transition-property: color, text-shadow;
+      -moz-transition-property: color, text-shadow;
+      -ms-transition-property: color, text-shadow;
+      -o-transition-property: color, text-shadow;
+      transition-property: color, text-shadow;
+      -webkit-transition-duration: 0.3s;
+      -moz-transition-duration: 0.3s;
+      -ms-transition-duration: 0.3s;
+      -o-transition-duration: 0.3s;
+      transition-duration: 0.3s;
+      -webkit-transition-timing-function: ease-out;
+      -moz-transition-timing-function: ease-out;
+      -ms-transition-timing-function: ease-out;
+      -o-transition-timing-function: ease-out;
+      transition-timing-function: ease-out;
+      -webkit-transition-delay: 0;
+      -moz-transition-delay: 0;
+      -ms-transition-delay: 0;
+      -o-transition-delay: 0;
+      transition-delay: 0; }
       li.link .link_box a.uri.big {
         font-size: 1.3em;
         margin-top: 5px; }
@@ -275,10 +374,6 @@ li.link {
     color: rgba(0, 0, 0, 0.35);
     text-shadow: 0px 1px 0px #fff;
     text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.9); }
-  li.link:hover {
-    overflow: visible; }
-    li.link:hover .show {
-      opacity: 1; }
 
 .show_break {
   text-align: center;
@@ -325,11 +420,11 @@ li.link {
   #footer a {
     color: #FFFFFF;
     font-weight: bold;
-    -webkit-transition-property: all;
-    -moz-transition-property: all;
-    -ms-transition-property: all;
-    -o-transition-property: all;
-    transition-property: all;
+    -webkit-transition-property: color;
+    -moz-transition-property: color;
+    -ms-transition-property: color;
+    -o-transition-property: color;
+    transition-property: color;
     -webkit-transition-duration: 0.3s;
     -moz-transition-duration: 0.3s;
     -ms-transition-duration: 0.3s;
