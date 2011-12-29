@@ -166,19 +166,19 @@ span.code {
     width: 100%;
     margin-bottom: 0;
     border: solid 2px #777; }
+    .suggestions table th, .suggestions table td {
+      padding: 5px 10px 5px;
+      width: auto; }
+      .suggestions table th.title, .suggestions table td.title {
+        width: 40%; }
     .suggestions table th {
       font-weight: bold;
       background-color: #DDD;
       border-bottom: solid 2px #777;
       cursor: pointer; }
-    .suggestions table th, .suggestions table td {
-      padding: 5px 10px 5px;
-      width: auto; }
     .suggestions table td {
       vertical-align: top;
-      overflow-y: hidden;
-      text-shadow: 0 1px 1px #666;
-      text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3); }
+      overflow-y: hidden; }
     .suggestions table th + th,
     .suggestions table td + td,
     .suggestions table th + td {

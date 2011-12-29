@@ -204,6 +204,14 @@ span.code {
     width: 100%;
     margin-bottom: 0;
     border: solid 2px #777;
+
+    th, td {
+      padding: 5px 10px 5px;
+      width: auto;
+      &.title {
+        width: 40%;
+      }
+    }
     
     th {
       font-weight: bold;
@@ -211,16 +219,10 @@ span.code {
       border-bottom: solid 2px #777;
       cursor: pointer;
     }
-    th, td {
-      padding: 5px 10px 5px;
-      width: auto;
-    }
 
     td {
       vertical-align: top;
       overflow-y:hidden;
-      text-shadow: 0 1px 1px #666;
-      text-shadow: 0 1px 1px rgba(0,0,0,0.3);
     }
 
     th + th,
@@ -431,7 +433,6 @@ li.link {
     } // a.uri
   } // .link_box
 
-
   .bottom {
     .timeago {
       float: left;
@@ -457,7 +458,6 @@ li.link {
   color: rgba(0,0,0,0.6);
   
   background: url(/images/hr_gap.png) no-repeat 50% 20px;
-  
 }
 
 
