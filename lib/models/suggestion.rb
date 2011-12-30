@@ -83,7 +83,7 @@ class Suggestion
     suggestion_sets = []
     last_show = nil
     all.each do |suggestion|
-      if last_show.nil? or (last_show and last_show != suggestion.show)
+      if suggestion_sets.empty? or last_show != suggestion.show
         suggestion_sets << SuggestionSet.new(suggestion.show)
       end
 
