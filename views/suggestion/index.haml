@@ -16,7 +16,6 @@
       
   .clear
   #titles
-    - puts view_mode
     - if view_mode == 'bubbles'
       = haml :'suggestion/_bubble_set', :locals => {suggestion_sets: suggestion_sets}
     - elsif view_mode == 'tables'
