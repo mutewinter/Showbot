@@ -38,14 +38,16 @@ class ShowbotWeb < Sinatra::Base
 
   get '/' do
     @title = "Home"
-    @suggestion_sets = Suggestion.recent.all(:order => [:created_at.desc]).group_by_show
-    haml :index
+    suggestion_sets = Suggestion.recent.all(:order => [:created_at.desc]).group_by_show
+    view_mode = params[:view_mode] || 'tables'
+    haml :index, :locals => {suggestion_sets: suggestion_sets, :view_mode => view_mode}
   end
 
   get '/titles' do
     @title = "Title Suggestions in the last 24 hours"
-    @suggestion_sets = Suggestion.recent.all(:order => [:created_at.desc]).group_by_show
-    haml :'suggestion/index'
+    view_mode = params[:view_mode] || 'tables'
+    suggestion_sets = Suggestion.recent.all(:order => [:created_at.desc]).group_by_show
+    haml :'suggestion/index', :locals => {suggestion_sets: suggestion_sets, :view_mode => view_mode}
   end
 
   get '/links' do
@@ -55,9 +57,14 @@ class ShowbotWeb < Sinatra::Base
   end
 
   get '/all' do
-    @title = "All Title Suggestions"
-    @suggestion_sets = Suggestion.all(:order => [:created_at.desc]).group_by_show
-    haml :'suggestion/index'
+    if development?
+      @title = "All Title Suggestions"
+      view_mode = params[:view_mode] || 'tables'
+      suggestion_sets = Suggestion.all(:order => [:created_at.desc]).group_by_show
+      haml :'suggestion/index', :locals => {suggestion_sets: suggestion_sets, :view_mode => view_mode}
+    else
+      halt 404
+    end
   end
 
   # ===========

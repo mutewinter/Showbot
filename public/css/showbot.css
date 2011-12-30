@@ -231,32 +231,32 @@ ul.segmented_controls {
       -o-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), inset 0 0 5px rgba(0, 0, 0, 0.15);
       box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), inset 0 0 5px rgba(0, 0, 0, 0.15); }
 
-.suggestions {
+.suggestions_table {
   width: 70%;
   margin: auto; }
-  .suggestions table {
+  .suggestions_table table {
     background-color: #a6caf1;
     border-collapse: separate;
     width: 100%;
     margin-bottom: 0;
     border: solid 2px #777; }
-    .suggestions table th, .suggestions table td {
+    .suggestions_table table th, .suggestions_table table td {
       padding: 5px 10px 5px;
       width: auto; }
-      .suggestions table th.title, .suggestions table td.title {
+      .suggestions_table table th.title, .suggestions_table table td.title {
         width: 40%; }
-    .suggestions table th {
+    .suggestions_table table th {
       font-weight: bold;
       background-color: #DDD;
       border-bottom: solid 2px #777; }
-    .suggestions table td {
+    .suggestions_table table td {
       vertical-align: top;
       overflow-y: hidden; }
-    .suggestions table th + th,
-    .suggestions table td + td,
-    .suggestions table th + td {
+    .suggestions_table table th + th,
+    .suggestions_table table td + td,
+    .suggestions_table table th + td {
       border-left: 1px solid #888; }
-  .suggestions .footer {
+  .suggestions_table .footer {
     color: #777;
     font-size: 0.9em;
     text-align: right; }

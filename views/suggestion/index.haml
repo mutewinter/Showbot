@@ -1,5 +1,3 @@
-- if defined? @suggestion_sets
-  - suggestion_sets = @suggestion_sets
 - suggestions = suggestion_sets.map{|s| s.suggestions}.flatten
 -if suggestions.count > 0
   %h2.subtitle="#{suggestions.count} Title Suggestion#{suggestions.count == 1 ? '' : 's'} in the last 24 hours"
@@ -8,19 +6,25 @@
   %hr
 
   .view_mode.grid_12
-    -#%h3 View
     %ul.segmented_controls
-      %li#bubble
-        %a{href: '#'}Bubbles
-      %li#table.selected
-        %a{href: '#'}Tables
-      %li#hacker
-        %a{href: '#'}Hacker
+      %li#bubble{:class => view_mode == 'bubbles' ? 'selected' : ''}
+        %a{href: '/titles?view_mode=bubbles'}Bubbles
+      %li#table{:class => view_mode == 'tables' ? 'selected' : ''}
+        %a{href: '/titles?view_mode=tables'}Tables
+      %li#hacker{:class => view_mode == 'hacker' ? 'selected' : ''}
+        %a{href: '/titles?view_mode=hacker'}Hacker
       
   .clear
   #titles
-    -#= haml :'suggestion/_bubble_set', :locals => {suggestions: suggestions}
-    = haml :'suggestion/_table_set', :locals => {suggestion_sets: suggestion_sets}
+    - puts view_mode
+    - if view_mode == 'bubbles'
+      = haml :'suggestion/_bubble_set', :locals => {suggestion_sets: suggestion_sets}
+    - elsif view_mode == 'tables'
+      = haml :'suggestion/_table_set', :locals => {suggestion_sets: suggestion_sets}
+    - elsif view_mode == 'hacker'
+      = haml :'suggestion/_hacker_set', :locals => {suggestion_sets: suggestion_sets}
+    - else
+      = haml :'suggestion/_table_set', :locals => {suggestion_sets: suggestion_sets}
   .clear
 -else
   %h2.subtitle.grid_12 No title suggestions yet
