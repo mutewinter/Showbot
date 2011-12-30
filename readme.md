@@ -1,11 +1,11 @@
-# Showbot 3.0
+# Showbot
 
 A sweet IRC bot with a **web interface** for [5by5](http://5by5.tv). 
 Built on [cinch](https://github.com/cinchrb/cinch) and [sinatra](http://www.sinatrarb.com/).
 
 ## Showbot on the Internets
 
-[![Watchers](http://gitego.com/mutewinter/Showbot/watchers.png)![Forks](http://gitego.com/mutewinter/Showbot/forks.png)![Open Issues](http://gitego.com/mutewinter/Showbot/open_issues.png)![Size](http://gitego.com/mutewinter/Showbot/size.png)](http://gitego.com/mutewinter/Showbot)
+[Showbot's Stats on GitEgo](http://gitego.com/mutewinter/Showbot)
 
 [The Creation of Showbot](http://pileofturtles.com/2011/07/showbot/)
 
