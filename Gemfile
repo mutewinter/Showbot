@@ -37,7 +37,7 @@ gem 'dm-mysql-adapter'
 # Development Gems
 group :development do
   gem 'dm-sqlite-adapter'
-  gem 'foreman'
+  gem 'foreman', '0.26.1'
   gem 'rb-fsevent'
 end
 
