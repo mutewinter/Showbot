@@ -169,6 +169,10 @@ a:visited {
 }
 
 hr {
+  margin-bottom: 0;
+}
+
+hr.push {
   padding-bottom: 10px;
 }
 
@@ -189,6 +193,93 @@ span.code {
   padding: 0 .2em;
   border: 1px solid #DEDEDE;
 }
+
+// ---------------------
+// View Mode
+// ---------------------
+
+.view_mode {
+  text-align: center;
+  /*h3 {*/
+    /*margin: 0;*/
+    /*font-size: 1.2em;*/
+  /*}*/
+  margin: 15px 0;
+  margin-left: 12px;
+}
+
+// ---------------------
+// Segmented Controls
+// ---------------------
+
+// Major credit to http://www.prcvl.com/articles/segmented-controls
+ul.segmented_controls {
+  $control_height: 40px;
+  $control_width: 120px;
+
+  margin: auto;
+  list-style-type: none;
+  width: ($control_width * 3) + 2px;
+  height: $control_height;
+  padding: 1px;
+  border: 1px solid #444;
+  /*@include border-radius(4px);*/
+  @include box-shadow(0 1px 0 rgba(255, 255, 255,0.15));
+
+  background: #888;
+
+  a {
+    font-size: 1.5em;
+    line-height: 1.6em;
+    /*vertical-align: middle;*/
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    color: #222;
+    text-shadow: 0 1px 0 rgba(255, 255, 255,0.5);
+
+    display: block;
+    width: $control_width;
+    height: $control_height;
+  }
+
+  li {
+    float: left;
+    margin-left: 1px;
+    line-height: 1.4em;
+
+    @include linear-gradient(0 0 -90deg, rgba(255, 255, 255,0.2), rgba(0, 0, 0, 0.1));
+
+    &:first-child {
+      margin-left: 0;
+      /*@include border-top-left-radius(3px);*/
+      /*@include border-bottom-left-radius(3px);*/
+    }
+    &:last-child {
+      /*@include border-top-right-radius(3px);*/
+      /*@include border-bottom-right-radius(3px);*/
+    }
+    &:active {
+      background-color: #BBB;
+      @include box-shadow(inset 0 1px 4px rgba(0, 0, 0, 0.35), inset 0 0 5px rgba(0, 0, 0, 0.3));
+    }
+    &:active a {
+      text-shadow: 0 1px 0 rgba(255, 255, 255,0.1);
+      position: relative;
+      top: 1px;
+    }
+    &.selected {
+      background-color: lighten($showbot_blue, 20%);
+    }
+    &.selected a {
+      color: white;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, .85);
+      @include linear-gradient(0 0 -90deg, rgba(255, 255, 255,0.1), rgba(255, 255, 255, 0));
+      @include box-shadow(inset 0 1px 3px rgba(0, 0, 0,0.1), inset 0 0 5px rgba(0, 0, 0,0.15));
+    }
+  }
+}
+
 
 // ---------------------
 // Suggestion Table

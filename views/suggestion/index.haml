@@ -9,6 +9,17 @@
       ="#{suggestions.count} Title Suggestions in the last 24 hours"
   .irc_help In the <a href='http://5by5.tv/chat'>5by5 chat room</a>? Type <span class='code'>!suggest Wacky Title</span> to suggest a title.
   %hr
+
+  .view_mode.grid_12
+    -#%h3 View
+    %ul.segmented_controls
+      %li#bubble
+        %a{href: '#'}Bubbles
+      %li#table.selected
+        %a{href: '#'}Tables
+      %li#hacker
+        %a{href: '#'}Hacker
+      
   .clear
   #titles
     -#= haml :'suggestion/_bubble_set', :locals => {suggestions: suggestions}
