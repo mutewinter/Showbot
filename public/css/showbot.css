@@ -162,10 +162,6 @@ span.code {
 
 .view_mode {
   text-align: center;
-  /*h3 {*/
-  /*margin: 0;*/
-  /*font-size: 1.2em;*/
-  /*}*/
   margin: 15px 0;
   margin-left: 12px; }
 
@@ -176,7 +172,6 @@ ul.segmented_controls {
   height: 40px;
   padding: 1px;
   border: 1px solid #444;
-  /*@include border-radius(4px);*/
   -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15);
   -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15);
   -ms-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15);
@@ -186,7 +181,6 @@ ul.segmented_controls {
   ul.segmented_controls a {
     font-size: 1.5em;
     line-height: 1.6em;
-    /*vertical-align: middle;*/
     font-weight: bold;
     text-align: center;
     text-decoration: none;
@@ -207,12 +201,7 @@ ul.segmented_controls {
     background-image: -o-linear-gradient(0 0 -90deg, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0.1));
     background-image: linear-gradient(0 0 -90deg, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0.1)); }
     ul.segmented_controls li:first-child {
-      margin-left: 0;
-      /*@include border-top-left-radius(3px);*/
-      /*@include border-bottom-left-radius(3px);*/ }
-    ul.segmented_controls li:last-child {
-      /*@include border-top-right-radius(3px);*/
-      /*@include border-bottom-right-radius(3px);*/ }
+      margin-left: 0; }
     ul.segmented_controls li:active {
       background-color: #BBB;
       -webkit-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.35), inset 0 0 5px rgba(0, 0, 0, 0.3);

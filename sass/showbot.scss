@@ -200,10 +200,6 @@ span.code {
 
 .view_mode {
   text-align: center;
-  /*h3 {*/
-    /*margin: 0;*/
-    /*font-size: 1.2em;*/
-  /*}*/
   margin: 15px 0;
   margin-left: 12px;
 }
@@ -223,7 +219,6 @@ ul.segmented_controls {
   height: $control_height;
   padding: 1px;
   border: 1px solid #444;
-  /*@include border-radius(4px);*/
   @include box-shadow(0 1px 0 rgba(255, 255, 255,0.15));
 
   background: #888;
@@ -231,7 +226,6 @@ ul.segmented_controls {
   a {
     font-size: 1.5em;
     line-height: 1.6em;
-    /*vertical-align: middle;*/
     font-weight: bold;
     text-align: center;
     text-decoration: none;
@@ -252,12 +246,6 @@ ul.segmented_controls {
 
     &:first-child {
       margin-left: 0;
-      /*@include border-top-left-radius(3px);*/
-      /*@include border-bottom-left-radius(3px);*/
-    }
-    &:last-child {
-      /*@include border-top-right-radius(3px);*/
-      /*@include border-bottom-right-radius(3px);*/
     }
     &:active {
       background-color: #BBB;
