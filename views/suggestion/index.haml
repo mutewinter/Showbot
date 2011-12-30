@@ -21,8 +21,6 @@
       = haml :'suggestion/_bubble_set', :locals => {suggestion_sets: suggestion_sets}
     - elsif view_mode == 'tables'
       = haml :'suggestion/_table_set', :locals => {suggestion_sets: suggestion_sets}
-    - elsif view_mode == 'hacker'
-      = haml :'suggestion/_hacker_set', :locals => {suggestion_sets: suggestion_sets}
     - else
       = haml :'suggestion/_table_set', :locals => {suggestion_sets: suggestion_sets}
   .clear

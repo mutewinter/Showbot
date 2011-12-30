@@ -47,7 +47,12 @@ class ShowbotWeb < Sinatra::Base
     @title = "Title Suggestions in the last 24 hours"
     view_mode = params[:view_mode] || 'tables'
     suggestion_sets = Suggestion.recent.all(:order => [:created_at.desc]).group_by_show
-    haml :'suggestion/index', :locals => {suggestion_sets: suggestion_sets, :view_mode => view_mode}
+    if view_mode == 'hacker'
+      content_type 'text/plain'
+      haml :'suggestion/hacker_mode', :locals => {suggestion_sets: suggestion_sets, :view_mode => view_mode}, :layout => false
+    else
+      haml :'suggestion/index', :locals => {suggestion_sets: suggestion_sets, :view_mode => view_mode}
+    end
   end
 
   get '/links' do
@@ -57,14 +62,9 @@ class ShowbotWeb < Sinatra::Base
   end
 
   get '/all' do
-    if development?
-      @title = "All Title Suggestions"
-      view_mode = params[:view_mode] || 'tables'
-      suggestion_sets = Suggestion.all(:order => [:created_at.desc]).group_by_show
-      haml :'suggestion/index', :locals => {suggestion_sets: suggestion_sets, :view_mode => view_mode}
-    else
-      halt 404
-    end
+    suggestion_sets = Suggestion.all(:order => [:created_at.desc]).group_by_show
+    content_type 'text/plain'
+    haml :'suggestion/hacker_mode', :locals => {suggestion_sets: suggestion_sets}, :layout => false
   end
 
   # ===========
@@ -90,12 +90,16 @@ class ShowbotWeb < Sinatra::Base
       end
     end
 
-    def suggestion_set_hr(suggestion_set)
+    def show_title_for_slug(slug)
       text = "Show Not Listed"
-      if suggestion_set.slug
-        text = Shows.find_show_title(suggestion_set.slug)
+      if slug
+        text = Shows.find_show_title(slug)
       end
-      "<h2 class='show_break'>#{text}</h2>"
+      text
+    end
+
+    def suggestion_set_hr(suggestion_set)
+      "<h2 class='show_break'>#{show_title_for_slug(suggestion_set.slug)}</h2>"
     end
 
   end # helpers
