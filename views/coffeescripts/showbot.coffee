@@ -13,7 +13,7 @@ jQuery(document).ready(->
   # Table Sorting
   $("table.sortable").tablesorter(
     textExtraction: table_text_extraction
-    sortList: [[2,1]]
+    sortList: [[0,1]]
   )
 
   # Setup Votes
