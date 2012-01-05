@@ -292,7 +292,6 @@ ul.segmented_controls {
       }
       &.votes {
         width: 12%;
-        text-align: right;
       }
     }
     
@@ -300,11 +299,17 @@ ul.segmented_controls {
       font-weight: bold;
       background-color: #DDD;
       border-bottom: solid 2px #777;
+      &.votes {
+        text-align: left;
+      }
     }
 
     td {
       vertical-align: top;
       overflow-y:hidden;
+      &.votes {
+        text-align: right;
+      }
     }
 
     th + th,

@@ -246,15 +246,18 @@ ul.segmented_controls {
       .suggestions_table table th.title, .suggestions_table table td.title {
         width: 40%; }
       .suggestions_table table th.votes, .suggestions_table table td.votes {
-        width: 12%;
-        text-align: right; }
+        width: 12%; }
     .suggestions_table table th {
       font-weight: bold;
       background-color: #DDD;
       border-bottom: solid 2px #777; }
+      .suggestions_table table th.votes {
+        text-align: left; }
     .suggestions_table table td {
       vertical-align: top;
       overflow-y: hidden; }
+      .suggestions_table table td.votes {
+        text-align: right; }
     .suggestions_table table th + th,
     .suggestions_table table td + td,
     .suggestions_table table th + td {
