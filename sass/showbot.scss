@@ -547,10 +547,14 @@ table.sortable {
   margin-right: 5px;
   @include transition(color, .3s, ease-in-out);
   color: #555;
+
   &.voted {
     color: darken($showbot_bright_blue, 15%);
   }
 
+  &.error {
+    color: red;
+  }
 }
 
 // ---------------------

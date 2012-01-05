@@ -63,11 +63,15 @@ setup_voting = ->
           800 # 0.2 seconds less than animation due to hide
         )
         vote_amount = parseInt(response)
-        $vote_count.text(vote_amount)
+        if isNaN(vote_amount)
+          $vote_count.addClass('error')
+        else
+          $vote_count.text(vote_amount)
         # Update the sort cache so the table will sort based on the new vote
         # value
         $link.parents('table').trigger('update')
     ).error(->
       $vote_count.removeClass('voted')
+      $vote_count.addClass('error')
     )
   )

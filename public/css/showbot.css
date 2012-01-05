@@ -589,6 +589,8 @@ table.sortable .headerSortUp:after {
   color: #555; }
   .vote_count.voted {
     color: #0063ce; }
+  .vote_count.error {
+    color: red; }
 
 li.link {
   display: block;
