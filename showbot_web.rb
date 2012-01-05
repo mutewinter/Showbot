@@ -116,7 +116,7 @@ class ShowbotWeb < Sinatra::Base
     def link_to_vote_up(suggestion)
       html = ''
       # onclick returns false to keep from allowing 
-      html << "<a href='/titles/#{suggestion.id}/vote_up' class='vote_up' onclick='return false;'>"
+      html << "<a href='#' class='vote_up' onclick='return false;' data-id='#{suggestion.id}'>"
       html <<   "<span class='vote_arrow'/>"
       html << "</a>"
     end

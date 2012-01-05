@@ -51,9 +51,9 @@ setup_voting = ->
     else
       $vote_count.addClass('voted')
 
-    url = $link.attr('href')
+    id = $link.data('id')
 
-    $.get(url, (response) ->
+    $.get("/titles/#{id}/vote_up", (response) ->
       if response?
         $vote_arrow = $link.find('.vote_arrow')
         $vote_arrow.addClass('launch')
