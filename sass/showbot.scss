@@ -390,10 +390,31 @@ table.sortable {
 // ---------------------
 // Suggestion Bubbles
 // ---------------------
-.suggestion {
+.bubble {
   display: block;
   width: 200px;
   margin-bottom: 20px;
+
+  .votes_container {
+    text-align: center;
+    width: auto;
+    float: left;
+    position: relative;
+    top: -4px;
+    margin-right: 5px;
+    .votes {
+      display: block;
+      .vote_count {
+        margin-left: 2px;
+      }
+    }
+
+    .subtitle {
+      line-height: 90%;
+      font-size: 0.8em;
+      color: #666;
+    }
+  }
 
   .qstart {
     @include quote_base;
@@ -412,19 +433,21 @@ table.sortable {
     z-index: 1;
   }
 
-  .title {
-    padding: 20px;
-    text-align: center;
-    word-wrap: break-word;
-    font-size: 1.5em;
-    color: #0f0f0f;
-    text-shadow: 1px 1px 1px #999;
-    text-shadow: rgba(80,80,80,0.5) 0 1px 2px;
-    line-height: 100%;
+  .title_container {
     background-color: $title_background;
-    font-size: 24px;
     @include striped_background;
-   }
+    padding: 20px 20px 20px 20px;
+    .title {
+      text-align: center;
+      word-wrap: break-word;
+      font-size: 1.5em;
+      color: #0f0f0f;
+      text-shadow: 1px 1px 1px #999;
+      text-shadow: rgba(80,80,80,0.5) 0 1px 2px;
+      line-height: 100%;
+      font-size: 1.5em;
+    }
+  }
 
 
   .timeago {
@@ -473,6 +496,7 @@ table.sortable {
       text-align: center;
       min-width: 120px;
       font-size: 1.2em;
+  width: 14px;
       padding-top: 7px;
       @include etched_text;
     }
@@ -500,8 +524,8 @@ table.sortable {
 
 .vote_arrow {
   display: inline-block;
+  width: 14px;
   height: 22px;
-  width: 22px;
   float: left;
   position: relative;
 

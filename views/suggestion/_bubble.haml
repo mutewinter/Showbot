@@ -1,6 +1,10 @@
 .hover.show=h Shows.find_show_title(suggestion.show) if suggestion.show
 .qstart “
-.title=h suggestion.title
+.title_container
+  .votes_container
+    .votes=link_and_vote_count(suggestion, request.ip)
+    .subtitle="vote#{suggestion.votes.count == 1 ? '' : 's'}"
+  .title=h suggestion.title
 .qend ”
 %abbr.timeago{:title => suggestion.created_at}= suggestion.created_at.strftime("%-m/%-d/%Y at %-I:%M%P %Z")
 .arrow_user

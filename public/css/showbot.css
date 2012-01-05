@@ -304,11 +304,26 @@ table.sortable .headerSortUp:after {
   box-shadow: none;
   opacity: 60%; }
 
-.suggestion {
+.bubble {
   display: block;
   width: 200px;
   margin-bottom: 20px; }
-  .suggestion .qstart {
+  .bubble .votes_container {
+    text-align: center;
+    width: auto;
+    float: left;
+    position: relative;
+    top: -4px;
+    margin-right: 5px; }
+    .bubble .votes_container .votes {
+      display: block; }
+      .bubble .votes_container .votes .vote_count {
+        margin-left: 2px; }
+    .bubble .votes_container .subtitle {
+      line-height: 90%;
+      font-size: 0.8em;
+      color: #666; }
+  .bubble .qstart {
     font-size: 5em;
     position: relative;
     color: #1f69bd;
@@ -316,7 +331,7 @@ table.sortable .headerSortUp:after {
     margin-top: -42px;
     margin-bottom: -30px;
     margin-right: -20px; }
-  .suggestion .qend {
+  .bubble .qend {
     font-size: 5em;
     position: relative;
     color: #1f69bd;
@@ -325,17 +340,8 @@ table.sortable .headerSortUp:after {
     margin-bottom: -100px;
     margin-left: -20px;
     z-index: 1; }
-  .suggestion .title {
-    padding: 20px;
-    text-align: center;
-    word-wrap: break-word;
-    font-size: 1.5em;
-    color: #0f0f0f;
-    text-shadow: 1px 1px 1px #999;
-    text-shadow: rgba(80, 80, 80, 0.5) 0 1px 2px;
-    line-height: 100%;
+  .bubble .title_container {
     background-color: #d2e4f8;
-    font-size: 24px;
     background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
     background-image: -moz-linear-gradient(45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
     background-image: -ms-linear-gradient(45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
@@ -345,8 +351,18 @@ table.sortable .headerSortUp:after {
     -moz-background-size: 50px 50px;
     -ms-background-size: 50px 50px;
     -o-background-size: 50px 50px;
-    background-size: 50px 50px; }
-  .suggestion .timeago {
+    background-size: 50px 50px;
+    padding: 20px 20px 20px 20px; }
+    .bubble .title_container .title {
+      text-align: center;
+      word-wrap: break-word;
+      font-size: 1.5em;
+      color: #0f0f0f;
+      text-shadow: 1px 1px 1px #999;
+      text-shadow: rgba(80, 80, 80, 0.5) 0 1px 2px;
+      line-height: 100%;
+      font-size: 1.5em; }
+  .bubble .timeago {
     font-size: 0.8em;
     width: 120px;
     font-weight: bold;
@@ -354,7 +370,7 @@ table.sortable .headerSortUp:after {
     color: rgba(0, 0, 0, 0.35);
     text-shadow: 0px 1px 0px #fff;
     text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.9); }
-  .suggestion .show {
+  .bubble .show {
     color: #606060;
     color: rgba(0, 0, 0, 0.6);
     font-size: 0.8em;
@@ -384,10 +400,10 @@ table.sortable .headerSortUp:after {
     z-index: -1;
     position: relative;
     top: 20px; }
-  .suggestion:hover .show.hover {
+  .bubble:hover .show.hover {
     opacity: 1;
     top: 0px; }
-  .suggestion .arrow_user span.arrow {
+  .bubble .arrow_user span.arrow {
     width: 0;
     height: 0;
     border-top: 30px solid #d2e4f8;
@@ -397,11 +413,12 @@ table.sortable .headerSortUp:after {
     bottom: -2px;
     right: -190px;
     z-index: -1; }
-  .suggestion .arrow_user .user {
+  .bubble .arrow_user .user {
     float: right;
     text-align: center;
     min-width: 120px;
     font-size: 1.2em;
+    width: 14px;
     padding-top: 7px;
     font-weight: bold;
     color: #b3b3b3;
@@ -504,8 +521,8 @@ table.sortable .headerSortUp:after {
 
 .vote_arrow {
   display: inline-block;
+  width: 14px;
   height: 22px;
-  width: 22px;
   float: left;
   position: relative;
   background: url(/images/vote_sprite.png) no-repeat 0 0;
