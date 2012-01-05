@@ -6,6 +6,7 @@ require 'bundler/setup'
 require 'coffee_script'
 require 'sinatra' unless defined?(Sinatra)
 require "sinatra/reloader" if development?
+require "json"
 
 require File.join(File.dirname(__FILE__), 'environment')
 
@@ -47,9 +48,13 @@ class ShowbotWeb < Sinatra::Base
     @title = "Title Suggestions in the last 24 hours"
     view_mode = params[:view_mode] || 'tables'
     suggestion_sets = Suggestion.recent.group_by_show
-    if view_mode == 'hacker'
+    case view_mode
+    when 'hacker'
       content_type 'text/plain'
       haml :'suggestion/hacker_mode', :locals => {suggestion_sets: suggestion_sets, :view_mode => view_mode}, :layout => false
+    when 'json'
+      content_type :json
+      suggestion_sets.to_json
     else
       haml :'suggestion/index', :locals => {suggestion_sets: suggestion_sets, :view_mode => view_mode}
     end
