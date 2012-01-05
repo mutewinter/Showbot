@@ -245,6 +245,9 @@ ul.segmented_controls {
       width: auto; }
       .suggestions_table table th.title, .suggestions_table table td.title {
         width: 40%; }
+      .suggestions_table table th.votes, .suggestions_table table td.votes {
+        width: 12%;
+        text-align: right; }
     .suggestions_table table th {
       font-weight: bold;
       background-color: #DDD;
@@ -405,6 +408,170 @@ table.sortable .headerSortUp:after {
     color: rgba(0, 0, 0, 0.35);
     text-shadow: 0px 1px 0px #fff;
     text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.9); }
+
+@-webkit-keyframes launch_arrow {
+  0% {
+    background-position: 0 0;
+    bottom: 0;
+    left: 0; }
+
+  10% {
+    left: 3px; }
+
+  20% {
+    left: -3px; }
+
+  30% {
+    left: 3px; }
+
+  39% {
+    background-position: 0 0; }
+
+  40% {
+    left: 3px;
+    background-position: 0 -22px; }
+
+  50% {
+    left: 0;
+    bottom: 0; }
+
+  100% {
+    bottom: 30px;
+    left: 0;
+    background-position: 0 -22px; } }
+
+@-moz-keyframes launch_arrow {
+  0% {
+    background-position: 0 0;
+    bottom: 0;
+    left: 0; }
+
+  10% {
+    left: 3px; }
+
+  20% {
+    left: -3px; }
+
+  30% {
+    left: 3px; }
+
+  39% {
+    background-position: 0 0; }
+
+  40% {
+    left: 3px;
+    background-position: 0 -22px; }
+
+  50% {
+    left: 0;
+    bottom: 0; }
+
+  100% {
+    bottom: 30px;
+    left: 0;
+    background-position: 0 -22px; } }
+
+@keyframes launch_arrow {
+  0% {
+    background-position: 0 0;
+    bottom: 0;
+    left: 0; }
+
+  10% {
+    left: 3px; }
+
+  20% {
+    left: -3px; }
+
+  30% {
+    left: 3px; }
+
+  39% {
+    background-position: 0 0; }
+
+  40% {
+    left: 3px;
+    background-position: 0 -22px; }
+
+  50% {
+    left: 0;
+    bottom: 0; }
+
+  100% {
+    bottom: 30px;
+    left: 0;
+    background-position: 0 -22px; } }
+
+.vote_arrow {
+  display: inline-block;
+  height: 22px;
+  width: 22px;
+  float: left;
+  position: relative;
+  background: url(/images/vote_sprite.png) no-repeat 0 0;
+  -webkit-transition-property: height, width;
+  -moz-transition-property: height, width;
+  -ms-transition-property: height, width;
+  -o-transition-property: height, width;
+  transition-property: height, width;
+  -webkit-transition-duration: 0.1s;
+  -moz-transition-duration: 0.1s;
+  -ms-transition-duration: 0.1s;
+  -o-transition-duration: 0.1s;
+  transition-duration: 0.1s;
+  -webkit-transition-timing-function: ease-in-out;
+  -moz-transition-timing-function: ease-in-out;
+  -ms-transition-timing-function: ease-in-out;
+  -o-transition-timing-function: ease-in-out;
+  transition-timing-function: ease-in-out;
+  -webkit-transition-delay: 0;
+  -moz-transition-delay: 0;
+  -ms-transition-delay: 0;
+  -o-transition-delay: 0;
+  transition-delay: 0; }
+  .vote_arrow.launch {
+    -webkit-animation-name: launch_arrow;
+    -moz-animation-name: launch_arrow;
+    animation-name: launch_arrow;
+    -webkit-animation-duration: 1s;
+    -moz-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-direction: normal;
+    -moz-animation-direction: normal;
+    animation-direction: normal;
+    -webkit-animation-iteration-count: 1;
+    -moz-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+    -webkit-animation-timing-function: ease-in-out;
+    -moz-animation-timing-function: ease-in-out;
+    animation-timing-function: ease-in-out; }
+
+.vote_count {
+  font-weight: bold;
+  margin-right: 5px;
+  -webkit-transition-property: color;
+  -moz-transition-property: color;
+  -ms-transition-property: color;
+  -o-transition-property: color;
+  transition-property: color;
+  -webkit-transition-duration: 0.3s;
+  -moz-transition-duration: 0.3s;
+  -ms-transition-duration: 0.3s;
+  -o-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-timing-function: ease-in-out;
+  -moz-transition-timing-function: ease-in-out;
+  -ms-transition-timing-function: ease-in-out;
+  -o-transition-timing-function: ease-in-out;
+  transition-timing-function: ease-in-out;
+  -webkit-transition-delay: 0;
+  -moz-transition-delay: 0;
+  -ms-transition-delay: 0;
+  -o-transition-delay: 0;
+  transition-delay: 0;
+  color: #555; }
+  .vote_count.voted {
+    color: #0063ce; }
 
 li.link {
   display: block;

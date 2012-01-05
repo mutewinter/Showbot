@@ -8,11 +8,17 @@ GEM
     activesupport (3.1.3)
       multi_json (~> 1.0)
     addressable (2.2.6)
+    alias (0.2.2)
+    awesome_print (0.4.0)
     backports (2.3.0)
     backup (3.0.20)
       POpen4 (~> 0.1.4)
       thor (~> 0.14.6)
     bcrypt-ruby (3.0.1)
+    bond (0.4.1)
+    boson (0.3.4)
+      alias (>= 0.2.2)
+      hirb (>= 0.5.0)
     builder (3.0.0)
     chronic (0.6.6)
     chronic_duration (0.9.6)
@@ -22,6 +28,8 @@ GEM
       cinch
       daemons
       json
+    clipboard (0.9.9)
+    coderay (1.0.4)
     coffee-script (2.2.0)
       coffee-script-source
       execjs
@@ -80,10 +88,15 @@ GEM
       data_objects (= 0.10.7)
     do_sqlite3 (0.10.7)
       data_objects (= 0.10.7)
+    drx (0.4.5)
     eventmachine (0.12.10)
+    every_day_irb (1.1.1)
     excon (0.9.4)
     execjs (1.2.13)
       multi_json (~> 1.0)
+    fancy_irb (0.7.2)
+      paint (>= 0.8.1)
+      unicode-display_width (>= 0.1.1)
     faraday (0.7.5)
       addressable (~> 2.2.6)
       multipart-post (~> 1.1.3)
@@ -103,10 +116,44 @@ GEM
       term-ansicolor (~> 1.0.5)
       thor (>= 0.13.6)
     formatador (0.2.1)
+    g (1.5.0)
+      ruby_gntp
     haml (3.1.4)
+    hirb (0.5.0)
     i18n (0.6.0)
+    interactive_editor (0.0.10)
+      spoon (>= 0.0.1)
+    irbtools (1.1.1)
+      awesome_print (~> 0.4.0)
+      boson (>= 0.3.4)
+      clipboard (>= 0.9.9)
+      coderay (~> 1.0.0)
+      every_day_irb (>= 1.1.1)
+      fancy_irb (>= 0.7.2)
+      g (>= 1.4.0)
+      hirb (~> 0.5.0)
+      interactive_editor (>= 0.0.10)
+      looksee (~> 1.0.3)
+      method_locator (>= 0.0.4)
+      method_source (>= 0.6.7)
+      methodfinder (>= 1.2.3)
+      ori (~> 0.1.0)
+      paint (>= 0.8.3)
+      rvm_loader (>= 1.0.0)
+      sketches (>= 0.1.1)
+      wirb (>= 0.4.1)
+      zucker (>= 11)
+    irbtools-more (0.3.2)
+      bond
+      drx
+      irbtools (>= 1.0.0)
     json (1.6.4)
     json_pure (1.6.4)
+    looksee (1.0.3)
+    method_locator (0.0.4)
+    method_source (0.6.7)
+      ruby_parser (>= 2.3.1)
+    methodfinder (1.2.4)
     mime-types (1.17.2)
     multi_json (1.0.4)
     multipart-post (1.1.4)
@@ -116,6 +163,8 @@ GEM
     nokogiri (1.5.0)
     numerizer (0.1.1)
     open4 (1.3.0)
+    ori (0.1.0)
+    paint (0.8.3)
     rack (1.4.0)
     rack-protection (1.1.4)
       rack
@@ -124,7 +173,12 @@ GEM
     rb-fsevent (0.4.3.1)
     ri_cal (0.8.8)
     ruby-hmac (0.4.0)
+    ruby_gntp (0.3.4)
+    ruby_parser (2.3.1)
+      sexp_processor (~> 3.0)
+    rvm_loader (1.0.0)
     sass (3.1.12)
+    sexp_processor (3.0.9)
     simple_oauth (0.1.5)
     sinatra (1.3.1)
       rack (~> 1.3, >= 1.3.4)
@@ -139,6 +193,8 @@ GEM
       tilt (~> 1.3)
     sinatra-reloader (1.0)
       sinatra-contrib
+    sketches (0.1.1)
+    spoon (0.0.1)
     stringex (1.3.0)
     term-ansicolor (1.0.7)
     thin (1.3.1)
@@ -153,10 +209,13 @@ GEM
       multi_json (~> 1.0)
       simple_oauth (~> 0.1)
     tzinfo (0.3.31)
+    unicode-display_width (0.1.1)
     uuidtools (2.1.2)
     whenever (0.7.2)
       activesupport (>= 2.3.4)
       chronic (~> 0.6.3)
+    wirb (0.4.1)
+    zucker (11)
 
 PLATFORMS
   ruby
@@ -175,11 +234,13 @@ DEPENDENCIES
   dm-mysql-adapter
   dm-sqlite-adapter
   dm-timestamps
+  dm-types
   dm-validations
   fog
   foreman (= 0.26.1)
   haml
   i18n
+  irbtools-more
   rb-fsevent
   ri_cal (= 0.8.8)
   sass

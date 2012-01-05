@@ -67,6 +67,17 @@ class ShowbotWeb < Sinatra::Base
     haml :'suggestion/hacker_mode', :locals => {suggestion_sets: suggestion_sets}, :layout => false
   end
 
+  get '/titles/:id/vote_up' do
+    # Only allow XHR requests for voting
+    if request.xhr?
+      suggestion = Suggestion.get(params[:id])
+      suggestion.vote_up(request.ip)
+      suggestion.votes.count.to_s
+    else
+      redirect '/'
+    end
+  end
+
   # ===========
   # Helpers
   # ===========
@@ -100,6 +111,25 @@ class ShowbotWeb < Sinatra::Base
 
     def suggestion_set_hr(suggestion_set)
       "<h2 class='show_break'>#{show_title_for_slug(suggestion_set.slug)}</h2>"
+    end
+
+    def link_to_vote_up(suggestion)
+      html = ''
+      # onclick returns false to keep from allowing 
+      html << "<a href='/titles/#{suggestion.id}/vote_up' class='vote_up' onclick='return false;'>"
+      html <<   "<span class='vote_arrow'/>"
+      html << "</a>"
+    end
+
+    def link_and_vote_count(suggestion, user_ip)
+      html = ''
+      extra_classes = []
+      if suggestion.user_already_voted?(user_ip)
+        extra_classes << 'voted'
+      else
+        html << link_to_vote_up(suggestion)
+      end
+      html << "<span class='vote_count #{extra_classes.join(',')}'>#{suggestion.votes.count}</span>"
     end
 
   end # helpers

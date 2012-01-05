@@ -290,6 +290,10 @@ ul.segmented_controls {
       &.title {
         width: 40%;
       }
+      &.votes {
+        width: 12%;
+        text-align: right;
+      }
     }
     
     th {
@@ -473,6 +477,55 @@ table.sortable {
       @include etched_text;
     }
   }
+}
+
+// ---------------------
+// Voting
+// ---------------------
+
+@mixin launch_arrow {
+  0%   { background-position: 0 0; bottom: 0; left: 0 }
+  10%  { left: 3px; }
+  20%  { left: -3px;  }
+  30%  { left: 3px;  }
+  39%  { background-position: 0 0; }
+  40%  { left: 3px;  background-position: 0 -22px; }
+  50%  { left: 0; bottom: 0; }
+  100% { bottom: 30px; left: 0;  background-position: 0 -22px; }
+}
+
+@-webkit-keyframes launch_arrow { @include launch_arrow; }
+@-moz-keyframes launch_arrow { @include launch_arrow; }
+@keyframes launch_arrow { @include launch_arrow; }
+
+.vote_arrow {
+  display: inline-block;
+  height: 22px;
+  width: 22px;
+  float: left;
+  position: relative;
+
+  background: url(/images/vote_sprite.png) no-repeat 0 0;
+
+  @include transition(height width, 0.1s, ease-in-out);
+  &.launch {
+    @include animation-name(launch_arrow);
+    @include animation-duration(1s);
+    @include animation-direction(normal);
+    @include animation-iteration-count(1);
+    @include animation-timing-function(ease-in-out);
+  }
+}
+
+.vote_count {
+  font-weight: bold;
+  margin-right: 5px;
+  @include transition(color, .3s, ease-in-out);
+  color: #555;
+  &.voted {
+    color: darken($showbot_bright_blue, 15%);
+  }
+
 }
 
 // ---------------------

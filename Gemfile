@@ -33,11 +33,13 @@ gem 'dm-validations'
 gem 'dm-aggregates'
 gem 'dm-migrations'
 gem 'dm-mysql-adapter'
+gem 'dm-types'
 
 # Development Gems
 group :development do
   gem 'dm-sqlite-adapter'
   gem 'foreman', '0.26.1'
   gem 'rb-fsevent'
+  gem 'irbtools-more'
 end
 

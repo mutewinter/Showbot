@@ -1,9 +1,15 @@
+# suggestion.rb
+#
+# Model that contains a title suggestion. These are created from the IRC chat
+# bot via !suggest
+
 require 'open-uri'
 require 'json'
 
 require 'dm-core'
 require 'dm-validations'
 require 'dm-timestamps'
+require 'dm-aggregates'
 
 class Suggestion
   include DataMapper::Resource
@@ -17,12 +23,14 @@ class Suggestion
   property :updated_at, DateTime
 
   validates_presence_of :title
+  validates_with_method :title, :check_title_uniqueness, :if => :new?
 
-  validates_with_method :check_title_uniqueness
+  # Assocations
+  has n, :votes
 
-  # =====================
+  # ------------------
   # Before Save
-  # =====================
+  # ------------------
 
   before :save, :set_live_show
   before :save, :fix_title
@@ -40,9 +48,9 @@ class Suggestion
     end
   end
 
-  # =====================
+  # ------------------
   # Validations
-  # =====================
+  # ------------------
   
   # Verifies that title hasn't been entered in the last 30 minutes
   def check_title_uniqueness
@@ -58,9 +66,9 @@ class Suggestion
     return true
   end
 
-  # =====================
+  # ------------------
   # Class Methods
-  # =====================
+  # ------------------
 
   def self.recent(days_ago = 1)
     from = DateTime.now - days_ago
@@ -74,11 +82,9 @@ class Suggestion
     end
   end
 
-
   # Group suggestions by show slug
   #
-  # Returns an array of groups of suggestions in the format
-  #   [ [:show_slug => [suggestion1, suggestion2, ..], [ :show_slow =>[] ] ]
+  # Returns an array of SuggestionSets (see the bottom of this file)
   def self.group_by_show
     suggestion_sets = []
     last_show = nil
@@ -95,9 +101,43 @@ class Suggestion
 
     suggestion_sets
   end
+
+  # ------------------
+  # Helper Methods
+  # ------------------
+
+  # Voting
+  
+  # Add a vote to the votes assocation for the user's IP
+  #
+  # Returns true if successful and false if the user has already voted.
+  def vote_up(user_ip)
+    if user_already_voted?(user_ip)
+      false
+    else
+      if self.votes.create(:user_ip => user_ip)
+        true
+      else
+        false
+      end
+    end
+  end
+
+  # Determine if a user has already voted on this suggestion from this IP address.
+  #
+  # Returns true if user has not voted on this suggestion.
+  def user_already_voted?(user_ip)
+    self.votes.all(:user_ip => user_ip).count > 0
+  end
+
+  def to_s
+    "#{self.title} by #{self.user}"
+  end
   
 end
 
+
+# Class to hold sets of suggestions for the group_by_show method of Suggestion
 class SuggestionSet
   def initialize(slug = nil)
     @slug = slug
