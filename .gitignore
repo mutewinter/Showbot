@@ -7,3 +7,4 @@
 /development.db
 /test/
 .sass-cache
+db/
