@@ -1,0 +1,5 @@
+%td.votes=link_and_vote_count(suggestion, request.ip)
+%td.title=h suggestion.title
+%td.user=h suggestion.user || 'No User'
+%td.time
+  %abbr.timeago{:title => suggestion.created_at}= suggestion.created_at.strftime("%s")

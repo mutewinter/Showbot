@@ -1,0 +1,10 @@
+Welcome to Hacker Mode.
+- all_suggestions = suggestion_sets.map{|s| s.suggestions}.flatten
+="#{all_suggestions.count} Title Suggestion#{all_suggestions.count == 1 ? '' : 's'} in the last 24 hours."
+="\n"
+- suggestion_sets.each do |suggestion_set|
+  = show_title_for_slug(suggestion_set.slug)
+  - suggestions = suggestion_set.suggestions
+  - suggestions.each do |suggestion|
+    ="#{suggestion.votes_counter} vote#{suggestion.votes.count == 1 ? '' : 's'}, #{suggestion.title}, #{suggestion.user}, #{suggestion.created_at.strftime('%m/%d/%Y %l:%M:%S%p')}"
+  ="\n"

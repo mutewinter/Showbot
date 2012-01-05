@@ -1,13 +1,23 @@
+# vote.rb
+#
+# Model that contains a single vote for a user attached to a suggestion.
+
 require 'dm-core'
 require 'dm-validations'
-require 'dm-timestamps'
+require 'dm-types'
+require 'dm-is-counter_cacheable'
+
 
 class Vote
-    include DataMapper::Resource
 
-    property :id,   Serial
-    property :user, String, :length => 100
-    belongs_to :suggestion
+  include DataMapper::Resource
+  is :counter_cacheable
 
-    validates_presence_of :user
+  property :id,       Serial
+  property :user_ip,  IPAddress,  :required => true, :default => '0.0.0.0'
+
+  # Assocations
+  belongs_to :suggestion
+  counter_cacheable :suggestion
+
 end

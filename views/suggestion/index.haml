@@ -1,0 +1,28 @@
+- suggestions = suggestion_sets.map{|s| s.suggestions}.flatten
+-if suggestions.count > 0
+  %h2.subtitle="#{suggestions.count} Title Suggestion#{suggestions.count == 1 ? '' : 's'} in the last 24 hours"
+  .irc_help In the <a href='http://5by5.tv/chat'>5by5 chat room</a>? Type <span class='code'>!suggest Wacky Title</span> to suggest a title.
+
+  %hr
+
+  .view_mode.grid_12
+    %ul.segmented_controls
+      %li#bubble{:class => view_mode == 'bubbles' ? 'selected' : ''}
+        %a{href: '/titles?view_mode=bubbles'}Bubbles
+      %li#table{:class => view_mode == 'tables' ? 'selected' : ''}
+        %a{href: '/titles?view_mode=tables'}Tables
+      %li#hacker{:class => view_mode == 'hacker' ? 'selected' : ''}
+        %a{href: '/titles?view_mode=hacker'}Hacker
+      
+  .clear
+  #titles
+    - if view_mode == 'bubbles'
+      = haml :'suggestion/_bubble_set', :locals => {suggestion_sets: suggestion_sets}
+    - elsif view_mode == 'tables'
+      = haml :'suggestion/_table_set', :locals => {suggestion_sets: suggestion_sets}
+    - else
+      = haml :'suggestion/_table_set', :locals => {suggestion_sets: suggestion_sets}
+  .clear
+-else
+  %h2.subtitle.grid_12 No title suggestions yet
+  .irc_help In the <a href='http://5by5.tv/chat'>5by5 chat room</a>? Type <span class='code'>!suggest Wacky Title</span> to suggest a title.

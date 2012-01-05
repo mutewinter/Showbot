@@ -1,10 +1,30 @@
-# Showbot 2.1
+# Showbot
 
-A sweet IRC bot with a **web interface** for [5by5](http://5by5.tv). Built on [cinch](https://github.com/cinchrb/cinch) and [sinatra](http://www.sinatrarb.com/).
+A sweet IRC bot with a **web interface** for [5by5](http://5by5.tv). 
+Built on [cinch](https://github.com/cinchrb/cinch) and [sinatra](http://www.sinatrarb.com/).
 
-## How to make showbot go
+## Showbot on the Internets
 
-### Local Development
+[Showbot's Stats on GitEgo](http://gitego.com/mutewinter/Showbot)
+
+[The Creation of Showbot](http://pileofturtles.com/2011/07/showbot/)
+
+[Showbot.me](http://showbot.me)
+
+## IRC Commands
+
+* !next - When's the next live show?
+* !schedule - What shows are being recorded live in the next seven days?
+* !suggest - Be heard. Suggest a title for the live show.
+* !link - Know the link for that? Suggest it and make the show better.
+* !current - What's playing on 5by5.tv/live? I've got you covered.
+* !last_status - The last tweet by @5by5, delievered to you in IRC. Sweet.
+* !about - Was showbot coded or did it spontaniously come into existence?
+* !help - Uh, this.
+
+## Development
+
+### How to make Showbot go
 
 <pre>
 $> foreman start -f Procfile.local

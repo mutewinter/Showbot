@@ -1,0 +1,41 @@
+-if @links.count > 0
+  %h2.subtitle.grid_12
+    - if @links.count == 1
+      ="1 Link Suggestion in the last 24 hours"
+    - else
+      ="#{@links.count} Link Suggestions in the last 24 hours"
+  .irc_help In the <a href='http://5by5.tv/chat'>5by5 chat room</a>? Type <span class='code'>!link http://example.com</span> to suggest a link.
+  %hr
+  .clear
+  %ol#links
+    - col = 0
+    - last_link = nil
+    -@links.each do |link|
+      - if (last_link and last_link.show != link.show) or last_link.nil?
+        - col = 0
+        .clear
+        - if link.show.nil?
+          %h2.show_break Show Not Listed
+        - else
+          %h2.show_break= Shows.find_show_title(link.show)
+        .clear
+      %li.link.grid_6
+        .show=Shows.find_show_title(link.show)
+        .link_box
+          - if link.title
+            .title=h link.title
+          .uri_wrapper
+            %a{:href => external_link(link.uri), :rel => 'nofollow', :class => link.title ? 'uri' : 'big uri'}=h truncate_string(link.uri.to_s, 100)
+        .bottom
+          %abbr.timeago{:title => link.created_at}= link.created_at.strftime("%-m/%-d/%Y at %-I:%M%P %Z")
+          .user=h link.user
+      - last_link = link
+      - if col >= 1
+        .clear
+        - col = 0
+      - else
+        - col += 1
+  .clear
+-else
+  %h2.subtitle.grid_12 No link suggestions yet
+  .irc_help In the <a href='http://5by5.tv/chat'>5by5 chat room</a>? Type <span class='code'>!link http://example.com</span> to suggest a link.

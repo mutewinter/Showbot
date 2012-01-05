@@ -1,0 +1,14 @@
+- suggestion_sets.each do |suggestion_set|
+  .clear
+  = suggestion_set_hr(suggestion_set)
+  - suggestions = suggestion_set.suggestions
+  %ol
+    - col = 0
+    - suggestions.each do |suggestion|
+      %li.bubble.grid_4
+        = haml :'suggestion/_bubble', :locals => {suggestion: suggestion}
+      - if col >= 2
+        .clear
+        - col = 0
+      - else
+        - col += 1

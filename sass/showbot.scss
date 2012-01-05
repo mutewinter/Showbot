@@ -1,0 +1,765 @@
+// showbot.scss
+// All of the styling a bot needs.
+
+@import 'bourbon/bourbon';
+
+// Variables
+$showbot_blue: #1f69bd;
+$showbot_bright_blue: #1B89FF;
+$footer_height: 15em;
+$bot_love_height: 2.5em;
+$bot_love_padding: 0.5em;
+$title_background: #d2e4f8;
+
+// -----------------
+// Mixins
+// -----------------
+
+@mixin quote_base {
+  font-size: 5em;
+  position: relative;
+  color: $showbot_blue;
+}
+
+@mixin striped_background {
+  // Crazy background stripes
+  @include background-image(linear-gradient(45deg, rgba(255, 255, 255, .2) 25%, transparent 25%,
+  transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%,
+  transparent 75%, transparent));
+  @include background-size(50px 50px);
+}
+
+@mixin etched_text($color: #000, $fallback: #B3B3B3) {
+  font-weight: bold;
+  color: $fallback;
+  color: rgba($color, 0.35);
+  text-shadow: 0px 1px 0px #fff;
+  text-shadow: 0px 1px 0px rgba(255,255,255, 0.9);
+}
+
+// -----------------
+// Global Styles
+// -----------------
+
+* {
+  margin: 0;
+}
+
+html {
+  height: 100%;
+}
+
+body { 
+  background: #f0f0f0 url('/images/main_bg.png') top center;
+  height: 100%;
+  font-size: 100%;
+}
+
+#wrap {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto ($footer_height + ($bot_love_height + $bot_love_padding)) * -1;
+}
+
+#content {
+  overflow: none;
+  padding-bottom: 30px;
+}
+
+// ---------------------
+// Header
+// ---------------------
+
+#header {
+  h1.logo  {
+    margin-bottom: 0;
+    .heart {
+      color: $showbot_bright_blue;
+      float: left;
+      position: relative;
+      opacity: 0;
+      left: -20px;
+      top: 18px;
+      span {
+        position: relative;
+        top: 3px;
+      }
+
+      @include transition(left opacity transform, 1s, ease-in-out);
+      &:hover {
+        color: red;
+      }
+    }
+
+    a {
+      color: $showbot_blue;
+      font-size: 1.8em;
+      font-variant: small-caps;
+      float: left;
+
+      @include transition(text-shadow color, .3s, ease-in-out);
+
+      &:hover {
+        color: $showbot_bright_blue;
+      }
+    }
+
+    &:hover { 
+      .heart {
+        opacity: 1;
+        left: 0px;
+        @include transform(rotate(-90deg));
+      }
+    }
+
+  }
+} // #header
+
+// ---------------------
+// Navigation
+// ---------------------
+
+nav {
+  float: right;
+  margin-top: 27px;
+
+  ul {
+    list-style: none;
+
+    li {
+      float: left;
+      padding: 0 5px;
+
+      a {
+        font-size: 1.3em;
+        font-weight: bold;
+        color: #333333;
+        text-shadow: 0px 2px 3px #888;
+        text-shadow: 0px 2px 3px rgba(0,0,0, 0.4);
+
+        @include transition(text-shadow color, .3s, ease-in-out);
+
+        &:hover {
+          color: #1B89FF;
+        }
+      }
+    }
+  } // ul
+} // nav
+
+
+// ---------------------
+// Subtitle
+// ---------------------
+
+h2.subtitle {
+  margin-bottom: 15px;
+  text-align: center;
+  font-size: 2.5em;
+}
+
+a {
+  color: #8b87fa;
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+hr {
+  margin-bottom: 0;
+}
+
+hr.push {
+  padding-bottom: 10px;
+}
+
+.irc_help {
+  font-size: 0.9em;
+  text-align: center;
+  margin-bottom: 30px;
+  color: #888;
+
+  a {
+    color: #777;
+    text-decoration: underline;
+  }
+}
+
+span.code {
+  background-color: #F8F8FF;
+  padding: 0 .2em;
+  border: 1px solid #DEDEDE;
+}
+
+// ---------------------
+// View Mode
+// ---------------------
+
+.view_mode {
+  text-align: center;
+  margin: 15px 0;
+  margin-left: 12px;
+}
+
+// ---------------------
+// Segmented Controls
+// ---------------------
+
+// Major credit to http://www.prcvl.com/articles/segmented-controls
+ul.segmented_controls {
+  $control_height: 40px;
+  $control_width: 120px;
+
+  margin: auto;
+  list-style-type: none;
+  width: ($control_width * 3) + 2px;
+  height: $control_height;
+  padding: 1px;
+  border: 1px solid #444;
+  @include box-shadow(0 1px 0 rgba(255, 255, 255,0.15));
+
+  background: #888;
+
+  a {
+    font-size: 1.5em;
+    line-height: 1.6em;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    color: #222;
+    text-shadow: 0 1px 0 rgba(255, 255, 255,0.5);
+
+    display: block;
+    width: $control_width;
+    height: $control_height;
+  }
+
+  li {
+    float: left;
+    margin-left: 1px;
+    line-height: 1.4em;
+
+    @include linear-gradient(0 0 -90deg, rgba(255, 255, 255,0.2), rgba(0, 0, 0, 0.1));
+
+    &:first-child {
+      margin-left: 0;
+    }
+    &:active {
+      background-color: #BBB;
+      @include box-shadow(inset 0 1px 4px rgba(0, 0, 0, 0.35), inset 0 0 5px rgba(0, 0, 0, 0.3));
+    }
+    &:active a {
+      text-shadow: 0 1px 0 rgba(255, 255, 255,0.1);
+      position: relative;
+      top: 1px;
+    }
+    &.selected {
+      background-color: lighten($showbot_blue, 20%);
+    }
+    &.selected a {
+      color: white;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, .85);
+      @include linear-gradient(0 0 -90deg, rgba(255, 255, 255,0.1), rgba(255, 255, 255, 0));
+      @include box-shadow(inset 0 1px 3px rgba(0, 0, 0,0.1), inset 0 0 5px rgba(0, 0, 0,0.15));
+    }
+  }
+}
+
+
+// ---------------------
+// Suggestion Table
+// ---------------------
+
+.suggestions_table {
+  width: 70%;
+  margin: auto;
+
+  table {
+    background-color: darken($title_background, 10%);
+    border-collapse: separate; 
+    width: 100%;
+    margin-bottom: 0;
+    border: solid 2px #777;
+
+    th, td {
+      padding: 5px 10px 5px;
+      width: auto;
+      &.title {
+        width: 40%;
+      }
+      &.votes {
+        width: 12%;
+      }
+    }
+    
+    th {
+      font-weight: bold;
+      background-color: #DDD;
+      border-bottom: solid 2px #777;
+      &.votes {
+        text-align: left;
+      }
+    }
+
+    td {
+      vertical-align: top;
+      overflow-y:hidden;
+      &.votes {
+        text-align: right;
+      }
+    }
+
+    th + th,
+    td + td,
+    th + td {
+      border-left: 1px solid #888;
+    }
+
+  }
+
+  .footer {
+    color: #777;
+    font-size: 0.9em;
+    text-align: right;
+  }
+}
+
+.zebra-striped {
+  tbody {
+    tr:nth-child(odd) td,
+    tr:nth-child(odd) th {
+      background-color: $title_background;
+    }
+    tr:hover td,
+    tr:hover th {
+      background-color: lighten($showbot_bright_blue, 30%);
+    }
+  }
+}
+
+// Header Styling from Twitter Bootstrap
+// https://github.com/twitter/bootstrap/blob/master/lib/tables.less
+table.sortable {
+  .header {
+    cursor: pointer;
+    &:after {
+      content: "";
+      float: right;
+      margin-top: 11px;
+      border-width: 0 4px 4px;
+      border-style: solid;
+      border-color: #000 transparent;
+      visibility: hidden;
+    }
+  }
+
+  // Style the sorted column headers (THs)
+  .headerSortUp,
+  .headerSortDown {
+    background-color: #BBB;
+    text-shadow: 0 1px 1px rgba(255,255,255,0.75);
+  }
+
+  // Style the ascending (reverse alphabetical) column header
+  .header:hover {
+    &:after {
+      visibility:visible;
+    }
+  }
+  // Style the descending (alphabetical) column header
+  .headerSortDown,
+  .headerSortDown:hover {
+    &:after {
+      visibility:visible;
+      opacity: 60;
+    }
+  }
+  // Style the ascending (reverse alphabetical) column header
+  .headerSortUp {
+    &:after {
+      border-bottom: none;
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-top: 4px solid #000;
+      visibility:visible;
+      @include box-shadow(none); //can't add boxshadow to downward facing arrow :(
+      opacity: 60%;
+    }
+  }
+  // end Bootstrap table styling
+}
+
+// ---------------------
+// Suggestion Bubbles
+// ---------------------
+.bubble {
+  display: block;
+  width: 200px;
+  margin-bottom: 20px;
+
+  .votes_container {
+    text-align: center;
+    margin: auto 5px auto 0;
+    height: 30px;
+    width: auto;
+    float: left;
+    position: relative;
+
+    .votes {
+      display: block;
+      .vote_count {
+        margin-left: 2px;
+      }
+    }
+
+    .subtitle {
+      line-height: 90%;
+      font-size: 0.8em;
+      color: #666;
+    }
+  }
+
+  .qstart {
+    @include quote_base;
+    float: left;
+    margin-top: -42px;
+    margin-bottom: -30px;
+    margin-right: -30px;
+  }
+
+  .qend {
+    @include quote_base;
+    float: right;
+    margin-top: -40px;
+    margin-bottom: -100px;
+    margin-left: -20px;
+    z-index: 1;
+  }
+
+  .title_container {
+    background-color: $title_background;
+    @include striped_background;
+    padding: 20px 20px 20px 10px;
+    .title {
+      text-align: center;
+      word-wrap: break-word;
+      font-size: 1.5em;
+      color: #0f0f0f;
+      text-shadow: 1px 1px 1px #999;
+      text-shadow: rgba(80,80,80,0.5) 0 1px 2px;
+      line-height: 100%;
+      font-size: 1.5em;
+    }
+  }
+
+
+  .timeago {
+    font-size: 0.8em;
+    width: 120px;
+    @include etched_text;
+  }
+
+  .show {
+    color: #606060;
+    color: rgba(0, 0, 0, 0.6);
+
+    font-size: 0.8em;
+    text-align: right;
+    font-weight: bold;
+    opacity: 0;
+
+    @include transition(opacity top, .3s, ease-in-out);
+    z-index: -1;
+    position: relative;
+    top:20px;
+  }
+
+  &:hover {
+    .show.hover {
+      opacity: 1;
+      top:0px;
+    }
+  }
+
+  .arrow_user {
+    span.arrow {
+      width: 0; 
+      height: 0;
+      border-top: 30px solid $title_background;
+      border-left: 50px solid transparent;
+      border-right: 10px solid transparent;
+      position: relative;
+      bottom: -2px;
+      right: -190px;
+      z-index: -1;
+    }
+
+    .user {
+      float: right;
+      text-align: center;
+      min-width: 120px;
+      font-size: 1.2em;
+  width: 14px;
+      padding-top: 7px;
+      @include etched_text;
+    }
+  }
+}
+
+// ---------------------
+// Voting
+// ---------------------
+
+@mixin launch_arrow {
+  0%   { background-position: 0 0; bottom: 0; left: 0 }
+  10%  { left: 3px; }
+  20%  { left: -3px;  }
+  30%  { left: 3px;  }
+  39%  { background-position: 0 0; }
+  40%  { left: 3px;  background-position: 0 -22px; }
+  50%  { left: 0; bottom: 0; }
+  100% { bottom: 30px; left: 0;  background-position: 0 -22px; }
+}
+
+@-webkit-keyframes launch_arrow { @include launch_arrow; }
+@-moz-keyframes launch_arrow { @include launch_arrow; }
+@keyframes launch_arrow { @include launch_arrow; }
+
+.vote_arrow {
+  display: inline-block;
+  width: 14px;
+  height: 22px;
+  float: left;
+  position: relative;
+
+  background: url(/images/vote_sprite.png) no-repeat 0 0;
+
+  @include transition(height width, 0.1s, ease-in-out);
+  &.launch {
+    @include animation-name(launch_arrow);
+    @include animation-duration(1s);
+    @include animation-direction(normal);
+    @include animation-iteration-count(1);
+    @include animation-timing-function(ease-in-out);
+  }
+}
+
+.vote_count {
+  font-weight: bold;
+  margin-right: 5px;
+  @include transition(color, .3s, ease-in-out);
+  color: #555;
+
+  &.voted {
+    color: darken($showbot_bright_blue, 15%);
+  }
+
+  &.error {
+    color: red;
+  }
+}
+
+// ---------------------
+// Link
+// ---------------------
+
+li.link {
+  display: block;
+  margin-bottom: 20px;
+  padding: 8px 8px 8px 8px;
+  width: 444px !important;
+  overflow: auto; // Just incase they don't support word-wrap
+
+  -webkit-box-shadow: inset 0 2px 5px #888;
+  -moz-box-shadow: inset 0 2px 5px #888;
+  box-shadow: inner 0 2px 5px #888;
+
+  background: rgba(204,204,204,0.3);
+  background: rgba(204,204,204,0.3) url(/images/link.png) no-repeat 50% 50%;
+
+  .show {
+    color: #606060;
+    color: rgba(0, 0, 0, 0.6);
+    float: right;
+    margin-bottom: -30px;
+
+    font-size: 0.8em;
+    text-align: right;
+    font-weight: bold;
+    opacity: 0;
+
+    @include transition(opacity, .3s, ease-in-out);
+    position: relative;
+    // Show just outside the top of the box
+    top: -24px; 
+    // Align with right edge of box
+    right: -8px;
+  }
+
+  &:hover {
+    overflow: visible;
+    .show {
+      opacity: 1;
+    }
+  }
+
+
+  .link_box {
+    text-align: left;
+
+    .title {
+      padding: 0 0 10px 0;
+      word-wrap: break-word;
+      color: #0f0f0f;
+      text-shadow: 1px 1px 1px #999;
+      text-shadow: rgba(80,80,80,0.5) 0 1px 2px;
+      line-height: 100%;
+      font-size: 1.3em;
+    }
+
+    .uri_wrapper {
+      padding: 0 5px 5px 0px;
+    }
+
+    a.uri {
+      line-height: 100%;
+      font-weight: bold;
+      font-size: 1em;
+      word-wrap: break-word;
+      color: #0b64c2;
+      
+      text-shadow: 1px 1px 1px #999;
+      text-shadow: rgba(80,80,80,0.3) 0 1px 1px;
+
+      @include transition(color text-shadow, .3s);
+
+      &.big {
+        font-size: 1.3em;
+        margin-top: 5px;
+      }
+
+      &:hover {
+        color: #0D82FF;
+        text-shadow: 0 1px 2px #439EFF;
+        text-shadow: rgba( 67,158,255,1.0) 0 1px 2px;
+      }
+
+    } // a.uri
+  } // .link_box
+
+  .bottom {
+    .timeago {
+      float: left;
+      position: relative;
+      bottom: -4px;
+      font-size: 0.8em;
+      @include etched_text;
+    }
+
+    .user {
+      float: right;
+      text-align: right;
+      font-size: 1em;
+      @include etched_text;
+    }
+  }
+
+}
+
+.show_break {
+  text-align: center;
+  color: #606060;
+  color: rgba(0,0,0,0.6);
+  
+  background: url(/images/hr_gap.png) no-repeat 50% 20px;
+}
+
+
+// -----------------
+// Footer
+// -----------------
+
+.footer_push {
+  height: $footer_height; 
+  clear: both;
+}
+
+#bot_love {
+  height: $bot_love_height;
+  padding-bottom: $bot_love_padding;
+
+  // Force text to the bottom
+  line-height: 4em;
+  vertical-align: bottom;
+
+  font-size: 1.1em;
+  font-weight: bold;
+  text-align: center;
+  @include etched_text;
+}
+
+#footer {
+  height: $footer_height; 
+  clear: both;
+  padding-top: 20px;
+  width: 100%;
+
+  @include box-shadow(inset 0 20px 20px -20px #000000);
+
+  font-size: 0.9em;
+  text-shadow: 0px 1px 3px #000;
+  text-shadow: 0px 1px 3px rgba(0,0,0, 0.8);
+  
+  background: #607082 url('/images/main_bg.png') top center;
+  color: #EEEEEE;
+
+  p {
+    margin-bottom: 0;
+    margin-top: 10px;
+  }
+
+  a {
+    color: #FFFFFF;
+    font-weight: bold;
+
+    @include transition(color, 0.3s);
+    &:hover{
+      color: #BBBBBB;
+    }
+  }
+}
+
+// -----------------
+// Development Mode
+// -----------------
+
+.development {
+  .banner {
+    color: white;
+    background: #990808;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1em;
+
+    padding: 3px 0;
+
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 100;
+  }
+
+  .banner_push {
+    height: 24px;
+  }
+
+  pre.session {
+    color: #999999;
+    font-size: 0.4em;
+    margin-top: 100px;
+  }
+}

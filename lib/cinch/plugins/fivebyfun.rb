@@ -8,16 +8,22 @@ module Cinch
       include Cinch::Plugin
 
       # The cast
-      match %r{(merlin|mann)},   :method => :command_merlin
-      match %r{(sandy|sandwich|adam)},   :method => :command_sandy
-      match %r{(jsir|siracusa|jsiracusa)},   :method => :command_jsir
+      match /(dan|danbenjamin)/i,         :method => :command_dan
+      match /(merlin|mann)/i,             :method => :command_merlin
+      match /(sandy|sandwich|adam)/i,     :method => :command_sandy
+      match /(jsir|siracusa|jsiracusa)/i, :method => :command_jsir
+      match /marco/i,                     :method => :command_marco
+      match /gruber/i,                    :method => :command_gruber
+      match /robertevans/i,               :method => :command_robert_evans
+      match /faith/i,                     :method => :command_faith
+      match /(mike|monteiro)/i,           :method => :command_mike
       # The characers
-      match "paleo",   :method => :command_paleo
-      match "drphil",   :method => :command_drphil
-      match %r{(eight_ball|8ball)},   :method => :command_eight_ball
-      match %r{(dan|danbenjamin)},   :method => :command_dan
-      match "robertevans",   :method => :command_robert_evans
-      
+      match /drphil/i,                    :method => :command_drphil
+      match /(vanhoet|neckbeard)/i,       :method => :command_van_hoet
+      match /paleo/i,                     :method => :command_paleo
+      # The etc.
+      match /(eight_ball|8ball)/i,        :method => :command_eight_ball
+
 
       def command_drphil(m)
         m.reply ["There's a genie for that.",
@@ -35,7 +41,7 @@ module Cinch
 
 
       def command_merlin(m)
-        m.reply "SO angry."
+        m.reply ["SO angry.", "Don't be creepy."].random
       end
       
       def command_sandy(m)
@@ -55,6 +61,14 @@ module Cinch
           "perl -MAlgorithm::Permute -le '$l = [1,2,3,4,5]; $p = Algorithm::Permute->new($l); print @r while @r = $p->next'",
           "perl -lne '(1x$_) !~ /^1?$|^(11+?)\\1+$/ && print \"$_ is prime\"'",
           "perl -ple 's/^[ \\t]+|[ \\t]+$//g'"].random
+      end
+
+      def command_gruber(m)
+        m.reply '...'
+        min_sleep = 3
+        max_sleep = 10
+        sleep(rand(max_sleep-min_sleep) + min_sleep)
+        m.reply "I don't know."
       end
 
       def command_eight_ball(m)
@@ -86,6 +100,25 @@ module Cinch
 
       def command_robert_evans(m)
         m.reply "You bet your ass I was."
+      end
+
+      def command_van_hoet(m)
+        m.reply "Erm, so."
+      end
+
+      def command_marco(m)
+        m.reply ["Please don't email me.",
+                 "I shouldn't have said that.",
+                 "Braaaaands"].random
+      end
+
+      def command_faith(m)
+        m.reply [ "Don't tweet me.",
+                  "Don't be mean."].random
+      end
+
+      def command_mike(m)
+        m.reply "F*ck you. Pay me."
       end
 
     end

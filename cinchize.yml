@@ -17,6 +17,15 @@ plugins: &plugins
     -
       module: "./lib/cinch/plugins/suggestions"
       class: "Cinch::Plugins::Suggestions"
+    -
+      module: "./lib/cinch/plugins/shoutcast_info"
+      class: "Cinch::Plugins::ShoutcastInfo"
+    -
+      module: "./lib/cinch/plugins/twitter_broadcast"
+      class: "Cinch::Plugins::TwitterBroadcast"
+    -
+      module: "./lib/cinch/plugins/links"
+      class: "Cinch::Plugins::Links"
 
 # The base configuration for freenode
 freenode_base: &freenode_base
