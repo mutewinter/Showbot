@@ -38,7 +38,7 @@ class ShowbotWeb < Sinatra::Base
 
   get '/' do
     @title = "Home"
-    suggestion_sets = Suggestion.recent.all(:order => [:created_at.desc]).group_by_show
+    suggestion_sets = Suggestion.recent.group_by_show
     view_mode = params[:view_mode] || 'tables'
     haml :index, :locals => {suggestion_sets: suggestion_sets, :view_mode => view_mode}
   end
@@ -46,7 +46,7 @@ class ShowbotWeb < Sinatra::Base
   get '/titles' do
     @title = "Title Suggestions in the last 24 hours"
     view_mode = params[:view_mode] || 'tables'
-    suggestion_sets = Suggestion.recent.all(:order => [:created_at.desc]).group_by_show
+    suggestion_sets = Suggestion.recent.group_by_show
     if view_mode == 'hacker'
       content_type 'text/plain'
       haml :'suggestion/hacker_mode', :locals => {suggestion_sets: suggestion_sets, :view_mode => view_mode}, :layout => false
