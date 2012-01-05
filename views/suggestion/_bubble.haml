@@ -3,7 +3,7 @@
 .title_container
   .votes_container
     .votes=link_and_vote_count(suggestion, request.ip)
-    .subtitle="vote#{suggestion.votes.count == 1 ? '' : 's'}"
+    .subtitle="vote#{suggestion.votes_counter == 1 ? '' : 's'}"
   .title=h suggestion.title
 .qend ”
 %abbr.timeago{:title => suggestion.created_at}= suggestion.created_at.strftime("%-m/%-d/%Y at %-I:%M%P %Z")

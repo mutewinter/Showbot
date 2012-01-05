@@ -134,6 +134,14 @@ class Suggestion
     "#{self.title} by #{self.user}"
   end
   
+  def update_votes_counter_cache
+    vote_count = self.votes.count
+    if vote_count != self.votes_counter
+      puts "Fixing missmatched count (#{vote_count}/#{self.votes_counter} for #{self})"
+      self.update(:votes_counter => self.votes.count)
+    end
+  end
+
 end
 
 

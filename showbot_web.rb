@@ -129,7 +129,7 @@ class ShowbotWeb < Sinatra::Base
       else
         html << link_to_vote_up(suggestion)
       end
-      html << "<span class='vote_count #{extra_classes.join(',')}'>#{suggestion.votes.count}</span>"
+      html << "<span class='vote_count #{extra_classes.join(',')}'>#{suggestion.votes_counter}</span>"
     end
 
   end # helpers

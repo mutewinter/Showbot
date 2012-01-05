@@ -56,6 +56,8 @@ GEM
     dm-do-adapter (1.2.0)
       data_objects (~> 0.10.6)
       dm-core (~> 1.2.0)
+    dm-is-counter_cacheable (0.1.1)
+      dm-core (~> 1.0)
     dm-migrations (1.2.0)
       dm-core (~> 1.2.0)
     dm-mysql-adapter (1.2.0)
@@ -230,6 +232,7 @@ DEPENDENCIES
   data_mapper
   dm-aggregates
   dm-core
+  dm-is-counter_cacheable
   dm-migrations
   dm-mysql-adapter
   dm-sqlite-adapter

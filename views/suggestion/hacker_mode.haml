@@ -6,5 +6,5 @@ Welcome to Hacker Mode.
   = show_title_for_slug(suggestion_set.slug)
   - suggestions = suggestion_set.suggestions
   - suggestions.each do |suggestion|
-    ="#{suggestion.votes.count} vote#{suggestion.votes.count == 1 ? '' : 's'}, #{suggestion.title}, #{suggestion.user}, #{suggestion.created_at.strftime('%m/%d/%Y %l:%M:%S%p')}"
+    ="#{suggestion.votes_counter} vote#{suggestion.votes.count == 1 ? '' : 's'}, #{suggestion.title}, #{suggestion.user}, #{suggestion.created_at.strftime('%m/%d/%Y %l:%M:%S%p')}"
   ="\n"

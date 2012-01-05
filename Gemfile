@@ -34,6 +34,7 @@ gem 'dm-aggregates'
 gem 'dm-migrations'
 gem 'dm-mysql-adapter'
 gem 'dm-types'
+gem 'dm-is-counter_cacheable'
 
 # Development Gems
 group :development do
