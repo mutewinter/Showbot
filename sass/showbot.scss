@@ -397,11 +397,12 @@ table.sortable {
 
   .votes_container {
     text-align: center;
+    margin: auto 5px auto 0;
+    height: 30px;
     width: auto;
     float: left;
     position: relative;
-    top: -4px;
-    margin-right: 5px;
+
     .votes {
       display: block;
       .vote_count {
@@ -421,7 +422,7 @@ table.sortable {
     float: left;
     margin-top: -42px;
     margin-bottom: -30px;
-    margin-right: -20px;
+    margin-right: -30px;
   }
 
   .qend {
@@ -436,7 +437,7 @@ table.sortable {
   .title_container {
     background-color: $title_background;
     @include striped_background;
-    padding: 20px 20px 20px 20px;
+    padding: 20px 20px 20px 10px;
     .title {
       text-align: center;
       word-wrap: break-word;

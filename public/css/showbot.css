@@ -310,11 +310,11 @@ table.sortable .headerSortUp:after {
   margin-bottom: 20px; }
   .bubble .votes_container {
     text-align: center;
+    margin: auto 5px auto 0;
+    height: 30px;
     width: auto;
     float: left;
-    position: relative;
-    top: -4px;
-    margin-right: 5px; }
+    position: relative; }
     .bubble .votes_container .votes {
       display: block; }
       .bubble .votes_container .votes .vote_count {
@@ -330,7 +330,7 @@ table.sortable .headerSortUp:after {
     float: left;
     margin-top: -42px;
     margin-bottom: -30px;
-    margin-right: -20px; }
+    margin-right: -30px; }
   .bubble .qend {
     font-size: 5em;
     position: relative;
@@ -352,7 +352,7 @@ table.sortable .headerSortUp:after {
     -ms-background-size: 50px 50px;
     -o-background-size: 50px 50px;
     background-size: 50px 50px;
-    padding: 20px 20px 20px 20px; }
+    padding: 20px 20px 20px 10px; }
     .bubble .title_container .title {
       text-align: center;
       word-wrap: break-word;
