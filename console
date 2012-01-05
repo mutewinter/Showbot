@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+
+require 'irb'
+require 'irb/completion'
+require 'irbtools/more'
+require 'environment'
+
+IRB.start
