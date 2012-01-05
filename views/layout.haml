@@ -1,17 +1,17 @@
 !!! 5
 %html
   %head
-    %meta{:charset => "utf-8"}/
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    %meta{:charset => "utf-8"}
+    %meta{:'http-equiv' => "X-UA-Compatible", :content => "IE=edge,chrome=1"}
     %title="Showbot #{'| ' + @title if @title}"
     %meta{:content => "", :name => "description"}/
     %meta{:content => "", :name => "author"}/
-    %link{:href => "/favicon.ico", :rel => "shortcut icon"}/
-    %link{:href => "/apple-touch-icon.png", :rel => "apple-touch-icon"}/
     %link(rel="stylesheet" href="/css/reset.css") 
     %link(rel="stylesheet" href="/css/text.css") 
     %link(rel="stylesheet" href="/css/960.css") 
     %link(rel="stylesheet" href="/css/showbot.css?v=2") 
+    / Modernizer
+    %script{:type => "text/javascript", :src  => "/js/modernizr.custom.js"}
   %body
     #wrap.container_12
       -if development?
@@ -61,8 +61,6 @@
     %script{:type => "text/javascript", :src => "http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"}
     :javascript
       !window.jQuery && document.write('<script src="/js/jquery.min.js"><\/script>')
-    / Modernizer
-    %script{:type => "text/javascript", :src  => "/js/modernizr.custom.js"}
     / JQuery Plugins
     %script{:type => "text/javascript", :src  => "/js/jquery.timeago.js"}
     %script{:type => "text/javascript", :src  => "/js/jquery.tablesorter.min.js"}
