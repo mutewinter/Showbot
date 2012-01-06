@@ -32,7 +32,6 @@ class Suggestion
   # Before Save
   # ------------------
 
-  before :save, :set_live_show
   before :save, :fix_title
 
   # Remove quotes from the title before saving
@@ -41,11 +40,15 @@ class Suggestion
     self.title = self.title.gsub(/^(?:'|")(.*)(?:'|")$/, '\1')
   end
 
+  before :create, :set_live_show
+
   def set_live_show
     # Only fetch show from website if it wasn't set previously.
     if !self.show
       self.show = Shows.fetch_live_show_slug
     end
+
+    true
   end
 
   # ------------------
