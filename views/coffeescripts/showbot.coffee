@@ -34,7 +34,7 @@ table_text_extraction = (element) ->
   # Extract vote count value if this is a vote column
   # Note: This is also required for sorting to continue working via the
   #   trigger('update') after a vote is cast
-  else if $element.find('.vote_count')
+  else if $element.find('.vote_count').length
     text = $element.find('.vote_count').html()
 
   text
