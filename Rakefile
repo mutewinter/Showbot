@@ -39,9 +39,9 @@ namespace :backup do
 end
 
 namespace :foreman do
-  desc 'Create /etc/init/showbot'
-  task :create_init do 
-    sh 'sudo foreman export upstart /etc/init -a showbot -u deploy web=3 irc=1'
+  desc 'Export foreman upstart config for Showbot'
+  task :export do 
+    sh 'sudo foreman export upstart /etc/init -a showbot -p 5000 -u deploy'
   end
 end
 
