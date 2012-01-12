@@ -52,7 +52,7 @@ module Cinch
 
       def response_from_status(status)
         if status
-          created_at = DateTime.parse(status.created_at)
+          created_at = status.created_at.to_datetime
           seconds_ago = (Time.now - created_at.to_time).to_i
           relative_time = ChronicDuration.output(seconds_ago, :format => :long)
 
