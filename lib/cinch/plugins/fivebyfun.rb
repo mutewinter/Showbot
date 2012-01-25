@@ -95,7 +95,7 @@ module Cinch
       end
 
       def command_dan(m)
-        m.reply [ "That's fine for Merlin.", "Big week. Huge week."].random
+        m.reply [ "That's fine for Merlin.", "Big week. Huge week.", "It's your show."].random
       end
 
       def command_robert_evans(m)
