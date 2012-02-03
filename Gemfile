@@ -39,7 +39,7 @@ gem 'dm-is-counter_cacheable'
 # Development Gems
 group :development do
   gem 'dm-sqlite-adapter'
-  gem 'foreman', '0.26.1'
+  gem 'foreman'
   gem 'rb-fsevent'
   gem 'irbtools-more'
 end
