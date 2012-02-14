@@ -17,6 +17,7 @@ module Cinch
       match /robertevans/i,               :method => :command_robert_evans
       match /faith/i,                     :method => :command_faith
       match /(mike|monteiro)/i,           :method => :command_mike
+      match /(roderick)/i,                :method => :command_roderick
       # The characers
       match /drphil/i,                    :method => :command_drphil
       match /(vanhoet|neckbeard)/i,       :method => :command_van_hoet
@@ -24,6 +25,9 @@ module Cinch
       # The etc.
       match /(eight_ball|8ball)/i,        :method => :command_eight_ball
 
+      def command_roderick(m)
+        m.reply ["I demand satisfaction!", "I agree to nothing!"].random
+      end
 
       def command_drphil(m)
         m.reply ["There's a genie for that.",
