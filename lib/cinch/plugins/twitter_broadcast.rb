@@ -23,8 +23,12 @@ module Cinch
 
       # Send the last status for the TWITTER_USER to the user who requested it
       def command_last_status(m)
-        status = Twitter.user_timeline(TWITTER_USER).first
-        m.user.send response_from_status(status)
+        begin
+          status = Twitter.user_timeline(TWITTER_USER).first
+          m.user.send response_from_status(status)
+        rescue Twitter::Error::ServiceUnavailable
+          m.user.send "Oops, looks like Twitter's whale failed. Try again in a minute."
+        end
       end
 
       def send_last_status
