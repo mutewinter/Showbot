@@ -51,12 +51,14 @@ class Shows
   def self.fetch_live_show_slug
     slug = nil
 
-    live_hash = JSON.parse(open(LIVE_URL).read)
-
-    if live_hash and live_hash.has_key?("live") and live_hash["live"]
-      # Show is live, read show name
-      broadcast = live_hash["broadcast"] if live_hash.has_key? "broadcast"
-      slug = broadcast["slug"] if broadcast.has_key? "slug"
+    begin
+      live_hash = JSON.parse(open(LIVE_URL).read)
+    rescue OpenURI::HTTPError
+      if live_hash and live_hash.has_key?("live") and live_hash["live"]
+        # Show is live, read show name
+        broadcast = live_hash["broadcast"] if live_hash.has_key? "broadcast"
+        slug = broadcast["slug"] if broadcast.has_key? "slug"
+      end
     end
 
     return slug
