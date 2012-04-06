@@ -23,6 +23,7 @@
     {"rss":"http://feeds.feedburner.com/incomparablepodcast"     , "url": "incomparable"   , "title": "The Incomparable"}    ,
     {"rss":"http://feeds.feedburner.com/5by5-specials"           , "url": "specials"       , "title": "Specials"}            ,
     {"rss":"http://feeds.feedburner.com/5by5-amplified"          , "url": "amplified"      , "title": "Amplified"}           ,
-    {"rss":"http://feeds.feedburner.com/thebbpodcast"            , "url": "bb"             , "title": "The B&B Podcast"}
+    {"rss":"http://feeds.feedburner.com/thebbpodcast"            , "url": "bb"             , "title": "The B&B Podcast"}     ,
+    {"rss":"http://feeds.feedburner.com/TheNickel"               , "url": "nickel"         , "title": "The Nickel"}
   ]
 }
