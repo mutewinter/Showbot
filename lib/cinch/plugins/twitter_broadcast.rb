@@ -32,7 +32,13 @@ module Cinch
       end
 
       def send_last_status
-        status = Twitter.user_timeline(TWITTER_USER).first
+        begin
+          status = Twitter.user_timeline(TWITTER_USER).first
+        rescue Twitter::Error::ServiceUnavailable
+          puts "Error: Twitter is over capacity."
+          return
+        end
+
         if @last_sent_id.nil?
           # Skip the first message from TWITTER_USER so we don't spam every
           # time the bot reconnects
