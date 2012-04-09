@@ -2,4 +2,4 @@
 %td.title=h suggestion.title
 %td.user=h suggestion.user || 'No User'
 %td.time
-  %abbr.timeago{:title => suggestion.created_at}= suggestion.created_at.strftime("%s")
+  = haml :'suggestion/_timeago', :locals => {datetime: suggestion.created_at}

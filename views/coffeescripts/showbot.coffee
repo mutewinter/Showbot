@@ -1,6 +1,9 @@
 jQuery(document).ready(->
-  # Timestamps
-  $("abbr.timeago").timeago()
+  # Timeago and Tipsy
+  $("abbr.timeago").timeago().show().timeago().tipsy(
+    gravity: 'w'
+    fade: true
+  )
 
   # Modernizr
   if (Modernizr.touch)
@@ -30,7 +33,7 @@ table_text_extraction = (element) ->
 
   # If this is a date column, extract the text for sorting
   if $element.find('abbr').length
-    text = $element.find('abbr').attr('title')
+    text = $element.find('abbr').data('epoch-time')
   # Extract vote count value if this is a vote column
   # Note: This is also required for sorting to continue working via the
   #   trigger('update') after a vote is cast
