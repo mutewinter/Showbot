@@ -16,6 +16,7 @@ gem 'thin'
 gem 'haml'
 gem 'sass'
 gem 'coffee-script'
+gem 'json'
 
 # Showbot Specific
 gem 'cinch', '1.1.3'

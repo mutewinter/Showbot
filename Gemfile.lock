@@ -239,6 +239,7 @@ DEPENDENCIES
   haml
   i18n
   irbtools-more
+  json
   rb-fsevent
   ri_cal (= 0.8.8)
   sass

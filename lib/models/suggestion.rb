@@ -21,6 +21,7 @@ class Suggestion
   property :show,       String
   property :created_at, DateTime
   property :updated_at, DateTime
+  has n, :votes
 
   validates_presence_of :title
   validates_with_method :title, :check_title_uniqueness, :if => :new?

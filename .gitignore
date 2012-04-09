@@ -5,6 +5,7 @@
 .DS_Store
 
 /development.db
+*.swp
 /test/
 .sass-cache
 db/
