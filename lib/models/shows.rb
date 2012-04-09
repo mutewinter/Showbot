@@ -53,12 +53,13 @@ class Shows
 
     begin
       live_hash = JSON.parse(open(LIVE_URL).read)
-    rescue OpenURI::HTTPError
       if live_hash and live_hash.has_key?("live") and live_hash["live"]
         # Show is live, read show name
         broadcast = live_hash["broadcast"] if live_hash.has_key? "broadcast"
         slug = broadcast["slug"] if broadcast.has_key? "slug"
       end
+    rescue OpenURI::HTTPError
+      puts "Error: #{LIVE_URL} looks to be down."
     end
 
     return slug
