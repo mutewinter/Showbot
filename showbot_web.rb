@@ -27,9 +27,9 @@ class ShowbotWeb < Sinatra::Base
     register Sinatra::Reloader
   end
 
-  # =================
+  # ------------------
   # Pages
-  # =================
+  # ------------------
 
   # CoffeeScript
   get '/js/showbot.js' do
@@ -78,9 +78,83 @@ class ShowbotWeb < Sinatra::Base
     end
   end
 
-  # ===========
+  # ------------------
+  # API
+  # ------------------
+
+  # Creates a title suggestion based on a POST request with valid
+  # title and user parameters
+  #
+  # title - String less than 40 characters
+  # user - String username to use
+  #
+  # Examples:
+  #   POST /suggestions/new params{title: 'Omg Title', user: 'mrman'}
+  #
+  #   Response: 
+  #   {
+  #     suggestion: {
+  #       user: 'mrman',
+  #       title: 'Omg Title'
+  #     }
+  #   }
+  #
+  #   POST /suggestions/new params{title: 'Super freaking long title that will make showbot cry a long cry.', user: 'badman'}
+  #
+  #   Response: 
+  #   {
+  #     error: 'That suggestion was too long. Showbot is sorry. Think title, not transcript.'
+  #   }
+  #
+  #   Context: The same title suggested seconds later.
+  #   POST /suggestions/new params{title: 'Same Title', user: 'slowpoke'}
+  #
+  #   Response: 
+  #   {
+  #     error: 'Darn, fastman beat you to "Same Title".'
+  #   }
+  #
+  # Returns a JSON response with the original suggestion and an error
+  # message if one was generated.
+  post '/suggestions/new' do
+    api_key = params[:api_key]
+    response = nil
+    if api_key and ApiKey.first(value: api_key)
+      title = params[:title]
+      user = params[:user]
+      if title && user
+        suggestion = Suggestion.create(
+          title: title,
+          user: user
+        )
+
+        if suggestion.saved?
+          response = {
+            suggestion: {
+              title: title,
+              user: user
+            }
+          }
+        else
+          response = {
+            error: suggestion.errors.first.first
+          }
+        end
+      end
+    end
+
+    if response
+      response.to_json
+    else
+      halt 404, {
+       error: "Invalid Api Key #{api_key}"
+      }.to_json
+    end
+  end
+
+  # ------------------
   # Helpers
-  # ===========
+  # ------------------
 
   helpers do
     include Rack::Utils

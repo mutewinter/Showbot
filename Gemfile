@@ -7,7 +7,7 @@ gem 'i18n'
 # Backups
 gem 'backup'
 gem 'fog'
-gem 'whenever', :require => false
+gem 'whenever', require: false
 
 # Web
 gem 'sinatra'
@@ -44,3 +44,6 @@ group :development do
   gem 'irbtools-more'
 end
 
+group :test do
+  gem 'rack-test', require: false
+end

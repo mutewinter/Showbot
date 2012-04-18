@@ -1,25 +1,28 @@
-require 'rubygems'
+require 'rake/testtask'
 require 'bundler/setup'
-require 'daemons'
 
-task :default => :test
-task :test => :spec
 
-if !defined?(RSpec)
-  puts "spec targets require RSpec"
-else
-  desc "Run all examples"
-  RSpec::Core::RakeTask.new(:spec) do |t|
-    t.pattern = 'spec/**/*.rb'
-    t.rspec_opts = ['-cfs']
+namespace :test do
+  Rake::TestTask.new do |t|
+    t.libs << "test"
+    t.test_files = FileList['test/*test.rb']
+    t.verbose = true
   end
 end
 
+# -----------------------
+# Database
+# -----------------------
 
 namespace :db do
   desc 'Auto-migrate the database (destroys data)'
   task :migrate => :environment do
-    DataMapper.auto_migrate!
+    puts "This will destroy all data in the _#{ENV['RACK_ENV']}_ database, continue? (yN)"
+    if STDIN::gets.strip.downcase == 'y'
+      DataMapper.auto_migrate!
+    else
+      puts "Okay, exiting."
+    end
   end
 
   desc 'Auto-upgrade the database (preserves data)'
@@ -45,9 +48,31 @@ namespace :foreman do
   end
 end
 
+# -----------------------
+# SASS
+# -----------------------
+
 namespace :sass do
   desc 'Watches and compiles sass to proper directory'
   task :watch => :environment do
     sh 'sass --watch -r ./sass/bourbon/lib/bourbon.rb sass/showbot.scss:public/css/showbot.css'
+  end
+end
+
+# -----------------------
+# Api Key Tasks
+# -----------------------
+
+namespace :api_key do
+  desc 'Generates an Api Key for Showbot and prints it out to the console.'
+  task :generate => :environment do
+    print "Application Name (required): "
+    app_name = STDIN::gets.chomp.strip
+    key = ApiKey.create(app_name: app_name)
+    if app_name
+      puts "Here's the Api key for #{app_name}: #{key.value}"
+    else
+      puts "App name required to make a key. We gotta keep track of this stuff."
+    end
   end
 end
