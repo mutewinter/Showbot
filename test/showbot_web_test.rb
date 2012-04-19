@@ -78,6 +78,16 @@ class ShowbotWebTest < Test::Unit::TestCase
     assert_equal json_response['error'], error_message
   end
 
+  def test_missing_user
+    post '/suggestions/new', params = {api_key: api_key.value, title: valid_title}
+    assert_equal json_response['error'], 'Missing / Invalid User'
+  end
+
+  def test_title_user
+    post '/suggestions/new', params = {api_key: api_key.value, user: valid_user}
+    assert_equal json_response['error'], 'Missing / Invalid Title'
+  end
+
   # ------------------
   # Helpers
   # ------------------

@@ -117,6 +117,8 @@ class ShowbotWeb < Sinatra::Base
   # Returns a JSON response with the original suggestion and an error
   # message if one was generated.
   post '/suggestions/new' do
+    content_type :json
+    
     api_key = params[:api_key]
     response = nil
     if api_key and ApiKey.first(value: api_key)
@@ -138,6 +140,16 @@ class ShowbotWeb < Sinatra::Base
         else
           response = {
             error: suggestion.errors.first.first
+          }
+        end
+      else
+        if !title
+          response = {
+            error: 'Missing / Invalid Title'
+          }
+        else
+          response = {
+            error: 'Missing / Invalid User'
           }
         end
       end
