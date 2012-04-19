@@ -15,7 +15,8 @@ class ApiKey
 
   # Create a random key automatically when making a new ApiKey
   before :create do
-    self.value = SecureRandom.urlsafe_base64(16)
+    # Must truncate since urlsafe_base64 doesn't generate the exact length
+    self.value = SecureRandom.urlsafe_base64(16)[0...16]
   end
 
 end
