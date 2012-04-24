@@ -83,14 +83,21 @@ class ShowbotWeb < Sinatra::Base
   # ------------------
 
   # Creates a title suggestion based on a POST request with valid
-  # title and user parameters
+  # title and user parameters.
   #
   # title   - String less than 40 characters.
   # user    - String username to use.
   # api_key - Your API key.
   #
-  # Examples:
-  #   POST /suggestions/new params{title: 'Omg Title', user: 'mrman', api_key: 'keyhere'}
+  # Examples
+  #
+  #   Context: Posting a valid show title with a valid user.
+  #   POST /suggestions/new
+  #   params: {
+  #     title: 'Omg Title',
+  #     user: 'mrman', 
+  #     api_key: 'keyhere'
+  #   }
   #
   #   Response: 
   #   {
@@ -100,15 +107,27 @@ class ShowbotWeb < Sinatra::Base
   #     }
   #   }
   #
-  #   POST /suggestions/new params{title: 'Super freaking long title that will make showbot cry a long cry.', user: 'badman', api_key: 'keyhere'}
+  #   Context: Posting a show title that's too long.
+  #   POST /suggestions/new 
+  #   params: {
+  #     title: 'Super freaking long title that will make showbot cry.',
+  #     user: 'badman',
+  #     api_key: 'keyhere'
+  #   }
   #
   #   Response: 
   #   {
-  #     error: 'That suggestion was too long. Showbot is sorry. Think title, not transcript.'
+  #     error: 'That suggestion was too long. Showbot is sorry. Think title,
+  #             not transcript.'
   #   }
   #
   #   Context: The same title suggested seconds later.
-  #   POST /suggestions/new params{title: 'Same Title', user: 'slowpoke', api_key: 'keyhere'}
+  #   POST /suggestions/new 
+  #   params: {
+  #     title: 'Same Title',
+  #     user: 'slowpoke',
+  #     api_key: 'keyhere'
+  #   }
   #
   #   Response: 
   #   {
