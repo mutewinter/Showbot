@@ -95,11 +95,11 @@ class ShowbotWeb < Sinatra::Base
   #   POST /suggestions/new
   #   params: {
   #     title: 'Omg Title',
-  #     user: 'mrman', 
+  #     user: 'mrman',
   #     api_key: 'keyhere'
   #   }
   #
-  #   Response: 
+  #   Response:
   #   {
   #     suggestion: {
   #       user: 'mrman',
@@ -108,28 +108,28 @@ class ShowbotWeb < Sinatra::Base
   #   }
   #
   #   Context: Posting a show title that's too long.
-  #   POST /suggestions/new 
+  #   POST /suggestions/new
   #   params: {
   #     title: 'Super freaking long title that will make showbot cry.',
   #     user: 'badman',
   #     api_key: 'keyhere'
   #   }
   #
-  #   Response: 
+  #   Response:
   #   {
   #     error: 'That suggestion was too long. Showbot is sorry. Think title,
   #             not transcript.'
   #   }
   #
   #   Context: The same title suggested seconds later.
-  #   POST /suggestions/new 
+  #   POST /suggestions/new
   #   params: {
   #     title: 'Same Title',
   #     user: 'slowpoke',
   #     api_key: 'keyhere'
   #   }
   #
-  #   Response: 
+  #   Response:
   #   {
   #     error: 'Darn, fastman beat you to "Same Title".'
   #   }
@@ -138,7 +138,7 @@ class ShowbotWeb < Sinatra::Base
   # message if one was generated.
   post '/suggestions/new' do
     content_type :json
-    
+
     api_key = params[:api_key]
     response = nil
     if api_key and ApiKey.first(value: api_key)
@@ -221,7 +221,7 @@ class ShowbotWeb < Sinatra::Base
 
     def link_to_vote_up(suggestion)
       html = ''
-      # onclick returns false to keep from allowing 
+      # onclick returns false to keep from allowing
       html << "<a href='#' class='vote_up' onclick='return false;' data-id='#{suggestion.id}'>"
       html <<   "<span class='vote_arrow'/>"
       html << "</a>"

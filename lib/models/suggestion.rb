@@ -54,7 +54,7 @@ class Suggestion
   # ------------------
   # Validations
   # ------------------
-  
+
   # Verifies that title hasn't been entered in the last 30 minutes
   def check_title_uniqueness
     if self.title
@@ -110,7 +110,7 @@ class Suggestion
   # ------------------
 
   # Voting
-  
+
   # Add a vote to the votes assocation for the user's IP
   #
   # Returns true if successful and false if the user has already voted.
@@ -136,7 +136,7 @@ class Suggestion
   def to_s
     "#{self.title} by #{self.user}"
   end
-  
+
   def update_votes_counter_cache
     vote_count = self.votes.count
     if vote_count != self.votes_counter
