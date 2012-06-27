@@ -14,7 +14,8 @@ class Vote
   is :counter_cacheable
 
   property :id,       Serial
-  property :user_ip,  IPAddress,  :required => true, :default => '0.0.0.0'
+  property :user_ip,  IPAddress,  :required => true, :default => '0.0.0.0', index: :user_ip_and_suggestion_id
+  property :suggestion_id, Integer, index: [:suggestion_id, :user_ip_and_suggestion_id]
 
   # Assocations
   belongs_to :suggestion
