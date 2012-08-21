@@ -713,7 +713,9 @@ li.link {
   text-align: center;
   color: #606060;
   color: rgba(0, 0, 0, 0.6);
-  background: url(/images/hr_gap.png) no-repeat 50% 20px; }
+  background: url(/images/hr_gap.png) no-repeat 50% 20px;
+  margin-top: 10px;
+  margin-bottom: 10px; }
 
 .footer_push {
   height: 15em;
