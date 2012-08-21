@@ -49,7 +49,7 @@ html {
   height: 100%;
 }
 
-body { 
+body {
   background: #f0f0f0 url('/images/main_bg.png') top center;
   height: 100%;
   font-size: 100%;
@@ -105,7 +105,7 @@ body {
       }
     }
 
-    &:hover { 
+    &:hover {
       .heart {
         opacity: 1;
         left: 0px;
@@ -279,7 +279,7 @@ ul.segmented_controls {
 
   table {
     background-color: darken($title_background, 10%);
-    border-collapse: separate; 
+    border-collapse: separate;
     width: 100%;
     margin-bottom: 0;
     border: solid 2px #777;
@@ -294,7 +294,7 @@ ul.segmented_controls {
         width: 12%;
       }
     }
-    
+
     th {
       font-weight: bold;
       background-color: #DDD;
@@ -320,7 +320,7 @@ ul.segmented_controls {
 
   }
 
-  .footer {
+  .total {
     color: #777;
     font-size: 0.9em;
     text-align: right;
@@ -486,7 +486,7 @@ table.sortable {
 
   .arrow_user {
     span.arrow {
-      width: 0; 
+      width: 0;
       height: 0;
       border-top: 30px solid $title_background;
       border-left: 50px solid transparent;
@@ -594,7 +594,7 @@ li.link {
     @include transition(opacity, .3s, ease-in-out);
     position: relative;
     // Show just outside the top of the box
-    top: -24px; 
+    top: -24px;
     // Align with right edge of box
     right: -8px;
   }
@@ -630,7 +630,7 @@ li.link {
       font-size: 1em;
       word-wrap: break-word;
       color: #0b64c2;
-      
+
       text-shadow: 1px 1px 1px #999;
       text-shadow: rgba(80,80,80,0.3) 0 1px 1px;
 
@@ -673,7 +673,6 @@ li.link {
   text-align: center;
   color: #606060;
   color: rgba(0,0,0,0.6);
-  
   background: url(/images/hr_gap.png) no-repeat 50% 20px;
 }
 
@@ -683,7 +682,7 @@ li.link {
 // -----------------
 
 .footer_push {
-  height: $footer_height; 
+  height: $footer_height;
   clear: both;
 }
 
@@ -702,7 +701,7 @@ li.link {
 }
 
 #footer {
-  height: $footer_height; 
+  height: $footer_height;
   clear: both;
   padding-top: 20px;
   width: 100%;
@@ -712,7 +711,7 @@ li.link {
   font-size: 0.9em;
   text-shadow: 0px 1px 3px #000;
   text-shadow: 0px 1px 3px rgba(0,0,0, 0.8);
-  
+
   background: #607082 url('/images/main_bg.png') top center;
   color: #EEEEEE;
 

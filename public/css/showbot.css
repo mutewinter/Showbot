@@ -262,7 +262,7 @@ ul.segmented_controls {
     .suggestions_table table td + td,
     .suggestions_table table th + td {
       border-left: 1px solid #888; }
-  .suggestions_table .footer {
+  .suggestions_table .total {
     color: #777;
     font-size: 0.9em;
     text-align: right; }

@@ -1,7 +1,9 @@
 - suggestion_sets.each do |suggestion_set|
+  - suggestions = suggestion_set.suggestions
   .clear
   = suggestion_set_hr(suggestion_set)
   .suggestions_table
+    .total="#{suggestions.count} Title#{suggestions.count == 1 ? '' : 's'}"
     %table.sortable.zebra-striped
       %thead
         %tr
@@ -10,8 +12,6 @@
           %th.header User
           %th.header When
       %tbody
-        - suggestions = suggestion_set.suggestions
         - suggestions.each do |suggestion|
           %tr
             = haml :'suggestion/_table_row', :locals => {suggestion: suggestion}
-    .footer="#{suggestions.count} Title#{suggestions.count == 1 ? '' : 's'}"
