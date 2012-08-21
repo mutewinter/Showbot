@@ -1,5 +1,5 @@
 # schedule_production.rb
-# 
+#
 # Whenever gem's crontab schedule for Showbot in production
 
 set :environment, "production"

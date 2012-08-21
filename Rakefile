@@ -35,7 +35,7 @@ task :environment do
   require File.join(File.dirname(__FILE__), 'environment')
 end
 
-namespace :backup do 
+namespace :backup do
   task :run do
     `backup perform -t showbot_backup -c './config/backup.rb'`
   end
@@ -43,7 +43,7 @@ end
 
 namespace :foreman do
   desc 'Export foreman upstart config for Showbot'
-  task :export do 
+  task :export do
     sh 'sudo foreman export upstart /etc/init -a showbot -p 5000 -u deploy'
   end
 end

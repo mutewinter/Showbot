@@ -27,9 +27,9 @@ configure(:production, :development) do
   DataMapper.finalize
 end
 
-configure :test do 
-  puts 'Test configuration in use' 
-  DataMapper.setup(:default, "sqlite3::memory:") 
-  DataMapper.auto_migrate! 
+configure :test do
+  puts 'Test configuration in use'
+  DataMapper.setup(:default, "sqlite3::memory:")
+  DataMapper.auto_migrate!
   DataMapper.finalize
-end 
+end
