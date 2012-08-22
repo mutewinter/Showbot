@@ -26,11 +26,24 @@ Built on [cinch](https://github.com/cinchrb/cinch) and [sinatra](http://www.sina
 
 ### How to make Showbot go
 
-<pre>
-$> foreman start -f Procfile.local
-</pre>
+**Website and the IRC Bot**
 
-_Note: This will connect the test bot to IRC and start a local web server._
+```
+$ bundle exec foreman start -f Procfile.local
+```
+
+**Just the Website**
+
+```
+$ bundle exec foreman start web -f Procfile.local
+```
+
+**Just the IRC Bot**
+
+```
+$ bundle exec foreman start irc -f Procfile.local
+```
+
 
 ## License
 
