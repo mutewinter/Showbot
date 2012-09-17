@@ -27,6 +27,7 @@ class Suggestion
 
   # Assocations
   has n, :votes
+  belongs_to :cluster, :required => false
 
   # ------------------
   # Before Save
@@ -40,6 +41,28 @@ class Suggestion
     self.title = self.title.gsub(/^(?:'|")(.*)(?:'|")$/, '\1')
   end
 
+  before :create, :check_cluster
+
+  def check_cluster
+    Suggestion.minutes_ago(30).each do |suggestion|
+      if suggestion.title != self.title and lev_sim(suggestion) > 0.7
+        if suggestion.cluster_id
+          suggestion.cluster.suggestions << self
+          self.cluster = suggestion.cluster
+          suggestion.cluster.save
+        else
+          cluster = Cluster.create
+          cluster.suggestions << suggestion
+          cluster.suggestions << self
+          self.cluster = cluster
+          cluster.save
+        end
+        return true
+      end
+    end
+    true
+  end
+
   before :create, :set_live_show
 
   def set_live_show
@@ -49,6 +72,12 @@ class Suggestion
     end
 
     true
+  end
+
+  after :save, :debug_cluster_id
+  
+  def debug_cluster_id
+    $stderr.puts "After save, #{self.title}'s cluster_id is #{self.cluster_id}"
   end
 
   # ------------------
@@ -145,6 +174,13 @@ class Suggestion
     end
   end
 
+  def lev_sim(other_suggestion)
+    distance = levenshtein(self.title.downcase.split(''), 
+                           other_suggestion.title.downcase.split(''))
+    
+    1.0 - distance.to_f / [self.title.length, other_suggestion.title.length].max
+  end
+
 end
 
 
@@ -169,4 +205,36 @@ class SuggestionSet
   end
 
   attr_accessor :slug, :suggestions
+end
+
+def levenshtein(a, b)
+  case
+  when a.empty? then b.length
+  when b.empty? then a.length
+  else 
+    alen = a.length
+    blen = b.length
+    
+    @mat = Hash.new
+
+    for i in 0..alen
+      @mat[[0,i]] = i
+      @mat[[1,i]] = 0
+    end
+
+    for j in 0..blen
+      p = j % 2
+      q = (j + 1) % 2
+      @mat[[p,0]] = j
+      for i in 1..alen
+        cost = 0
+        if a[i-1] != b[j-1]
+          cost = 1
+        end
+        @mat[[p,i]] = [cost + @mat[[q,i-1]], @mat[[p,i-1]] + 1, @mat[[q,i]] + 1].min
+      end
+    end
+
+    @mat[[blen % 2,alen]]
+  end
 end
