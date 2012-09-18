@@ -45,7 +45,7 @@ class Suggestion
 
   def check_cluster
     Suggestion.minutes_ago(30).each do |suggestion|
-      if suggestion.title != self.title and lev_sim(suggestion) > 0.7
+      if suggestion.id != self.id and lev_sim(suggestion) > 0.7
         if suggestion.cluster_id
           suggestion.cluster.suggestions << self
           self.cluster = suggestion.cluster
