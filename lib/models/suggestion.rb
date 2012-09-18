@@ -46,7 +46,7 @@ class Suggestion
   def check_cluster
     Suggestion.minutes_ago(30).each do |suggestion|
       if suggestion.id != self.id and lev_sim(suggestion) > 0.7
-        if suggestion.cluster_id
+        if suggestion.in_cluster?
           suggestion.cluster.suggestions << self
           self.cluster = suggestion.cluster
           suggestion.cluster.save
@@ -181,6 +181,20 @@ class Suggestion
     1.0 - distance.to_f / [self.title.length, other_suggestion.title.length].max
   end
 
+  def in_cluster?
+    $stderr.puts "Calling in_cluster? for #{self.title}: #{self.cluster_id}"   
+    self.cluster_id ? true : false
+  end
+
+  def top_of_cluster?
+    $stderr.puts "Calling top_of_cluster? for #{self.title}"
+    if self.in_cluster?
+      $stderr.puts "My id: #{self.id}; top id: #{self.cluster.top_suggestion.id}"
+      return self.id == self.cluster.top_suggestion.id
+    else
+      true # would be the top if it were in a cluster by itself
+    end
+  end
 end
 
 

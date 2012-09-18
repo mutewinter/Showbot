@@ -84,3 +84,13 @@
         ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
+    :javascript
+      $(function() {
+        $('tr.cluster-top')
+          .css("cursor","pointer")
+          .attr("title","Click to expand/collapse")
+          .click(function(){
+            $(this).siblings('.child-'+this.id).toggle();
+          });
+        $('tr[class^="expand-child"]').hide().children('td');
+      });

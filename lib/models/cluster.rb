@@ -32,7 +32,7 @@ class Cluster
   end
 
   def created_at
-    top_suggestion.created_at
+    self.top_suggestion.created_at
   end
 
   # ------------------

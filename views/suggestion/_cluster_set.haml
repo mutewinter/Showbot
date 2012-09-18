@@ -3,7 +3,7 @@
   .clear
   = suggestion_set_hr(suggestion_set)
   .suggestions_table
-    .total="#{suggestions.count} Title#{suggestions.count == 1 ? '' : 's'}"
+    .total="#{suggestions.count} Title#{suggestions.count == 1 ? '' : 's'} - Cluster Mode"
     %table.sortable.zebra-striped
       %thead
         %tr
@@ -13,5 +13,14 @@
           %th.header When
       %tbody
         - suggestions.each do |suggestion|
-          %tr
-            = haml :'suggestion/_table_row', :locals => {suggestion: suggestion}
+          - if suggestion.in_cluster?
+            - if suggestion.top_of_cluster?
+              %tr{:class => "cluster-top", :id => "cluster-#{suggestion.cluster_id}"}
+                = haml :'suggestion/_cluster_table_row', :locals => {suggestion: suggestion}
+              - suggestion.cluster.suggestions.each do |child_suggestion|
+                - if child_suggestion.id != suggestion.id 
+                  %tr{:class => "expand-child child-cluster-#{child_suggestion.cluster_id}"}
+                    = haml :'suggestion/_cluster_table_row', :locals => {suggestion: child_suggestion}
+          - else
+            %tr
+              = haml :'suggestion/_cluster_table_row', :locals => {suggestion: suggestion}
