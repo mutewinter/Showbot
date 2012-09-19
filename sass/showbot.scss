@@ -347,7 +347,7 @@ ul.segmented_controls {
 }
 .expand-child:hover {
   td {
-    background-color: lighten($showbot_bright_blue, 30%); }
+    background-color: lighten($showbot_bright_blue, 30%); 
   }
 }
 
@@ -355,7 +355,7 @@ table.sortable {
   tbody {
     tr:hover {
       td {
-        background-color: lighten($showbot_bright_blue, 30%); }
+        background-color: lighten($showbot_bright_blue, 30%); 
       }
     }
   }
