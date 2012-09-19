@@ -340,6 +340,27 @@ ul.segmented_controls {
   }
 }
 
+.expand-child {
+  td {
+    background-color: $title_background;
+  }
+}
+.expand-child:hover {
+  td {
+    background-color: lighten($showbot_bright_blue, 30%); }
+  }
+}
+
+table.sortable {
+  tbody {
+    tr:hover {
+      td {
+        background-color: lighten($showbot_bright_blue, 30%); }
+      }
+    }
+  }
+}
+
 // Header Styling from Twitter Bootstrap
 // https://github.com/twitter/bootstrap/blob/master/lib/tables.less
 table.sortable {

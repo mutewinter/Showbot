@@ -3,8 +3,9 @@
   .clear
   = suggestion_set_hr(suggestion_set)
   .suggestions_table
-    .total="#{suggestions.count} Title#{suggestions.count == 1 ? '' : 's'} - Cluster Mode"
-    %table.sortable.zebra-striped
+    - group_count = suggestions.map { |s| s.cluster_id }.uniq.reject { |s| s == nil }.count + suggestions.count { |s| s.cluster_id == nil }
+    .total="#{suggestions.count} Title#{suggestions.count == 1 ? '' : 's'} in #{group_count} Group#{group_count == 1 ? '' : 's'}"
+    %table.sortable
       %thead
         %tr
           %th.votes.header Votes
