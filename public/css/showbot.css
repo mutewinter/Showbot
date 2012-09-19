@@ -258,6 +258,8 @@ ul.segmented_controls {
       overflow-y: hidden; }
       .suggestions_table table td.votes {
         text-align: right; }
+    .suggestions_table table td.cluster-votes {
+      font-weight: bold; }
     .suggestions_table table th + th,
     .suggestions_table table td + td,
     .suggestions_table table th + td {

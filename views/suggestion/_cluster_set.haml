@@ -8,7 +8,7 @@
     %table.sortable
       %thead
         %tr
-          %th.votes.header Votes
+          %th.votes.header{:colspan => 2} Votes
           %th.header Title
           %th.header User
           %th.header When
@@ -17,11 +17,11 @@
           - if suggestion.in_cluster?
             - if suggestion.top_of_cluster?
               %tr{:class => "cluster-top", :id => "cluster-#{suggestion.cluster_id}"}
-                = haml :'suggestion/_cluster_table_row', :locals => {suggestion: suggestion}
+                = haml :'suggestion/_cluster_table_row', :locals => {suggestion: suggestion, cluster_top: true}
               - suggestion.cluster.suggestions.each do |child_suggestion|
                 - if child_suggestion.id != suggestion.id 
                   %tr{:class => "expand-child child-cluster-#{child_suggestion.cluster_id}"}
-                    = haml :'suggestion/_cluster_table_row', :locals => {suggestion: child_suggestion}
+                    = haml :'suggestion/_cluster_table_row', :locals => {suggestion: child_suggestion, cluster_top: false}
           - else
             %tr
-              = haml :'suggestion/_cluster_table_row', :locals => {suggestion: suggestion}
+              = haml :'suggestion/_cluster_table_row', :locals => {suggestion: suggestion, cluster_top: true}

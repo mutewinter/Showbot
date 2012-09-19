@@ -1,3 +1,4 @@
+%td.cluster-votes= (cluster_top) ? suggestion.total_for_cluster : ''
 %td.votes=link_and_vote_count(suggestion, request.ip)
 %td.title=h suggestion.title
 %td.user=h suggestion.user || 'No User'
