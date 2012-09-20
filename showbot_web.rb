@@ -68,11 +68,15 @@ class ShowbotWeb < Sinatra::Base
   end
 
   get '/titles/:id/vote_up' do
+    content_type :json
     # Only allow XHR requests for voting
     if request.xhr?
       suggestion = Suggestion.get(params[:id])
       suggestion.vote_up(request.ip)
-      suggestion.votes.count.to_s
+      {votes: suggestion.votes.count.to_s, 
+        cluster_top: suggestion.top_of_cluster?, 
+        cluster_id: suggestion.cluster_id, 
+        cluster_votes: suggestion.total_for_cluster}.to_json
     else
       redirect '/'
     end
