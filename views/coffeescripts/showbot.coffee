@@ -74,7 +74,7 @@ setup_voting = ->
           if response.cluster_top
             $link.closest('tr').children('.cluster-votes').text(response.cluster_votes)
           else
-            $link.closest('tr').siblings('#cluster-'+response.cluster_id).children('.cluster-votes').text(response.cluster_votes)
+            $link.closest('tr').siblings('#cluster-' + response.cluster_id).children('.cluster-votes').text(response.cluster_votes)
         
         # Update the sort cache so the table will sort based on the new vote
         # value

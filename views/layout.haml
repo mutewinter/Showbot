@@ -91,6 +91,7 @@
           .attr("title","Click to expand/collapse")
           .click(function(){
             $(this).siblings('.child-'+this.id).toggle();
+            $(this).find('.cluster-arrow').toggleClass('expanded-arrow')
           });
         $('tr[class^="expand-child"]').hide().children('td');
       });

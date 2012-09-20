@@ -355,6 +355,20 @@ ul.segmented_controls {
   }
 }
 
+.cluster-arrow {
+  display: inline-block;
+  width: 14px;
+  height: 19px;
+  float: right;
+  position: relative;
+  background: url(/images/expand_arrow_sprite.png) no-repeat 0 0;
+  text-align: right;
+}
+
+.expanded-arrow {
+  background-position: 0 -19px;
+}
+
 table.sortable {
   tbody {
     tr:hover {
