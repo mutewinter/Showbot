@@ -86,11 +86,11 @@
       })();
     :javascript
       $(function() {
-        $('tr.cluster-top')
+        $('tr.cluster-top').children('td.title')
           .css("cursor","pointer")
           .attr("title","Click to expand/collapse")
           .click(function(){
-            $(this).siblings('.child-'+this.id).toggle();
+            $(this).parent().siblings('.child-'+this.parentElement.id).toggle();
             $(this).find('.cluster-arrow').toggleClass('expanded-arrow')
           });
         $('tr[class^="expand-child"]').hide().children('td');
