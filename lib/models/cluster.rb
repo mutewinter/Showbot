@@ -1,3 +1,4 @@
+
 # cluster.rb
 #
 # Model that contains a set of similar title suggestions, determined by
@@ -17,15 +18,12 @@ class Cluster
   property :id,       Serial
   
   # Associations
-  has n, :suggestions
+  has n, :suggestions, :order => [:created_at.desc, :votes_counter.desc]
+  has 1, :top_suggestion, :model => 'Suggestion', :order => [:created_at.asc, :votes_counter.desc]
 
   # ------------------
   # Methods
   # ------------------
-
-  def top_suggestion
-    self.suggestions.all(:order => [:votes_counter.desc, :created_at.asc]).first
-  end
 
   def total_votes
     self.suggestions.all.map(&:votes_counter).inject(0, :+)

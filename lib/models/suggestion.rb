@@ -74,11 +74,11 @@ class Suggestion
     true
   end
 
-  after :save, :debug_cluster_id
+#  after :save, :debug_cluster_id
   
-  def debug_cluster_id
-    $stderr.puts "After save, #{self.title}'s cluster_id is #{self.cluster_id}"
-  end
+#  def debug_cluster_id
+#    $stderr.puts "After save, #{self.title}'s cluster_id is #{self.cluster_id}"
+#  end
 
   # ------------------
   # Validations
@@ -177,26 +177,27 @@ class Suggestion
   # Clustering
 
   def lev_sim(other_suggestion)
-    distance = levenshtein(self.title.downcase.split(''), 
-                           other_suggestion.title.downcase.split(''))
+    distance = levenshtein(self.title.downcase, 
+                           other_suggestion.title.downcase)
     
     1.0 - distance.to_f / [self.title.length, other_suggestion.title.length].max
   end
 
   def in_cluster?
-    self.cluster_id ? true : false
+    !!self.cluster_id
   end
 
   def top_of_cluster?
     if self.in_cluster?
-      return self.id == self.cluster.top_suggestion.id
+      $stderr.puts "My ID: #{self.id}; top ID: #{self.cluster.top_suggestion.id}"
+      self.id == self.cluster.top_suggestion.id
     else
       true # would be the top if it were in a cluster by itself
     end
   end
 
   def total_for_cluster
-    self.cluster_id ? self.cluster.total_votes : self.votes.count
+    self.in_cluster? ? self.cluster.total_votes : self.votes.count
   end
   
 end
@@ -225,34 +226,24 @@ class SuggestionSet
   attr_accessor :slug, :suggestions
 end
 
-def levenshtein(a, b)
-  case
-  when a.empty? then b.length
-  when b.empty? then a.length
-  else 
-    alen = a.length
-    blen = b.length
-    
-    @mat = Hash.new
+# https://github.com/threedaymonk/text/blob/master/lib/text/levenshtein.rb
+def levenshtein(str1, str2)
+  ar1 = str1.split(//)
+  ar2 = str2.split(//)
+  
+  d = (0..ar2.length).to_a
+  x = nil
 
-    for i in 0..alen
-      @mat[[0,i]] = i
-      @mat[[1,i]] = 0
+  ar1.length.times do |i|
+    e = i + 1
+    ar2.length.times do |j|
+      cost = (ar1[i] == ar2[j]) ? 0 : 1;
+      x = [ d[j+1] + 1, e + 1, d[j] + cost].min
+      d[j] = e
+      e = x
     end
-
-    for j in 0..blen
-      p = j % 2
-      q = (j + 1) % 2
-      @mat[[p,0]] = j
-      for i in 1..alen
-        cost = 0
-        if a[i-1] != b[j-1]
-          cost = 1
-        end
-        @mat[[p,i]] = [cost + @mat[[q,i-1]], @mat[[p,i-1]] + 1, @mat[[q,i]] + 1].min
-      end
-    end
-
-    @mat[[blen % 2,alen]]
+    d[ar2.length] = x
   end
+  
+  x
 end
