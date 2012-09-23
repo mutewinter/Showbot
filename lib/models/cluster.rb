@@ -18,8 +18,8 @@ class Cluster
   property :id,       Serial
   
   # Associations
-  has n, :suggestions, :order => [:created_at.desc, :votes_counter.desc]
-  has 1, :top_suggestion, :model => 'Suggestion', :order => [:created_at.asc, :votes_counter.desc]
+  has n, :suggestions, :order => [:votes_counter.desc, :created_at.desc]
+  has 1, :top_suggestion, :model => 'Suggestion', :order => [:votes_counter.desc, :created_at.asc]
 
   # ------------------
   # Methods

@@ -189,7 +189,6 @@ class Suggestion
 
   def top_of_cluster?
     if self.in_cluster?
-      $stderr.puts "My ID: #{self.id}; top ID: #{self.cluster.top_suggestion.id}"
       self.id == self.cluster.top_suggestion.id
     else
       true # would be the top if it were in a cluster by itself

@@ -30,26 +30,26 @@ body {
     opacity: 0;
     left: -20px;
     top: 18px;
-    -webkit-transition-property: compact(left, opacity, transform, false, false, false, false, false, false, false, false);
-    -moz-transition-property: compact(left, opacity, transform, false, false, false, false, false, false, false, false);
-    -ms-transition-property: compact(left, opacity, transform, false, false, false, false, false, false, false, false);
-    -o-transition-property: compact(left, opacity, transform, false, false, false, false, false, false, false, false);
-    transition-property: compact(left, opacity, transform, false, false, false, false, false, false, false, false);
-    -webkit-transition-duration: compact(1s, false, false, false, false, false, false, false, false);
-    -moz-transition-duration: compact(1s, false, false, false, false, false, false, false, false);
-    -ms-transition-duration: compact(1s, false, false, false, false, false, false, false, false);
-    -o-transition-duration: compact(1s, false, false, false, false, false, false, false, false);
-    transition-duration: compact(1s, false, false, false, false, false, false, false, false);
-    -webkit-transition-timing-function: compact(ease-in-out, false, false, false, false, false, false, false, false);
-    -moz-transition-timing-function: compact(ease-in-out, false, false, false, false, false, false, false, false);
-    -ms-transition-timing-function: compact(ease-in-out, false, false, false, false, false, false, false, false);
-    -o-transition-timing-function: compact(ease-in-out, false, false, false, false, false, false, false, false);
-    transition-timing-function: compact(ease-in-out, false, false, false, false, false, false, false, false);
-    -webkit-transition-delay: compact(0, false, false, false, false, false, false, false, false);
-    -moz-transition-delay: compact(0, false, false, false, false, false, false, false, false);
-    -ms-transition-delay: compact(0, false, false, false, false, false, false, false, false);
-    -o-transition-delay: compact(0, false, false, false, false, false, false, false, false);
-    transition-delay: compact(0, false, false, false, false, false, false, false, false); }
+    -webkit-transition-property: left, opacity, transform;
+    -moz-transition-property: left, opacity, transform;
+    -ms-transition-property: left, opacity, transform;
+    -o-transition-property: left, opacity, transform;
+    transition-property: left, opacity, transform;
+    -webkit-transition-duration: 1s;
+    -moz-transition-duration: 1s;
+    -ms-transition-duration: 1s;
+    -o-transition-duration: 1s;
+    transition-duration: 1s;
+    -webkit-transition-timing-function: ease-in-out;
+    -moz-transition-timing-function: ease-in-out;
+    -ms-transition-timing-function: ease-in-out;
+    -o-transition-timing-function: ease-in-out;
+    transition-timing-function: ease-in-out;
+    -webkit-transition-delay: 0;
+    -moz-transition-delay: 0;
+    -ms-transition-delay: 0;
+    -o-transition-delay: 0;
+    transition-delay: 0; }
     #header h1.logo .heart span {
       position: relative;
       top: 3px; }
@@ -60,26 +60,26 @@ body {
     font-size: 1.8em;
     font-variant: small-caps;
     float: left;
-    -webkit-transition-property: compact(text-shadow, color, false, false, false, false, false, false, false, false);
-    -moz-transition-property: compact(text-shadow, color, false, false, false, false, false, false, false, false);
-    -ms-transition-property: compact(text-shadow, color, false, false, false, false, false, false, false, false);
-    -o-transition-property: compact(text-shadow, color, false, false, false, false, false, false, false, false);
-    transition-property: compact(text-shadow, color, false, false, false, false, false, false, false, false);
-    -webkit-transition-duration: compact(0.3s, false, false, false, false, false, false, false, false);
-    -moz-transition-duration: compact(0.3s, false, false, false, false, false, false, false, false);
-    -ms-transition-duration: compact(0.3s, false, false, false, false, false, false, false, false);
-    -o-transition-duration: compact(0.3s, false, false, false, false, false, false, false, false);
-    transition-duration: compact(0.3s, false, false, false, false, false, false, false, false);
-    -webkit-transition-timing-function: compact(ease-in-out, false, false, false, false, false, false, false, false);
-    -moz-transition-timing-function: compact(ease-in-out, false, false, false, false, false, false, false, false);
-    -ms-transition-timing-function: compact(ease-in-out, false, false, false, false, false, false, false, false);
-    -o-transition-timing-function: compact(ease-in-out, false, false, false, false, false, false, false, false);
-    transition-timing-function: compact(ease-in-out, false, false, false, false, false, false, false, false);
-    -webkit-transition-delay: compact(0, false, false, false, false, false, false, false, false);
-    -moz-transition-delay: compact(0, false, false, false, false, false, false, false, false);
-    -ms-transition-delay: compact(0, false, false, false, false, false, false, false, false);
-    -o-transition-delay: compact(0, false, false, false, false, false, false, false, false);
-    transition-delay: compact(0, false, false, false, false, false, false, false, false); }
+    -webkit-transition-property: text-shadow, color;
+    -moz-transition-property: text-shadow, color;
+    -ms-transition-property: text-shadow, color;
+    -o-transition-property: text-shadow, color;
+    transition-property: text-shadow, color;
+    -webkit-transition-duration: 0.3s;
+    -moz-transition-duration: 0.3s;
+    -ms-transition-duration: 0.3s;
+    -o-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-timing-function: ease-in-out;
+    -moz-transition-timing-function: ease-in-out;
+    -ms-transition-timing-function: ease-in-out;
+    -o-transition-timing-function: ease-in-out;
+    transition-timing-function: ease-in-out;
+    -webkit-transition-delay: 0;
+    -moz-transition-delay: 0;
+    -ms-transition-delay: 0;
+    -o-transition-delay: 0;
+    transition-delay: 0; }
     #header h1.logo a:hover {
       color: #1b89ff; }
   #header h1.logo:hover .heart {
@@ -105,26 +105,26 @@ nav {
         color: #333333;
         text-shadow: 0px 2px 3px #888;
         text-shadow: 0px 2px 3px rgba(0, 0, 0, 0.4);
-        -webkit-transition-property: compact(text-shadow, color, false, false, false, false, false, false, false, false);
-        -moz-transition-property: compact(text-shadow, color, false, false, false, false, false, false, false, false);
-        -ms-transition-property: compact(text-shadow, color, false, false, false, false, false, false, false, false);
-        -o-transition-property: compact(text-shadow, color, false, false, false, false, false, false, false, false);
-        transition-property: compact(text-shadow, color, false, false, false, false, false, false, false, false);
-        -webkit-transition-duration: compact(0.3s, false, false, false, false, false, false, false, false);
-        -moz-transition-duration: compact(0.3s, false, false, false, false, false, false, false, false);
-        -ms-transition-duration: compact(0.3s, false, false, false, false, false, false, false, false);
-        -o-transition-duration: compact(0.3s, false, false, false, false, false, false, false, false);
-        transition-duration: compact(0.3s, false, false, false, false, false, false, false, false);
-        -webkit-transition-timing-function: compact(ease-in-out, false, false, false, false, false, false, false, false);
-        -moz-transition-timing-function: compact(ease-in-out, false, false, false, false, false, false, false, false);
-        -ms-transition-timing-function: compact(ease-in-out, false, false, false, false, false, false, false, false);
-        -o-transition-timing-function: compact(ease-in-out, false, false, false, false, false, false, false, false);
-        transition-timing-function: compact(ease-in-out, false, false, false, false, false, false, false, false);
-        -webkit-transition-delay: compact(0, false, false, false, false, false, false, false, false);
-        -moz-transition-delay: compact(0, false, false, false, false, false, false, false, false);
-        -ms-transition-delay: compact(0, false, false, false, false, false, false, false, false);
-        -o-transition-delay: compact(0, false, false, false, false, false, false, false, false);
-        transition-delay: compact(0, false, false, false, false, false, false, false, false); }
+        -webkit-transition-property: text-shadow, color;
+        -moz-transition-property: text-shadow, color;
+        -ms-transition-property: text-shadow, color;
+        -o-transition-property: text-shadow, color;
+        transition-property: text-shadow, color;
+        -webkit-transition-duration: 0.3s;
+        -moz-transition-duration: 0.3s;
+        -ms-transition-duration: 0.3s;
+        -o-transition-duration: 0.3s;
+        transition-duration: 0.3s;
+        -webkit-transition-timing-function: ease-in-out;
+        -moz-transition-timing-function: ease-in-out;
+        -ms-transition-timing-function: ease-in-out;
+        -o-transition-timing-function: ease-in-out;
+        transition-timing-function: ease-in-out;
+        -webkit-transition-delay: 0;
+        -moz-transition-delay: 0;
+        -ms-transition-delay: 0;
+        -o-transition-delay: 0;
+        transition-delay: 0; }
         nav ul li a:hover {
           color: #1B89FF; }
 
@@ -172,11 +172,11 @@ ul.segmented_controls {
   height: 40px;
   padding: 1px;
   border: 1px solid #444;
-  -webkit-box-shadow: compact(0 1px 0 rgba(255, 255, 255, 0.15), false, false, false, false, false, false, false, false);
-  -moz-box-shadow: compact(0 1px 0 rgba(255, 255, 255, 0.15), false, false, false, false, false, false, false, false);
-  -ms-box-shadow: compact(0 1px 0 rgba(255, 255, 255, 0.15), false, false, false, false, false, false, false, false);
-  -o-box-shadow: compact(0 1px 0 rgba(255, 255, 255, 0.15), false, false, false, false, false, false, false, false);
-  box-shadow: compact(0 1px 0 rgba(255, 255, 255, 0.15), false, false, false, false, false, false, false, false);
+  -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15);
+  -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15);
+  -ms-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15);
+  -o-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15);
   background: #888; }
   ul.segmented_controls a {
     font-size: 1.5em;
@@ -194,21 +194,21 @@ ul.segmented_controls {
     margin-left: 1px;
     line-height: 1.4em;
     background-color: rgba(255, 255, 255, 0.2);
-    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(100%, compact(rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0.1), false, false, false, false, false, false, false, false)));
-    background-image: -webkit-linear-gradient(0 0 -90deg, compact(rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0.1), false, false, false, false, false, false, false, false));
-    background-image: -moz-linear-gradient(0 0 -90deg, compact(rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0.1), false, false, false, false, false, false, false, false));
-    background-image: -ms-linear-gradient(0 0 -90deg, compact(rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0.1), false, false, false, false, false, false, false, false));
-    background-image: -o-linear-gradient(0 0 -90deg, compact(rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0.1), false, false, false, false, false, false, false, false));
-    background-image: linear-gradient(0 0 -90deg, compact(rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0.1), false, false, false, false, false, false, false, false)); }
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(255, 255, 255, 0.2)), color-stop(100%, rgba(0, 0, 0, 0.1)));
+    background-image: -webkit-linear-gradient(0 0 -90deg, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0.1));
+    background-image: -moz-linear-gradient(0 0 -90deg, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0.1));
+    background-image: -ms-linear-gradient(0 0 -90deg, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0.1));
+    background-image: -o-linear-gradient(0 0 -90deg, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0.1));
+    background-image: linear-gradient(0 0 -90deg, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0.1)); }
     ul.segmented_controls li:first-child {
       margin-left: 0; }
     ul.segmented_controls li:active {
       background-color: #BBB;
-      -webkit-box-shadow: compact(inset 0 1px 4px rgba(0, 0, 0, 0.35), inset 0 0 5px rgba(0, 0, 0, 0.3), false, false, false, false, false, false, false);
-      -moz-box-shadow: compact(inset 0 1px 4px rgba(0, 0, 0, 0.35), inset 0 0 5px rgba(0, 0, 0, 0.3), false, false, false, false, false, false, false);
-      -ms-box-shadow: compact(inset 0 1px 4px rgba(0, 0, 0, 0.35), inset 0 0 5px rgba(0, 0, 0, 0.3), false, false, false, false, false, false, false);
-      -o-box-shadow: compact(inset 0 1px 4px rgba(0, 0, 0, 0.35), inset 0 0 5px rgba(0, 0, 0, 0.3), false, false, false, false, false, false, false);
-      box-shadow: compact(inset 0 1px 4px rgba(0, 0, 0, 0.35), inset 0 0 5px rgba(0, 0, 0, 0.3), false, false, false, false, false, false, false); }
+      -webkit-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.35), inset 0 0 5px rgba(0, 0, 0, 0.3);
+      -moz-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.35), inset 0 0 5px rgba(0, 0, 0, 0.3);
+      -ms-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.35), inset 0 0 5px rgba(0, 0, 0, 0.3);
+      -o-box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.35), inset 0 0 5px rgba(0, 0, 0, 0.3);
+      box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.35), inset 0 0 5px rgba(0, 0, 0, 0.3); }
     ul.segmented_controls li:active a {
       text-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
       position: relative;
@@ -219,20 +219,20 @@ ul.segmented_controls {
       color: white;
       text-shadow: 0 1px 2px rgba(0, 0, 0, 0.85);
       background-color: rgba(255, 255, 255, 0.1);
-      background-image: -webkit-gradient(linear, left top, left bottom, color-stop(100%, compact(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0), false, false, false, false, false, false, false, false)));
-      background-image: -webkit-linear-gradient(0 0 -90deg, compact(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0), false, false, false, false, false, false, false, false));
-      background-image: -moz-linear-gradient(0 0 -90deg, compact(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0), false, false, false, false, false, false, false, false));
-      background-image: -ms-linear-gradient(0 0 -90deg, compact(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0), false, false, false, false, false, false, false, false));
-      background-image: -o-linear-gradient(0 0 -90deg, compact(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0), false, false, false, false, false, false, false, false));
-      background-image: linear-gradient(0 0 -90deg, compact(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0), false, false, false, false, false, false, false, false));
-      -webkit-box-shadow: compact(inset 0 1px 3px rgba(0, 0, 0, 0.1), inset 0 0 5px rgba(0, 0, 0, 0.15), false, false, false, false, false, false, false);
-      -moz-box-shadow: compact(inset 0 1px 3px rgba(0, 0, 0, 0.1), inset 0 0 5px rgba(0, 0, 0, 0.15), false, false, false, false, false, false, false);
-      -ms-box-shadow: compact(inset 0 1px 3px rgba(0, 0, 0, 0.1), inset 0 0 5px rgba(0, 0, 0, 0.15), false, false, false, false, false, false, false);
-      -o-box-shadow: compact(inset 0 1px 3px rgba(0, 0, 0, 0.1), inset 0 0 5px rgba(0, 0, 0, 0.15), false, false, false, false, false, false, false);
-      box-shadow: compact(inset 0 1px 3px rgba(0, 0, 0, 0.1), inset 0 0 5px rgba(0, 0, 0, 0.15), false, false, false, false, false, false, false); }
+      background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(255, 255, 255, 0.1)), color-stop(100%, rgba(255, 255, 255, 0)));
+      background-image: -webkit-linear-gradient(0 0 -90deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+      background-image: -moz-linear-gradient(0 0 -90deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+      background-image: -ms-linear-gradient(0 0 -90deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+      background-image: -o-linear-gradient(0 0 -90deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+      background-image: linear-gradient(0 0 -90deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+      -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), inset 0 0 5px rgba(0, 0, 0, 0.15);
+      -moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), inset 0 0 5px rgba(0, 0, 0, 0.15);
+      -ms-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), inset 0 0 5px rgba(0, 0, 0, 0.15);
+      -o-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), inset 0 0 5px rgba(0, 0, 0, 0.15);
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), inset 0 0 5px rgba(0, 0, 0, 0.15); }
 
 .suggestions_table {
-  width: 70%;
+  width: 75%;
   margin: auto; }
   .suggestions_table table {
     background-color: #a6caf1;
@@ -323,11 +323,11 @@ table.sortable .headerSortUp:after {
   border-right: 4px solid transparent;
   border-top: 4px solid #000;
   visibility: visible;
-  -webkit-box-shadow: compact(none, false, false, false, false, false, false, false, false);
-  -moz-box-shadow: compact(none, false, false, false, false, false, false, false, false);
-  -ms-box-shadow: compact(none, false, false, false, false, false, false, false, false);
-  -o-box-shadow: compact(none, false, false, false, false, false, false, false, false);
-  box-shadow: compact(none, false, false, false, false, false, false, false, false);
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  -ms-box-shadow: none;
+  -o-box-shadow: none;
+  box-shadow: none;
   opacity: 60%; }
 
 .bubble {
@@ -368,16 +368,16 @@ table.sortable .headerSortUp:after {
     z-index: 1; }
   .bubble .title_container {
     background-color: #d2e4f8;
-    background-image: compact(linear, compact(45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent, false, false, false), false, false, false, false, false, false, false, false, false);
-    background-image: compact(linear, compact(45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent, false, false, false), false, false, false, false, false, false, false, false, false);
-    background-image: compact(linear, compact(45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent, false, false, false), false, false, false, false, false, false, false, false, false);
-    background-image: compact(linear, compact(45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent, false, false, false), false, false, false, false, false, false, false, false, false);
-    background-image: compact(linear, compact(45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent, false, false, false), false, false, false, false, false, false, false, false, false);
-    -webkit-background-size: compact(50px 50px, false, false, false, false, false, false, false, false);
-    -moz-background-size: compact(50px 50px, false, false, false, false, false, false, false, false);
-    -ms-background-size: compact(50px 50px, false, false, false, false, false, false, false, false);
-    -o-background-size: compact(50px 50px, false, false, false, false, false, false, false, false);
-    background-size: compact(50px 50px, false, false, false, false, false, false, false, false);
+    background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
+    background-image: -moz-linear-gradient(45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
+    background-image: -ms-linear-gradient(45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
+    background-image: -o-linear-gradient(45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
+    background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
+    -webkit-background-size: 50px 50px;
+    -moz-background-size: 50px 50px;
+    -ms-background-size: 50px 50px;
+    -o-background-size: 50px 50px;
+    background-size: 50px 50px;
     padding: 20px 20px 20px 10px; }
     .bubble .title_container .title {
       text-align: center;
@@ -403,26 +403,26 @@ table.sortable .headerSortUp:after {
     text-align: right;
     font-weight: bold;
     opacity: 0;
-    -webkit-transition-property: compact(opacity, top, false, false, false, false, false, false, false, false);
-    -moz-transition-property: compact(opacity, top, false, false, false, false, false, false, false, false);
-    -ms-transition-property: compact(opacity, top, false, false, false, false, false, false, false, false);
-    -o-transition-property: compact(opacity, top, false, false, false, false, false, false, false, false);
-    transition-property: compact(opacity, top, false, false, false, false, false, false, false, false);
-    -webkit-transition-duration: compact(0.3s, false, false, false, false, false, false, false, false);
-    -moz-transition-duration: compact(0.3s, false, false, false, false, false, false, false, false);
-    -ms-transition-duration: compact(0.3s, false, false, false, false, false, false, false, false);
-    -o-transition-duration: compact(0.3s, false, false, false, false, false, false, false, false);
-    transition-duration: compact(0.3s, false, false, false, false, false, false, false, false);
-    -webkit-transition-timing-function: compact(ease-in-out, false, false, false, false, false, false, false, false);
-    -moz-transition-timing-function: compact(ease-in-out, false, false, false, false, false, false, false, false);
-    -ms-transition-timing-function: compact(ease-in-out, false, false, false, false, false, false, false, false);
-    -o-transition-timing-function: compact(ease-in-out, false, false, false, false, false, false, false, false);
-    transition-timing-function: compact(ease-in-out, false, false, false, false, false, false, false, false);
-    -webkit-transition-delay: compact(0, false, false, false, false, false, false, false, false);
-    -moz-transition-delay: compact(0, false, false, false, false, false, false, false, false);
-    -ms-transition-delay: compact(0, false, false, false, false, false, false, false, false);
-    -o-transition-delay: compact(0, false, false, false, false, false, false, false, false);
-    transition-delay: compact(0, false, false, false, false, false, false, false, false);
+    -webkit-transition-property: opacity, top;
+    -moz-transition-property: opacity, top;
+    -ms-transition-property: opacity, top;
+    -o-transition-property: opacity, top;
+    transition-property: opacity, top;
+    -webkit-transition-duration: 0.3s;
+    -moz-transition-duration: 0.3s;
+    -ms-transition-duration: 0.3s;
+    -o-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-timing-function: ease-in-out;
+    -moz-transition-timing-function: ease-in-out;
+    -ms-transition-timing-function: ease-in-out;
+    -o-transition-timing-function: ease-in-out;
+    transition-timing-function: ease-in-out;
+    -webkit-transition-delay: 0;
+    -moz-transition-delay: 0;
+    -ms-transition-delay: 0;
+    -o-transition-delay: 0;
+    transition-delay: 0;
     z-index: -1;
     position: relative;
     top: 20px; }
@@ -552,66 +552,66 @@ table.sortable .headerSortUp:after {
   float: left;
   position: relative;
   background: url(/images/vote_sprite.png) no-repeat 0 0;
-  -webkit-transition-property: compact(height, width, false, false, false, false, false, false, false, false);
-  -moz-transition-property: compact(height, width, false, false, false, false, false, false, false, false);
-  -ms-transition-property: compact(height, width, false, false, false, false, false, false, false, false);
-  -o-transition-property: compact(height, width, false, false, false, false, false, false, false, false);
-  transition-property: compact(height, width, false, false, false, false, false, false, false, false);
-  -webkit-transition-duration: compact(0.1s, false, false, false, false, false, false, false, false);
-  -moz-transition-duration: compact(0.1s, false, false, false, false, false, false, false, false);
-  -ms-transition-duration: compact(0.1s, false, false, false, false, false, false, false, false);
-  -o-transition-duration: compact(0.1s, false, false, false, false, false, false, false, false);
-  transition-duration: compact(0.1s, false, false, false, false, false, false, false, false);
-  -webkit-transition-timing-function: compact(ease-in-out, false, false, false, false, false, false, false, false);
-  -moz-transition-timing-function: compact(ease-in-out, false, false, false, false, false, false, false, false);
-  -ms-transition-timing-function: compact(ease-in-out, false, false, false, false, false, false, false, false);
-  -o-transition-timing-function: compact(ease-in-out, false, false, false, false, false, false, false, false);
-  transition-timing-function: compact(ease-in-out, false, false, false, false, false, false, false, false);
-  -webkit-transition-delay: compact(0, false, false, false, false, false, false, false, false);
-  -moz-transition-delay: compact(0, false, false, false, false, false, false, false, false);
-  -ms-transition-delay: compact(0, false, false, false, false, false, false, false, false);
-  -o-transition-delay: compact(0, false, false, false, false, false, false, false, false);
-  transition-delay: compact(0, false, false, false, false, false, false, false, false); }
+  -webkit-transition-property: height, width;
+  -moz-transition-property: height, width;
+  -ms-transition-property: height, width;
+  -o-transition-property: height, width;
+  transition-property: height, width;
+  -webkit-transition-duration: 0.1s;
+  -moz-transition-duration: 0.1s;
+  -ms-transition-duration: 0.1s;
+  -o-transition-duration: 0.1s;
+  transition-duration: 0.1s;
+  -webkit-transition-timing-function: ease-in-out;
+  -moz-transition-timing-function: ease-in-out;
+  -ms-transition-timing-function: ease-in-out;
+  -o-transition-timing-function: ease-in-out;
+  transition-timing-function: ease-in-out;
+  -webkit-transition-delay: 0;
+  -moz-transition-delay: 0;
+  -ms-transition-delay: 0;
+  -o-transition-delay: 0;
+  transition-delay: 0; }
   .vote_arrow.launch {
-    -webkit-animation-name: compact(launch_arrow, false, false, false, false, false, false, false, false);
-    -moz-animation-name: compact(launch_arrow, false, false, false, false, false, false, false, false);
-    animation-name: compact(launch_arrow, false, false, false, false, false, false, false, false);
-    -webkit-animation-duration: compact(1s, false, false, false, false, false, false, false, false);
-    -moz-animation-duration: compact(1s, false, false, false, false, false, false, false, false);
-    animation-duration: compact(1s, false, false, false, false, false, false, false, false);
-    -webkit-animation-direction: compact(normal, false, false, false, false, false, false, false, false);
-    -moz-animation-direction: compact(normal, false, false, false, false, false, false, false, false);
-    animation-direction: compact(normal, false, false, false, false, false, false, false, false);
-    -webkit-animation-iteration-count: compact(1, false, false, false, false, false, false, false, false);
-    -moz-animation-iteration-count: compact(1, false, false, false, false, false, false, false, false);
-    animation-iteration-count: compact(1, false, false, false, false, false, false, false, false);
-    -webkit-animation-timing-function: compact(ease-in-out, false, false, false, false, false, false, false, false);
-    -moz-animation-timing-function: compact(ease-in-out, false, false, false, false, false, false, false, false);
-    animation-timing-function: compact(ease-in-out, false, false, false, false, false, false, false, false); }
+    -webkit-animation-name: launch_arrow;
+    -moz-animation-name: launch_arrow;
+    animation-name: launch_arrow;
+    -webkit-animation-duration: 1s;
+    -moz-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-direction: normal;
+    -moz-animation-direction: normal;
+    animation-direction: normal;
+    -webkit-animation-iteration-count: 1;
+    -moz-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+    -webkit-animation-timing-function: ease-in-out;
+    -moz-animation-timing-function: ease-in-out;
+    animation-timing-function: ease-in-out; }
 
 .vote_count {
   font-weight: bold;
   margin-right: 5px;
-  -webkit-transition-property: compact(color, false, false, false, false, false, false, false, false);
-  -moz-transition-property: compact(color, false, false, false, false, false, false, false, false);
-  -ms-transition-property: compact(color, false, false, false, false, false, false, false, false);
-  -o-transition-property: compact(color, false, false, false, false, false, false, false, false);
-  transition-property: compact(color, false, false, false, false, false, false, false, false);
-  -webkit-transition-duration: compact(0.3s, false, false, false, false, false, false, false, false);
-  -moz-transition-duration: compact(0.3s, false, false, false, false, false, false, false, false);
-  -ms-transition-duration: compact(0.3s, false, false, false, false, false, false, false, false);
-  -o-transition-duration: compact(0.3s, false, false, false, false, false, false, false, false);
-  transition-duration: compact(0.3s, false, false, false, false, false, false, false, false);
-  -webkit-transition-timing-function: compact(ease-in-out, false, false, false, false, false, false, false, false);
-  -moz-transition-timing-function: compact(ease-in-out, false, false, false, false, false, false, false, false);
-  -ms-transition-timing-function: compact(ease-in-out, false, false, false, false, false, false, false, false);
-  -o-transition-timing-function: compact(ease-in-out, false, false, false, false, false, false, false, false);
-  transition-timing-function: compact(ease-in-out, false, false, false, false, false, false, false, false);
-  -webkit-transition-delay: compact(0, false, false, false, false, false, false, false, false);
-  -moz-transition-delay: compact(0, false, false, false, false, false, false, false, false);
-  -ms-transition-delay: compact(0, false, false, false, false, false, false, false, false);
-  -o-transition-delay: compact(0, false, false, false, false, false, false, false, false);
-  transition-delay: compact(0, false, false, false, false, false, false, false, false);
+  -webkit-transition-property: color;
+  -moz-transition-property: color;
+  -ms-transition-property: color;
+  -o-transition-property: color;
+  transition-property: color;
+  -webkit-transition-duration: 0.3s;
+  -moz-transition-duration: 0.3s;
+  -ms-transition-duration: 0.3s;
+  -o-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-timing-function: ease-in-out;
+  -moz-transition-timing-function: ease-in-out;
+  -ms-transition-timing-function: ease-in-out;
+  -o-transition-timing-function: ease-in-out;
+  transition-timing-function: ease-in-out;
+  -webkit-transition-delay: 0;
+  -moz-transition-delay: 0;
+  -ms-transition-delay: 0;
+  -o-transition-delay: 0;
+  transition-delay: 0;
   color: #555; }
   .vote_count.voted {
     color: #0063ce; }
@@ -638,26 +638,26 @@ li.link {
     text-align: right;
     font-weight: bold;
     opacity: 0;
-    -webkit-transition-property: compact(opacity, false, false, false, false, false, false, false, false);
-    -moz-transition-property: compact(opacity, false, false, false, false, false, false, false, false);
-    -ms-transition-property: compact(opacity, false, false, false, false, false, false, false, false);
-    -o-transition-property: compact(opacity, false, false, false, false, false, false, false, false);
-    transition-property: compact(opacity, false, false, false, false, false, false, false, false);
-    -webkit-transition-duration: compact(0.3s, false, false, false, false, false, false, false, false);
-    -moz-transition-duration: compact(0.3s, false, false, false, false, false, false, false, false);
-    -ms-transition-duration: compact(0.3s, false, false, false, false, false, false, false, false);
-    -o-transition-duration: compact(0.3s, false, false, false, false, false, false, false, false);
-    transition-duration: compact(0.3s, false, false, false, false, false, false, false, false);
-    -webkit-transition-timing-function: compact(ease-in-out, false, false, false, false, false, false, false, false);
-    -moz-transition-timing-function: compact(ease-in-out, false, false, false, false, false, false, false, false);
-    -ms-transition-timing-function: compact(ease-in-out, false, false, false, false, false, false, false, false);
-    -o-transition-timing-function: compact(ease-in-out, false, false, false, false, false, false, false, false);
-    transition-timing-function: compact(ease-in-out, false, false, false, false, false, false, false, false);
-    -webkit-transition-delay: compact(0, false, false, false, false, false, false, false, false);
-    -moz-transition-delay: compact(0, false, false, false, false, false, false, false, false);
-    -ms-transition-delay: compact(0, false, false, false, false, false, false, false, false);
-    -o-transition-delay: compact(0, false, false, false, false, false, false, false, false);
-    transition-delay: compact(0, false, false, false, false, false, false, false, false);
+    -webkit-transition-property: opacity;
+    -moz-transition-property: opacity;
+    -ms-transition-property: opacity;
+    -o-transition-property: opacity;
+    transition-property: opacity;
+    -webkit-transition-duration: 0.3s;
+    -moz-transition-duration: 0.3s;
+    -ms-transition-duration: 0.3s;
+    -o-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-timing-function: ease-in-out;
+    -moz-transition-timing-function: ease-in-out;
+    -ms-transition-timing-function: ease-in-out;
+    -o-transition-timing-function: ease-in-out;
+    transition-timing-function: ease-in-out;
+    -webkit-transition-delay: 0;
+    -moz-transition-delay: 0;
+    -ms-transition-delay: 0;
+    -o-transition-delay: 0;
+    transition-delay: 0;
     position: relative;
     top: -24px;
     right: -8px; }
@@ -685,26 +685,26 @@ li.link {
       color: #0b64c2;
       text-shadow: 1px 1px 1px #999;
       text-shadow: rgba(80, 80, 80, 0.3) 0 1px 1px;
-      -webkit-transition-property: compact(color, text-shadow, false, false, false, false, false, false, false, false);
-      -moz-transition-property: compact(color, text-shadow, false, false, false, false, false, false, false, false);
-      -ms-transition-property: compact(color, text-shadow, false, false, false, false, false, false, false, false);
-      -o-transition-property: compact(color, text-shadow, false, false, false, false, false, false, false, false);
-      transition-property: compact(color, text-shadow, false, false, false, false, false, false, false, false);
-      -webkit-transition-duration: compact(0.3s, false, false, false, false, false, false, false, false);
-      -moz-transition-duration: compact(0.3s, false, false, false, false, false, false, false, false);
-      -ms-transition-duration: compact(0.3s, false, false, false, false, false, false, false, false);
-      -o-transition-duration: compact(0.3s, false, false, false, false, false, false, false, false);
-      transition-duration: compact(0.3s, false, false, false, false, false, false, false, false);
-      -webkit-transition-timing-function: compact(ease-out, false, false, false, false, false, false, false, false);
-      -moz-transition-timing-function: compact(ease-out, false, false, false, false, false, false, false, false);
-      -ms-transition-timing-function: compact(ease-out, false, false, false, false, false, false, false, false);
-      -o-transition-timing-function: compact(ease-out, false, false, false, false, false, false, false, false);
-      transition-timing-function: compact(ease-out, false, false, false, false, false, false, false, false);
-      -webkit-transition-delay: compact(0, false, false, false, false, false, false, false, false);
-      -moz-transition-delay: compact(0, false, false, false, false, false, false, false, false);
-      -ms-transition-delay: compact(0, false, false, false, false, false, false, false, false);
-      -o-transition-delay: compact(0, false, false, false, false, false, false, false, false);
-      transition-delay: compact(0, false, false, false, false, false, false, false, false); }
+      -webkit-transition-property: color, text-shadow;
+      -moz-transition-property: color, text-shadow;
+      -ms-transition-property: color, text-shadow;
+      -o-transition-property: color, text-shadow;
+      transition-property: color, text-shadow;
+      -webkit-transition-duration: 0.3s;
+      -moz-transition-duration: 0.3s;
+      -ms-transition-duration: 0.3s;
+      -o-transition-duration: 0.3s;
+      transition-duration: 0.3s;
+      -webkit-transition-timing-function: ease-out;
+      -moz-transition-timing-function: ease-out;
+      -ms-transition-timing-function: ease-out;
+      -o-transition-timing-function: ease-out;
+      transition-timing-function: ease-out;
+      -webkit-transition-delay: 0;
+      -moz-transition-delay: 0;
+      -ms-transition-delay: 0;
+      -o-transition-delay: 0;
+      transition-delay: 0; }
       li.link .link_box a.uri.big {
         font-size: 1.3em;
         margin-top: 5px; }
@@ -763,11 +763,11 @@ li.link {
   clear: both;
   padding-top: 20px;
   width: 100%;
-  -webkit-box-shadow: compact(inset 0 20px 20px -20px black, false, false, false, false, false, false, false, false);
-  -moz-box-shadow: compact(inset 0 20px 20px -20px black, false, false, false, false, false, false, false, false);
-  -ms-box-shadow: compact(inset 0 20px 20px -20px black, false, false, false, false, false, false, false, false);
-  -o-box-shadow: compact(inset 0 20px 20px -20px black, false, false, false, false, false, false, false, false);
-  box-shadow: compact(inset 0 20px 20px -20px black, false, false, false, false, false, false, false, false);
+  -webkit-box-shadow: inset 0 20px 20px -20px black;
+  -moz-box-shadow: inset 0 20px 20px -20px black;
+  -ms-box-shadow: inset 0 20px 20px -20px black;
+  -o-box-shadow: inset 0 20px 20px -20px black;
+  box-shadow: inset 0 20px 20px -20px black;
   font-size: 0.9em;
   text-shadow: 0px 1px 3px #000;
   text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.8);
@@ -779,26 +779,26 @@ li.link {
   #footer a {
     color: #FFFFFF;
     font-weight: bold;
-    -webkit-transition-property: compact(color, false, false, false, false, false, false, false, false);
-    -moz-transition-property: compact(color, false, false, false, false, false, false, false, false);
-    -ms-transition-property: compact(color, false, false, false, false, false, false, false, false);
-    -o-transition-property: compact(color, false, false, false, false, false, false, false, false);
-    transition-property: compact(color, false, false, false, false, false, false, false, false);
-    -webkit-transition-duration: compact(0.3s, false, false, false, false, false, false, false, false);
-    -moz-transition-duration: compact(0.3s, false, false, false, false, false, false, false, false);
-    -ms-transition-duration: compact(0.3s, false, false, false, false, false, false, false, false);
-    -o-transition-duration: compact(0.3s, false, false, false, false, false, false, false, false);
-    transition-duration: compact(0.3s, false, false, false, false, false, false, false, false);
-    -webkit-transition-timing-function: compact(ease-out, false, false, false, false, false, false, false, false);
-    -moz-transition-timing-function: compact(ease-out, false, false, false, false, false, false, false, false);
-    -ms-transition-timing-function: compact(ease-out, false, false, false, false, false, false, false, false);
-    -o-transition-timing-function: compact(ease-out, false, false, false, false, false, false, false, false);
-    transition-timing-function: compact(ease-out, false, false, false, false, false, false, false, false);
-    -webkit-transition-delay: compact(0, false, false, false, false, false, false, false, false);
-    -moz-transition-delay: compact(0, false, false, false, false, false, false, false, false);
-    -ms-transition-delay: compact(0, false, false, false, false, false, false, false, false);
-    -o-transition-delay: compact(0, false, false, false, false, false, false, false, false);
-    transition-delay: compact(0, false, false, false, false, false, false, false, false); }
+    -webkit-transition-property: color;
+    -moz-transition-property: color;
+    -ms-transition-property: color;
+    -o-transition-property: color;
+    transition-property: color;
+    -webkit-transition-duration: 0.3s;
+    -moz-transition-duration: 0.3s;
+    -ms-transition-duration: 0.3s;
+    -o-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-timing-function: ease-out;
+    -moz-transition-timing-function: ease-out;
+    -ms-transition-timing-function: ease-out;
+    -o-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+    -webkit-transition-delay: 0;
+    -moz-transition-delay: 0;
+    -ms-transition-delay: 0;
+    -o-transition-delay: 0;
+    transition-delay: 0; }
     #footer a:hover {
       color: #BBBBBB; }
 
