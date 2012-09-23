@@ -30,7 +30,7 @@ plugins: &plugins
 # The base configuration for freenode
 freenode_base: &freenode_base
   <<: *plugins
-  server: 127.0.0.1
+  server: irc.freenode.net
   port: 6667
 
 options:
@@ -40,9 +40,9 @@ options:
 servers:
   freenode_test:
     <<: *freenode_base
-    nick: sb_test
+    nick: showbot_test
     channels:
-      - "#5by5"
+      - "#cinch-bots"
   freenode_live:
     <<: *freenode_base
     nick: showbot
