@@ -215,7 +215,7 @@ ul.segmented_controls {
 
   margin: auto;
   list-style-type: none;
-  width: ($control_width * 3) + 2px;
+  width: ($control_width * 4) + 3px;
   height: $control_height;
   padding: 1px;
   border: 1px solid #444;
@@ -274,7 +274,7 @@ ul.segmented_controls {
 // ---------------------
 
 .suggestions_table {
-  width: 70%;
+  width: 75%;
   margin: auto;
 
   table {
@@ -312,6 +312,10 @@ ul.segmented_controls {
       }
     }
 
+    td.cluster-votes {
+      font-weight: bold;
+    }
+
     th + th,
     td + td,
     th + td {
@@ -336,6 +340,41 @@ ul.segmented_controls {
     tr:hover td,
     tr:hover th {
       background-color: lighten($showbot_bright_blue, 30%);
+    }
+  }
+}
+
+.expand-child {
+  td {
+    background-color: $title_background;
+  }
+}
+.expand-child:hover {
+  td {
+    background-color: lighten($showbot_bright_blue, 30%); 
+  }
+}
+
+.cluster-arrow {
+  display: inline-block;
+  width: 14px;
+  height: 19px;
+  float: right;
+  position: relative;
+  background: url(/images/expand_arrow_sprite.png) no-repeat 0 0;
+  text-align: right;
+}
+
+.expanded-arrow {
+  background-position: 0 -19px;
+}
+
+table.sortable {
+  tbody {
+    tr:hover {
+      td {
+        background-color: lighten($showbot_bright_blue, 30%); 
+      }
     }
   }
 }

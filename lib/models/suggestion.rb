@@ -27,6 +27,7 @@ class Suggestion
 
   # Assocations
   has n, :votes
+  belongs_to :cluster, :required => false
 
   # ------------------
   # Before Save
@@ -40,6 +41,28 @@ class Suggestion
     self.title = self.title.gsub(/^(?:'|")(.*)(?:'|")$/, '\1')
   end
 
+  before :create, :check_cluster
+
+  def check_cluster
+    Suggestion.minutes_ago(30).each do |suggestion|
+      if suggestion.id != self.id and lev_sim(suggestion) > 0.7
+        if suggestion.in_cluster?
+          suggestion.cluster.suggestions << self
+          self.cluster = suggestion.cluster
+          suggestion.cluster.save
+        else
+          cluster = Cluster.create
+          cluster.suggestions << suggestion
+          cluster.suggestions << self
+          self.cluster = cluster
+          cluster.save
+        end
+        return true
+      end
+    end
+    true
+  end
+
   before :create, :set_live_show
 
   def set_live_show
@@ -50,6 +73,12 @@ class Suggestion
 
     true
   end
+
+#  after :save, :debug_cluster_id
+  
+#  def debug_cluster_id
+#    $stderr.puts "After save, #{self.title}'s cluster_id is #{self.cluster_id}"
+#  end
 
   # ------------------
   # Validations
@@ -145,6 +174,31 @@ class Suggestion
     end
   end
 
+  # Clustering
+
+  def lev_sim(other_suggestion)
+    distance = levenshtein(self.title.downcase, 
+                           other_suggestion.title.downcase)
+    
+    1.0 - distance.to_f / [self.title.length, other_suggestion.title.length].max
+  end
+
+  def in_cluster?
+    !!self.cluster_id
+  end
+
+  def top_of_cluster?
+    if self.in_cluster?
+      self.id == self.cluster.top_suggestion.id
+    else
+      true # would be the top if it were in a cluster by itself
+    end
+  end
+
+  def total_for_cluster
+    self.in_cluster? ? self.cluster.total_votes : self.votes.count
+  end
+  
 end
 
 
@@ -169,4 +223,26 @@ class SuggestionSet
   end
 
   attr_accessor :slug, :suggestions
+end
+
+# https://github.com/threedaymonk/text/blob/master/lib/text/levenshtein.rb
+def levenshtein(str1, str2)
+  ar1 = str1.split(//)
+  ar2 = str2.split(//)
+  
+  d = (0..ar2.length).to_a
+  x = nil
+
+  ar1.length.times do |i|
+    e = i + 1
+    ar2.length.times do |j|
+      cost = (ar1[i] == ar2[j]) ? 0 : 1;
+      x = [ d[j+1] + 1, e + 1, d[j] + cost].min
+      d[j] = e
+      e = x
+    end
+    d[ar2.length] = x
+  end
+  
+  x
 end
