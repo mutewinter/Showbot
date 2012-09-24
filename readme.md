@@ -80,7 +80,7 @@ suggested during is attached to the suggestion.
 
 The format of 5by5.tv's JSON is as follows:
 
-```json
+```
   {
     'live': true
     'broadcast': {
