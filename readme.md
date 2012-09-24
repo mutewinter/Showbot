@@ -96,6 +96,8 @@ $ bundle exec foreman start irc -f Procfile.local
 
  * Special thanks to Rikai for reverse-engineering the setup steps for someone
    setting up Showbot from scratch.
+ * To [gouwens](https://github.com/gouwens) for implementing the clustered
+   view.
 
 ## License
 
