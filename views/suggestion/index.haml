@@ -11,6 +11,8 @@
         %a{href: '/titles?view_mode=bubbles'}Bubbles
       %li#table{:class => view_mode == 'tables' ? 'selected' : ''}
         %a{href: '/titles?view_mode=tables'}Tables
+      %li#clusters{:class => view_mode == 'clusters' ? 'selected' : ''}
+        %a{href: '/titles?view_mode=clusters'}Clusters
       %li#hacker{:class => view_mode == 'hacker' ? 'selected' : ''}
         %a{href: '/titles?view_mode=hacker'}Hacker
       
@@ -20,6 +22,8 @@
       = haml :'suggestion/_bubble_set', :locals => {suggestion_sets: suggestion_sets}
     - elsif view_mode == 'tables'
       = haml :'suggestion/_table_set', :locals => {suggestion_sets: suggestion_sets}
+    - elsif view_mode == 'clusters'
+      = haml :'suggestion/_cluster_set', :locals => {suggestion_sets: suggestion_sets}
     - else
       = haml :'suggestion/_table_set', :locals => {suggestion_sets: suggestion_sets}
   .clear

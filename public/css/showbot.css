@@ -168,7 +168,7 @@ span.code {
 ul.segmented_controls {
   margin: auto;
   list-style-type: none;
-  width: 362px;
+  width: 483px;
   height: 40px;
   padding: 1px;
   border: 1px solid #444;
@@ -232,7 +232,7 @@ ul.segmented_controls {
       box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), inset 0 0 5px rgba(0, 0, 0, 0.15); }
 
 .suggestions_table {
-  width: 70%;
+  width: 75%;
   margin: auto; }
   .suggestions_table table {
     background-color: #a6caf1;
@@ -258,6 +258,8 @@ ul.segmented_controls {
       overflow-y: hidden; }
       .suggestions_table table td.votes {
         text-align: right; }
+    .suggestions_table table td.cluster-votes {
+      font-weight: bold; }
     .suggestions_table table th + th,
     .suggestions_table table td + td,
     .suggestions_table table th + td {
@@ -272,6 +274,27 @@ ul.segmented_controls {
   background-color: #d2e4f8; }
 .zebra-striped tbody tr:hover td,
 .zebra-striped tbody tr:hover th {
+  background-color: #b4d8ff; }
+
+.expand-child td {
+  background-color: #d2e4f8; }
+
+.expand-child:hover td {
+  background-color: #b4d8ff; }
+
+.cluster-arrow {
+  display: inline-block;
+  width: 14px;
+  height: 19px;
+  float: right;
+  position: relative;
+  background: url(/images/expand_arrow_sprite.png) no-repeat 0 0;
+  text-align: right; }
+
+.expanded-arrow {
+  background-position: 0 -19px; }
+
+table.sortable tbody tr:hover td {
   background-color: #b4d8ff; }
 
 table.sortable .header {

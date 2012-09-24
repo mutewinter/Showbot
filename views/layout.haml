@@ -84,3 +84,14 @@
         ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
+    :javascript
+      $(function() {
+        $('tr.cluster-top').children('td.title')
+          .css("cursor","pointer")
+          .attr("title","Click to expand/collapse")
+          .click(function(){
+            $(this).parent().siblings('.child-'+this.parentElement.id).toggle();
+            $(this).find('.cluster-arrow').toggleClass('expanded-arrow')
+          });
+        $('tr[class^="expand-child"]').hide().children('td');
+      });
