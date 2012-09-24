@@ -75,7 +75,7 @@ class Suggestion
   end
 
 #  after :save, :debug_cluster_id
-  
+
 #  def debug_cluster_id
 #    $stderr.puts "After save, #{self.title}'s cluster_id is #{self.cluster_id}"
 #  end
@@ -177,9 +177,9 @@ class Suggestion
   # Clustering
 
   def lev_sim(other_suggestion)
-    distance = levenshtein(self.title.downcase, 
+    distance = levenshtein(self.title.downcase,
                            other_suggestion.title.downcase)
-    
+
     1.0 - distance.to_f / [self.title.length, other_suggestion.title.length].max
   end
 
@@ -198,7 +198,7 @@ class Suggestion
   def total_for_cluster
     self.in_cluster? ? self.cluster.total_votes : self.votes.count
   end
-  
+
 end
 
 
@@ -229,7 +229,7 @@ end
 def levenshtein(str1, str2)
   ar1 = str1.split(//)
   ar2 = str2.split(//)
-  
+
   d = (0..ar2.length).to_a
   x = nil
 
@@ -243,6 +243,6 @@ def levenshtein(str1, str2)
     end
     d[ar2.length] = x
   end
-  
+
   x
 end

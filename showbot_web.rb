@@ -74,9 +74,9 @@ class ShowbotWeb < Sinatra::Base
       suggestion = Suggestion.get(params[:id])
       cluster_top = suggestion.top_of_cluster? # figure out if top before adding new vote
       suggestion.vote_up(request.ip)
-      {votes: suggestion.votes.count.to_s, 
-        cluster_top: cluster_top, 
-        cluster_id: suggestion.cluster_id, 
+      {votes: suggestion.votes.count.to_s,
+        cluster_top: cluster_top,
+        cluster_id: suggestion.cluster_id,
         cluster_votes: suggestion.total_for_cluster}.to_json
     else
       redirect '/'
