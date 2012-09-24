@@ -72,6 +72,25 @@ working well outside of the Rails asset pipeline.
 
 [showbot_scss]: https://github.com/mutewinter/Showbot/blob/master/sass/showbot.scss
 
+### Data.json
+
+5by5.tv uses a JSON API to provide details about which show is live. When a
+title is suggested, this JSON API is queried and the show that the title was
+suggested during is attached to the suggestion.
+
+The format of 5by5.tv's JSON is as follows:
+
+```json
+  {
+    'live': true
+    'broadcast': {
+      'slug': 'show_slug_here'
+    }
+  }
+```
+
+The `'show_slug_here'` is the value read and attached to the title suggestion.
+
 ### Launching Showbot
 
 **Website and the IRC Bot**
