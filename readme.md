@@ -82,7 +82,7 @@ The format of 5by5.tv's JSON is as follows:
 
 ```
   {
-    'live': true
+    'live': true,
     'broadcast': {
       'slug': 'show_slug_here'
     }
