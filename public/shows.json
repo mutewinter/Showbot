@@ -25,6 +25,9 @@
     {"rss":"http://feeds.feedburner.com/5by5-amplified"          , "url": "amplified"      , "title": "Amplified"}           ,
     {"rss":"http://feeds.feedburner.com/thebbpodcast"            , "url": "bb"             , "title": "The B&B Podcast"}     ,
     {"rss":"http://feeds.feedburner.com/5by5-inbeta"             , "url": "inbeta"         , "title": "In Beta"}             ,
-    {"rss":"http://feeds.feedburner.com/TheNickel"               , "url": "nickel"         , "title": "The Nickel"}
+    {"rss":"http://feeds.feedburner.com/TheNickel"               , "url": "nickel"         , "title": "The Nickel"}          ,
+    {"rss":"http://feeds.5by5.tv/frequency"                      , "url": "frequency"      , "title": "The Frequency"}       ,
+    {"rss":"http://feeds.5by5.tv/screentime"                     , "url": "screentime"     , "title": "Screen Time"}         ,
+    {"rss":"http://feeds.5by5.tv/otn"                            , "url": "otn"            , "title": "Old Tech New"}
   ]
 }
