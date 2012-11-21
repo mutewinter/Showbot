@@ -28,6 +28,7 @@
     {"rss":"http://feeds.feedburner.com/TheNickel"               , "url": "nickel"         , "title": "The Nickel"}          ,
     {"rss":"http://feeds.5by5.tv/frequency"                      , "url": "frequency"      , "title": "The Frequency"}       ,
     {"rss":"http://feeds.5by5.tv/screentime"                     , "url": "screentime"     , "title": "Screen Time"}         ,
-    {"rss":"http://feeds.5by5.tv/otn"                            , "url": "otn"            , "title": "Old Tech New"}
+    {"rss":"http://feeds.5by5.tv/otn"                            , "url": "otn"            , "title": "Old Tech New"}        ,
+    {"rss":"http://feeds.5by5.tv/crossover"                      , "url": "crossover"      , "title": "The Crossover"}
   ]
 }
