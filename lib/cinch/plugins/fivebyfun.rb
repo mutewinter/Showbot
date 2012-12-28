@@ -22,6 +22,10 @@ module Cinch
       match /drphil/i,                    :method => :command_drphil
       match /(vanhoet|neckbeard)/i,       :method => :command_van_hoet
       match /paleo/i,                     :method => :command_paleo
+      match /glen/i,                      :method => :command_glengarry
+      match /usa/i,                       :method => :command_usa
+      match /turd/i,                      :method => :command_turd
+      match /resp/i,                      :method => :command_responsibility
       # The etc.
       match /(eight_ball|8ball)/i,        :method => :command_eight_ball
 
