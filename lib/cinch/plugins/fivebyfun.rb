@@ -25,6 +25,35 @@ module Cinch
       # The etc.
       match /(eight_ball|8ball)/i,        :method => :command_eight_ball
 
+      def command_glengarry(m)
+        m.reply ["You got leads. Mitch and Murray paid good money. Get their names to sell them.",
+          "I'm here from downtown. I'm here from Mitch and Murray.",
+          "Get them to sign on the line which is dotted!",
+          "Attention. Do I have your attention? Interest. Are you interested? I know you are 'cause it's fuck or walk. You close or you hit the bricks. Decision. Have you made your decision for Christ? And action.",
+          "Oh yeah, I used to be a salesman. It's a tough racket.",
+          ].random
+      end
+    
+      def command_usa(m)
+        m.reply "USA! USA! USA! USA! USA! USA!"
+      end
+
+      def command_turd(m)
+        m.reply "You can't. Polish. A turd."
+      end
+      
+      def command_responsibility(m)
+        m.reply ["Have you ever had a single moment's thought about my responsibilities?",
+          "Have you ever thought for a single solitary moment about my responsibilities to my employers?",
+          "Has it ever occurred to you that I have agreed to look after the Overlook Hotel until May the First?",
+          "Does it matter to you at all that the owners have placed their complete confidence and trust in me, and that I have signed a letter of agreement",
+          "A CONTRACT!",
+          "Do you have the slightest idea what a moral and ethical principle is?",
+          "Has it ever occurred to you what would happen to my future if I were to fail to live up to my responsibilities?",
+          ].random
+      end
+      
+
       def command_roderick(m)
         m.reply ["I demand satisfaction!", "I agree to nothing!"].random
       end
@@ -42,7 +71,6 @@ module Cinch
           "I'm not gonna euthanize this dog, I'm just gonna put it over here where I can't see it.",
           "Failure is the equivalent of existential sit-ups."].random
       end
-
 
       def command_merlin(m)
         m.reply ["SO angry.", "Don't be creepy.", "Go ahead, caller."].random
