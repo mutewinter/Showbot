@@ -33,7 +33,7 @@ module Cinch
           "Oh yeah, I used to be a salesman. It's a tough racket.",
           ].random
       end
-    
+
       def command_usa(m)
         m.reply "USA! USA! USA! USA! USA! USA!"
       end
@@ -41,7 +41,7 @@ module Cinch
       def command_turd(m)
         m.reply "You can't. Polish. A turd."
       end
-      
+
       def command_responsibility(m)
         m.reply ["Have you ever had a single moment's thought about my responsibilities?",
           "Have you ever thought for a single solitary moment about my responsibilities to my employers?",
@@ -52,7 +52,7 @@ module Cinch
           "Has it ever occurred to you what would happen to my future if I were to fail to live up to my responsibilities?",
           ].random
       end
-      
+
 
       def command_roderick(m)
         m.reply ["I demand satisfaction!", "I agree to nothing!"].random
@@ -75,7 +75,7 @@ module Cinch
       def command_merlin(m)
         m.reply ["SO angry.", "Don't be creepy.", "Go ahead, caller."].random
       end
-      
+
       def command_sandy(m)
         m.reply "He's great."
       end
