@@ -78,6 +78,18 @@ class ShowbotWebTest < Test::Unit::TestCase
     assert_equal json_response['error'], error_message
   end
 
+  def test_duplicate_title_different_case
+    title = "Also Same Title"
+    title_diff_case = "also same title"
+    first_user = valid_user
+    error_message = "Darn, #{first_user} beat you to \"#{title}\"."
+
+    post '/suggestions/new', params = {api_key: api_key.value, title: title, user: first_user}
+    post '/suggestions/new', params = {api_key: api_key.value, title: title_diff_case, user: valid_user}
+
+    assert_equal json_response['error'], error_message
+  end
+
   def test_missing_user
     post '/suggestions/new', params = {api_key: api_key.value, title: valid_title}
     assert_equal json_response['error'], 'Missing / Invalid User'
