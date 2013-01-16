@@ -59,7 +59,11 @@ module Cinch
 
 
       def command_roderick(m)
-        m.reply ["I demand satisfaction!", "I agree to nothing!"].random
+        m.reply ["I demand satisfaction!", 
+        "I agree to nothing!",
+        "Supertrain will fix all of this.",
+        "Keep moving and get out of the way",
+        "Hitler"].random
       end
 
       def command_drphil(m)
@@ -77,7 +81,13 @@ module Cinch
       end
 
       def command_merlin(m)
-        m.reply ["SO angry.", "Don't be creepy.", "Go ahead, caller."].random
+        m.reply ["SO angry.", 
+        "Don't be creepy.", 
+        "Go ahead, caller.",
+        "Is this what people tune in for?",
+        "I love you.",
+        "Recursion. Which is also known as recursion.",
+        "...Cleric..."].random
       end
 
       def command_sandy(m)
@@ -131,7 +141,11 @@ module Cinch
       end
 
       def command_dan(m)
-        m.reply [ "That's fine for Merlin.", "Big week. Huge week.", "It's your show."].random
+        m.reply [ "That's fine for Merlin.", 
+        "Big week. Huge week.", 
+        "It's your show.",
+        "Go ahead caller.",
+        "Keeping you up, Haddie?"].random
       end
 
       def command_robert_evans(m)
