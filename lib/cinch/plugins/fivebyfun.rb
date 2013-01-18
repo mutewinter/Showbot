@@ -9,6 +9,7 @@ module Cinch
 
       # The cast
       match /(dan|danbenjamin)/i,         :method => :command_dan
+      match /(haddie|haddiebird)/i,       :method => :command_haddie
       match /(merlin|mann)/i,             :method => :command_merlin
       match /(sandy|sandwich|adam)/i,     :method => :command_sandy
       match /(jsir|siracusa|jsiracusa)/i, :method => :command_jsir
@@ -146,6 +147,16 @@ module Cinch
         "It's your show.",
         "Go ahead caller.",
         "Keeping you up, Haddie?"].random
+      end
+      
+      def command_haddie(m)
+        m.reply [ "That's meat, I know it.",
+        "Oh, it's fabulous.",
+        "No, no, no one's screwing a hole",
+        "It's a sensation",
+        "Eww, the cat is weird",
+        "We have to worry about space germs too. Ughhhhhhhhh! Why?!?!"
+        ].random
       end
 
       def command_robert_evans(m)
