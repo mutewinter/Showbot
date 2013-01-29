@@ -27,6 +27,7 @@ module Cinch
       match /usa/i,                       :method => :command_usa
       match /turd/i,                      :method => :command_turd
       match /resp/i,                      :method => :command_responsibility
+      match /(lebowski|dude)/i,           :method => :command_lebowski
       # The etc.
       match /(eight_ball|8ball)/i,        :method => :command_eight_ball
 
@@ -36,6 +37,13 @@ module Cinch
           "Get them to sign on the line which is dotted!",
           "Attention. Do I have your attention? Interest. Are you interested? I know you are 'cause it's fuck or walk. You close or you hit the bricks. Decision. Have you made your decision for Christ? And action.",
           "Oh yeah, I used to be a salesman. It's a tough racket.",
+          ].random
+      end
+      
+      def command_lebowski(m)
+        m.reply ["That's your name, Dude!",
+          "I see you rolled your way into the semis. Dios mio, man.",
+          "Uh, uh, papers, um, just papers, uh, you know, uh, my papers, business papers.",
           ].random
       end
 
