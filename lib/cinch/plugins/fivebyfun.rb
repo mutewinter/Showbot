@@ -28,6 +28,11 @@ module Cinch
       match /turd/i,                      :method => :command_turd
       match /resp/i,                      :method => :command_responsibility
       match /(lebowski|dude)/i,           :method => :command_lebowski
+      match /(texas)/i,                   :method => :command_texas
+      match /(ferris|bueller)/i,          :method => :command_bueller
+      match /bluetoot/i,                  :method => :command_bluetoot
+      match /sodastream/i,                :method => :command_sodastream
+      match /(aviator|future)/i,          :method => :command_aviator 
       # The etc.
       match /(eight_ball|8ball)/i,        :method => :command_eight_ball
 
@@ -37,13 +42,8 @@ module Cinch
           "Get them to sign on the line which is dotted!",
           "Attention. Do I have your attention? Interest. Are you interested? I know you are 'cause it's fuck or walk. You close or you hit the bricks. Decision. Have you made your decision for Christ? And action.",
           "Oh yeah, I used to be a salesman. It's a tough racket.",
-          ].random
-      end
-      
-      def command_lebowski(m)
-        m.reply ["That's your name, Dude!",
-          "I see you rolled your way into the semis. Dios mio, man.",
-          "Uh, uh, papers, um, just papers, uh, you know, uh, my papers, business papers.",
+          "Second prize is a set of steak knives. Third prize is you're fired.",
+          "Coffee's for closers only."
           ].random
       end
 
@@ -65,7 +65,40 @@ module Cinch
           "Has it ever occurred to you what would happen to my future if I were to fail to live up to my responsibilities?",
           ].random
       end
+      
+      def command_lebowski(m)
+        m.reply ["That's your name, Dude!",
+          "I see you rolled your way into the semis. Dios mio, man.",
+          "Uh, uh, papers, um, just papers, uh, you know, uh, my papers, business papers."
+          ].random
+      end
 
+      def command_texas(m)
+        m.reply "The stars at night are big and bright..."
+      end
+      
+      def command_bluetoot(m)
+        m.reply ["Hi! Can I aks you a queshion?",
+        "Before you answer, Hi!"
+        ].random
+      end
+      
+      def command_sodastream(m)
+        m.reply "pshhh pshhh pshhh HONNNNKKKK HONNNNKKKK HONNNNKKKK"
+      end
+      
+      def command_beuller(m)
+        m.reply ["Nine times?",
+          "Nine times.",
+          "ok I'll go, I'll go, I'll go, I'll go, I'll go."
+        ].random
+      end      
+      
+      def command_aviator(m)
+        m.reply ["The way of the future.",
+          "Come in with the milk. Come in with the milk. Come in with the milk."
+        ].random
+      end     
 
       def command_roderick(m)
         m.reply ["I demand satisfaction!", 
@@ -96,7 +129,9 @@ module Cinch
         "Is this what people tune in for?",
         "I love you.",
         "Recursion. Which is also known as recursion.",
-        "...Cleric..."].random
+        "...Cleric...",
+        "I gotta go bust a tinkie."
+        ].random
       end
 
       def command_sandy(m)
