@@ -35,6 +35,7 @@ module Cinch
       match /(aviator|future)/i,          :method => :command_aviator 
       # The etc.
       match /(eight_ball|8ball)/i,        :method => :command_eight_ball
+      match /(quit)/i,                    :method => :command_quit_show
 
       def command_glengarry(m)
         m.reply ["You got leads. Mitch and Murray paid good money. Get their names to sell them.",
@@ -182,6 +183,10 @@ module Cinch
           "My sources say no",
           "Outlook not so good",
           "Very doubtful"].random
+      end
+      
+      def command_quit_show(m)
+        m.reply "Call in to Quit! Live at (512) 518-5714. Leave a Voicemail at (512) 222-8141."
       end
 
       def command_dan(m)
