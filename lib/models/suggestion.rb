@@ -127,7 +127,7 @@ class Suggestion
       if suggestion_sets.empty? or last_show != suggestion.show or (last_time - suggestion.created_at) > split_interval
         suggestion_sets << SuggestionSet.new(suggestion.show)
       end
-	    
+
       last_show = suggestion.show
       last_time = suggestion.created_at
 
