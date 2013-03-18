@@ -7,10 +7,13 @@ require 'coffee_script'
 require 'sinatra' unless defined?(Sinatra)
 require "sinatra/reloader" if development?
 
+require 'json'
+
 require File.join(File.dirname(__FILE__), 'environment')
 
 
 SHOWS_JSON = File.expand_path(File.join(File.dirname(__FILE__), "public", "shows.json")) unless defined? SHOWS_JSON
+SAMPLE_TITLES_JSON = File.expand_path("sample.json")
 
 class ShowbotWeb < Sinatra::Base
   configure do
@@ -83,6 +86,58 @@ class ShowbotWeb < Sinatra::Base
     end
   end
 
+  get '/clouds' do
+    $stdout.sync = true
+
+    WordCount.count_document_frequency
+    stop_words = WordCount.stop_words
+        
+    #suggestion_sets = Suggestion.recent.group_by_show
+    suggestion_sets = Suggestion.minutes_ago(639560).group_by_show
+    cloud_json = ""
+    suggestion_sets.each do |set|
+      set_counts = Hash.new(0)
+      set_tfidf = Hash.new(0)
+      set.suggestions.each do |suggestion| 
+        words = tokenize(suggestion.title.downcase) - stop_words
+        words.each { |w| set_counts[w] += 1 }
+      end
+      cloud_output = Array.new
+      set_counts.each { |w, f| set_tfidf[w] = f * Math.log( IdfTracker.first.document_count.to_f / WordCount.first(word: w).frequency ) }
+      
+      max_val = set_tfidf.values.max
+      set_tfidf.sort_by {|k, v| -v}.each { |k, v| cloud_output.push( {key: k, value: v / max_val} ) }
+      last = ( (cloud_output.count > 250) ? 250 : cloud_output.count ) - 1
+      cloud_json = cloud_output[0..last].to_json
+    end
+    
+    haml :'clouds', :locals => {cloud_json: cloud_json}, :layout => false
+  end
+
+  # Just for loading titles for development purposes
+  get '/loadtitles' do
+    title_array = JSON.parse(File.open(SAMPLE_TITLES_JSON).read)
+    title_array.each do |t|
+      suggestion = Suggestion.create( t )
+    end
+    
+    suggestion_sets = Suggestion.all(:order => [:created_at.desc]).group_by_show
+    content_type 'text/plain'
+    haml :'suggestion/hacker_mode', :locals => {suggestion_sets: suggestion_sets}, :layout => false
+  end
+  
+  get '/countwords' do
+    $stdout.sync = true
+    content_type 'text/plain'
+    
+    WordCount.count_document_frequency
+    doc_count = IdfTracker.first.document_count
+    all_words = WordCount.all(:order => [:frequency.desc])
+    
+    haml :'suggestion/tfidf_mode', :locals => {doc_count: doc_count, all_words: all_words}, :layout => false
+
+  end
+      
   # ------------------
   # API
   # ------------------

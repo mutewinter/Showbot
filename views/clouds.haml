@@ -1,0 +1,63 @@
+!!! 5
+%html
+  %head
+    %meta{:charset => "utf-8"}
+    %meta{:'http-equiv' => "X-UA-Compatible", :content => "IE=edge,chrome=1"}
+    %title="Showbot #{'| ' + @title if @title}"
+    %meta{:content => "Showbot displays title suggestions from users listening to the live http://5by5.tv podcasts. It gathers these suggestions from the #5by5 IRC channel.", :name => "description"}
+    %meta{:content => "Jeremy Mack", :name => "author"}
+    %link(rel="stylesheet" href="/css/reset.css") 
+    %link(rel="stylesheet" href="/css/text.css") 
+    %link(rel="stylesheet" href="/css/960.css") 
+    %link(rel="stylesheet" href="/css/tipsy.css") 
+    %link(rel="stylesheet" href="/css/showbot.css?v=5") 
+    %script{:type => "text/javascript", :src => "http://d3js.org/d3.v3.min.js"}
+    %script{:type => "text/javascript", :src => "/js/d3.layout.cloud.js"}
+
+  %body
+
+:javascript
+  var fill = d3.scale.category20b();
+
+  var w = 900,
+      h = 600;
+
+  var fontSize;
+
+  var layout = d3.layout.cloud()
+      .size([w, h])
+      .timeInterval(10)
+      .rotate(function() { return (Math.random() < 0.85) ? 0 : 90; })
+      .font("Georgia")
+      .fontSize(function(d) { return fontSize(+d.value); })
+      .text(function(d) { return d.key; })
+      .spiral("archimedean")
+      .on("end", draw);
+
+  function draw(words, bounds) {
+    scale = bounds ? Math.min(
+      w / Math.abs(bounds[1].x - w / 2),
+      w / Math.abs(bounds[0].x - w / 2),
+      h / Math.abs(bounds[1].y - h / 2),
+      h / Math.abs(bounds[0].y - h / 2)) / 2 : 1;
+    d3.select("body").append("svg")
+        .attr("width", w)
+        .attr("height", h)
+      .append("g")
+        .attr("transform", "translate(" + [w >> 1, h >> 1] + ")scale(" + scale + ")")
+      .selectAll("text")
+        .data(words)
+      .enter().append("text")
+        .style("font-size", function(d) { return d.size + "px"; })
+        .style("font-family", "Georgia")
+        .style("fill", function(d, i) { return fill(i); })
+        .attr("text-anchor", "middle")
+        .attr("transform", function(d) {
+          return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+        })
+        .text(function(d) { return d.text; });
+  }
+
+  fontSize = d3.scale.linear().range([5, 55]);
+
+  layout.words(#{cloud_json}).start();

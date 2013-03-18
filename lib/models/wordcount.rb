@@ -24,9 +24,7 @@ class WordCount
   # Class Methods
   # ------------------
 
-  def self.count_document_frequency
-    puts "Starting count_document_frequency"
-    
+  def self.count_document_frequency    
     if IdfTracker.count == 0
       suggestion_sets = Suggestion.all(:order => [:created_at.desc]).group_by_show
       IdfTracker.create( last_suggestion_time: Suggestion.last.created_at, last_suggestion_show: Suggestion.last.show )
@@ -48,8 +46,7 @@ class WordCount
       end
     end
     
-    my_stop_words = Stopwords::STOP_WORDS
-    my_stop_words.push("'s", "n't", "'ll", "'re", "'d", "'ve", "'m", ".", "!", "?", ",", "*", "...", "(", ")", "&", "``", "''")
+    my_stop_words = WordCount.stop_words
     
     suggestion_sets.each do |set|
       word_list = []
@@ -57,6 +54,12 @@ class WordCount
       word_list = word_list.uniq - my_stop_words
       word_list.each { |word| WordCount.first_or_create(:word => word).add_one }
     end
+  end
+  
+  def self.stop_words
+    sw = Stopwords::STOP_WORDS
+    sw.push("'s", "n't", "'ll", "'re", "'d", "'ve", "'m", ".", "!", "?", ",", "*", "...", "(", ")", "&", "``", "''", ":")
+    sw
   end
   
 end
