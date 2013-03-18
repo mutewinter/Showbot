@@ -26,7 +26,6 @@
 
   var layout = d3.layout.cloud()
       .size([w, h])
-      .timeInterval(10)
       .rotate(function() { return (Math.random() < 0.85) ? 0 : 90; })
       .font("Georgia")
       .fontSize(function(d) { return fontSize(+d.value); })
@@ -35,12 +34,14 @@
       .on("end", draw);
 
   function draw(words, bounds) {
+    console.log("draw called")
     scale = bounds ? Math.min(
       w / Math.abs(bounds[1].x - w / 2),
       w / Math.abs(bounds[0].x - w / 2),
       h / Math.abs(bounds[1].y - h / 2),
       h / Math.abs(bounds[0].y - h / 2)) / 2 : 1;
-    d3.select("body").append("svg")
+    d3.select("body")
+    .append("svg")
         .attr("width", w)
         .attr("height", h)
       .append("g")
@@ -57,7 +58,13 @@
         })
         .text(function(d) { return d.text; });
   }
+  
+  function make_cloud(show, data) {
+    var h2 = d3.select("body").append("h2");
+    h2.text(show);
+    layout.words(data).start();
+  };
 
   fontSize = d3.scale.linear().range([5, 55]);
 
-  layout.words(#{cloud_json}).start();
+  #{ cloud_layouts(cloud_data) }

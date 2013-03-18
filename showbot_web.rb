@@ -93,8 +93,8 @@ class ShowbotWeb < Sinatra::Base
     stop_words = WordCount.stop_words
         
     #suggestion_sets = Suggestion.recent.group_by_show
-    suggestion_sets = Suggestion.minutes_ago(639560).group_by_show
-    cloud_json = ""
+    suggestion_sets = Suggestion.minutes_ago(649440).group_by_show
+    cloud_data = Array.new
     suggestion_sets.each do |set|
       set_counts = Hash.new(0)
       set_tfidf = Hash.new(0)
@@ -108,10 +108,11 @@ class ShowbotWeb < Sinatra::Base
       max_val = set_tfidf.values.max
       set_tfidf.sort_by {|k, v| -v}.each { |k, v| cloud_output.push( {key: k, value: v / max_val} ) }
       last = ( (cloud_output.count > 250) ? 250 : cloud_output.count ) - 1
-      cloud_json = cloud_output[0..last].to_json
+      puts set.suggestions.first.show
+      cloud_data.push( {show: set.suggestions.first.show, time: set.suggestions.first.created_at, json: cloud_output[0..last].to_json} )
     end
     
-    haml :'clouds', :locals => {cloud_json: cloud_json}, :layout => false
+    haml :'clouds', :locals => {cloud_data: cloud_data}, :layout => false
   end
 
   # Just for loading titles for development purposes
@@ -297,6 +298,13 @@ class ShowbotWeb < Sinatra::Base
       end
       html << "<span class='vote_count #{extra_classes.join(',')}'>#{suggestion.votes_counter}</span>"
     end
+
+    def cloud_layouts(cloud_data)
+      cloud_data.map do |d|
+        "make_cloud(\"#{show_title_for_slug(d[:show])} #{d[:time].to_date.to_s}\", #{d[:json]});"
+      end.join("\n")
+    end
+
 
   end # helpers
 

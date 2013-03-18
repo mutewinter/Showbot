@@ -45,7 +45,7 @@
             d;
         while (+new Date - start < timeInterval && ++i < n && timer) {
           d = data[i];
-          d.x = (size[0] * (Math.random() + .5)) >> 1;
+          d.x = (size[0] * (Math.random() + 1.5)) >> 2;
           d.y = (size[1] * (Math.random() + 3.5)) >> 3;
           cloudSprite(d, data, i);
           if (place(board, d, bounds)) {
