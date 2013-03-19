@@ -65,9 +65,34 @@ class WordCount
   def self.stop_words
     sw = Stopwords::STOP_WORDS
     sw.push("'s", "n't", "'ll", "'re", "'d", "'ve", "'m", ".", "!", "?", ",", "*", "...", "(", ")", "&", "``", "''", ":")
-    sw
   end
   
+  def self.generate_clouds(suggestion_sets)
+    WordCount.count_document_frequency
+
+    all_clouds_data = Array.new
+    stop_words = WordCount.stop_words
+
+    suggestion_sets.each do |set|
+      set_counts = Hash.new(0)
+      set_tfidf = Hash.new(0)
+      
+      set.suggestions.each do |suggestion| 
+        words = tokenize(suggestion.title.downcase) - stop_words
+        words.each { |w| set_counts[w] += 1 }
+      end
+      
+      set_counts.each { |w, tf| set_tfidf[w] = tf * WordCount.first(word: w).idf }
+      
+      max_val = set_tfidf.values.max
+      this_cloud_data = Array.new
+      set_tfidf.sort_by {|k, v| -v}.each { |k, v| this_cloud_data.push( {key: k, value: v / max_val} ) }
+      last = ( (this_cloud_data.count > 250) ? 250 : this_cloud_data.count ) - 1
+      all_clouds_data.push( {show: set.suggestions.first.show, time: set.suggestions.first.created_at, json: this_cloud_data[0..last].to_json} )
+    end
+    
+    all_clouds_data
+  end
 end
 
 def tokenize(str)

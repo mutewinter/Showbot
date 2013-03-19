@@ -86,30 +86,9 @@ class ShowbotWeb < Sinatra::Base
     end
   end
 
-  get '/clouds' do
-    $stdout.sync = true
-
-    WordCount.count_document_frequency
-    stop_words = WordCount.stop_words
-        
-    #suggestion_sets = Suggestion.recent.group_by_show
-    suggestion_sets = Suggestion.minutes_ago(649440).group_by_show
-    cloud_data = Array.new
-    suggestion_sets.each do |set|
-      set_counts = Hash.new(0)
-      set_tfidf = Hash.new(0)
-      set.suggestions.each do |suggestion| 
-        words = tokenize(suggestion.title.downcase) - stop_words
-        words.each { |w| set_counts[w] += 1 }
-      end
-      cloud_output = Array.new
-      set_counts.each { |w, tf| set_tfidf[w] = tf * WordCount.first(word: w).idf }
-      
-      max_val = set_tfidf.values.max
-      set_tfidf.sort_by {|k, v| -v}.each { |k, v| cloud_output.push( {key: k, value: v / max_val} ) }
-      last = ( (cloud_output.count > 250) ? 250 : cloud_output.count ) - 1
-      cloud_data.push( {show: set.suggestions.first.show, time: set.suggestions.first.created_at, json: cloud_output[0..last].to_json} )
-    end
+  get '/clouds_since/:days_ago' do        
+    suggestion_sets = Suggestion.minutes_ago(params[:days_ago].to_i * 24 * 60).group_by_show
+    cloud_data = WordCount.generate_clouds(suggestion_sets)
     
     haml :'clouds', :locals => {cloud_data: cloud_data}, :layout => false
   end
