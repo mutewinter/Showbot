@@ -103,12 +103,11 @@ class ShowbotWeb < Sinatra::Base
         words.each { |w| set_counts[w] += 1 }
       end
       cloud_output = Array.new
-      set_counts.each { |w, f| set_tfidf[w] = f * Math.log( IdfTracker.first.document_count.to_f / WordCount.first(word: w).frequency ) }
+      set_counts.each { |w, tf| set_tfidf[w] = tf * WordCount.first(word: w).idf }
       
       max_val = set_tfidf.values.max
       set_tfidf.sort_by {|k, v| -v}.each { |k, v| cloud_output.push( {key: k, value: v / max_val} ) }
       last = ( (cloud_output.count > 250) ? 250 : cloud_output.count ) - 1
-      puts set.suggestions.first.show
       cloud_data.push( {show: set.suggestions.first.show, time: set.suggestions.first.created_at, json: cloud_output[0..last].to_json} )
     end
     

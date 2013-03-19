@@ -20,6 +20,12 @@ class WordCount
     self.save
   end
   
+  def idf
+    WordCount.count_document_frequency if IdfTracker.count == 0
+    
+    Math.log( IdfTracker.first.document_count.to_f / self.frequency )
+  end
+  
   # ------------------
   # Class Methods
   # ------------------
