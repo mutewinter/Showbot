@@ -10,13 +10,28 @@
     %link(rel="stylesheet" href="/css/text.css") 
     %link(rel="stylesheet" href="/css/960.css") 
     %link(rel="stylesheet" href="/css/tipsy.css") 
-    %link(rel="stylesheet" href="/css/showbot.css?v=5") 
+    %link(rel="stylesheet" href="/css/showbot.css?v=5")
     %script{:type => "text/javascript", :src => "http://d3js.org/d3.v3.min.js"}
     %script{:type => "text/javascript", :src => "/js/d3.layout.cloud.js"}
 
   %body
 
 :javascript
+
+  WebFontConfig = {
+      google: { families: [ 'Goudy+Bookletter+1911::latin' ] }, 
+      fontactive: function(fontFamily, FontDescription) { make_all_clouds(); }
+  };
+  (function() {
+    var wf = document.createElement('script');
+    wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+      '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+    wf.type = 'text/javascript';
+    wf.async = 'true';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(wf, s);
+  })();
+  
   var fill = d3.scale.category20b();
 
   var w = 900,
@@ -27,7 +42,7 @@
   var layout = d3.layout.cloud()
       .size([w, h])
       .rotate(function() { return (Math.random() < 0.85) ? 0 : 90; })
-      .font("Georgia")
+      .font("\"Goudy Bookletter 1911\"")
       .fontSize(function(d) { return fontSize(+d.value); })
       .text(function(d) { return d.key; })
       .spiral("archimedean")
@@ -50,7 +65,7 @@
         .data(words)
       .enter().append("text")
         .style("font-size", function(d) { return d.size + "px"; })
-        .style("font-family", "Georgia")
+        .style("font-family", "\"Goudy Bookletter 1911\"")
         .style("fill", function(d, i) { return fill(i); })
         .attr("text-anchor", "middle")
         .attr("transform", function(d) {
@@ -60,11 +75,13 @@
   }
   
   function make_cloud(show, data) {
-    var h2 = d3.select("body").append("h2");
-    h2.text(show);
+    d3.select("body").append("h2")
+      .text(show).attr("class", "subtitle grid_12");
     layout.words(data).start();
   };
 
   fontSize = d3.scale.linear().range([5, 55]);
 
-  #{ cloud_layouts(cloud_data) }
+  function make_all_clouds() {
+    #{ cloud_layouts(cloud_data) }
+  };
