@@ -15,7 +15,8 @@
     %script{:type => "text/javascript", :src => "/js/d3.layout.cloud.js"}
 
   %body
-
+    %div{:class => "container_12", :id => "wrap"}
+    
 :javascript
 
   WebFontConfig = {
@@ -34,7 +35,7 @@
   
   var fill = d3.scale.category20b();
 
-  var w = 900,
+  var w = 960,
       h = 600;
 
   var fontSize;
@@ -55,7 +56,7 @@
       w / Math.abs(bounds[0].x - w / 2),
       h / Math.abs(bounds[1].y - h / 2),
       h / Math.abs(bounds[0].y - h / 2)) / 2 : 1;
-    d3.select("body")
+    d3.select("#wrap")
     .append("svg")
         .attr("width", w)
         .attr("height", h)
@@ -75,8 +76,8 @@
   }
   
   function make_cloud(show, data) {
-    d3.select("body").append("h2")
-      .text(show).attr("class", "subtitle grid_12");
+    d3.select("#wrap").append("h2")
+      .text(show).attr("class", "show_break");
     layout.words(data).start();
   };
 

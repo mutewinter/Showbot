@@ -135,7 +135,6 @@ class ShowbotWeb < Sinatra::Base
     all_words = WordCount.all(:order => [:frequency.desc])
     
     haml :'suggestion/tfidf_mode', :locals => {doc_count: doc_count, all_words: all_words}, :layout => false
-
   end
       
   # ------------------
