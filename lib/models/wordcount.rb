@@ -87,8 +87,7 @@ class WordCount
       max_val = set_tfidf.values.max
       this_cloud_data = Array.new
       set_tfidf.sort_by {|k, v| -v}.each { |k, v| this_cloud_data.push( {key: k, value: v / max_val} ) }
-      last = ( (this_cloud_data.count > 250) ? 250 : this_cloud_data.count ) - 1
-      all_clouds_data.push( {show: set.suggestions.first.show, time: set.suggestions.first.created_at, json: this_cloud_data[0..last].to_json} )
+      all_clouds_data.push( {show: set.suggestions.first.show, time: set.suggestions.first.created_at, json: this_cloud_data[0..249].to_json} )
     end
     
     all_clouds_data

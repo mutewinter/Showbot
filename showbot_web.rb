@@ -13,7 +13,7 @@ require File.join(File.dirname(__FILE__), 'environment')
 
 
 SHOWS_JSON = File.expand_path(File.join(File.dirname(__FILE__), "public", "shows.json")) unless defined? SHOWS_JSON
-SAMPLE_TITLES_JSON = File.expand_path("sample.json")
+SAMPLE_TITLES_JSON = File.expand_path("hypercritical.json")
 
 class ShowbotWeb < Sinatra::Base
   configure do
@@ -86,36 +86,31 @@ class ShowbotWeb < Sinatra::Base
     end
   end
 
-  get '/clouds_since/:days_ago' do        
-    suggestion_sets = Suggestion.minutes_ago(params[:days_ago].to_i * 24 * 60).group_by_show
-    cloud_data = WordCount.generate_clouds(suggestion_sets)
-    
-    haml :'clouds', :locals => {cloud_data: cloud_data}, :layout => false
-  end
-
-  # Just for loading titles for development purposes
-  get '/loadtitles' do
-    title_array = JSON.parse(File.open(SAMPLE_TITLES_JSON).read)
-    title_array.each do |t|
-      suggestion = Suggestion.create( t )
-    end
-    
-    suggestion_sets = Suggestion.all(:order => [:created_at.desc]).group_by_show
-    content_type 'text/plain'
-    haml :'suggestion/hacker_mode', :locals => {suggestion_sets: suggestion_sets}, :layout => false
+  # Word cloud generation
+  
+  get '/clouds_between/:days_a/:days_b' do
+    days_ago = [params[:days_a].to_i, params[:days_b].to_i].sort
+    suggestion_sets = Suggestion.all(:created_at => ( (DateTime.now - days_ago[1])..(DateTime.now - days_ago[0]) ), :order => [:created_at.desc]).group_by_show    
+    haml :'clouds', :locals => { cloud_data: WordCount.generate_clouds(suggestion_sets) }, :layout => false
   end
   
-  get '/countwords' do
-    $stdout.sync = true
-    content_type 'text/plain'
+  get '/cloud_svg/:year/:month/:day/:index' do
+    the_date = DateTime.new(params[:year].to_i, params[:month].to_i, params[:day].to_i)
+    bracketed_suggestion_sets = Suggestion.all(:created_at => ( (the_date - 1)..(the_date + 2) ), :order => [:created_at.desc]).group_by_show
+    suggestion_sets = bracketed_suggestion_sets.select { |set| set.suggestions[0].created_at.to_date == the_date.to_date }
     
-    WordCount.count_document_frequency
-    doc_count = IdfTracker.first.document_count
-    all_words = WordCount.all(:order => [:frequency.desc])
-    
-    haml :'suggestion/tfidf_mode', :locals => {doc_count: doc_count, all_words: all_words}, :layout => false
+    haml :'clouds_svg', :locals => { cloud_data: WordCount.generate_clouds(suggestion_sets), cloud_index: params[:index].to_i }, :layout => false
   end
-      
+  
+  get '/num_clouds_on_date/:year/:month/:day' do
+    content_type :json
+    
+    the_date = DateTime.new(params[:year].to_i, params[:month].to_i, params[:day].to_i)
+    bracketed_suggestion_sets = Suggestion.all(:created_at => ( (the_date - 1)..(the_date + 2) ), :order => [:created_at.desc]).group_by_show
+    
+    { num_clouds: bracketed_suggestion_sets.select { |set| set.suggestions[0].created_at.to_date == the_date.to_date }.count }
+  end
+
   # ------------------
   # API
   # ------------------
@@ -277,6 +272,8 @@ class ShowbotWeb < Sinatra::Base
     end
 
     def cloud_layouts(cloud_data)
+      return if cloud_data.nil?
+    
       cloud_data.map do |d|
         "make_cloud(\"#{show_title_for_slug(d[:show])} #{d[:time].to_date.to_s}\", #{d[:json]});"
       end.join("\n")
