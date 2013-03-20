@@ -108,7 +108,7 @@ class ShowbotWeb < Sinatra::Base
     the_date = DateTime.new(params[:year].to_i, params[:month].to_i, params[:day].to_i)
     bracketed_suggestion_sets = Suggestion.all(:created_at => ( (the_date - 1)..(the_date + 2) ), :order => [:created_at.desc]).group_by_show
     
-    { num_clouds: bracketed_suggestion_sets.select { |set| set.suggestions[0].created_at.to_date == the_date.to_date }.count }
+    { num_clouds: bracketed_suggestion_sets.select { |set| set.suggestions[0].created_at.to_date == the_date.to_date }.count }.to_json
   end
 
   # ------------------
