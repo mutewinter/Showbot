@@ -19,7 +19,7 @@ module Cinch
       match /faith/i,                     :method => :command_faith
       match /(mike|monteiro)/i,           :method => :command_mike
       match /(roderick)/i,                :method => :command_roderick
-      # The characers
+      # The characters
       match /drphil/i,                    :method => :command_drphil
       match /(vanhoet|neckbeard)/i,       :method => :command_van_hoet
       match /paleo/i,                     :method => :command_paleo
@@ -34,6 +34,8 @@ module Cinch
       match /sodastream/i,                :method => :command_sodastream
       match /(aviator|future)/i,          :method => :command_aviator 
       # The etc.
+      match /lemongrab/i,                 :method => :command_lemongrab
+      match /peppermint_butler/i,         :method => :command_peppermint
       match /(eight_ball|8ball)/i,        :method => :command_eight_ball
       match /(quit)/i,                    :method => :command_quit_show
 
@@ -160,6 +162,23 @@ module Cinch
         max_sleep = 10
         sleep(rand(max_sleep-min_sleep) + min_sleep)
         m.reply "I don't know."
+      end
+
+      def command_lemongrab(m)
+        m.reply ["This castle is in...unacceptable...condition! UNACCEPTABLE!!!",
+          "All of you. Dungeon. Seven years. No trials.",
+          "Three. Hours. Dungeon.",
+          "Oooonnne MILLION YEARS DUNGEON!!!",
+          "Who did...the thing?!",
+          "Yes, of course.",
+          "Ahhhhh....HAHAHAHAHAHAHAHA!",
+          "I determine what is early and what is late, Mr. Peppermint.",
+          "Me too. I'm excited, too."].random
+      end
+
+      def command_peppermint(m)
+        m.reply ["Hey man, calm down! It's just a prank, man! For laughs!",
+          "I'm excited by this meal I made!"].random
       end
 
       def command_eight_ball(m)
