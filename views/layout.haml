@@ -68,7 +68,6 @@
     %script{:type => "text/javascript", :src => "/js/jquery.tipsy.js"}
     / Main JS
     %script{:type => "text/javascript", :src  => "/js/showbot.js"}
-    %script{:type => "text/javascript", :src  => "//static.getclicky.com/js"}
     :javascript
       var _gauges = _gauges || [];
       (function() {
@@ -81,11 +80,6 @@
         var s = document.getElementsByTagName('script')[0];
         s.parentNode.insertBefore(t, s);
       })();
-    :javascript
-      try{ clicky.init(66520755); }catch(e){}
-    %noscript
-      %p
-        %img{:alt => 'Clicky', :width => 1, :height => 1, :src => "//in.getclicky.com/66520755ns.gif"}
     :javascript
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-24163893-1']);
