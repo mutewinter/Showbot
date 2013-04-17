@@ -30,6 +30,7 @@ gem 'chronic_duration'
 gem 'ri_cal'
 gem 'twitter'
 gem 'cinch-identify'
+gem 'stopwords', '0.2'
 
 # Data Mapper
 gem 'data_mapper'

@@ -191,6 +191,7 @@ GEM
       sinatra-contrib
     spoon (0.0.3)
       ffi
+    stopwords (0.2)
     stringex (1.5.1)
     therubyracer (0.11.4)
       libv8 (~> 3.11.8.12)
@@ -254,6 +255,7 @@ DEPENDENCIES
   sass
   sinatra
   sinatra-reloader
+  stopwords (= 0.2)
   therubyracer
   thin
   twitter
