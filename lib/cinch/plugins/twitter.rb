@@ -32,8 +32,6 @@ module Cinch
       def command_last_status(m)
         begin
           status = ::Twitter.user_timeline(TWITTER_USER).first
-          # Crazy hack fix for this line not sending a message for some reason
-          m.user.send 'Status:'
           m.user.send response_from_status(status)
         rescue ::Twitter::Error::ServiceUnavailable
           m.user.send "Oops, looks like Twitter's whale failed. Try again in a minute."
@@ -62,12 +60,8 @@ module Cinch
           @last_sent_id = status.id
 
           if @bot.nick =~ /_test$/
-            # Crazy hack fix for this line not sending a message for some reason
-            Channel("#cinch-bots").send 'Status Update:'
             Channel("#cinch-bots").send response_from_status(status)
           else
-            # Crazy hack fix for this line not sending a message for some reason
-            Channel(CHANNEL).send 'Status Update:'
             Channel(CHANNEL).send response_from_status(status)
           end
         end
