@@ -6,7 +6,7 @@ require 'net/http'
 
 module Cinch
   module Plugins
-    class ShoutcastInfo
+    class Shoutcast
       include Cinch::Plugin
 
       SHOUTCAST_URI = URI("http://5by5.fm/") 

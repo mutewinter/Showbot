@@ -7,15 +7,15 @@ plugins: &plugins
     -
       class: "Cinch::Plugins::Schedule"
     -
-      class: "Cinch::Plugins::Showbot_Admin"
+      class: "Cinch::Plugins::Admin"
     -
       class: "Cinch::Plugins::Showbot"
     -
       class: "Cinch::Plugins::Suggestions"
     -
-      class: "Cinch::Plugins::Shoutcast_Info"
+      class: "Cinch::Plugins::Shoutcast"
     -
-      class: "Cinch::Plugins::Twitter_Broadcast"
+      class: "Cinch::Plugins::Twitter"
     -
       class: "Cinch::Plugins::Links"
     -

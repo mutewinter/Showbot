@@ -2,15 +2,15 @@
 
 module Cinch
   module Plugins
-    class ShowbotAdmin
+    class Admin
       include Cinch::Plugin
 
       timer 300, :method => :fix_name
-      
+
       match %r{history (.*)},         :method => :command_history
       match %r{history_count (.*)},   :method => :command_history_count
       match %r{(?:exit|quit) (.+)},   :method => :command_exit
-      
+
       def initialize(*args)
         super
         @admin_password = ENV['SHOWBOT_ADMIN_PASSWORD']
