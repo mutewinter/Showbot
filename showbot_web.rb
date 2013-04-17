@@ -243,6 +243,10 @@ class ShowbotWeb < Sinatra::Base
       html << "<span class='vote_count #{extra_classes.join(',')}'>#{suggestion.votes_counter}</span>"
     end
 
+    def development?
+      settings.development?
+    end
+
   end # helpers
 
 end
