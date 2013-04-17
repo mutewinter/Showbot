@@ -1,5 +1,4 @@
-
-source :rubyforge
+source 'https://rubygems.org'
 
 # Regular
 gem 'tzinfo'
