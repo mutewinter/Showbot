@@ -29,6 +29,17 @@ namespace :db do
   task :upgrade => :environment do
     DataMapper.auto_upgrade!
   end
+
+  desc 'Seed the database with some fake title suggestions'
+  task :seed => :environment do
+    5.times do |n|
+      Suggestion.create(
+        :title => "Test #{Time.now.to_i} #{n}",
+        :show => 'b2w',
+        :user => 'derp'
+      )
+    end
+  end
 end
 
 task :environment do
