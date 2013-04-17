@@ -38,6 +38,17 @@ These commands will get you setup to run Showbot.
  * `bundle`
  * `rake db:migrate`
 
+Finally you need to setup your `.env` file in the root of the project. At the
+bare minimum you'll need the following:
+
+```
+RUBYLIB=./lib
+TWITTER_CONSUMER_KEY=your_info_here
+TWITTER_CONSUMER_SECRET=your_info_here
+TWITTER_OAUTH_TOKEN=your_info_here
+TWITTER_OAUTH_TOKEN_SECRET=your_info_here
+```
+
 ### Configuring IRC
 
  * Customize [`cinchize.yml`][cinchize] for your IRC channel.
