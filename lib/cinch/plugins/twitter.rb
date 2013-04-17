@@ -48,7 +48,11 @@ module Cinch
           return
         end
 
-        if @last_sent_id != status.id
+        if @last_sent_id.nil?
+          # Skip the first message from TWITTER_USER so we don't spam every
+          # time the bot reconnects
+          @last_sent_id = status.id
+        elsif @last_sent_id != status.id
 
           if status.in_reply_to_status_id or status.in_reply_to_screen_name
             # Don't show replies
