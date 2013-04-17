@@ -6,8 +6,11 @@ gem 'i18n'
 
 # Backups
 gem 'backup'
-gem 'fog'
+gem 'fog', '~> 1.9.0'
 gem 'whenever', require: false
+gem 'net-ssh', ['>= 2.3.0', '<= 2.5.2']
+gem 'excon', '~> 0.17.0'
+gem 'mail', '~> 2.5.0'
 
 # Web
 gem 'sinatra'

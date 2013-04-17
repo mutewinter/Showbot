@@ -89,7 +89,7 @@ GEM
     drx (0.4.5)
     eventmachine (1.0.3)
     every_day_irb (1.4.0)
-    excon (0.20.1)
+    excon (0.17.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
     fancy_irb (0.7.3)
@@ -99,13 +99,13 @@ GEM
       multipart-post (~> 1.1)
     fastercsv (1.5.5)
     ffi (1.7.0)
-    fog (1.10.1)
+    fog (1.9.0)
       builder
-      excon (~> 0.20)
+      excon (~> 0.14)
       formatador (~> 0.2.0)
       mime-types
       multi_json (~> 1.0)
-      net-scp (~> 1.1)
+      net-scp (~> 1.0.4)
       net-ssh (>= 2.1.3)
       nokogiri (~> 1.5.0)
       ruby-hmac
@@ -146,20 +146,25 @@ GEM
     json_pure (1.7.7)
     libv8 (3.11.8.17)
     looksee (1.0.3)
+    mail (2.5.3)
+      i18n (>= 0.4.0)
+      mime-types (~> 1.16)
+      treetop (~> 1.4.8)
     method_locator (0.0.4)
     method_source (0.8.1)
     methodfinder (1.2.5)
     mime-types (1.22)
     multi_json (1.7.2)
     multipart-post (1.2.0)
-    net-scp (1.1.0)
-      net-ssh (>= 2.6.5)
-    net-ssh (2.6.7)
+    net-scp (1.0.4)
+      net-ssh (>= 1.99.1)
+    net-ssh (2.5.2)
     nokogiri (1.5.9)
     numerizer (0.1.1)
     open4 (1.3.0)
     ori (0.1.0)
     paint (0.8.5)
+    polyglot (0.3.3)
     rack (1.5.2)
     rack-protection (1.5.0)
       rack
@@ -196,6 +201,9 @@ GEM
       rack (>= 1.0.0)
     thor (0.18.1)
     tilt (1.3.7)
+    treetop (1.4.12)
+      polyglot
+      polyglot (>= 0.3.1)
     twitter (4.6.2)
       faraday (~> 0.8, < 0.10)
       multi_json (~> 1.0)
@@ -231,12 +239,15 @@ DEPENDENCIES
   dm-timestamps
   dm-types
   dm-validations
+  excon (~> 0.17.0)
   execjs
-  fog
+  fog (~> 1.9.0)
   foreman
   haml
   i18n
   irbtools-more
+  mail (~> 2.5.0)
+  net-ssh (>= 2.3.0, <= 2.5.2)
   rack-test
   rb-fsevent
   ri_cal
