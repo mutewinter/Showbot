@@ -91,7 +91,7 @@ class ShowbotWeb < Sinatra::Base
   get '/clouds_between/:days_a/:days_b' do
     days_ago = [params[:days_a].to_i, params[:days_b].to_i].sort
     suggestion_sets = Suggestion.all(:created_at => ( (DateTime.now - days_ago[1])..(DateTime.now - days_ago[0]) ), :order => [:created_at.desc]).group_by_show
-    haml :'clouds', :locals => { cloud_data: WordCount.generate_clouds(suggestion_sets) }, :layout => false
+    haml :'clouds', :locals => { cloud_data: WordCount.generate_clouds(suggestion_sets) }
   end
 
   get '/cloud_svg/:year/:month/:day/:index' do
@@ -99,7 +99,7 @@ class ShowbotWeb < Sinatra::Base
     bracketed_suggestion_sets = Suggestion.all(:created_at => ( (the_date - 1)..(the_date + 2) ), :order => [:created_at.desc]).group_by_show
     suggestion_sets = bracketed_suggestion_sets.select { |set| set.suggestions[0].created_at.to_date == the_date.to_date }
 
-    haml :'clouds_svg', :locals => { cloud_data: WordCount.generate_clouds(suggestion_sets), cloud_index: params[:index].to_i }, :layout => false
+    haml :'clouds_svg', :locals => { cloud_data: WordCount.generate_clouds(suggestion_sets), cloud_index: params[:index].to_i }
   end
 
   get '/num_clouds_on_date/:year/:month/:day' do
@@ -275,12 +275,15 @@ class ShowbotWeb < Sinatra::Base
       settings.development?
     end
 
-    def cloud_layouts(cloud_data)
+    def cloud_json(cloud_data)
       return if cloud_data.nil?
 
       cloud_data.map do |d|
-        "make_cloud(\"#{show_title_for_slug(d[:show])} #{d[:time].to_date.to_s}\", #{d[:json]});"
-      end.join("\n")
+        {
+          title: "#{show_title_for_slug(d[:show])} #{d[:time].to_date.to_s}",
+          data: d[:data]
+        }
+      end.to_json
     end
 
   end # helpers

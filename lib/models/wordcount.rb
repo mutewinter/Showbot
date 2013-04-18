@@ -97,7 +97,7 @@ end
 def tokenize(str)
   # Normalize all whitespace
   str.gsub!(/\s+/, ' ')
-  
+
   # Fix curly quotes
   trans = { "\u2018" => "`",
     "\u2019" => "'",
