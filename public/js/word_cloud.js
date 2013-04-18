@@ -30,7 +30,6 @@ $(document).ready(function() {
       .on("end", draw);
 
   function draw(words, bounds) {
-    console.log("draw called")
     scale = bounds ? Math.min(
       w / Math.abs(bounds[1].x - w / 2),
       w / Math.abs(bounds[0].x - w / 2),
@@ -65,9 +64,7 @@ $(document).ready(function() {
 
   function make_all_clouds() {
     cloudData = $('#cloud-data').data('cloud-data');
-    console.log(cloudData);
     jQuery.each(cloudData, function(i, cloudDatum) {
-      console.log(cloudDatum.title, cloudDatum.data);
       make_cloud(cloudDatum.title, cloudDatum.data);
     });
   };
