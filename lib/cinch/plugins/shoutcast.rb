@@ -9,7 +9,7 @@ module Cinch
     class Shoutcast
       include Cinch::Plugin
 
-      SHOUTCAST_URI = URI("http://5by5.fm/") 
+      SHOUTCAST_URI = URI("http://5by5.fm/")
       HEADERS = {
           "Icy-MetaData" => '1'
       }
@@ -22,7 +22,7 @@ module Cinch
         @last_update = Time.now
         @shoutcast_show = parse_shoutcast_stream
       end
-      
+
       # =========================
       # Commands
       # =========================
@@ -32,7 +32,7 @@ module Cinch
           # Data older than 60 seconds, refresh it
           @shoutcast_show = parse_shoutcast_stream
         end
-        
+
         live_show = Shows.fetch_live_show
         if @shoutcast_show
           m.user.send "#{@shoutcast_show} is streaming on 5by5.tv/live"

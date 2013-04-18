@@ -9,7 +9,7 @@ require 'dm-aggregates'
 
 class IdfTracker
   include DataMapper::Resource
-  
+
   property :id,                   Serial
   property :last_suggestion_time, DateTime
   property :last_suggestion_show, String

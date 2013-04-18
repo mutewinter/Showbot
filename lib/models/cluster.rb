@@ -2,7 +2,7 @@
 # cluster.rb
 #
 # Model that contains a set of similar title suggestions, determined by
-# string metrics. 
+# string metrics.
 
 require 'open-uri'
 require 'json'
@@ -16,7 +16,7 @@ class Cluster
   include DataMapper::Resource
 
   property :id,       Serial
-  
+
   # Associations
   has n, :suggestions, :order => [:votes_counter.desc, :created_at.desc]
   has 1, :top_suggestion, :model => 'Suggestion', :order => [:votes_counter.desc, :created_at.asc]

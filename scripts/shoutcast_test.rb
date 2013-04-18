@@ -1,7 +1,7 @@
 require 'uri'
 require 'net/http'
 
-SHOUTCAST_URI = URI("http://5by5.fm/") 
+SHOUTCAST_URI = URI("http://5by5.fm/")
 HEADERS = {
   "Icy-MetaData" => '1'
 }

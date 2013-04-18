@@ -10,7 +10,7 @@ module Cinch
       match %r{(help|commands)$},  :method => :command_help     # !help
       match %r{(about|showbot)},   :method => :command_about    # !about
       match "uptime",   :method => :command_uptime              # !uptime
-      
+
       def initialize(*args)
         super
         @start_time = Time.now
@@ -29,7 +29,7 @@ module Cinch
           "!help - Uh, this.",
         ].join("\n")
       end
-      
+
       # Show information about showbot
       def command_about(m)
         m.user.send "Showbot was created by Jeremy Mack (@mutewinter) and some awesome contributors on github. The project page is located at https://github.com/mutewinter/Showbot"
