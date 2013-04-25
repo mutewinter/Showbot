@@ -90,7 +90,7 @@ module Cinch
         m.reply "pshhh pshhh pshhh HONNNNKKKK HONNNNKKKK HONNNNKKKK"
       end
 
-      def command_beuller(m)
+      def command_bueller(m)
         m.reply ["Nine times?",
           "Nine times.",
           "ok I'll go, I'll go, I'll go, I'll go, I'll go."
