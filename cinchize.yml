@@ -2,27 +2,47 @@
 # Plugins used for all configs
 plugins: &plugins
   plugins:
-    -
-      class: "Cinch::Plugins::FiveByFun"
-    -
-      class: "Cinch::Plugins::Schedule"
-    -
-      class: "Cinch::Plugins::Admin"
-    -
-      class: "Cinch::Plugins::Commands"
-    -
-      class: "Cinch::Plugins::Suggestions"
-    -
-      class: "Cinch::Plugins::Shoutcast"
-    -
-      class: "Cinch::Plugins::Twitter"
-    -
-      class: "Cinch::Plugins::Links"
-    -
-      class: "Cinch::Plugins::Identify"
+  -
+    class: "Cinch::Plugins::Admin"
+      options:
+        :showbot_admin_password: "test"
+  -
+    class: "Cinch::Plugins::Commands"
+  -
+    class: "Cinch::Plugins::FiveByFun"
+  -
+    class: "Cinch::Plugins::Identify"
       options:
         :password: "test" # Enter your password here
         :type: :nickserv # Most servers use nickserv, so setting this as the sane default.
+  -
+    class: "Cinch::Plugins::Links"
+  -
+    class: "Cinch::Plugins::Schedule"
+      options:
+        :ical_uri: "http://www.test.com/basic.ics"
+  -
+    class: "Cinch::Plugins::Suggestions"
+  -
+    class: "Cinch::Plugins::Shoutcast"
+      options:
+        :shoutcast_uri: "http://www.example.com/playlist.pls"
+  -
+    class: "Cinch::Plugins::Twitter"
+      options:
+        :channel: "test"
+        :twitter_user: "test"
+        :twitter_consumer_key: "test"
+        :twitter_consumer_secret: "test"
+        :twitter_oauth_token: "test"
+        :twitter_oauth_token_secret: "test"
+  Shared:
+    Bot_Nick:
+      - "botname"
+    Backup_Bot_Nick:
+      - "botname-backup"
+    Site_Uri:
+      - "http://www.example.com/"
 
 # The base configuration for freenode
 freenode_base: &freenode_base
