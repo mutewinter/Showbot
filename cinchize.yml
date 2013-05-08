@@ -9,7 +9,7 @@ plugins: &plugins
     -
       class: "Cinch::Plugins::Admin"
     -
-      class: "Cinch::Plugins::Showbot"
+      class: "Cinch::Plugins::Commands"
     -
       class: "Cinch::Plugins::Suggestions"
     -
