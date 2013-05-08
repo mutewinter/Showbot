@@ -44,8 +44,8 @@ plugins: &plugins
     Site_Uri:
       - "http://www.example.com/"
 
-# The base configuration for freenode
-freenode_base: &freenode_base
+# The base configuration, Freenode in the example configuration.
+network_base: &network_base
   <<: *plugins
   server: irc.freenode.net
   port: 6667
@@ -55,13 +55,13 @@ options:
     dir_mode: normal
     dir: "pid"
 servers:
-  freenode_test:
-    <<: *freenode_base
-    nick: showbot_test
+  network_test:
+    <<: *network_base
+    nick: botname_test
     channels:
       - "#cinch-bots"
-  freenode_live:
-    <<: *freenode_base
-    nick: showbot
+  network_live:
+    <<: *network_base
+    nick: botname
     channels:
-      - "#5by5"
+      - "#cinch-bots"
