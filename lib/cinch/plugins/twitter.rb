@@ -18,7 +18,7 @@ module Cinch
 
         @channel = config[:channel]
         @channel_test = config[:channel_test]
-        @twitter_user = config[:twitter_user]
+        @twitter_user = shared[:Twitter_User]
         ::Twitter.configure do |c|
           c.consumer_key = config[:twitter_consumer_key]
           c.consumer_secret = config[:twitter_consumer_secret]
@@ -62,7 +62,7 @@ module Cinch
           if @bot.nick =~ /_test$/
             Channel(@channel_test).send response_from_status(status)
           else
-            Channel(@CHANNEL).send response_from_status(status)
+            Channel(@channel).send response_from_status(status)
           end
         end
       end

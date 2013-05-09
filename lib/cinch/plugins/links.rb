@@ -53,7 +53,7 @@ module Cinch
 
       # Tell them where to find the lovely links
       def command_links(m)
-        m.user.send 'Go to http://showbot.me/links to see the link suggestions.'
+        m.user.send "Go to #{shared[:Sinatra_Url]}" + "/links to see the link suggestions."
       end
 
     end

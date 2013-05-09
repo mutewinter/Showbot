@@ -35,11 +35,11 @@ module Cinch
 
         live_show = Shows.fetch_live_show
         if @shoutcast_show
-          m.user.send "#{@shoutcast_show} is streaming on 5by5.tv/live"
+          m.user.send "#{@shoutcast_show} is streaming on #{shared[:Live_Url]}"
         elsif live_show
           m.user.send "#{live_show.title} is live right now!"
         else
-          m.user.send "Failed to get stream info, 5by5.fm may be down. I'm sorry."
+          m.user.send "Failed to get stream info, #{shared[:Live_Url]} may be down. I'm sorry."
         end
       end
 

@@ -1,4 +1,4 @@
-# Admin commands for showbot
+# Admin commands for the bot
 
 module Cinch
   module Plugins
@@ -24,7 +24,7 @@ module Cinch
       # !exit @admin_password
       def command_exit(m, password)
         if password == @admin_password
-          m.user.send "Showbot is shutting down. Good bye :("
+          m.user.send "#{shared[:Bot_Nick]} is shutting down. Good bye :("
 
           Process.exit
         else
@@ -32,15 +32,15 @@ module Cinch
         end
       end
 
-      # Called every 5 minutes to attempt to fix showbot's name.
-      # This can happen if showbot gets disconnected and reconnects before
+      # Called every 5 minutes to attempt to fix the bots name.
+      # This can happen if the bot gets disconnected and reconnects before
       # the last bot as been kicked from the IRC server.
       def fix_name
-        if @bot.nick == "showbot" or @bot.nick == "showbot_test"
+        if @bot.nick == "#{shared[:Bot_Nick]}"
           puts "Nick is fine, no change necessary."
         else
           puts "Fixing nickname."
-          @bot.nick = "showbot"
+          @bot.nick = "#{shared[:Bot_Nick]}"
         end
       end
 
