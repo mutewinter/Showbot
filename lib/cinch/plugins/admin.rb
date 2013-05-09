@@ -11,7 +11,7 @@ module Cinch
 
       def initialize(*args)
         super
-        @admin_password = ENV['SHOWBOT_ADMIN_PASSWORD']
+        @admin_password = config[:bot_admin_password]
 
         if @admin_password.nil? or @admin_password.strip.empty?
           # Generate an admim key since one wasn't found

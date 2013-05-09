@@ -18,7 +18,7 @@ module Cinch
         super
         # This is a terrible hack to get access to a folder in the project directory
         # TODO find a better way
-        @calendar = ICalCache.new "http://www.google.com/calendar/ical/fivebyfivestudios%40gmail.com/public/basic.ics"
+        @calendar = ICalCache.new config[:ical_uri]
         # Get the inital data for the calendar
         refresh_calendar
       end

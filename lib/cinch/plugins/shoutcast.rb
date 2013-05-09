@@ -9,7 +9,6 @@ module Cinch
     class Shoutcast
       include Cinch::Plugin
 
-      SHOUTCAST_URI = URI("http://5by5.fm/")
       HEADERS = {
           "Icy-MetaData" => '1'
       }
@@ -19,6 +18,7 @@ module Cinch
       def initialize(*args)
         super
 
+        @shoutcast_uri = URI(config[:shoutcast_uri])
         @last_update = Time.now
         @shoutcast_show = parse_shoutcast_stream
       end
@@ -51,12 +51,12 @@ module Cinch
       def parse_shoutcast_stream
         @last_update = Time.now
 
-        http = Net::HTTP.new(SHOUTCAST_URI.host, SHOUTCAST_URI.port)
+        http = Net::HTTP.new(@shoutcast_uri.host, @shoutcast_uri.port)
 
         chunk_count = 0
         chunk_limit = 20 # Limit chunks to prevent lockups
         begin
-          http.get(SHOUTCAST_URI.path, HEADERS) do |chunk|
+          http.get(@shoutcast_uri.path, HEADERS) do |chunk|
             chunk_count += 1
             if chunk =~ /StreamTitle='(.+?)';/
               return $1

@@ -5,7 +5,7 @@ plugins: &plugins
   -
     class: "Cinch::Plugins::Admin"
       options:
-        :showbot_admin_password: "test"
+        :bot_admin_password: "test"
   -
     class: "Cinch::Plugins::Commands"
   -
@@ -20,17 +20,17 @@ plugins: &plugins
   -
     class: "Cinch::Plugins::Schedule"
       options:
-        :ical_uri: "http://www.test.com/basic.ics"
+        :ical_uri: "http://www.example.com/basic.ics"
   -
     class: "Cinch::Plugins::Suggestions"
   -
     class: "Cinch::Plugins::Shoutcast"
       options:
-        :shoutcast_uri: "http://www.example.com/playlist.pls"
+        :shoutcast_uri: "http://www.example.com/"
   -
     class: "Cinch::Plugins::Twitter"
       options:
-        :channel: "test"
+        :channel: "#test"
         :twitter_user: "test"
         :twitter_consumer_key: "test"
         :twitter_consumer_secret: "test"

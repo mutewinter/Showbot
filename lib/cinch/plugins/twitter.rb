@@ -3,15 +3,6 @@
 require 'chronic_duration'
 require 'twitter'
 
-CHANNEL = "#5by5"
-TWITTER_USER = "5by5"
-
-Twitter.configure do |config|
-  config.consumer_key = ENV['TWITTER_CONSUMER_KEY']
-  config.consumer_secret = ENV['TWITTER_CONSUMER_SECRET']
-  config.oauth_token = ENV['TWITTER_OAUTH_TOKEN']
-  config.oauth_token_secret = ENV['TWITTER_OAUTH_TOKEN_SECRET']
-end
 
 module Cinch
   module Plugins
@@ -25,13 +16,22 @@ module Cinch
       def initialize(*args)
         super
 
+        @channel = config[:channel]
+        @channel_test = config[:channel_test]
+        @twitter_user = config[:twitter_user]
+        ::Twitter.configure do |c|
+          c.consumer_key = config[:twitter_consumer_key]
+          c.consumer_secret = config[:twitter_consumer_secret]
+          c.oauth_token = config[:twitter_oauth_token]
+          c.oauth_token_secret = config[:twitter_oauth_token_secret]
+        end
         @last_sent_id = nil
       end
 
       # Send the last status for the TWITTER_USER to the user who requested it
       def command_last_status(m)
         begin
-          status = ::Twitter.user_timeline(TWITTER_USER).first
+          status = ::Twitter.user_timeline(@twitter_user).first
           m.user.send response_from_status(status)
         rescue ::Twitter::Error::ServiceUnavailable
           m.user.send "Oops, looks like Twitter's whale failed. Try again in a minute."
@@ -40,7 +40,7 @@ module Cinch
 
       def send_last_status
         begin
-          status = ::Twitter.user_timeline(TWITTER_USER).first
+          status = ::Twitter.user_timeline(@twitter_user).first
         rescue ::Twitter::Error::ServiceUnavailable
           puts "Error: Twitter is over capacity."
           return
@@ -60,9 +60,9 @@ module Cinch
           @last_sent_id = status.id
 
           if @bot.nick =~ /_test$/
-            Channel("#cinch-bots").send response_from_status(status)
+            Channel(@channel_test).send response_from_status(status)
           else
-            Channel(CHANNEL).send response_from_status(status)
+            Channel(@CHANNEL).send response_from_status(status)
           end
         end
       end
@@ -73,7 +73,7 @@ module Cinch
           seconds_ago = (Time.now - created_at.to_time).to_i
           relative_time = ChronicDuration.output(seconds_ago, :format => :long)
 
-          return "@#{TWITTER_USER}: #{status.text} (#{relative_time} ago)"
+          return "@#{@twitter_user}: #{status.text} (#{relative_time} ago)"
         end
       end
 
