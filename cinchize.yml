@@ -36,13 +36,6 @@ plugins: &plugins
         :twitter_consumer_secret: "test"
         :twitter_oauth_token: "test"
         :twitter_oauth_token_secret: "test"
-  Shared:
-    Bot_Nick:
-      - "botname"
-    Backup_Bot_Nick:
-      - "botname-backup"
-    Site_Uri:
-      - "http://www.example.com/"
 
 # The base configuration, Freenode in the example configuration.
 network_base: &network_base
@@ -60,8 +53,20 @@ servers:
     nick: botname_test
     channels:
       - "#cinch-bots"
+    shared:
+      Bot_Nick: "botname"
+      Backup_Bot_Nick: "botname-backup"
+      Live_Url: "example.com/live"
+      Sinatra_Url: "http://www.example.com"
+      Twitter_User: "ExampleUser"
   network_live:
     <<: *network_base
     nick: botname
     channels:
       - "#cinch-bots"
+    shared:
+      Bot_Nick: "botname"
+      Backup_Bot_Nick: "botname-backup"
+      Live_Url: "example.com/live"
+      Sinatra_Url: "http://www.example.com"
+      Twitter_User: "ExampleUser"
