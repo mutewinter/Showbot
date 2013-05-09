@@ -4,38 +4,38 @@ plugins: &plugins
   plugins:
   -
     class: "Cinch::Plugins::Admin"
-      options:
-        :bot_admin_password: "test"
+    options:
+      :bot_admin_password: "test"
   -
     class: "Cinch::Plugins::Commands"
   -
     class: "Cinch::Plugins::FiveByFun"
   -
     class: "Cinch::Plugins::Identify"
-      options:
-        :password: "test" # Enter your password here
-        :type: :nickserv # Most servers use nickserv, so setting this as the sane default.
+    options:
+      :password: "test" # Enter your password here
+      :type: :nickserv # Most servers use nickserv, so setting this as the sane default.
   -
     class: "Cinch::Plugins::Links"
   -
     class: "Cinch::Plugins::Schedule"
-      options:
-        :ical_uri: "http://www.example.com/basic.ics"
+    options:
+      :ical_uri: "http://www.example.com/basic.ics"
   -
     class: "Cinch::Plugins::Suggestions"
   -
     class: "Cinch::Plugins::Shoutcast"
-      options:
-        :shoutcast_uri: "http://www.example.com/"
+    options:
+      :shoutcast_uri: "http://www.example.com/"
   -
     class: "Cinch::Plugins::Twitter"
-      options:
-        :channel: "#test"
-        :twitter_user: "test"
-        :twitter_consumer_key: "test"
-        :twitter_consumer_secret: "test"
-        :twitter_oauth_token: "test"
-        :twitter_oauth_token_secret: "test"
+    options:
+      :channel: "#test"
+      :twitter_user: "test"
+      :twitter_consumer_key: "test"
+      :twitter_consumer_secret: "test"
+      :twitter_oauth_token: "test"
+      :twitter_oauth_token_secret: "test"
 
 # The base configuration, Freenode in the example configuration.
 network_base: &network_base
