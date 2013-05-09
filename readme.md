@@ -42,11 +42,21 @@ Finally you need to setup your `.env` file in the root of the project. At the
 bare minimum you'll need the following:
 
 ```
+# Bot lib folder
 RUBYLIB=./lib
-TWITTER_CONSUMER_KEY=your_info_here
-TWITTER_CONSUMER_SECRET=your_info_here
-TWITTER_OAUTH_TOKEN=your_info_here
-TWITTER_OAUTH_TOKEN_SECRET=your_info_here
+# For backup.rb
+BOT_DATABASE_NAME=your_info_here
+BOT_DATABASE_USER=your_info_here
+BOT_DATABASE_PASSWORD=your_info_here
+BOT_DATABASE_HOST=your_info_here
+BOT_DATABASE_PORT=your_info_here
+BOT_DATABASE_OPTS=your_info_here
+S3_ACCESS_KEY_ID=your_info_here
+S3_SECRET_ACCESS_KEY=your_info_here
+S3_REIGON=your_info_here
+S3_BUCKET=your_info_here
+S3_PATH=your_info_here
+S3_KEEP=your_info_here
 ```
 
 ### Configuring IRC
