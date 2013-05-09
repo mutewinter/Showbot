@@ -4,7 +4,7 @@ require 'chronic_duration'
 
 module Cinch
   module Plugins
-    class Showbot
+    class Commands
       include Cinch::Plugin
 
       match %r{(help|commands)$},  :method => :command_help     # !help
