@@ -10,7 +10,7 @@ require 'sass'
 
 require 'sinatra' unless defined?(Sinatra)
 
-LIVE_URL = 'http://5by5.tv/live/data.json'
+LIVE_URL = ENV['DATA_JSON_URL']
 
 configure do
   # load models
