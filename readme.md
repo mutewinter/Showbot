@@ -153,4 +153,4 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
-_sekret analytics_ https://d2weczhvl823v0.cloudfront.net/mutewinter/Showbot/trend.png
+_sekret analytics_ ![shhh](https://d2weczhvl823v0.cloudfront.net/mutewinter/Showbot/trend.png)
