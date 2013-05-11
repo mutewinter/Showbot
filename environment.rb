@@ -7,12 +7,16 @@ require 'dm-aggregates'
 require 'dm-migrations'
 require 'haml'
 require 'sass'
+require 'i18n'
 
 require 'sinatra' unless defined?(Sinatra)
 
 LIVE_URL = ENV['DATA_JSON_URL']
 
 configure do
+  Dir[File.join(Dir.pwd, 'locales', '*.yml')].each {|file| I18n.load_path << file }
+  I18n.default_locale = ENV['SHOWBOT_LOCALE']
+  
   # load models
   Dir.glob("#{File.dirname(__FILE__)}/lib/models/*.rb") { |lib| require lib }
 end

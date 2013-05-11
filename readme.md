@@ -44,6 +44,11 @@ bare minimum you'll need the following:
 ```
 # Bot lib folder
 RUBYLIB=./lib
+
+# Set this if you want to use a language other than english.
+# You will also need to create a corresponding .yml file in the locales folder.
+SHOWBOT_LOCALE=en
+
 # For backup.rb
 BOT_DATABASE_NAME=your_info_here
 BOT_DATABASE_USER=your_info_here
@@ -57,7 +62,8 @@ S3_REIGON=your_info_here
 S3_BUCKET=your_info_here
 S3_PATH=your_info_here
 S3_KEEP=your_info_here
-# Point to the location of your data.json, if you have one.
+
+# Point this to the url of data.json, if you have one
 DATA_JSON_URL=your_info_here
 ```
 

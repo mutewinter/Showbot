@@ -1,0 +1,4 @@
+en:
+  messages:
+    models:
+      suggestion: That suggestion was too long. Bot is sorry. Think title, not transcript.
