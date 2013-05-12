@@ -19,6 +19,11 @@ configure do
   
   # load models
   Dir.glob("#{File.dirname(__FILE__)}/lib/models/*.rb") { |lib| require lib }
+
+  def t(*args)
+    # Just a simple alias
+    I18n.t(*args)
+  end
 end
 
 configure(:production, :development) do
