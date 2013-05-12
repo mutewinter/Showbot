@@ -2,3 +2,86 @@ en:
   messages:
     models:
       suggestion: That suggestion was too long. Bot is sorry. Think title, not transcript.
+  views:
+    clouds:
+      cloud_data_empty: "No episodes found in that time frame."
+    clouds_svg:
+      out_of_bounds_begin: "The index of %cloud_index is out of bounds. There "
+      cloud_data_count:
+        one: "is %cloud_data_count cloud"
+        other: "are %cloud_data_count clouds"
+      out_of_bounds_end: " on the specified date."
+    layout:
+      title: "Showbot"
+      meta_description: "Showbot displays title suggestions from users listening to the live http://5by5.tv podcasts. It gathers these suggestions from the #5by5 IRC channel."
+      meta_author: "Jeremy Mack"
+      header: "Showbot"
+      heart: "<<span>3</span>"
+      link_titles: "Titles"
+      link_links: "Links"
+      friendly:
+        message: "Showbot loves you."
+        alt: "Not like that."
+      exist:
+        message: "Why"
+        para_1: "The jackals in the 5by5 Chat think they know what the title "
+        para_2: "of the show should be. Showbot passes no judgements. Showbot collects"
+        para_3: " the title suggestions from IRC and shows them here. Showbot is here to help."
+      who:
+        message: "Who"
+        para_1: "Showbot was created by Jeremy Mack, <a href=\"http://twitter.com/mutewinter\">@mutewinter</a>."
+        para_2: "Showbot also receives love from coders in the 5by5 community on GitHub."
+      where:
+        message: "Where"
+        para_1: "<a href=\"http://github.com/mutewinter/Showbot\">Showbot on GitHub</a>"
+        para_2: "<a href=\"http://5by5.tv/chat\">Showbot in IRC</a>"
+        para_3: "<a href=\"http://5by5.tv\">5by5.tv</a>"
+    links:
+      links_count:
+        one: "1 Link Suggestion in the last 24 hours"
+        other: "%links.count Link Suggestions in the last 24 hours"
+      irc_help: In the <a href='http://5by5.tv/chat'>5by5 chat room</a>? Type <span class='code'>!link http://example.com</span> to suggest a link.
+      unknown_show: "Show Not Listed"
+      zero: "No link suggestions yet"
+    suggestion:
+      index:
+        subtitle:
+          zero: "No title suggestions yet"
+          one: "%{count} Title suggestion in the last 24 hours"
+          other: "%{count} Title suggestions in the last 24 hours"
+        irc_help: In the <a href='http://5by5.tv/chat'>5by5 chat room</a>? Type <span class='code'>!suggest Wacky Title</span> to suggest a title.
+        view_mode:
+          Bubbles: "Bubbles"
+          Tables: "Tables"
+          Clusters: "Clusters"
+          Hacker: "Hacker"
+      _table_set:
+        Votes: "Votes"
+        Title: "Title"
+        User: "User"
+        When: "When"
+      _table_row:
+        User: "No User"
+      _cluster_set:
+        titles:
+          one: "%{count} Title "
+          other: "%{count} Titles "
+        groups:
+          one: "in %{count} Group"
+          other: "in %{count} Groups"
+        Votes: "Votes"
+        Title: "Title"
+        User: "User"
+        When: "When"
+      _cluster_table_row:
+        User: "No User"
+      _bubble:
+        subtitle:
+          one: "Vote"
+          other: "Votes"
+      hacker_mode:
+        welcome: Welcome to Hacker Mode.
+        suggestions:
+          zero: "No Title Suggestion in the last 24 hours."
+          one: "%{count} Title Suggestion in the last 24 hours."
+          other: "%{count} Title Suggestions in the last 24 hours."

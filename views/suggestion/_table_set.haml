@@ -7,10 +7,10 @@
     %table.sortable.zebra-striped
       %thead
         %tr
-          %th.votes.header Votes
-          %th.header Title
-          %th.header User
-          %th.header When
+          %th.votes.header= t('views.suggestion._table_set.Votes')
+          %th.header= t('views.suggestion._table_set.Title')
+          %th.header= t('views.suggestion._table_set.User')
+          %th.header= t('views.suggestion._table_set.When')
       %tbody
         - suggestions.each do |suggestion|
           %tr

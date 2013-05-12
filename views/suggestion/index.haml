@@ -1,20 +1,20 @@
 - suggestions = suggestion_sets.map{|s| s.suggestions}.flatten
 -if suggestions.count > 0
-  %h2.subtitle="#{suggestions.count} Title Suggestion#{suggestions.count == 1 ? '' : 's'} in the last 24 hours"
-  .irc_help In the <a href='http://5by5.tv/chat'>5by5 chat room</a>? Type <span class='code'>!suggest Wacky Title</span> to suggest a title.
+  %h2.subtitle=t(:subtitle, :scope => [:views, :suggestion, :index], :count => suggestions.count)
+  .irc_help=t('views.suggestion.index.irc_help')
 
   %hr
 
   .view_mode.grid_12
     %ul.segmented_controls
       %li#bubble{:class => view_mode == 'bubbles' ? 'selected' : ''}
-        %a{href: '/titles?view_mode=bubbles'}Bubbles
+        %a{href: '/titles?view_mode=bubbles'}=t('views.suggestion.index.view_mode.Bubbles')
       %li#table{:class => view_mode == 'tables' ? 'selected' : ''}
-        %a{href: '/titles?view_mode=tables'}Tables
+        %a{href: '/titles?view_mode=tables'}=t('views.suggestion.index.view_mode.Tables')
       %li#clusters{:class => view_mode == 'clusters' ? 'selected' : ''}
-        %a{href: '/titles?view_mode=clusters'}Clusters
+        %a{href: '/titles?view_mode=clusters'}=t('views.suggestion.index.view_mode.Clusters')
       %li#hacker{:class => view_mode == 'hacker' ? 'selected' : ''}
-        %a{href: '/titles?view_mode=hacker'}Hacker
+        %a{href: '/titles?view_mode=hacker'}=t('views.suggestion.index.view_mode.Hacker')
 
   .clear
   #titles
@@ -28,5 +28,5 @@
       = haml :'suggestion/_table_set', :locals => {suggestion_sets: suggestion_sets}
   .clear
 -else
-  %h2.subtitle.grid_12 No title suggestions yet
-  .irc_help In the <a href='http://5by5.tv/chat'>5by5 chat room</a>? Type <span class='code'>!suggest Wacky Title</span> to suggest a title.
+  %h2.subtitle.grid_12=t(:subtitle, :scope => [:views, :suggestion, :index], :count => suggestions.count)
+  .irc_help=t('views.suggestion.index.irc_help')

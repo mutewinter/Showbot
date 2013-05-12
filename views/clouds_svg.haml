@@ -1,4 +1,4 @@
 -if cloud_index >= cloud_data.count
-  %p="The index of #{ cloud_index } is out of bounds. There " + ( (cloud_data.count == 1) ? "is #{cloud_data.count} cloud" : "are #{cloud_data.count} clouds" ) + " on the specified date."
+  %p=t(:out_of_bounds_begin, :scope => [:views, :clouds_svg], :cloud_index => cloud_index) + t(:cloud_data_count, :scope => [:views, :clouds_svgf], :count => cloud_data.count :cloud_data_count => cloud_data.count) + t(:out_of_bounds_end, :scope => [:views, :clouds_svg], :cloud_index => cloud_index) + t('views.clouds_svg.out_of_bounds_end')
 -else
   #cloud-data{data: {:'cloud-data' => cloud_json(cloud_data[cloud_index, 1])}}

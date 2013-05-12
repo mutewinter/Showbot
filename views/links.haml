@@ -1,10 +1,6 @@
 -if @links.count > 0
-  %h2.subtitle.grid_12
-    - if @links.count == 1
-      ="1 Link Suggestion in the last 24 hours"
-    - else
-      ="#{@links.count} Link Suggestions in the last 24 hours"
-  .irc_help In the <a href='http://5by5.tv/chat'>5by5 chat room</a>? Type <span class='code'>!link http://example.com</span> to suggest a link.
+  %h2.subtitle.grid_12=t(:links_count, :scope => [:views, :links], :count => @links.count)
+  .irc_help=t('views.links.irc_help')
   %hr
   .clear
   %ol#links
@@ -15,7 +11,7 @@
         - col = 0
         .clear
         - if link.show.nil?
-          %h2.show_break Show Not Listed
+          %h2.show_break=t('views.links.unknown_show')
         - else
           %h2.show_break= Shows.find_show_title(link.show)
         .clear
@@ -37,5 +33,5 @@
         - col += 1
   .clear
 -else
-  %h2.subtitle.grid_12 No link suggestions yet
-  .irc_help In the <a href='http://5by5.tv/chat'>5by5 chat room</a>? Type <span class='code'>!link http://example.com</span> to suggest a link.
+  %h2.subtitle.grid_12=t('views.links.zero')
+  .irc_help=t('views.links.irc_help')

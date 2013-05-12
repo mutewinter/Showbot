@@ -4,14 +4,14 @@
   = suggestion_set_hr(suggestion_set)
   .suggestions_table
     - group_count = suggestions.map { |s| s.cluster_id }.uniq.reject { |s| s == nil }.count + suggestions.count { |s| s.cluster_id == nil }
-    .total="#{suggestions.count} Title#{suggestions.count == 1 ? '' : 's'} in #{group_count} Group#{group_count == 1 ? '' : 's'}"
+    .total=t(:titles, :scope => [:views, :suggestion, :_cluster_set], :count => suggestions.count) + t(:groups, :scope => [:views, :suggestion, :_cluster_set], :count => group_count)
     %table.sortable
       %thead
         %tr
-          %th.votes.header{:colspan => 2} Votes
-          %th.header Title
-          %th.header User
-          %th.header When
+          %th.votes.header{:colspan => 2}=t('views.suggestion._table_set.Votes')
+          %th.header= t('views.suggestion._table_set.Title')
+          %th.header= t('views.suggestion._table_set.User')
+          %th.header= t('views.suggestion._table_set.When')
       %tbody
         - suggestions.each do |suggestion|
           - if suggestion.in_cluster?

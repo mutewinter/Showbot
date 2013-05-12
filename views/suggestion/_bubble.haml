@@ -3,7 +3,7 @@
 .title_container
   .votes_container
     .votes=link_and_vote_count(suggestion, request.ip)
-    .subtitle="vote#{suggestion.votes_counter == 1 ? '' : 's'}"
+    .subtitle=t(:subtitle, :scope => [:views, :suggestion, :_bubble], :count => suggestion.votes_counter)
   .title=h suggestion.title
 .qend ”
 = haml :'suggestion/_timeago', :locals => {datetime: suggestion.created_at}

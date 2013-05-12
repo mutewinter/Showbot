@@ -1,5 +1,5 @@
 %td.votes=link_and_vote_count(suggestion, request.ip)
 %td.title=h suggestion.title
-%td.user=h suggestion.user || 'No User'
+%td.user=h suggestion.user || t("views.suggestion._table_row.User")
 %td.time
   = haml :'suggestion/_timeago', :locals => {datetime: suggestion.created_at}
