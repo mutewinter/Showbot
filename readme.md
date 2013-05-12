@@ -49,6 +49,12 @@ RUBYLIB=./lib
 # You will also need to create a corresponding .yml file in the locales folder.
 SHOWBOT_LOCALE=en
 
+# Foreman stuff
+## Production port
+PORT=80
+## Development port
+DEVELOPMENT_PORT=5000
+
 # For backup.rb
 BOT_DATABASE_NAME=your_info_here
 BOT_DATABASE_USER=your_info_here
