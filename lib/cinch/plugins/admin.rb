@@ -2,15 +2,13 @@
 
 module Cinch
   module Plugins
-    class ShowbotAdmin
+    class Admin
       include Cinch::Plugin
 
       timer 300, :method => :fix_name
-      
-      match %r{history (.*)},         :method => :command_history
-      match %r{history_count (.*)},   :method => :command_history_count
+
       match %r{(?:exit|quit) (.+)},   :method => :command_exit
-      
+
       def initialize(*args)
         super
         @admin_password = ENV['SHOWBOT_ADMIN_PASSWORD']
@@ -19,20 +17,6 @@ module Cinch
           # Generate an admim key since one wasn't found
           @admin_password ||= (0...8).map{65.+(rand(25)).chr}.join
           puts "Admin key is #{@admin_password}"
-        end
-      end
-
-      # Admin command that shows the recently executed commands
-      # !exit @admin_password
-      def command_history(m, password)
-        if password == @admin_password
-          # TODO reply with history from DB
-        end
-      end
-
-      def command_history_count(m, password)
-        if password == @admin_password
-          # TODO reply with history count from DB
         end
       end
 

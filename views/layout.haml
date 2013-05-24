@@ -6,11 +6,11 @@
     %title="Showbot #{'| ' + @title if @title}"
     %meta{:content => "Showbot displays title suggestions from users listening to the live http://5by5.tv podcasts. It gathers these suggestions from the #5by5 IRC channel.", :name => "description"}
     %meta{:content => "Jeremy Mack", :name => "author"}
-    %link(rel="stylesheet" href="/css/reset.css") 
-    %link(rel="stylesheet" href="/css/text.css") 
-    %link(rel="stylesheet" href="/css/960.css") 
-    %link(rel="stylesheet" href="/css/tipsy.css") 
-    %link(rel="stylesheet" href="/css/showbot.css?v=5") 
+    %link(rel="stylesheet" href="/css/reset.css")
+    %link(rel="stylesheet" href="/css/text.css")
+    %link(rel="stylesheet" href="/css/960.css")
+    %link(rel="stylesheet" href="/css/tipsy.css")
+    %link(rel="stylesheet" href="/css/showbot.css?v=5")
     / Modernizer
     %script{:type => "text/javascript", :src  => "/js/modernizr.custom.js"}
   %body
@@ -40,7 +40,7 @@
     .container_12
       %abbr#bot_love.grid_12{:title => "Not like that."} Showbot loves you.
     #footer
-      .container_12 
+      .container_12
         %ul
           %li.grid_3.push_2
             %h2 Why
@@ -66,9 +66,11 @@
     %script{:type => "text/javascript", :src  => "/js/jquery.timeago.js"}
     %script{:type => "text/javascript", :src  => "/js/jquery.tablesorter.min.js"}
     %script{:type => "text/javascript", :src => "/js/jquery.tipsy.js"}
+    %script{:type => "text/javascript", :src => "/js/d3.v3.min.js"}
+    %script{:type => "text/javascript", :src => "/js/d3.layout.cloud.js"}
+    %script{:type => "text/javascript", :src => "/js/word_cloud.js"}
     / Main JS
     %script{:type => "text/javascript", :src  => "/js/showbot.js"}
-    %script{:type => "text/javascript", :src  => "//static.getclicky.com/js"}
     :javascript
       var _gauges = _gauges || [];
       (function() {
@@ -81,11 +83,6 @@
         var s = document.getElementsByTagName('script')[0];
         s.parentNode.insertBefore(t, s);
       })();
-    :javascript
-      try{ clicky.init(66520755); }catch(e){}
-    %noscript
-      %p
-        %img{:alt => 'Clicky', :width => 1, :height => 1, :src => "//in.getclicky.com/66520755ns.gif"}
     :javascript
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-24163893-1']);

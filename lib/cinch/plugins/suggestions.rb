@@ -7,8 +7,7 @@ module Cinch
 
       match "help suggest",        :method => :command_help        # !help suggest
       match /(?:suggest|s) (.+)/i, :method => :command_suggest     # !suggest Great Title Here
-      match "suggestions",         :method => :command_suggestions # !suggestions
-      
+
 
       # Show help for the suggestions module
       def command_help(m)
@@ -34,17 +33,6 @@ module Cinch
           end
         end
 
-      end
-
-      # Tell them where to find the lovely suggestions
-      def command_suggestions(m)
-        if development?
-          Suggestion.all.each_with_index do |suggestion, i|
-            m.user.send "[#{i+1}]: #{suggestion.title} (#{suggestion.user})]"
-          end
-        else
-          m.user.send 'Go to http://showbot.me to see the title suggestions.'
-        end
       end
 
     end

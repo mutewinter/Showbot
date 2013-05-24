@@ -120,12 +120,16 @@ class Suggestion
   def self.group_by_show
     suggestion_sets = []
     last_show = nil
+    last_time = nil
+    split_interval = 0.75 # 18 hours - for creating a new set if same show runs 2 days in a row without another in between
+
     all.each do |suggestion|
-      if suggestion_sets.empty? or last_show != suggestion.show
+      if suggestion_sets.empty? or last_show != suggestion.show or (last_time - suggestion.created_at) > split_interval
         suggestion_sets << SuggestionSet.new(suggestion.show)
       end
 
       last_show = suggestion.show
+      last_time = suggestion.created_at
 
       # Always add the show to the last group
       suggestion_sets.last.add suggestion

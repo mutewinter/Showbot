@@ -1,0 +1,4 @@
+-if cloud_index >= cloud_data.count
+  %p="The index of #{ cloud_index } is out of bounds. There " + ( (cloud_data.count == 1) ? "is #{cloud_data.count} cloud" : "are #{cloud_data.count} clouds" ) + " on the specified date."
+-else
+  #cloud-data{data: {:'cloud-data' => cloud_json(cloud_data[cloud_index, 1])}}

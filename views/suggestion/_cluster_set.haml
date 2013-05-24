@@ -19,7 +19,7 @@
               %tr{:class => "cluster-top", :id => "cluster-#{suggestion.cluster_id}"}
                 = haml :'suggestion/_cluster_table_row', :locals => {suggestion: suggestion, cluster_top: true}
               - suggestion.cluster.suggestions.each do |child_suggestion|
-                - if child_suggestion.id != suggestion.id 
+                - if child_suggestion.id != suggestion.id
                   %tr{:class => "expand-child child-cluster-#{child_suggestion.cluster_id}"}
                     = haml :'suggestion/_cluster_table_row', :locals => {suggestion: child_suggestion, cluster_top: false}
           - else

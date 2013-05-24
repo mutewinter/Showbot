@@ -60,7 +60,7 @@ class Link
   # =====================
   # Validations
   # =====================
-  
+
   # Verifies that link hasn't been entered in the last 30 minutes
   def check_link_uniqueness
     if self.uri
@@ -91,5 +91,5 @@ class Link
       all(:created_at.gt => time_ago).all(:order => [:created_at.desc])
     end
   end
-  
+
 end

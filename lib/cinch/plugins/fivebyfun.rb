@@ -9,6 +9,7 @@ module Cinch
 
       # The cast
       match /(dan|danbenjamin)/i,         :method => :command_dan
+      match /(haddie|haddiebird)/i,       :method => :command_haddie
       match /(merlin|mann)/i,             :method => :command_merlin
       match /(sandy|sandwich|adam)/i,     :method => :command_sandy
       match /(jsir|siracusa|jsiracusa)/i, :method => :command_jsir
@@ -18,7 +19,7 @@ module Cinch
       match /faith/i,                     :method => :command_faith
       match /(mike|monteiro)/i,           :method => :command_mike
       match /(roderick)/i,                :method => :command_roderick
-      # The characers
+      # The characters
       match /drphil/i,                    :method => :command_drphil
       match /(vanhoet|neckbeard)/i,       :method => :command_van_hoet
       match /paleo/i,                     :method => :command_paleo
@@ -26,8 +27,17 @@ module Cinch
       match /usa/i,                       :method => :command_usa
       match /turd/i,                      :method => :command_turd
       match /resp/i,                      :method => :command_responsibility
+      match /(lebowski|dude)/i,           :method => :command_lebowski
+      match /(texas)/i,                   :method => :command_texas
+      match /(ferris|bueller)/i,          :method => :command_bueller
+      match /bluetoot/i,                  :method => :command_bluetoot
+      match /sodastream/i,                :method => :command_sodastream
+      match /(aviator|future)/i,          :method => :command_aviator
       # The etc.
+      match /lemongrab/i,                 :method => :command_lemongrab
+      match /peppermint_butler/i,         :method => :command_peppermint
       match /(eight_ball|8ball)/i,        :method => :command_eight_ball
+      match /(quit)/i,                    :method => :command_quit_show
 
       def command_glengarry(m)
         m.reply ["You got leads. Mitch and Murray paid good money. Get their names to sell them.",
@@ -35,6 +45,8 @@ module Cinch
           "Get them to sign on the line which is dotted!",
           "Attention. Do I have your attention? Interest. Are you interested? I know you are 'cause it's fuck or walk. You close or you hit the bricks. Decision. Have you made your decision for Christ? And action.",
           "Oh yeah, I used to be a salesman. It's a tough racket.",
+          "Second prize is a set of steak knives. Third prize is you're fired.",
+          "Coffee's for closers only."
           ].random
       end
 
@@ -57,9 +69,46 @@ module Cinch
           ].random
       end
 
+      def command_lebowski(m)
+        m.reply ["That's your name, Dude!",
+          "I see you rolled your way into the semis. Dios mio, man.",
+          "Uh, uh, papers, um, just papers, uh, you know, uh, my papers, business papers."
+          ].random
+      end
+
+      def command_texas(m)
+        m.reply "The stars at night are big and bright..."
+      end
+
+      def command_bluetoot(m)
+        m.reply ["Hi! Can I aks you a queshion?",
+        "Before you answer, Hi!"
+        ].random
+      end
+
+      def command_sodastream(m)
+        m.reply "pshhh pshhh pshhh HONNNNKKKK HONNNNKKKK HONNNNKKKK"
+      end
+
+      def command_bueller(m)
+        m.reply ["Nine times?",
+          "Nine times.",
+          "ok I'll go, I'll go, I'll go, I'll go, I'll go."
+        ].random
+      end
+
+      def command_aviator(m)
+        m.reply ["The way of the future.",
+          "Come in with the milk. Come in with the milk. Come in with the milk."
+        ].random
+      end
 
       def command_roderick(m)
-        m.reply ["I demand satisfaction!", "I agree to nothing!"].random
+        m.reply ["I demand satisfaction!",
+        "I agree to nothing!",
+        "Supertrain will fix all of this.",
+        "Keep moving and get out of the way",
+        "Hitler"].random
       end
 
       def command_drphil(m)
@@ -77,7 +126,15 @@ module Cinch
       end
 
       def command_merlin(m)
-        m.reply ["SO angry.", "Don't be creepy.", "Go ahead, caller."].random
+        m.reply ["SO angry.",
+        "Don't be creepy.",
+        "Go ahead, caller.",
+        "Is this what people tune in for?",
+        "I love you.",
+        "Recursion. Which is also known as recursion.",
+        "...Cleric...",
+        "I gotta go bust a tinkie."
+        ].random
       end
 
       def command_sandy(m)
@@ -107,6 +164,23 @@ module Cinch
         m.reply "I don't know."
       end
 
+      def command_lemongrab(m)
+        m.reply ["This castle is in...unacceptable...condition! UNACCEPTABLE!!!",
+          "All of you. Dungeon. Seven years. No trials.",
+          "Three. Hours. Dungeon.",
+          "Oooonnne MILLION YEARS DUNGEON!!!",
+          "Who did...the thing?!",
+          "Yes, of course.",
+          "Ahhhhh....HAHAHAHAHAHAHAHA!",
+          "I determine what is early and what is late, Mr. Peppermint.",
+          "Me too. I'm excited, too."].random
+      end
+
+      def command_peppermint(m)
+        m.reply ["Hey man, calm down! It's just a prank, man! For laughs!",
+          "I'm excited by this meal I made!"].random
+      end
+
       def command_eight_ball(m)
         m.reply ["It is certain",
           "It is decidedly so",
@@ -130,8 +204,26 @@ module Cinch
           "Very doubtful"].random
       end
 
+      def command_quit_show(m)
+        m.reply "Call in to Quit! Live at (512) 518-5714. Leave a Voicemail at (512) 222-8141."
+      end
+
       def command_dan(m)
-        m.reply [ "That's fine for Merlin.", "Big week. Huge week.", "It's your show."].random
+        m.reply [ "That's fine for Merlin.",
+        "Big week. Huge week.",
+        "It's your show.",
+        "Go ahead caller.",
+        "Keeping you up, Haddie?"].random
+      end
+
+      def command_haddie(m)
+        m.reply [ "That's meat, I know it.",
+        "Oh, it's fabulous.",
+        "No, no, no one's screwing a hole",
+        "It's a sensation",
+        "Eww, the cat is weird",
+        "We have to worry about space germs too. Ughhhhhhhhh! Why?!?!"
+        ].random
       end
 
       def command_robert_evans(m)

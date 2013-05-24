@@ -3,29 +3,26 @@
 plugins: &plugins
   plugins:
     -
-      module: "./lib/cinch/plugins/fivebyfun"
       class: "Cinch::Plugins::FiveByFun"
     -
-      module: "./lib/cinch/plugins/schedule"
       class: "Cinch::Plugins::Schedule"
     -
-      module: "./lib/cinch/plugins/showbot_admin"
-      class: "Cinch::Plugins::ShowbotAdmin"
+      class: "Cinch::Plugins::Admin"
     -
-      module: "./lib/cinch/plugins/showbot"
       class: "Cinch::Plugins::Showbot"
     -
-      module: "./lib/cinch/plugins/suggestions"
       class: "Cinch::Plugins::Suggestions"
     -
-      module: "./lib/cinch/plugins/shoutcast_info"
-      class: "Cinch::Plugins::ShoutcastInfo"
+      class: "Cinch::Plugins::Shoutcast"
     -
-      module: "./lib/cinch/plugins/twitter_broadcast"
-      class: "Cinch::Plugins::TwitterBroadcast"
+      class: "Cinch::Plugins::Twitter"
     -
-      module: "./lib/cinch/plugins/links"
       class: "Cinch::Plugins::Links"
+    -
+      class: "Cinch::Plugins::Identify"
+      options:
+        :password: "test" # Enter your password here
+        :type: :nickserv # Most servers use nickserv, so setting this as the sane default.
 
 # The base configuration for freenode
 freenode_base: &freenode_base

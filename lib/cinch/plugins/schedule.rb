@@ -10,10 +10,10 @@ module Cinch
       include Cinch::Plugin
 
       timer 600, :method => :refresh_calendar
-      
+
       match /next\s?(.*)/i,     :method => :command_next      # !next
       match /schedule\s?(.*)/i, :method => :command_schedule  # !schedule
-      
+
       def initialize(*args)
         super
         # This is a terrible hack to get access to a folder in the project directory
@@ -43,13 +43,13 @@ module Cinch
         if next_event
           tz = TZInfo::Timezone.get('America/New_York')
           time = tz.utc_to_local(next_event.start_time)
-          
+
           date_string = time.strftime("%A, %-m/%-d/%Y")
           time_string = time.strftime("%-I:%M%P EST")
           nearest_seconds_until = ((next_event.start_time - DateTime.now) * 24 * 60 * 60).to_i
           if show
             m.user.send "The next #{next_event.summary} is in #{ChronicDuration.output(nearest_seconds_until, :format => :long)} (#{time_string} on #{date_string})"
-          else 
+          else
             m.user.send "Next show is #{next_event.summary} in #{ChronicDuration.output(nearest_seconds_until, :format => :long)} (#{time_string} on #{date_string})"
           end
         else

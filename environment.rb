@@ -18,7 +18,7 @@ configure do
 end
 
 configure(:production, :development) do
-  DataMapper::Logger.new(STDOUT, :debug) if development?
+  DataMapper::Logger.new(STDOUT, :debug) if settings.development?
 
   current_directory = File.expand_path(File.dirname(__FILE__))
   sqlite_file = File.join(current_directory, 'db', "#{Sinatra::Base.environment}.db")

@@ -5,3 +5,6 @@
 
 /development.db
 .sass-cache
+
+/tmp/
+/.env

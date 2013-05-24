@@ -7,10 +7,13 @@ require 'coffee_script'
 require 'sinatra' unless defined?(Sinatra)
 require "sinatra/reloader" if development?
 
+require 'json'
+
 require File.join(File.dirname(__FILE__), 'environment')
 
 
 SHOWS_JSON = File.expand_path(File.join(File.dirname(__FILE__), "public", "shows.json")) unless defined? SHOWS_JSON
+SAMPLE_TITLES_JSON = File.expand_path("hypercritical.json")
 
 class ShowbotWeb < Sinatra::Base
   configure do
@@ -81,6 +84,31 @@ class ShowbotWeb < Sinatra::Base
     else
       redirect '/'
     end
+  end
+
+  # Word cloud generation
+
+  get '/clouds_between/:days_a/:days_b' do
+    days_ago = [params[:days_a].to_i, params[:days_b].to_i].sort
+    suggestion_sets = Suggestion.all(:created_at => ( (DateTime.now - days_ago[1])..(DateTime.now - days_ago[0]) ), :order => [:created_at.desc]).group_by_show
+    haml :'clouds', :locals => { cloud_data: WordCount.generate_clouds(suggestion_sets) }
+  end
+
+  get '/cloud_svg/:year/:month/:day/:index' do
+    the_date = DateTime.new(params[:year].to_i, params[:month].to_i, params[:day].to_i)
+    bracketed_suggestion_sets = Suggestion.all(:created_at => ( (the_date - 1)..(the_date + 2) ), :order => [:created_at.desc]).group_by_show
+    suggestion_sets = bracketed_suggestion_sets.select { |set| set.suggestions[0].created_at.to_date == the_date.to_date }
+
+    haml :'clouds_svg', :locals => { cloud_data: WordCount.generate_clouds(suggestion_sets), cloud_index: params[:index].to_i }
+  end
+
+  get '/num_clouds_on_date/:year/:month/:day' do
+    content_type :json
+
+    the_date = DateTime.new(params[:year].to_i, params[:month].to_i, params[:day].to_i)
+    bracketed_suggestion_sets = Suggestion.all(:created_at => ( (the_date - 1)..(the_date + 2) ), :order => [:created_at.desc]).group_by_show
+
+    { num_clouds: bracketed_suggestion_sets.select { |set| set.suggestions[0].created_at.to_date == the_date.to_date }.count }.to_json
   end
 
   # ------------------
@@ -241,6 +269,21 @@ class ShowbotWeb < Sinatra::Base
         html << link_to_vote_up(suggestion)
       end
       html << "<span class='vote_count #{extra_classes.join(',')}'>#{suggestion.votes_counter}</span>"
+    end
+
+    def development?
+      settings.development?
+    end
+
+    def cloud_json(cloud_data)
+      return if cloud_data.nil?
+
+      cloud_data.map do |d|
+        {
+          title: "#{show_title_for_slug(d[:show])} #{d[:time].to_date.to_s}",
+          data: d[:data]
+        }
+      end.to_json
     end
 
   end # helpers

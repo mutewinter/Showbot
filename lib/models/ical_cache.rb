@@ -53,7 +53,7 @@ class ICalCache
         end
       end
     end
-    
+
     nearest_event
   end
 
@@ -68,7 +68,7 @@ class ICalCache
       if event
         skip = false
         events.reject do |e|
-          if e.uid == event.uid 
+          if e.uid == event.uid
             if e.last_modified < event.last_modified
               # Remove old event if same UID and older modified time
               true

@@ -1,4 +1,4 @@
-source :rubyforge
+source 'https://rubygems.org'
 
 # Regular
 gem 'tzinfo'
@@ -6,8 +6,11 @@ gem 'i18n'
 
 # Backups
 gem 'backup'
-gem 'fog'
+gem 'fog', '~> 1.9.0'
 gem 'whenever', require: false
+gem 'net-ssh', ['>= 2.3.0', '<= 2.5.2']
+gem 'excon', '~> 0.17.0'
+gem 'mail', '~> 2.5.0'
 
 # Web
 gem 'sinatra'
@@ -20,12 +23,14 @@ gem 'execjs'
 gem 'therubyracer'
 
 # Showbot Specific
-gem 'cinch', '1.1.3'
-gem 'cinchize', '0.3.0'
-gem 'chronic', ">= 0.6.0"
-gem 'chronic_duration', ">= 0.9.6"
-gem 'ri_cal', '0.8.8'
+gem 'cinch'
+gem 'cinchize'
+gem 'chronic'
+gem 'chronic_duration'
+gem 'ri_cal'
 gem 'twitter'
+gem 'cinch-identify'
+gem 'stopwords', '0.2'
 
 # Data Mapper
 gem 'data_mapper'
@@ -49,3 +54,5 @@ end
 group :test do
   gem 'rack-test', require: false
 end
+
+

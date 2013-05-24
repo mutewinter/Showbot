@@ -1,18 +1,25 @@
 # A Cinch plugin for broadcasting Twitter updates to an IRC channel
 
-CHANNEL = "#5by5"
-TWITTER_USER = "5by5"
-
 require 'chronic_duration'
 require 'twitter'
 
+CHANNEL = "#5by5"
+TWITTER_USER = "5by5"
+
+Twitter.configure do |config|
+  config.consumer_key = ENV['TWITTER_CONSUMER_KEY']
+  config.consumer_secret = ENV['TWITTER_CONSUMER_SECRET']
+  config.oauth_token = ENV['TWITTER_OAUTH_TOKEN']
+  config.oauth_token_secret = ENV['TWITTER_OAUTH_TOKEN_SECRET']
+end
+
 module Cinch
   module Plugins
-    class TwitterBroadcast
+    class Twitter
       include Cinch::Plugin
 
       timer 60, :method => :send_last_status
-      
+
       match "last_status",   :method => :command_last_status
 
       def initialize(*args)
@@ -24,17 +31,17 @@ module Cinch
       # Send the last status for the TWITTER_USER to the user who requested it
       def command_last_status(m)
         begin
-          status = Twitter.user_timeline(TWITTER_USER).first
+          status = ::Twitter.user_timeline(TWITTER_USER).first
           m.user.send response_from_status(status)
-        rescue Twitter::Error::ServiceUnavailable
+        rescue ::Twitter::Error::ServiceUnavailable
           m.user.send "Oops, looks like Twitter's whale failed. Try again in a minute."
         end
       end
 
       def send_last_status
         begin
-          status = Twitter.user_timeline(TWITTER_USER).first
-        rescue Twitter::Error::ServiceUnavailable
+          status = ::Twitter.user_timeline(TWITTER_USER).first
+        rescue ::Twitter::Error::ServiceUnavailable
           puts "Error: Twitter is over capacity."
           return
         end
@@ -44,15 +51,15 @@ module Cinch
           # time the bot reconnects
           @last_sent_id = status.id
         elsif @last_sent_id != status.id
-        
+
           if status.in_reply_to_status_id or status.in_reply_to_screen_name
             # Don't show replies
             return false
           end
-          
+
           @last_sent_id = status.id
 
-          if development?
+          if @bot.nick =~ /_test$/
             Channel("#cinch-bots").send response_from_status(status)
           else
             Channel(CHANNEL).send response_from_status(status)
