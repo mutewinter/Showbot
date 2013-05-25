@@ -48,6 +48,16 @@ TWITTER_CONSUMER_SECRET=your_info_here
 TWITTER_OAUTH_TOKEN=your_info_here
 TWITTER_OAUTH_TOKEN_SECRET=your_info_here
 ```
+### Using Vagrant
+
+A Vagrantfile is included for development and testing using Vagrant.
+
+If you already have Vagrant installed, from the Showbot directory issue
+the command `vagrant up` and you will get a virtual machine with most of
+the dependencies installed.  You will need to ssh into the virtual machine
+with `vagrant ssh`, change to the `/vagrant` directory, and run
+`bundle`, `rake db:migrate`, create your `.env` file, then 
+`bundle exec foreman start -f Procfile.local`.
 
 ### Configuring IRC
 
