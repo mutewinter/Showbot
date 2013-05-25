@@ -1,0 +1,6 @@
+[submodule "chef/cookbooks/rvm"]
+	path = chef/cookbooks/rvm
+	url = git://github.com/fnichol/chef-rvm.git
+[submodule "chef/cookbooks/mysql"]
+	path = chef/cookbooks/mysql
+	url = git://github.com/opscode-cookbooks/mysql.git
