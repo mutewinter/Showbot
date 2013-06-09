@@ -36,7 +36,7 @@ These commands will get you setup to run Showbot.
  * `git clone https://github.com/mutewinter/Showbot.git`
  * `cd Showbot`
  * `bundle`
- * `rake db:migrate`
+ * `foreman run rake db:migrate`
 
 Finally you need to setup your `.env` file in the root of the project. At the
 bare minimum you'll need the following:
@@ -54,6 +54,9 @@ SHOWBOT_LOCALE=en
 PORT=80
 ## Development port
 DEVELOPMENT_PORT=5000
+
+# Point this to the url of data.json, if you have one
+SHOWBOT_DATABASE_URL=your_info_here
 
 # For backup.rb
 BOT_DATABASE_NAME=your_info_here
