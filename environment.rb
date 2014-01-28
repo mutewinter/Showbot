@@ -14,7 +14,7 @@ LIVE_URL = 'http://5by5.tv/live/data.json'
 
 configure do
   # load models
-  Dir.glob("#{File.dirname(__FILE__)}/lib/models/*.rb") { |lib| require lib }
+  Dir.glob("#{File.dirname(__FILE__)}/lib/models/*.rb").sort.each { |lib| require lib }
 end
 
 configure(:production, :development) do
