@@ -15,10 +15,14 @@ LIVE_URL = ENV['DATA_JSON_URL']
 
 configure do
   Dir[File.join(Dir.pwd, 'locales', '*.yml')].each {|file| I18n.load_path << file }
-  I18n.default_locale = ENV['SHOWBOT_LOCALE']
+  # Make sure only available locales are used. This will be the default in the
+  # future but we need this to silence a deprecation warning
+  I18n.config.enforce_available_locales = true
+  I18n.config.default_locale = ENV['SHOWBOT_LOCALE']
+  I18n.config.locale = I18n.config.default_locale
   
   # load models
-  Dir.glob("#{File.dirname(__FILE__)}/lib/models/*.rb") { |lib| require lib }
+  Dir.glob("#{File.dirname(__FILE__)}/lib/models/*.rb").sort.each { |lib| require lib }
 
   def t(*args)
     # Just a simple alias
