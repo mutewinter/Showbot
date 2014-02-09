@@ -95,8 +95,6 @@ GEM
     do_sqlite3 (0.10.13)
       data_objects (= 0.10.13)
     dotenv (0.9.0)
-    eat (0.1.8)
-      httpclient
     equalizer (0.0.9)
     eventmachine (1.0.3)
     every_day_irb (1.5.1)
@@ -127,10 +125,6 @@ GEM
     haml (4.0.5)
       tilt
     hirb (0.7.1)
-    http (0.5.0)
-      http_parser.rb
-    http_parser.rb (0.6.0)
-    httpclient (2.3.4.1)
     i18n (0.6.9)
     interactive_editor (0.0.10)
       spoon (>= 0.0.1)
@@ -276,7 +270,6 @@ DEPENDENCIES
   dm-timestamps
   dm-types
   dm-validations
-  eat
   excon (~> 0.17.0)
   execjs
   fog (~> 1.9.0)
