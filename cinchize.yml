@@ -34,8 +34,8 @@ plugins: &plugins
       :twitter_user: "test"
       :twitter_consumer_key: "test"
       :twitter_consumer_secret: "test"
-      :twitter_oauth_token: "test"
-      :twitter_oauth_token_secret: "test"
+      :twitter_access_token: "test"
+      :twitter_access_token_secret: "test"
 
 # The base configuration, Freenode in the example configuration.
 network_base: &network_base
