@@ -16,7 +16,7 @@ class Suggestion
 
   property :id,         Serial
   property :title,      String,   :length => 40,
-    :message => "That suggestion was too long. Showbot is sorry. Think title, not transcript."
+    :message => I18n.t('messages.models.suggestion')
   property :user,       String
   property :show,       String
   property :created_at, DateTime, index: true

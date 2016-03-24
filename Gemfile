@@ -2,7 +2,9 @@ source 'https://rubygems.org'
 
 # Regular
 gem 'tzinfo'
+gem 'tzinfo-data'
 gem 'i18n'
+gem 'rake'
 
 # Backups
 gem 'backup'

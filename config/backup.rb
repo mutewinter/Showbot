@@ -19,12 +19,12 @@ Backup::Model.new(:showbot_backup, 'Showbot Backup') do
   # MySQL [Database]
   #
   database MySQL do |db|
-    db.name               = ENV['SHOWBOT_DATABASE_NAME']
-    db.username           = ENV['SHOWBOT_DATABASE_USER']
-    db.password           = ENV['SHOWBOT_DATABASE_PASSWORD']
-    db.host               = "localhost"
-    db.port               = 3306
-    db.additional_options = ['--quick', '--single-transaction']
+    db.name               = ENV['BOT_DATABASE_NAME']
+    db.username           = ENV['BOT_DATABASE_USER']
+    db.password           = ENV['BOT_DATABASE_PASSWORD']
+    db.host               = ENV['BOT_DATABASE_HOST']
+    db.port               = ENV['BOT_DATABASE_PORT']
+    db.additional_options = ENV['BOT_DATABASE_OPTS']
   end
 
   compress_with Gzip do |compression|
@@ -32,12 +32,12 @@ Backup::Model.new(:showbot_backup, 'Showbot Backup') do
   end
 
   store_with S3 do |s3|
-    s3.access_key_id      = ENV['SHOWBOT_S3_ACCESS_KEY']
-    s3.secret_access_key  = ENV['SHOWBOT_S3_SECRET_KEY']
-    s3.region             = 'us-east-1'
-    s3.bucket             = 'showbot'
-    s3.path               = '/backups'
-    s3.keep               = 10
+    s3.access_key_id      = ENV['BOT_S3_ACCESS_KEY']
+    s3.secret_access_key  = ENV['BOT_S3_SECRET_KEY']
+    s3.region             = ENV['BOT_S3_REGION']
+    s3.bucket             = ENV['BOT_S3_BUCKET']
+    s3.path               = ENV['BOT_S3_PATH']
+    s3.keep               = ENV['BOT_S3_KEEP']
   end
 
 end

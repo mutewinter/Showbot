@@ -32,17 +32,44 @@ These commands will get you setup to run Showbot.
  * `git clone https://github.com/mutewinter/Showbot.git`
  * `cd Showbot`
  * `bundle`
- * `rake db:migrate`
+ * `foreman run rake db:migrate`
 
 Finally you need to setup your `.env` file in the root of the project. At the
 bare minimum you'll need the following:
 
 ```
+# Bot lib folder
 RUBYLIB=./lib
-TWITTER_CONSUMER_KEY=your_info_here
-TWITTER_CONSUMER_SECRET=your_info_here
-TWITTER_OAUTH_TOKEN=your_info_here
-TWITTER_OAUTH_TOKEN_SECRET=your_info_here
+
+# Set this if you want to use a language other than english.
+# You will also need to create a corresponding .yml file in the locales folder.
+SHOWBOT_LOCALE=en
+
+# Foreman stuff
+## Production port
+PORT=80
+## Development port
+DEVELOPMENT_PORT=5000
+
+# Point this to the url of data.json, if you have one
+SHOWBOT_DATABASE_URL=your_info_here
+
+# For backup.rb
+BOT_DATABASE_NAME=your_info_here
+BOT_DATABASE_USER=your_info_here
+BOT_DATABASE_PASSWORD=your_info_here
+BOT_DATABASE_HOST=your_info_here
+BOT_DATABASE_PORT=your_info_here
+BOT_DATABASE_OPTS=your_info_here
+S3_ACCESS_KEY_ID=your_info_here
+S3_SECRET_ACCESS_KEY=your_info_here
+S3_REIGON=your_info_here
+S3_BUCKET=your_info_here
+S3_PATH=your_info_here
+S3_KEEP=your_info_here
+
+# Point this to the url of data.json, if you have one
+DATA_JSON_URL=your_info_here
 ```
 
 ### Configuring IRC

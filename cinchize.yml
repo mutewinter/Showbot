@@ -2,30 +2,43 @@
 # Plugins used for all configs
 plugins: &plugins
   plugins:
-    -
-      class: "Cinch::Plugins::FiveByFun"
-    -
-      class: "Cinch::Plugins::Schedule"
-    -
-      class: "Cinch::Plugins::Admin"
-    -
-      class: "Cinch::Plugins::Showbot"
-    -
-      class: "Cinch::Plugins::Suggestions"
-    -
-      class: "Cinch::Plugins::Shoutcast"
-    -
-      class: "Cinch::Plugins::Twitter"
-    -
-      class: "Cinch::Plugins::Links"
-    -
-      class: "Cinch::Plugins::Identify"
-      options:
-        :password: "test" # Enter your password here
-        :type: :nickserv # Most servers use nickserv, so setting this as the sane default.
+  -
+    class: "Cinch::Plugins::Admin"
+    options:
+      :bot_admin_password: "test"
+  -
+    class: "Cinch::Plugins::Commands"
+  -
+    class: "Cinch::Plugins::FiveByFun"
+  -
+    class: "Cinch::Plugins::Identify"
+    options:
+      :password: "test" # Enter your password here
+      :type: :nickserv # Most servers use nickserv, so setting this as the sane default.
+  -
+    class: "Cinch::Plugins::Links"
+  -
+    class: "Cinch::Plugins::Schedule"
+    options:
+      :ical_uri: "http://www.example.com/basic.ics"
+  -
+    class: "Cinch::Plugins::Suggestions"
+  -
+    class: "Cinch::Plugins::Shoutcast"
+    options:
+      :shoutcast_uri: "http://www.example.com/"
+  -
+    class: "Cinch::Plugins::Twitter"
+    options:
+      :channel: "#test"
+      :twitter_user: "test"
+      :twitter_consumer_key: "test"
+      :twitter_consumer_secret: "test"
+      :twitter_access_token: "test"
+      :twitter_access_token_secret: "test"
 
-# The base configuration for freenode
-freenode_base: &freenode_base
+# The base configuration, Freenode in the example configuration.
+network_base: &network_base
   <<: *plugins
   server: irc.freenode.net
   port: 6667
@@ -35,13 +48,25 @@ options:
     dir_mode: normal
     dir: "pid"
 servers:
-  freenode_test:
-    <<: *freenode_base
-    nick: showbot_test
+  network_test:
+    <<: *network_base
+    nick: botname_test
     channels:
       - "#cinch-bots"
-  freenode_live:
-    <<: *freenode_base
-    nick: showbot
+    shared:
+      Bot_Nick: "botname"
+      Backup_Bot_Nick: "botname-backup"
+      Live_Url: "example.com/live"
+      Sinatra_Url: "http://www.example.com"
+      Twitter_User: "ExampleUser"
+  network_live:
+    <<: *network_base
+    nick: botname
     channels:
-      - "#5by5"
+      - "#cinch-bots"
+    shared:
+      Bot_Nick: "botname"
+      Backup_Bot_Nick: "botname-backup"
+      Live_Url: "example.com/live"
+      Sinatra_Url: "http://www.example.com"
+      Twitter_User: "ExampleUser"

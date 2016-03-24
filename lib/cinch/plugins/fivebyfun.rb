@@ -1,7 +1,5 @@
 # The stuff that makes showbot so nice to be around.
 
-require './lib/random.rb'
-
 module Cinch
   module Plugins
     class FiveByFun
@@ -47,7 +45,7 @@ module Cinch
           "Oh yeah, I used to be a salesman. It's a tough racket.",
           "Second prize is a set of steak knives. Third prize is you're fired.",
           "Coffee's for closers only."
-          ].random
+          ].sample
       end
 
       def command_usa(m)
@@ -66,14 +64,14 @@ module Cinch
           "A CONTRACT!",
           "Do you have the slightest idea what a moral and ethical principle is?",
           "Has it ever occurred to you what would happen to my future if I were to fail to live up to my responsibilities?",
-          ].random
+          ].sample
       end
 
       def command_lebowski(m)
         m.reply ["That's your name, Dude!",
           "I see you rolled your way into the semis. Dios mio, man.",
           "Uh, uh, papers, um, just papers, uh, you know, uh, my papers, business papers."
-          ].random
+          ].sample
       end
 
       def command_texas(m)
@@ -83,7 +81,7 @@ module Cinch
       def command_bluetoot(m)
         m.reply ["Hi! Can I aks you a queshion?",
         "Before you answer, Hi!"
-        ].random
+        ].sample
       end
 
       def command_sodastream(m)
@@ -94,13 +92,13 @@ module Cinch
         m.reply ["Nine times?",
           "Nine times.",
           "ok I'll go, I'll go, I'll go, I'll go, I'll go."
-        ].random
+        ].sample
       end
 
       def command_aviator(m)
         m.reply ["The way of the future.",
           "Come in with the milk. Come in with the milk. Come in with the milk."
-        ].random
+        ].sample
       end
 
       def command_roderick(m)
@@ -108,7 +106,7 @@ module Cinch
         "I agree to nothing!",
         "Supertrain will fix all of this.",
         "Keep moving and get out of the way",
-        "Hitler"].random
+        "Hitler"].sample
       end
 
       def command_drphil(m)
@@ -122,7 +120,7 @@ module Cinch
           "Doesn't matter how many Fords you buy, they're never gonna be a Dodge. You can repaint the Ford but... let's go to a break.",
           "You're not gonna get Black Lung from an excel spreadsheet.",
           "I'm not gonna euthanize this dog, I'm just gonna put it over here where I can't see it.",
-          "Failure is the equivalent of existential sit-ups."].random
+          "Failure is the equivalent of existential sit-ups."].sample
       end
 
       def command_merlin(m)
@@ -134,7 +132,7 @@ module Cinch
         "Recursion. Which is also known as recursion.",
         "...Cleric...",
         "I gotta go bust a tinkie."
-        ].random
+        ].sample
       end
 
       def command_sandy(m)
@@ -145,7 +143,7 @@ module Cinch
         m.reply ["You wouldn't be tired.",
         "Your insulin wouldn't be spiking.",
         "Elk.",
-        "No glutens."].random
+        "No glutens."].sample
       end
 
       def command_jsir(m)
@@ -153,7 +151,7 @@ module Cinch
           "perl -le '$i=3; $u += ($_<<8*$i--) for \"127.0.0.1\" =~ /(\d+)/g; print $u'",
           "perl -MAlgorithm::Permute -le '$l = [1,2,3,4,5]; $p = Algorithm::Permute->new($l); print @r while @r = $p->next'",
           "perl -lne '(1x$_) !~ /^1?$|^(11+?)\\1+$/ && print \"$_ is prime\"'",
-          "perl -ple 's/^[ \\t]+|[ \\t]+$//g'"].random
+          "perl -ple 's/^[ \\t]+|[ \\t]+$//g'"].sample
       end
 
       def command_gruber(m)
@@ -173,12 +171,12 @@ module Cinch
           "Yes, of course.",
           "Ahhhhh....HAHAHAHAHAHAHAHA!",
           "I determine what is early and what is late, Mr. Peppermint.",
-          "Me too. I'm excited, too."].random
+          "Me too. I'm excited, too."].sample
       end
 
       def command_peppermint(m)
         m.reply ["Hey man, calm down! It's just a prank, man! For laughs!",
-          "I'm excited by this meal I made!"].random
+          "I'm excited by this meal I made!"].sample
       end
 
       def command_eight_ball(m)
@@ -201,7 +199,7 @@ module Cinch
           "My reply is no",
           "My sources say no",
           "Outlook not so good",
-          "Very doubtful"].random
+          "Very doubtful"].sample
       end
 
       def command_quit_show(m)
@@ -213,7 +211,7 @@ module Cinch
         "Big week. Huge week.",
         "It's your show.",
         "Go ahead caller.",
-        "Keeping you up, Haddie?"].random
+        "Keeping you up, Haddie?"].sample
       end
 
       def command_haddie(m)
@@ -223,7 +221,7 @@ module Cinch
         "It's a sensation",
         "Eww, the cat is weird",
         "We have to worry about space germs too. Ughhhhhhhhh! Why?!?!"
-        ].random
+        ].sample
       end
 
       def command_robert_evans(m)
@@ -237,12 +235,12 @@ module Cinch
       def command_marco(m)
         m.reply ["Please don't email me.",
                  "I shouldn't have said that.",
-                 "Braaaaands"].random
+                 "Braaaaands"].sample
       end
 
       def command_faith(m)
         m.reply [ "Don't tweet me.",
-                  "Don't be mean."].random
+                  "Don't be mean."].sample
       end
 
       def command_mike(m)

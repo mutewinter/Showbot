@@ -9,7 +9,6 @@ module Cinch
     class Shoutcast
       include Cinch::Plugin
 
-      SHOUTCAST_URI = URI("http://5by5.fm/")
       HEADERS = {
           "Icy-MetaData" => '1'
       }
@@ -19,6 +18,7 @@ module Cinch
       def initialize(*args)
         super
 
+        @shoutcast_uri = URI(config[:shoutcast_uri])
         @last_update = Time.now
         @shoutcast_show = parse_shoutcast_stream
       end
@@ -35,11 +35,11 @@ module Cinch
 
         live_show = Shows.fetch_live_show
         if @shoutcast_show
-          m.user.send "#{@shoutcast_show} is streaming on 5by5.tv/live"
+          m.user.send "#{@shoutcast_show} is streaming on #{shared[:Live_Url]}"
         elsif live_show
           m.user.send "#{live_show.title} is live right now!"
         else
-          m.user.send "Failed to get stream info, 5by5.fm may be down. I'm sorry."
+          m.user.send "Failed to get stream info, #{shared[:Live_Url]} may be down. I'm sorry."
         end
       end
 
@@ -51,12 +51,12 @@ module Cinch
       def parse_shoutcast_stream
         @last_update = Time.now
 
-        http = Net::HTTP.new(SHOUTCAST_URI.host, SHOUTCAST_URI.port)
+        http = Net::HTTP.new(@shoutcast_uri.host, @shoutcast_uri.port)
 
         chunk_count = 0
         chunk_limit = 20 # Limit chunks to prevent lockups
         begin
-          http.get(SHOUTCAST_URI.path, HEADERS) do |chunk|
+          http.get(@shoutcast_uri.path, HEADERS) do |chunk|
             chunk_count += 1
             if chunk =~ /StreamTitle='(.+?)';/
               return $1

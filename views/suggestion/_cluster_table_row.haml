@@ -7,6 +7,6 @@
   =h suggestion.title
   - if suggestion.top_of_cluster? and suggestion.cluster_id
     %span.cluster-arrow
-%td.user=h suggestion.user || 'No User'
+%td.user=h suggestion.user || t("views.suggestion._table_row.User")
 %td.time
   = haml :'suggestion/_timeago', :locals => {datetime: suggestion.created_at}

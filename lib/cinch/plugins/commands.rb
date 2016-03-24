@@ -4,7 +4,7 @@ require 'chronic_duration'
 
 module Cinch
   module Plugins
-    class Showbot
+    class Commands
       include Cinch::Plugin
 
       match %r{(help|commands)$},  :method => :command_help     # !help
@@ -23,9 +23,9 @@ module Cinch
           "!schedule - What shows are being recorded live in the next seven days?",
           "!suggest - Be heard. Suggest a title for the live show.",
           "!link - Know the link for that? Suggest it and make the show better.",
-          "!current - What's playing on 5by5.tv/live? I've got you covered.",
-          "!last_status - The last tweet by @5by5, delievered to you in IRC. Sweet.",
-          "!about - Was showbot coded or did it spontaniously come into existence?",
+          "!current - What's playing on #{shared[:Live_Url]}? I've got you covered.",
+          "!last_status - The last tweet by @#{shared[:Twitter_User].join(", @")} delievered to you in IRC. Sweet.",
+          "!about - Was #{shared[:Bot_Nick]} coded or did it spontaniously come into existence?",
           "!help - Uh, this.",
         ].join("\n")
       end
@@ -41,7 +41,7 @@ module Cinch
         date_string = @start_time.strftime("%-m/%-d/%Y")
         time_string = @start_time.strftime("%-I:%M%P")
         seconds_running = (Time.now - @start_time).to_i
-        m.user.send "Showbot has been running for " +
+        m.user.send "#{shared[:Bot_Nick]} has been running for " +
           "#{ChronicDuration.output(seconds_running, :format => :long)} " +
           "since #{date_string} at #{time_string}"
       end

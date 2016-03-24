@@ -1,6 +1,6 @@
-Welcome to Hacker Mode.
+=t('views.suggestion.hacker_mode.welcome')
 - all_suggestions = suggestion_sets.map{|s| s.suggestions}.flatten
-="#{all_suggestions.count} Title Suggestion#{all_suggestions.count == 1 ? '' : 's'} in the last 24 hours."
+=t(:suggestions, :scope => [:views, :suggestion, :hacker_mode], :count => all_suggestions.count)
 ="\n"
 - suggestion_sets.each do |suggestion_set|
   = show_title_for_slug(suggestion_set.slug)
