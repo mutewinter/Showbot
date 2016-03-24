@@ -1,15 +1,11 @@
 # Showbot
 
+**Dead as of 2013-10-16.**
+
 A sweet IRC bot with a **web interface** for [5by5](http://5by5.tv).
 Built on [cinch](https://github.com/cinchrb/cinch) and [sinatra](http://www.sinatrarb.com/).
 
-## Showbot on the Internets
-
-[Showbot's Stats on GitEgo](http://gitego.com/mutewinter/Showbot)
-
 [The Creation of Showbot](http://pileofturtles.com/2011/07/showbot/)
-
-[Showbot.me](http://showbot.me)
 
 ## IRC Commands
 
@@ -180,3 +176,4 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
+_sekret analytics_ ![shhh](https://d2weczhvl823v0.cloudfront.net/mutewinter/Showbot/trend.png)
