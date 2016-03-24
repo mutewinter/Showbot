@@ -1,6 +1,6 @@
 # Showbot
 
-**Dead as of 2013-10-16.**
+**Dead as of 2013-10-16, the main project is now located at [rikai/Showbot](https://github.com/rikai/Showbot)**
 
 A sweet IRC bot with a **web interface** for [5by5](http://5by5.tv).
 Built on [cinch](https://github.com/cinchrb/cinch) and [sinatra](http://www.sinatrarb.com/).
