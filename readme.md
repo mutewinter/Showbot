@@ -71,6 +71,16 @@ S3_KEEP=your_info_here
 # Point this to the url of data.json, if you have one
 DATA_JSON_URL=your_info_here
 ```
+### Using Vagrant
+
+A Vagrantfile is included for development and testing using Vagrant.
+
+If you already have Vagrant installed, from the Showbot directory issue
+the command `vagrant up` and you will get a virtual machine with most of
+the dependencies installed.  You will need to ssh into the virtual machine
+with `vagrant ssh`, change to the `/vagrant` directory, and run
+`bundle`, `rake db:migrate`, create your `.env` file, then 
+`bundle exec foreman start -f Procfile.local`.
 
 ### Configuring IRC
 
